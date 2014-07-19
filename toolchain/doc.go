@@ -1,4 +1,4 @@
-package python
+package toolchain
 
 import (
 	"fmt"
