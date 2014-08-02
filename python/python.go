@@ -6,6 +6,10 @@ import (
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
+const (
+	DistPackageSourceUnitType = "DistPackage"
+)
+
 type pythonEnv struct {
 	PythonVersion           string
 	Python3Version          string
@@ -92,7 +96,7 @@ type pkgInfo struct {
 func (p *pkgInfo) SourceUnit() *unit.SourceUnit {
 	return &unit.SourceUnit{
 		Name:         p.ProjectName,
-		Type:         "DistPackage",
+		Type:         DistPackageSourceUnitType,
 		Repo:         repo.MakeURI(p.RepoURL),
 		Dependencies: nil, // nil, because scanner does not resolve dependencies
 		Ops:          map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
@@ -132,12 +136,6 @@ type requirement struct {
 }
 
 /*
-func (r requirement) DistPackage() *DistPackage {
-	return &DistPackage{
-		ProjectName: r.ProjectName,
-	}
-}
-
 func (l *pythonEnv) pydepDockerfile() ([]byte, error) {
 	var buf bytes.Buffer
 	template.Must(template.New("").Parse(pydepDockerfileTemplate)).Execute(&buf, l)

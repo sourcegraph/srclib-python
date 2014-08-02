@@ -56,7 +56,7 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	return units, nil
 }
 
-func requirements(unitDir string) ([]requirement, error) {
+func requirements(unitDir string) ([]*requirement, error) {
 	depCmd := exec.Command("pydep-run.py", "dep", unitDir)
 	depCmd.Stderr = os.Stderr
 	b, err := depCmd.Output()
@@ -64,7 +64,7 @@ func requirements(unitDir string) ([]requirement, error) {
 		return nil, err
 	}
 
-	var reqs []requirement
+	var reqs []*requirement
 	err = json.Unmarshal(b, &reqs)
 	if err != nil {
 		return nil, err
@@ -94,7 +94,7 @@ func pythonSourceFiles(dir string) (files []string) {
 }
 
 // Remove unresolvable requirements (i.e., requirements with no clone URL)
-func pruneReqs(reqs []requirement) (kept, ignored []requirement) {
+func pruneReqs(reqs []*requirement) (kept, ignored []*requirement) {
 	for _, req := range reqs {
 		if req.RepoURL != "" { // cannot resolve dependencies with no clone URL
 			kept = append(kept, req)
