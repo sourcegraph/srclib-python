@@ -1,4 +1,4 @@
-package toolchain
+package python
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/sourcegraph/srclib/doc"
+	"sourcegraph.com/sourcegraph/srclib/doc"
 )
 
 var rstDirectiveRegex = regexp.MustCompile(`\.\. [a-zA-Z]+:: `)

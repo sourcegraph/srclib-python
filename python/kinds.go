@@ -1,6 +1,6 @@
-package toolchain
+package python
 
-import "github.com/sourcegraph/srclib/graph"
+import "sourcegraph.com/sourcegraph/srclib/graph"
 
 const (
 	Package = "package"

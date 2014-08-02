@@ -1,12 +1,12 @@
-package toolchain
+package python
 
 import (
 	"bytes"
 	"path/filepath"
 	"text/template"
 
-	"github.com/sourcegraph/srclib/repo"
-	"github.com/sourcegraph/srclib/toolchain"
+	"sourcegraph.com/sourcegraph/srclib/repo"
+	"sourcegraph.com/sourcegraph/srclib/toolchain"
 )
 
 const (
@@ -19,10 +19,10 @@ const (
 )
 
 var extensionsTestUnit = &DistPackage{
-	ProjectName: "PythonExtensionsTest",
+	ProjectName:        "PythonExtensionsTest",
 	ProjectDescription: "Test C extension graphing.",
-	RootDirectory: "Lib",
-	Files: nil,
+	RootDirectory:      "Lib",
+	Files:              nil,
 }
 
 // Taken from hg.python.org/cpython's setup.py
@@ -51,18 +51,18 @@ yourself.`,
 }
 
 type pythonEnv struct {
-	PythonVersion   string
-	Python3Version  string
-	PydepVersion    string
-	PySonar2Version string
+	PythonVersion           string
+	Python3Version          string
+	PydepVersion            string
+	PySonar2Version         string
 	PyBuiltinGrapherVersion string
 }
 
 var defaultPythonEnv = &pythonEnv{
-	PythonVersion:   "python2.7",
-	Python3Version:  "python3.3",
-	PydepVersion:    "debfd0e681c3b60e33eec237a4473aed1f767004",
-	PySonar2Version: "1b152a16d1292b66280e60047a8dbdbfc86a103b",
+	PythonVersion:           "python2.7",
+	Python3Version:          "python3.3",
+	PydepVersion:            "debfd0e681c3b60e33eec237a4473aed1f767004",
+	PySonar2Version:         "1b152a16d1292b66280e60047a8dbdbfc86a103b",
 	PyBuiltinGrapherVersion: "4a2e5de8cd6788198339b4a384c659ce2deee3b6",
 }
 

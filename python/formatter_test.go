@@ -1,4 +1,5 @@
-package toolchain
+// +build off
+package python
 
 import (
 	"encoding/json"
@@ -6,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/jmoiron/sqlx/types"
-	"github.com/sourcegraph/srclib/graph"
-	"github.com/sourcegraph/srclib/repo"
+	"sourcegraph.com/sourcegraph/srclib/graph"
+	"sourcegraph.com/sourcegraph/srclib/repo"
 )
 
 func TestSymbolFormatter_Name(t *testing.T) {
