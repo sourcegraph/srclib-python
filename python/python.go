@@ -1,54 +1,10 @@
 package python
 
 import (
-	"bytes"
-	"path/filepath"
-	"text/template"
-
 	"sourcegraph.com/sourcegraph/srclib/repo"
 	"sourcegraph.com/sourcegraph/srclib/toolchain"
+	"sourcegraph.com/sourcegraph/srclib/unit"
 )
-
-const (
-	srcRoot    = "/src"
-	stdLibRepo = repo.URI("hg.python.org/cpython")
-)
-
-const (
-	extensionsTestRepo = repo.URI("github.com/sgtest/python-extensions-test")
-)
-
-var extensionsTestUnit = &DistPackage{
-	ProjectName:        "PythonExtensionsTest",
-	ProjectDescription: "Test C extension graphing.",
-	RootDirectory:      "Lib",
-	Files:              nil,
-}
-
-// Taken from hg.python.org/cpython's setup.py
-var stdLibUnit = &DistPackage{
-	ProjectName: "Python",
-	ProjectDescription: `A high-level object-oriented programming language
-
-Python is an interpreted, interactive, object-oriented programming
-language. It is often compared to Tcl, Perl, Scheme or Java.
-
-Python combines remarkable power with very clear syntax. It has
-modules, classes, exceptions, very high level dynamic data types, and
-dynamic typing. There are interfaces to many system calls and
-libraries, as well as to various windowing systems (X11, Motif, Tk,
-Mac, MFC). New built-in modules are easily written in C or C++. Python
-is also usable as an extension language for applications that need a
-programmable interface.
-
-The Python implementation is portable: it runs on many brands of UNIX,
-on Windows, DOS, Mac, Amiga... If your favorite system isn't
-listed here, it may still be supported, if there's a C compiler for
-it. Ask around on comp.lang.python -- or just try compiling Python
-yourself.`,
-	RootDirectory: "Lib",
-	Files:         nil, // should be filled in when needed
-}
 
 type pythonEnv struct {
 	PythonVersion           string
@@ -66,10 +22,11 @@ var defaultPythonEnv = &pythonEnv{
 	PyBuiltinGrapherVersion: "4a2e5de8cd6788198339b4a384c659ce2deee3b6",
 }
 
-func init() {
-	toolchain.Register("python", defaultPythonEnv)
-}
+// func init() {
+// 	toolchain.Register("python", defaultPythonEnv)
+// }
 
+/*
 const DistPackageDisplayName = "PipPackage"
 
 type DistPackage struct {
@@ -115,9 +72,11 @@ func (p *DistPackage) Description() string { return p.ProjectDescription }
 
 // Type implements unit.Info.
 func (p *DistPackage) Type() string { return "Python package" }
+*/
 
 // pydep data structures
 
+// Format outputted by scanner
 type pkgInfo struct {
 	RootDir     string   `json:"rootdir,omitempty"`
 	ProjectName string   `json:"project_name,omitempty"`
@@ -130,6 +89,17 @@ type pkgInfo struct {
 	Description string   `json:"description,omitempty"`
 }
 
+func (p *pkgInfo) SourceUnit() *unit.SourceUnit {
+	return &unit.SourceUnit{
+		Name:         p.ProjectName,
+		Type:         "DistPackage",
+		Repo:         repo.MakeURI(p.RepoURL),
+		Dependencies: nil, // nil, because scanner does not resolve dependencies
+		Ops:          map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
+	}
+}
+
+/*
 func (p pkgInfo) DistPackage() *DistPackage {
 	return &DistPackage{
 		ProjectName:        p.ProjectName,
@@ -146,6 +116,7 @@ func (p pkgInfo) DistPackageWithFiles(files []string) *DistPackage {
 		Files:              files,
 	}
 }
+*/
 
 type requirement struct {
 	ProjectName string      `json:"project_name"`
@@ -160,6 +131,7 @@ type requirement struct {
 	Type        string      `json:"type"`
 }
 
+/*
 func (r requirement) DistPackage() *DistPackage {
 	return &DistPackage{
 		ProjectName: r.ProjectName,
@@ -182,3 +154,4 @@ RUN apt-get update -qq && apt-get install -qq python-dev libxslt1-dev libxml2-de
 
 RUN pip install git+git://github.com/sourcegraph/pydep.git@{{.PydepVersion}}
 `
+*/

@@ -54,7 +54,7 @@ type ScanCmd struct {
 var scanCmd ScanCmd
 
 func (c *ScanCmd) Execute(args []string) error {
-	units, err := python.Scan(".")
+	units, err := python.Scan(".", c.Repo, c.Subdir)
 	if err != nil {
 		return err
 	}
