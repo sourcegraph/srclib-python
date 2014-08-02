@@ -1,6 +1,10 @@
-package toolchain
+// +build off
 
-import "github.com/sourcegraph/srclib/config"
+// TODO(bliu): revisit this
+
+package python
+
+import "sourcegraph/sourcegraph.com/srclib/config"
 
 func init() {
 	config.Register("python", &Config{})

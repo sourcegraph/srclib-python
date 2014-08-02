@@ -1,11 +1,12 @@
-package toolchain
+// +build off
+package python
 
 import (
 	"encoding/json"
 	"path/filepath"
 	"strings"
 
-	"github.com/sourcegraph/srclib/graph"
+	"sourcegraph.com/sourcegraph/srclib/graph"
 )
 
 func init() {

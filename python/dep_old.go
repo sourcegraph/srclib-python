@@ -1,4 +1,4 @@
-package toolchain
+package python
 
 import (
 	"bytes"
@@ -7,10 +7,10 @@ import (
 	"log"
 	"path/filepath"
 
-	"github.com/sourcegraph/srclib/config"
-	"github.com/sourcegraph/srclib/container"
-	"github.com/sourcegraph/srclib/dep2"
-	"github.com/sourcegraph/srclib/unit"
+	"sourcegraph.com/sourcegraph/srclib/config"
+	"sourcegraph.com/sourcegraph/srclib/container"
+	"sourcegraph.com/sourcegraph/srclib/dep2"
+	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
 func init() {

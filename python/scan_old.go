@@ -1,14 +1,14 @@
-package toolchain
+package python
 
 import (
 	"encoding/json"
 	"path/filepath"
 
 	"github.com/kr/fs"
-	"github.com/sourcegraph/srclib/config"
-	"github.com/sourcegraph/srclib/container"
-	"github.com/sourcegraph/srclib/scan"
-	"github.com/sourcegraph/srclib/unit"
+	"sourcegraph.com/sourcegraph/srclib/config"
+	"sourcegraph.com/sourcegraph/srclib/container"
+	"sourcegraph.com/sourcegraph/srclib/scan"
+	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
 func init() {

@@ -1,4 +1,4 @@
-package toolchain
+package python
 
 import (
 	"bytes"
@@ -11,12 +11,12 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/sourcegraph/srclib/config"
-	"github.com/sourcegraph/srclib/container"
-	"github.com/sourcegraph/srclib/graph"
-	"github.com/sourcegraph/srclib/grapher2"
-	"github.com/sourcegraph/srclib/repo"
-	"github.com/sourcegraph/srclib/unit"
+	"sourcegraph.com/sourcegraph/srclib/config"
+	"sourcegraph.com/sourcegraph/srclib/container"
+	"sourcegraph.com/sourcegraph/srclib/graph"
+	"sourcegraph.com/sourcegraph/srclib/grapher2"
+	"sourcegraph.com/sourcegraph/srclib/repo"
+	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
 func init() {
@@ -446,8 +446,8 @@ type graphData_ struct {
 }
 
 type rawGraphData struct {
-	Graph graphData_
-	Reqs  []requirement
+	Graph      graphData_
+	Reqs       []requirement
 	Extensions *grapher2.Output
 }
 

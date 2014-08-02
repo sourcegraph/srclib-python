@@ -1,13 +1,13 @@
-package toolchain
+package python
 
 import (
 	"path/filepath"
 	"reflect"
 	"testing"
 
-	"github.com/sourcegraph/srclib/graph"
-	"github.com/sourcegraph/srclib/grapher2"
-	"github.com/sourcegraph/srclib/unit"
+	"sourcegraph.com/sourcegraph/srclib/graph"
+	"sourcegraph.com/sourcegraph/srclib/grapher2"
+	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
 func Test_GrapherTransform(t *testing.T) {
