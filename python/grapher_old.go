@@ -1,3 +1,5 @@
+// +build off
+
 package python
 
 import (

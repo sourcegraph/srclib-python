@@ -1,3 +1,4 @@
+// +build off
 package python
 
 import "sourcegraph.com/sourcegraph/srclib/graph"
