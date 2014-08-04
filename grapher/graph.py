@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import os
 import sys
 import json
@@ -38,8 +36,8 @@ def main():
 
     json_indent = 2 if args.pretty else None
     print json.dumps({
-        'defs': [d.__dict__ for d in defs],
-        'refs': [r.__dict__ for r in refs],
+        'Defs': [d.__dict__ for d in defs],
+        'Refs': [r.__dict__ for r in refs],
     }, indent=json_indent)
 
 def get_defs(source_files):
@@ -89,10 +87,12 @@ def get_refs(source_files):
                     full_name = full_name_of_def(def_)
                     yield Ref(
                         DefPath=full_name.replace('.', '/'),
+                        DefFile=def_.module_path,
                         Def=False,
                         File=source_file,
                         StartPos=name_part.start_pos,
                         EndPos=name_part.end_pos,
+                        ToBuiltin=def_.in_builtin_module(),
                     )
                 except Exception as e:
                     log('failed to get ref (%s) in source file %s: %s' % (str((name_part, def_)), source_file, str(e)))
@@ -101,10 +101,10 @@ def get_refs(source_files):
 
 def full_name_of_def(def_):
     # TODO: currently fails for tuple assignments (e.g., 'x, y = 1, 3')
-    return ('%s.%s' % (def_.full_name, def_.name)) if def_.type == 'statement' else def_.full_name
+    return ('%s.%s' % (def_.full_name, def_.name)) if def_.type in set(['statement', 'param']) else def_.full_name
 
 Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'StartPos', 'Exported', 'Docstring', 'Data'])
-Ref = namedtuple('Ref', ['DefPath', 'Def', 'File', 'StartPos', 'EndPos'])
+Ref = namedtuple('Ref', ['DefPath', 'DefFile', 'Def', 'File', 'StartPos', 'EndPos', "ToBuiltin"])
 
 class ParserContext(object):
     def __init__(self, source_file):
