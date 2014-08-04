@@ -145,7 +145,7 @@ class ParserContext(object):
                     path=self.source_file,
                     line=name_part.start_pos[0],
                     column=name_part.start_pos[1],
-                ).goto_assignments()
+                ).goto_assignments() # Note: not goto_definitions, because we don't want to go all the way
                 for def_ in defs:
                     yield (name_part, def_)
 
