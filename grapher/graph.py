@@ -85,18 +85,22 @@ def get_refs(source_files):
         log('getting refs for source file %s' % source_file)
         try:
             for name_part, def_ in ParserContext(source_file).refs():
-                full_name = full_name_of_def(def_)
-                yield Ref(
-                    DefPath=full_name.replace('.', '/'),
-                    Def=False,
-                    File=source_file,
-                    StartPos=name_part.start_pos,
-                    EndPos=name_part.end_pos,
-                )
+                try:
+                    full_name = full_name_of_def(def_)
+                    yield Ref(
+                        DefPath=full_name.replace('.', '/'),
+                        Def=False,
+                        File=source_file,
+                        StartPos=name_part.start_pos,
+                        EndPos=name_part.end_pos,
+                    )
+                except Exception as e:
+                    log('failed to get ref (%s) in source file %s: %s' % (str((name_part, def_)), source_file, str(e)))
         except Exception as e:
             log('failed to get refs for source file %s: %s' % (source_file, str(e)))
 
 def full_name_of_def(def_):
+    # TODO: currently fails for tuple assignments (e.g., 'x, y = 1, 3')
     return ('%s.%s' % (def_.full_name, def_.name)) if def_.type == 'statement' else def_.full_name
 
 Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'StartPos', 'EndPos', 'Exported', 'Data'])
