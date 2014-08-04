@@ -65,7 +65,6 @@ def get_defs_(def_, source_file):
         for d in get_defs_(subdef, source_file):
             yield d
 
-
 def jedi_def_to_def(def_, source_file):
     full_name = full_name_of_def(def_)
     return Def(
@@ -74,9 +73,8 @@ def jedi_def_to_def(def_, source_file):
         Name=def_.name,
         File=source_file,
         StartPos=def_.start_pos,
-        # EndPos=def_.end_pos,
-        EndPos = None,
         Exported=True,          # TODO: not all vars are exported
+        Docstring=def_.docstring(),
         Data=None,
     )
 
@@ -103,7 +101,7 @@ def full_name_of_def(def_):
     # TODO: currently fails for tuple assignments (e.g., 'x, y = 1, 3')
     return ('%s.%s' % (def_.full_name, def_.name)) if def_.type == 'statement' else def_.full_name
 
-Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'StartPos', 'EndPos', 'Exported', 'Data'])
+Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'StartPos', 'Exported', 'Docstring', 'Data'])
 Ref = namedtuple('Ref', ['DefPath', 'Def', 'File', 'StartPos', 'EndPos'])
 
 class ParserContext(object):
