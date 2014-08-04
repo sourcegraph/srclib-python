@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import argparse as ap
 from os import path
 from glob import glob
@@ -7,11 +8,21 @@ from collections import namedtuple
 
 import jedi
 
+global verbose
+
+def log(msg):
+    if verbose:
+        sys.stderr.write(msg + '\n')
+
 def main():
     argser = ap.ArgumentParser(description='graph.py is a command that dumps all Python definitions and references found in code rooted at a directory')
     argser.add_argument('dir', help='path to root directory of code')
+    argser.add_argument('--pretty', help='pretty print JSON output', action='store_true', default=False)
+    argser.add_argument('--verbose', help='verbose', action='store_true', default=False)
 
     args = argser.parse_args()
+    global verbose
+    verbose = args.verbose
     os.chdir(args.dir)          # set working directory to be source directory
 
     source_files = glob('**/*.py')
@@ -22,11 +33,16 @@ def main():
 
     defs = [d for d in get_defs(source_files)]
     refs = [r for r in get_refs(source_files)]
-    print '\n'.join([str(r) for r in refs])
-    print '\n'.join([str(d) for d in defs])
+
+    json_indent = 2 if args.pretty else None
+    print json.dumps({
+        'defs': [d.__dict__ for d in defs],
+        'refs': [r.__dict__ for r in refs],
+    }, indent=json_indent)
 
 def get_defs(source_files):
     for source_file in source_files:
+        log('getting defs for source file %s' % source_file)
         source = None
         with open(source_file) as sf:
             source = unicode(sf.read())
@@ -38,16 +54,19 @@ def get_defs(source_files):
 def get_defs_(def_, source_file):
     yield jedi_def_to_def(def_, source_file)
 
-    # TODO: this seems to break (e.g., local variables in a function)
-    # subdefs = def_.defined_names()
-    # for subdef in subdefs:
-    #     for d in get_defs_(subdef, source_file):
-    #         yield d
+    if def_.type not in ['function', 'class', 'module']:
+        return
+
+    subdefs = def_.defined_names()
+    for subdef in subdefs:
+        for d in get_defs_(subdef, source_file):
+            yield d
+
 
 def jedi_def_to_def(def_, source_file):
     full_name = full_name_of_def(def_)
     return Def(
-        Path=full_name,
+        Path=full_name.replace('.', '/'),
         Kind=def_.type,
         Name=def_.name,
         File=source_file,
@@ -63,6 +82,7 @@ def full_name_of_def(def_):
 
 def get_refs(source_files):
     for source_file in source_files:
+        log('getting refs for source file %s' % source_file)
         for name_part, def_ in ParserContext(source_file).refs():
             full_name = full_name_of_def(def_)
             yield Ref(
