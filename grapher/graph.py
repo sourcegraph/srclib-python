@@ -43,13 +43,16 @@ def main():
 def get_defs(source_files):
     for source_file in source_files:
         log('getting defs for source file %s' % source_file)
-        source = None
-        with open(source_file) as sf:
-            source = unicode(sf.read())
-        defs = jedi.api.defined_names(source, path=source_file)
-        for def_ in defs:
-            for d in get_defs_(def_, source_file):
-                yield d
+        try:
+            source = None
+            with open(source_file) as sf:
+                source = unicode(sf.read())
+            defs = jedi.api.defined_names(source, path=source_file)
+            for def_ in defs:
+                for d in get_defs_(def_, source_file):
+                    yield d
+        except Exception as e:
+            log('failed to get defs for source file %s: %s' % (source_file, str(e)))
 
 def get_defs_(def_, source_file):
     yield jedi_def_to_def(def_, source_file)
@@ -77,21 +80,24 @@ def jedi_def_to_def(def_, source_file):
         Data=None,
     )
 
-def full_name_of_def(def_):
-    return ('%s.%s' % (def_.full_name, def_.name)) if def_.type == 'statement' else def_.full_name
-
 def get_refs(source_files):
     for source_file in source_files:
         log('getting refs for source file %s' % source_file)
-        for name_part, def_ in ParserContext(source_file).refs():
-            full_name = full_name_of_def(def_)
-            yield Ref(
-                DefPath=full_name.replace('.', '/'),
-                Def=False,
-                File=source_file,
-                StartPos=name_part.start_pos,
-                EndPos=name_part.end_pos,
-            )
+        try:
+            for name_part, def_ in ParserContext(source_file).refs():
+                full_name = full_name_of_def(def_)
+                yield Ref(
+                    DefPath=full_name.replace('.', '/'),
+                    Def=False,
+                    File=source_file,
+                    StartPos=name_part.start_pos,
+                    EndPos=name_part.end_pos,
+                )
+        except Exception as e:
+            log('failed to get refs for source file %s: %s' % (source_file, str(e)))
+
+def full_name_of_def(def_):
+    return ('%s.%s' % (def_.full_name, def_.name)) if def_.type == 'statement' else def_.full_name
 
 Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'StartPos', 'EndPos', 'Exported', 'Data'])
 Ref = namedtuple('Ref', ['DefPath', 'Def', 'File', 'StartPos', 'EndPos'])
