@@ -101,8 +101,8 @@ func (c *GraphContext) transformDef(rawDef *RawDef) *graph.Symbol {
 		Kind:     jediKindToSymbolKind[rawDef.Kind],
 		Name:     rawDef.Name,
 		File:     rawDef.File,
-		DefStart: 0, // TODO
-		DefEnd:   0, // TODO
+		DefStart: rawDef.DefStart,
+		DefEnd:   rawDef.DefEnd,
 		Exported: rawDef.Exported,
 		Data:     nil, // TODO
 	}
@@ -125,8 +125,8 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 		UnitType: c.Unit.Type,
 
 		File:  rawRef.File,
-		Start: 0, // TODO
-		End:   0, // TODO
+		Start: rawRef.Start,
+		End:   rawRef.End,
 	}, nil
 }
 
@@ -232,7 +232,8 @@ type RawDef struct {
 	Kind      string
 	Name      string
 	File      string // relative path (to source unit directory)
-	StartPos  [2]int
+	DefStart  int
+	DefEnd    int
 	Exported  bool
 	Docstring string
 	Data      interface{}
@@ -243,7 +244,7 @@ type RawRef struct {
 	Def       bool
 	DefFile   string // absolute path
 	File      string // relative path (to source unit directory)
-	StartPos  [2]int
-	EndPos    [2]int
+	Start     int
+	End       int
 	ToBuiltin bool
 }
