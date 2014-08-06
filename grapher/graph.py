@@ -62,6 +62,10 @@ def get_defs(source_files):
             err('failed to get defs for source file %s: %s' % (source_file, str(e)))
 
 def get_defs_(def_, source_file, linecoler):
+    # ignore import definitions because these just redefine things imported from elsewhere
+    if def_.type == 'import':
+        return
+
     yield jedi_def_to_def(def_, source_file, linecoler)
 
     if def_.type not in ['function', 'class', 'module']:
@@ -142,9 +146,15 @@ class ParserContext(object):
                 yield r
 
     def import_refs(self, import_):
-        # TODO: extract all possible references from this
-        return
-        yield
+        for name in import_.get_all_import_names():
+            for name_part in name.names:
+                defs = jedi.api.Script(
+                    path=self.source_file,
+                    line=name_part.start_pos[0],
+                    column=name_part.start_pos[1],
+                ).goto_assignments()
+                for def_ in defs:
+                    yield (name_part, def_)
 
     def stmt_refs(self, stmt):
         if isinstance(stmt, jedi.parser.representation.KeywordStatement):
