@@ -1,0 +1,33 @@
+{
+  "Symbols": [
+    {
+      "Repo": "github.com/sgtest/python-sample-1",
+      "UnitType": "DistPackage",
+      "Unit": "python-sample-1",
+      "Path": "app/app/x",
+      "TreePath": "app/app/x",
+      "Kind": "var",
+      "Name": "x",
+      "Callable": false,
+      "File": "app/app.py",
+      "DefStart": 16,
+      "DefEnd": 17,
+      "Exported": true
+    }
+  ],
+  "Refs": [
+    {
+      "SymbolRepo": "hg.python.org/cpython",
+      "SymbolUnitType": "DistPackage",
+      "SymbolUnit": "Python",
+      "SymbolPath": "distutils/core/setup",
+      "Def": false,
+      "Repo": "github.com/sgtest/python-sample-1",
+      "UnitType": "DistPackage",
+      "Unit": "python-sample-1",
+      "File": "setup.py",
+      "Start": 30,
+      "End": 35
+    }
+  ]
+}
