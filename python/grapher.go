@@ -37,8 +37,14 @@ func (c *GraphContext) Graph() (*grapher.Output, error) {
 	if os.Getenv("IN_DOCKER_CONTAINER") != "" {
 		// NOTE: this may cause an error when graphing any source unit that depends
 		// on jedi (or any other dependency of the graph code)
+		requirementFiles, err := filepath.Glob(filepath.Join(c.Unit.Dir, "*requirements.txt"))
+		if err != nil {
+			return nil, err
+		}
+		for _, requirementFile := range requirementFiles {
+			exec.Command("pip", "install", "-r", requirementFile)
+		}
 		exec.Command("pip", "install", "-I", c.Unit.Dir)
-		// TODO: iterate through and install from all *requirements.txt files
 	}
 
 	cmd := exec.Command("python", "-m", "grapher.graph", c.Unit.Dir, "--verbose")

@@ -1,1 +1,1 @@
-jedi==0.8.1-final0
+git+https://github.com/beyang/jedi.git
