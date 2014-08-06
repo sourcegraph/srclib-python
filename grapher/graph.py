@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import string
 import argparse as ap
 from os import path
 from glob import glob
@@ -33,11 +34,24 @@ def main():
     source_files = glob('**/*.py')
     source_files.extend(glob('*.py'))
 
-    modules = [filename_to_module_name(f) for f in source_files]
-    jedi.api.preload_module(modules)
+    modules_and_files = [(filename_to_module_name(f), f) for f in source_files]
+    jedi.api.preload_module([mf[0] for mf in modules_and_files])
 
     defs = [d for d in get_defs(source_files)]
     refs = [r for r in get_refs(source_files)]
+
+    for module, filename in modules_and_files:
+        defs.append(Def(
+            Path=module.replace('.', '/'),
+            Kind='module',
+            Name=string.split(module, '.')[-1],
+            File=filename,
+            DefStart=0,
+            DefEnd=0,
+            Exported=True,
+            Docstring='',           # TODO: extract module/package-level doc
+            Data=None,
+        ))
 
     json_indent = 2 if args.pretty else None
     print json.dumps({
