@@ -14,7 +14,7 @@ def log(msg):
     if verbose:
         sys.stderr.write(msg + '\n')
 
-def err(msg):
+def error(msg):
     if not quiet:
         sys.stderr.write(msg + '\n')
 
@@ -59,14 +59,18 @@ def get_defs(source_files):
                 for d in get_defs_(def_, source_file, linecoler):
                     yield d
         except Exception as e:
-            err('failed to get defs for source file %s: %s' % (source_file, str(e)))
+            error('failed to get defs for source file %s: %s' % (source_file, str(e)))
 
 def get_defs_(def_, source_file, linecoler):
     # ignore import definitions because these just redefine things imported from elsewhere
     if def_.type == 'import':
         return
-
-    yield jedi_def_to_def(def_, source_file, linecoler)
+    
+    def__, err = jedi_def_to_def(def_, source_file, linecoler)
+    if err is None:
+        yield def__
+    else:
+        error(err)
 
     if def_.type not in ['function', 'class', 'module']:
         return
@@ -77,7 +81,10 @@ def get_defs_(def_, source_file, linecoler):
             yield d
 
 def jedi_def_to_def(def_, source_file, linecoler):
-    full_name = full_name_of_def(def_)
+    full_name, err = full_name_of_def(def_)
+    if err is not None:
+        return None, err
+
     start_pos = linecoler.convert(def_.start_pos)
     return Def(
         Path=full_name.replace('.', '/'),
@@ -89,7 +96,7 @@ def jedi_def_to_def(def_, source_file, linecoler):
         Exported=True,          # TODO: not all vars are exported
         Docstring=def_.docstring(),
         Data=None,
-    )
+    ), None
 
 def get_refs(source_files):
     for source_file in source_files:
@@ -99,7 +106,9 @@ def get_refs(source_files):
             linecoler = LineColToOffConverter(parserContext.source)
             for name_part, def_ in parserContext.refs():
                 try:
-                    full_name = full_name_of_def(def_)
+                    full_name, err = full_name_of_def(def_, from_ref=True)
+                    if err is not None:
+                        raise Exception(err)
                     start = linecoler.convert(name_part.start_pos)
                     end = linecoler.convert(name_part.end_pos)
                     yield Ref(
@@ -112,13 +121,58 @@ def get_refs(source_files):
                         ToBuiltin=def_.in_builtin_module(),
                     )
                 except Exception as e:
-                    err('failed to get ref (%s) in source file %s: %s' % (str((name_part, def_)), source_file, str(e)))
+                    error('failed to get ref (%s) in source file %s: %s' % (str((name_part, def_)), source_file, str(e)))
         except Exception as e:
-            err('failed to get refs for source file %s: %s' % (source_file, str(e)))
+            error('failed to get refs for source file %s: %s' % (source_file, str(e)))
 
-def full_name_of_def(def_):
-    # TODO: currently fails for tuple assignments (e.g., 'x, y = 1, 3')
-    return ('%s.%s' % (def_.full_name, def_.name)) if def_.type in set(['statement', 'param']) else def_.full_name
+def full_name_of_def(def_, from_ref=False):
+    # TODO: This function
+    # - currently fails for tuple assignments (e.g., 'x, y = 1, 3')
+    # - doesn't distinguish between m(module).n(submodule) and m(module).n(contained-variable)
+
+    if def_.in_builtin_module():
+        return def_.full_name, None
+
+    full_name = ('%s.%s' % (def_.full_name, def_.name)) if def_.type in set(['statement', 'param']) else def_.full_name
+
+    module_path = def_.module_path
+    if from_ref:
+        module_path, err = abs_module_path_to_relative_module_path(module_path)
+        if err is not None:
+            return None, err
+
+    supermodule = supermodule_path(module_path).replace('/', '.')
+
+    # definition definitions' full_name property contains only the promixal module, so we need to add back the parent
+    # module components. Luckily, the module_path is relative in this case.
+    return path.join(supermodule, full_name), None
+
+def supermodule_path(module_path):
+    if path.basename(module_path) == '__init__.py':
+        return path.dirname(path.dirname(module_path))
+    return path.dirname(module_path)
+
+def abs_module_path_to_relative_module_path(module_path):
+    relpath = path.relpath(module_path) # relative from pwd (which is set in main)
+    if not relpath.startswith('..'):
+        return relpath, None
+    components = module_path.split(os.sep)
+    pIdx = -1
+    for i, cmpt in enumerate(components):
+        if cmpt in ['site-packages', 'dist-packages']:
+            pIdx = i
+            break
+    if pIdx != -1:
+        return path.join(*components[i+1:]), None
+
+    for i, cmpt in enumerate(components):
+        if cmpt.startswith('python'):
+            pIdx = i
+            break
+    if pIdx != -1:
+        return path.join(*components[i+1:]), None
+    return None, ("could not convert absolute module path %s to relative module path" % module_path)
+        
 
 Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'DefStart', 'DefEnd', 'Exported', 'Docstring', 'Data'])
 Ref = namedtuple('Ref', ['DefPath', 'DefFile', 'Def', 'File', 'Start', 'End', "ToBuiltin"])
@@ -166,11 +220,20 @@ class ParserContext(object):
             if not isinstance(token, jedi.parser.representation.Name):
                 continue
             for name_part in token.names:
+                # TODO: we call goto_definitions instead of goto_assignments,
+                # because otherwise the reference will not follow imports (and
+                # thus generates bogus definitions whose paths conflict with
+                # those of actual definitions). However, goto_assignments *also*
+                # follows assignment statements, and so will mark instances of a
+                # type as a reference to the type. This is isn't really what we
+                # want. But for now, it's fine. We should really just extend
+                # Jedi to have a goto_definitions that follows imports, but not
+                # statements
                 defs = jedi.api.Script(
                     path=self.source_file,
                     line=name_part.start_pos[0],
                     column=name_part.start_pos[1],
-                ).goto_assignments() # Note: not goto_definitions, because we don't want to go all the way
+                ).goto_definitions()
                 for def_ in defs:
                     yield (name_part, def_)
 
