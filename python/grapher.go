@@ -202,7 +202,6 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 	// Case 3: in std lib
 	pythonDirIdx := -1
 	for i, cmp := range fileCmps {
-		log.Printf("# cmp: %s", cmp)
 		if strings.HasPrefix(cmp, "python") {
 			pythonDirIdx = i
 			break
