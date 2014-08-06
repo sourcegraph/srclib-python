@@ -98,6 +98,7 @@ func (p *pkgInfo) SourceUnit() *unit.SourceUnit {
 		Name:         p.ProjectName,
 		Type:         DistPackageSourceUnitType,
 		Repo:         repo.MakeURI(p.RepoURL),
+		Dir:          p.RootDir,
 		Dependencies: nil, // nil, because scanner does not resolve dependencies
 		Ops:          map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
 	}
@@ -133,6 +134,14 @@ type requirement struct {
 	Modules     []string    `json:"modules"`
 	Resolved    bool        `json:"resolved"`
 	Type        string      `json:"type"`
+}
+
+func (r *requirement) SourceUnit() *unit.SourceUnit {
+	return &unit.SourceUnit{
+		Name: r.ProjectName,
+		Type: DistPackageSourceUnitType,
+		Repo: repo.MakeURI(r.RepoURL),
+	}
 }
 
 /*

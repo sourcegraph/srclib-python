@@ -135,26 +135,29 @@ func (c *GraphCmd) Execute(args []string) error {
 		// TODO: install pip dependencies
 	}
 
-	out, err := python.Graph(unit)
+	ctx := python.NewGraphContext(unit)
+	out, err := ctx.Graph()
 	if err != nil {
 		return err
 	}
 
-	// Make paths relative to repo.
-	for _, gs := range out.Symbols {
-		if gs.File == "" {
-			log.Printf("no file %+v", gs)
+	/*
+		// Make paths relative to repo.
+		for _, gs := range out.Symbols {
+			if gs.File == "" {
+				log.Printf("no file %+v", gs)
+			}
+			gs.File = relPath(cwd, gs.File)
 		}
-		gs.File = relPath(cwd, gs.File)
-	}
-	for _, gr := range out.Refs {
-		gr.File = relPath(cwd, gr.File)
-	}
-	for _, gd := range out.Docs {
-		if gd.File != "" {
-			gd.File = relPath(cwd, gd.File)
+		for _, gr := range out.Refs {
+			gr.File = relPath(cwd, gr.File)
 		}
-	}
+		for _, gd := range out.Docs {
+			if gd.File != "" {
+				gd.File = relPath(cwd, gd.File)
+			}
+		}
+	*/
 
 	if err := json.NewEncoder(os.Stdout).Encode(out); err != nil {
 		return err
