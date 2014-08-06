@@ -11,24 +11,26 @@ ENV GOBIN /usr/local/bin
 ENV PATH /usr/local/go/bin:$PATH
 ENV GOPATH /srclib
 
+# Install Make
+RUN apt-get update -qq && apt-get install -qq make
+
 # Install Python and pip
-RUN apt-get update -qq && apt-get install -qq curl git {{.PythonVersion}}
-RUN ln -s $(which {{.PythonVersion}}) /usr/bin/python
 RUN curl https://raw.githubusercontent.com/pypa/pip/1.5.5/contrib/get-pip.py | python
 # Python development headers and other libs that some libraries require to install on Ubuntu
 RUN apt-get update -qq && apt-get install -qq python-dev libxslt1-dev libxml2-dev zlib1g-dev
 
-# Install pydep
-RUN pip install git+git://github.com/sourcegraph/pydep.git@{{.PydepVersion}}
+# Install pydep (TODO: move version dependency to Makefile)
+ENV PYDEP_VERSION debfd0e681c3b60e33eec237a4473aed1f767004
+RUN pip install git+git://github.com/sourcegraph/pydep.git@$PYDEP_VERSION
 
 # Allow determining whether we're running in Docker
 ENV IN_DOCKER_CONTAINER true
 
 # Add this toolchain
-ADD . /srclib/src/sourcegraph.com/sourcegraph/srclib-go/
-WORKDIR /srclib/src/sourcegraph.com/sourcegraph/srclib-go
+ADD . /srclib/src/sourcegraph.com/sourcegraph/srclib-python/
+WORKDIR /srclib/src/sourcegraph.com/sourcegraph/srclib-python
 RUN go get -v -d
-RUN go install
+RUN make install-docker
 
 # Project source code is mounted at src
 WORKDIR /src
