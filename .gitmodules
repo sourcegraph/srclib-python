@@ -1,0 +1,6 @@
+[submodule "testdata/case/python-sample-0"]
+	path = testdata/case/python-sample-0
+	url = git@github.com:sgtest/python-sample-0.git
+[submodule "testdata/case/python-sample-1"]
+	path = testdata/case/python-sample-1
+	url = git@github.com:sgtest/python-sample-1.git
