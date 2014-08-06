@@ -121,7 +121,7 @@ def get_refs(source_files):
             for name_part, def_ in parserContext.refs():
                 try:
                     full_name, err = full_name_of_def(def_, from_ref=True)
-                    if err is not None:
+                    if err is not None or full_name == '':
                         raise Exception(err)
                     start = linecoler.convert(name_part.start_pos)
                     end = linecoler.convert(name_part.end_pos)
