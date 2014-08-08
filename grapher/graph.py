@@ -29,6 +29,11 @@ def main():
     args = argser.parse_args()
     global verbose, quiet
     verbose, quiet = args.verbose, args.quiet
+
+    if args.dir == '':
+        error('target directory must not be empty')
+        os.exit(1)
+
     os.chdir(args.dir)          # set working directory to be source directory
 
     source_files = glob('**/*.py')
