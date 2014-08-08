@@ -120,11 +120,16 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 		return nil, err
 	}
 
+	defPath := graph.DefPath(rawRef.DefPath)
+	if defPath == "" {
+		defPath = "."
+	}
+
 	return &graph.Ref{
 		DefRepo:     defUnit.Repo,
 		DefUnitType: defUnit.Type,
 		DefUnit:     defUnit.Name,
-		DefPath:     graph.DefPath(rawRef.DefPath),
+		DefPath:     defPath,
 
 		Repo:     c.Unit.Repo,
 		Unit:     c.Unit.Name,
