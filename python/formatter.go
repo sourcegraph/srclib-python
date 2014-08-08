@@ -1,5 +1,3 @@
-// +build off
-
 package python
 
 import (
@@ -10,8 +8,17 @@ import (
 	"sourcegraph.com/sourcegraph/srclib/graph"
 )
 
+// defData is stored in graph.Def's Data field as JSON.
+//
+// TODO(beyang): I copied this from grapher_old.go and it's not being set right
+// now. Pls update this formatter to work with whatever "Data" struct you do use.
+type defData struct {
+	Kind          string
+	FuncSignature string
+}
+
 func init() {
-	graph.RegisterMakeDefFormatter(DistPackageDisplayName, newDefFormatter)
+	graph.RegisterMakeDefFormatter(DistPackageSourceUnitType, newDefFormatter)
 }
 
 func newDefFormatter(s *graph.Def) graph.DefFormatter {
@@ -25,8 +32,8 @@ func newDefFormatter(s *graph.Def) graph.DefFormatter {
 }
 
 type defFormatter struct {
-	def *graph.Def
-	data   *defData
+	def  *graph.Def
+	data *defData
 }
 
 func (f defFormatter) Language() string { return "Python" }

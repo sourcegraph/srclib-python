@@ -1,4 +1,3 @@
-// +build off
 package python
 
 import (
@@ -13,11 +12,11 @@ import (
 
 func TestDefFormatter_Name(t *testing.T) {
 	tests := []struct {
-		def *graph.Def
-		want   map[graph.Qualification]string
+		def  *graph.Def
+		want map[graph.Qualification]string
 	}{{
-		def: defInfo{Name: "name"}.Def(),
-		want:   map[graph.Qualification]string{graph.Unqualified: "name"},
+		def:  defInfo{Name: "name"}.Def(),
+		want: map[graph.Qualification]string{graph.Unqualified: "name"},
 	}, {
 		def: defInfo{Repo: "g.com/o/r", TreePath: "a/b/c", File: "a/b.py"}.Def(),
 		want: map[graph.Qualification]string{
@@ -95,12 +94,12 @@ func (s defInfo) Def() *graph.Def {
 		data = []byte(`{}`)
 	}
 	return &graph.Def{
-		SID:       sid,
-		DefKey: graph.DefKey{Repo: repo, CommitID: s.CommitID, UnitType: unitType, Unit: unit, Path: graph.DefPath(s.Path)},
-		Name:      s.Name,
-		File:      s.File,
-		TreePath:  s.TreePath,
-		Exported:  !s.NotExported,
-		Data:      data,
+		SID:      sid,
+		DefKey:   graph.DefKey{Repo: repo, CommitID: s.CommitID, UnitType: unitType, Unit: unit, Path: graph.DefPath(s.Path)},
+		Name:     s.Name,
+		File:     s.File,
+		TreePath: s.TreePath,
+		Exported: !s.NotExported,
+		Data:     data,
 	}
 }
