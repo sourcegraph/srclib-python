@@ -1,1 +1,2 @@
 git+https://github.com/beyang/jedi.git
+git+https://github.com/sourcegraph/pydep.git

@@ -11,47 +11,47 @@ import (
 	"sourcegraph.com/sourcegraph/srclib/repo"
 )
 
-func TestSymbolFormatter_Name(t *testing.T) {
+func TestDefFormatter_Name(t *testing.T) {
 	tests := []struct {
-		symbol *graph.Symbol
+		def *graph.Def
 		want   map[graph.Qualification]string
 	}{{
-		symbol: symbolInfo{Name: "name"}.Symbol(),
+		def: defInfo{Name: "name"}.Def(),
 		want:   map[graph.Qualification]string{graph.Unqualified: "name"},
 	}, {
-		symbol: symbolInfo{Repo: "g.com/o/r", TreePath: "a/b/c", File: "a/b.py"}.Symbol(),
+		def: defInfo{Repo: "g.com/o/r", TreePath: "a/b/c", File: "a/b.py"}.Def(),
 		want: map[graph.Qualification]string{
 			graph.ScopeQualified: "c", graph.DepQualified: "b.c", graph.RepositoryWideQualified: "a.b.c", graph.LanguageWideQualified: "g.com/o/r/a.b.c",
 		},
 	}, {
-		symbol: symbolInfo{Repo: "g.com/o/r", TreePath: "a/b/c", File: "a.py"}.Symbol(),
+		def: defInfo{Repo: "g.com/o/r", TreePath: "a/b/c", File: "a.py"}.Def(),
 		want: map[graph.Qualification]string{
 			graph.ScopeQualified: "b.c", graph.DepQualified: "a.b.c", graph.RepositoryWideQualified: "a.b.c", graph.LanguageWideQualified: "g.com/o/r/a.b.c",
 		},
 	}, {
-		symbol: symbolInfo{Repo: "g.com/o/r", TreePath: "aa/a/b", File: "aa/a.py"}.Symbol(),
+		def: defInfo{Repo: "g.com/o/r", TreePath: "aa/a/b", File: "aa/a.py"}.Def(),
 		want: map[graph.Qualification]string{
 			graph.ScopeQualified: "b", graph.DepQualified: "a.b", graph.RepositoryWideQualified: "aa.a.b", graph.LanguageWideQualified: "g.com/o/r/aa.a.b",
 		},
 	}, {
-		symbol: symbolInfo{Repo: "g.com/o/r", TreePath: "a/b", File: "a/__init__.py"}.Symbol(),
+		def: defInfo{Repo: "g.com/o/r", TreePath: "a/b", File: "a/__init__.py"}.Def(),
 		want: map[graph.Qualification]string{
 			graph.ScopeQualified: "b", graph.DepQualified: "a.b", graph.RepositoryWideQualified: "a.b", graph.LanguageWideQualified: "g.com/o/r/a.b",
 		},
 	}}
 
 	for _, test := range tests {
-		sf := newSymbolFormatter(test.symbol)
+		sf := newDefFormatter(test.def)
 		for qual, expName := range test.want {
 			name := sf.Name(qual)
 			if expName != name {
-				t.Errorf("%v qual %q: want %q but got %q", test.symbol, qual, expName, name)
+				t.Errorf("%v qual %q: want %q but got %q", test.def, qual, expName, name)
 			}
 		}
 	}
 }
 
-func symbolDataJSON(si symbolData) types.JsonText {
+func defDataJSON(si defData) types.JsonText {
 	b, err := json.Marshal(si)
 	if err != nil {
 		panic(err)
@@ -59,7 +59,7 @@ func symbolDataJSON(si symbolData) types.JsonText {
 	return b
 }
 
-type symbolInfo struct {
+type defInfo struct {
 	SID         graph.SID
 	Repo        repo.URI
 	CommitID    string
@@ -73,7 +73,7 @@ type symbolInfo struct {
 	Data        []byte
 }
 
-func (s symbolInfo) Symbol() *graph.Symbol {
+func (s defInfo) Def() *graph.Def {
 	sid := s.SID
 	if sid == 0 {
 		sid = graph.SID(rand.Int63())
@@ -94,9 +94,9 @@ func (s symbolInfo) Symbol() *graph.Symbol {
 	if data == nil {
 		data = []byte(`{}`)
 	}
-	return &graph.Symbol{
+	return &graph.Def{
 		SID:       sid,
-		SymbolKey: graph.SymbolKey{Repo: repo, CommitID: s.CommitID, UnitType: unitType, Unit: unit, Path: graph.SymbolPath(s.Path)},
+		DefKey: graph.DefKey{Repo: repo, CommitID: s.CommitID, UnitType: unitType, Unit: unit, Path: graph.DefPath(s.Path)},
 		Name:      s.Name,
 		File:      s.File,
 		TreePath:  s.TreePath,

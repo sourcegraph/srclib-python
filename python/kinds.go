@@ -7,18 +7,18 @@ const (
 	Package = "package"
 	Module  = "module"
 
-	// Other symbol kinds are defined in the Python code and passed through
+	// Other def kinds are defined in the Python code and passed through
 	// verbatim (except for being lowercased): ATTRIBUTE, CLASS, CONSTRUCTOR,
 	// etc.
 )
 
-var callableSymbolKinds = map[string]bool{
+var callableDefKinds = map[string]bool{
 	"CONSTRUCTOR": true,
 	"FUNCTION":    true,
 	"METHOD":      true,
 }
 
-var symbolKinds = map[string]graph.SymbolKind{
+var defKinds = map[string]graph.DefKind{
 	"ATTRIBUTE":   graph.Field,
 	"CLASS":       graph.Type,
 	"CONSTRUCTOR": graph.Func,

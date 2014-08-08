@@ -1,5 +1,5 @@
 {
-  "Symbols": [
+  "Defs": [
     {
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -437,10 +437,10 @@
   ],
   "Refs": [
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "distutils/core/setup",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "distutils/core/setup",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -450,10 +450,10 @@
       "End": 35
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -463,10 +463,10 @@
       "End": 206
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -476,10 +476,10 @@
       "End": 228
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "int",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "int",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -489,10 +489,10 @@
       "End": 111
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "int",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "int",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -502,10 +502,10 @@
       "End": 206
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "int",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "int",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -515,10 +515,10 @@
       "End": 228
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "object/__init__",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "object/__init__",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -528,10 +528,10 @@
       "End": 170
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "os",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "os",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -541,10 +541,10 @@
       "End": 52
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0/meth0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0/meth0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -554,10 +554,10 @@
       "End": 443
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -567,10 +567,10 @@
       "End": 430
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -580,10 +580,10 @@
       "End": 436
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -593,10 +593,10 @@
       "End": 505
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -606,10 +606,10 @@
       "End": 516
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -619,10 +619,10 @@
       "End": 251
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -632,10 +632,10 @@
       "End": 293
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -645,10 +645,10 @@
       "End": 302
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -658,10 +658,10 @@
       "End": 322
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -671,10 +671,10 @@
       "End": 329
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -684,10 +684,10 @@
       "End": 465
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -697,10 +697,10 @@
       "End": 474
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -710,10 +710,10 @@
       "End": 196
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -723,10 +723,10 @@
       "End": 205
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -736,10 +736,10 @@
       "End": 82
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class1",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -749,10 +749,10 @@
       "End": 201
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class1",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -762,10 +762,10 @@
       "End": 223
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class1",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -775,10 +775,10 @@
       "End": 246
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class1",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -788,10 +788,10 @@
       "End": 317
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class1",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -801,10 +801,10 @@
       "End": 485
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0/Class1",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -814,10 +814,10 @@
       "End": 494
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -827,10 +827,10 @@
       "End": 68
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m1/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -840,10 +840,10 @@
       "End": 154
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m1/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -853,10 +853,10 @@
       "End": 160
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m1/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -866,10 +866,10 @@
       "End": 216
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0/m1/Class0_0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1/Class0_0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -879,10 +879,10 @@
       "End": 227
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -892,10 +892,10 @@
       "End": 55
     },
     {
-      "SymbolRepo": "github.com/sgtest/python-sample-0",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "python-sample-0",
-      "SymbolPath": "pkg0",
+      "DefRepo": "github.com/sgtest/python-sample-0",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -905,10 +905,10 @@
       "End": 65
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "super",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "super",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",
@@ -918,10 +918,10 @@
       "End": 421
     },
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "super",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "super",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-0",
       "UnitType": "DistPackage",

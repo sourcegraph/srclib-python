@@ -167,22 +167,22 @@ func (p *pythonEnv) grapherTransform(o *rawGraphData, u unit.SourceUnit) (*graph
 	o.Reqs, _ = pruneReqs(o.Reqs)
 
 	o2 := grapher2.Output{
-		Symbols: make([]*graph.Symbol, 0),
+		Defs: make([]*graph.Def, 0),
 		Refs:    make([]*graph.Ref, 0),
 		Docs:    make([]*graph.Doc, 0),
 	}
 
 	selfrefs := make(map[graph.Ref]struct{})
-	for _, psym := range o.Graph.Syms {
-		sym, selfref, err := p.convertSym(psym, u, o.Reqs)
+	for _, pdef := range o.Graph.Defs {
+		def, selfref, err := p.convertDef(pdef, u, o.Reqs)
 		if err == notInUnitError {
 			continue
 		}
 		if err != nil {
-			return nil, fmt.Errorf("could not convert sym %+v: %s", psym, err)
+			return nil, fmt.Errorf("could not convert def %+v: %s", pdef, err)
 		}
 
-		o2.Symbols = append(o2.Symbols, sym)
+		o2.Defs = append(o2.Defs, def)
 		if selfref != nil {
 			selfrefs[*selfref] = struct{}{}
 			o2.Refs = append(o2.Refs, selfref)
@@ -215,9 +215,9 @@ func (p *pythonEnv) grapherTransform(o *rawGraphData, u unit.SourceUnit) (*graph
 
 	// Handle the case of C extensions
 	if o.Extensions != nil {
-		// Extension data includes symbols, docs, and self refs. Add those to the struct
-		log.Printf("Integrating C extension Symbols...")
-		o2.Symbols = append(o2.Symbols, o.Extensions.Symbols...)
+		// Extension data includes defs, docs, and self refs. Add those to the struct
+		log.Printf("Integrating C extension Defs...")
+		o2.Defs = append(o2.Defs, o.Extensions.Defs...)
 
 		log.Printf("Integrating C extension Docs...")
 		o2.Docs = append(o2.Docs, o.Extensions.Docs...)
@@ -229,77 +229,77 @@ func (p *pythonEnv) grapherTransform(o *rawGraphData, u unit.SourceUnit) (*graph
 	return &o2, nil
 }
 
-// Converts a pysonar symbol into a graph.Symbol. If err is nil, then sym is guaranteed to be not nil. selfref could be
-// nil (e.g., in the case that the location of a symbol's definition name is not well-defined)
-func (p *pythonEnv) convertSym(pySym *pySym, u unit.SourceUnit, reqs []requirement) (sym *graph.Symbol, selfref *graph.Ref, err error) {
-	file, err := p.pysonarFileToFile(u, pySym.File)
+// Converts a pysonar def into a graph.Def. If err is nil, then def is guaranteed to be not nil. selfref could be
+// nil (e.g., in the case that the location of a def's definition name is not well-defined)
+func (p *pythonEnv) convertDef(pyDef *pyDef, u unit.SourceUnit, reqs []requirement) (def *graph.Def, selfref *graph.Ref, err error) {
+	file, err := p.pysonarFileToFile(u, pyDef.File)
 	if err != nil {
 		return nil, nil, err
 	}
-	symKey, err := p.pysonarSymPathToSymbolKey(pySym.Path, u, reqs)
+	defKey, err := p.pysonarDefPathToDefKey(pyDef.Path, u, reqs)
 	if err != nil {
 		return nil, nil, err
 	}
-	treePath := graph.TreePath(symKey.Path)
+	treePath := graph.TreePath(defKey.Path)
 	if !treePath.IsValid() {
 		return nil, nil, fmt.Errorf("'%s' is not a valid tree-path", treePath)
 	}
 
-	sym = &graph.Symbol{
-		SymbolKey: *symKey,
+	def = &graph.Def{
+		DefKey: *defKey,
 		TreePath:  treePath,
-		Name:      pySym.Name,
+		Name:      pyDef.Name,
 		File:      file,
-		DefStart:  pySym.DefStart,
-		DefEnd:    pySym.DefEnd,
-		Exported:  pySym.Exported,
-		Callable:  callableSymbolKinds[pySym.Kind],
-		Kind:      symbolKinds[pySym.Kind],
+		DefStart:  pyDef.DefStart,
+		DefEnd:    pyDef.DefEnd,
+		Exported:  pyDef.Exported,
+		Callable:  callableDefKinds[pyDef.Kind],
+		Kind:      defKinds[pyDef.Kind],
 	}
 
 	{
 		// Compute data field
-		sd := symbolData{
-			Kind: strings.ToLower(pySym.Kind),
+		sd := defData{
+			Kind: strings.ToLower(pyDef.Kind),
 		}
 
-		if pySym.FuncData != nil {
-			sd.FuncSignature = pySym.FuncData.Signature
+		if pyDef.FuncData != nil {
+			sd.FuncSignature = pyDef.FuncData.Signature
 		}
-		if pySym.Kind == "MODULE" && strings.HasSuffix(pySym.File, "__init__.py") {
+		if pyDef.Kind == "MODULE" && strings.HasSuffix(pyDef.File, "__init__.py") {
 			sd.Kind = Package
-			sym.Kind = graph.Package
+			def.Kind = graph.Package
 		}
 
 		b, err := json.Marshal(sd)
 		if err != nil {
 			return nil, nil, err
 		}
-		sym.Data = b
+		def.Data = b
 	}
 
 	{
 		// Self ref
-		if sym.File != "" && pySym.IdentStart != pySym.IdentEnd {
+		if def.File != "" && pyDef.IdentStart != pyDef.IdentEnd {
 			selfref = &graph.Ref{
-				SymbolRepo:     symKey.Repo,
-				SymbolUnitType: symKey.UnitType,
-				SymbolUnit:     symKey.Unit,
-				SymbolPath:     symKey.Path,
+				DefRepo:     defKey.Repo,
+				DefUnitType: defKey.UnitType,
+				DefUnit:     defKey.Unit,
+				DefPath:     defKey.Path,
 				Def:            true,
 
-				Repo:     symKey.Repo,
-				UnitType: symKey.UnitType,
-				Unit:     symKey.Unit,
+				Repo:     defKey.Repo,
+				UnitType: defKey.UnitType,
+				Unit:     defKey.Unit,
 
-				File:  sym.File,
-				Start: pySym.IdentStart,
-				End:   pySym.IdentEnd,
+				File:  def.File,
+				Start: pyDef.IdentStart,
+				End:   pyDef.IdentEnd,
 			}
 		}
 	}
 
-	return sym, selfref, nil
+	return def, selfref, nil
 }
 
 func (p *pythonEnv) convertRef(pyRef *pyRef, u unit.SourceUnit, reqs []requirement) (*graph.Ref, error) {
@@ -307,15 +307,15 @@ func (p *pythonEnv) convertRef(pyRef *pyRef, u unit.SourceUnit, reqs []requireme
 	if err != nil {
 		return nil, err
 	}
-	symKey, err := p.pysonarSymPathToSymbolKey(pyRef.Sym, u, reqs)
+	defKey, err := p.pysonarDefPathToDefKey(pyRef.Def, u, reqs)
 	if err != nil {
 		return nil, err
 	}
 	return &graph.Ref{
-		SymbolRepo:     symKey.Repo,
-		SymbolUnitType: symKey.UnitType,
-		SymbolUnit:     symKey.Unit,
-		SymbolPath:     symKey.Path,
+		DefRepo:     defKey.Repo,
+		DefUnitType: defKey.UnitType,
+		DefUnit:     defKey.Unit,
+		DefPath:     defKey.Path,
 		Def:            false,
 
 		Repo:     "", // only care about references located in the current source unit
@@ -333,12 +333,12 @@ func (p *pythonEnv) convertDoc(pyDoc *pyDoc, u unit.SourceUnit, reqs []requireme
 	if err != nil {
 		return nil, err
 	}
-	symKey, err := p.pysonarSymPathToSymbolKey(pyDoc.Sym, u, reqs)
+	defKey, err := p.pysonarDefPathToDefKey(pyDoc.Def, u, reqs)
 	if err != nil {
 		return nil, err
 	}
 	return &graph.Doc{
-		SymbolKey: *symKey,
+		DefKey: *defKey,
 		Format:    "text/plain", // TODO: handle rST, HTML, markdown
 		Data:      formatDocs(pyDoc.Body),
 		File:      docFile,
@@ -358,8 +358,8 @@ func (p *pythonEnv) pysonarFileToFile(u unit.SourceUnit, pfile string) (file str
 	return filepath.Join(u.RootDir(), relpath), nil
 }
 
-// Transforms a symbol path emitted from PySonar into a SymbolKey. PySonar symbol paths are absolute in the filesystem
-// (although they don't represent files), so we can reconstruct the source of the symbol (repository and unit) from
+// Transforms a def path emitted from PySonar into a DefKey. PySonar def paths are absolute in the filesystem
+// (although they don't represent files), so we can reconstruct the source of the def (repository and unit) from
 // them.
 //
 // Assumptions: All top-level modules/packages are a direct child of the *source unit* root directory (the dir that
@@ -368,17 +368,17 @@ func (p *pythonEnv) pysonarFileToFile(u unit.SourceUnit, pfile string) (file str
 // (It's possible to support this in the future, but we must parse the package_dir argument to setup() in setup.py
 // (EASY) and somehow make this available for installed dependencies (HARD, because we don't have the setup.py after
 // installation).
-func (p *pythonEnv) pysonarSymPathToSymbolKey(pySymPath string, u unit.SourceUnit, reqs []requirement) (*graph.SymbolKey, error) {
+func (p *pythonEnv) pysonarDefPathToDefKey(pyDefPath string, u unit.SourceUnit, reqs []requirement) (*graph.DefKey, error) {
 	var uDir = filepath.Join(srcRoot, u.RootDir())
-	if relpath, err := filepath.Rel(uDir, pySymPath); err == nil && !strings.HasPrefix(relpath, "..") {
+	if relpath, err := filepath.Rel(uDir, pyDefPath); err == nil && !strings.HasPrefix(relpath, "..") {
 		// Case 1: in current source unit (u)
-		return &graph.SymbolKey{
+		return &graph.DefKey{
 			// no repo URI means same repo
 			UnitType: unit.Type(u),
 			Unit:     u.Name(),
-			Path:     graph.SymbolPath(relpath),
+			Path:     graph.DefPath(relpath),
 		}, nil
-	} else if relpath, err := filepath.Rel(p.sitePackagesDir(), pySymPath); err == nil && !strings.HasPrefix(relpath, "..") {
+	} else if relpath, err := filepath.Rel(p.sitePackagesDir(), pyDefPath); err == nil && !strings.HasPrefix(relpath, "..") {
 		// Case 2: in dependent source unit(depUnits)
 		var foundReq *requirement
 		candidates := make([]string, 0)
@@ -386,7 +386,7 @@ func (p *pythonEnv) pysonarSymPathToSymbolKey(pySymPath string, u unit.SourceUni
 		for _, req := range reqs {
 			for _, pkg := range req.Packages {
 				pkgpath := filepath.Join(p.sitePackagesDir(), pkg)
-				if r, err := filepath.Rel(pkgpath, pySymPath); err == nil && !strings.HasPrefix(r, "..") {
+				if r, err := filepath.Rel(pkgpath, pyDefPath); err == nil && !strings.HasPrefix(r, "..") {
 					foundReq = &req
 					break FindReq
 				}
@@ -398,7 +398,7 @@ func (p *pythonEnv) pysonarSymPathToSymbolKey(pySymPath string, u unit.SourceUni
 			}
 			for _, mod := range req.Modules {
 				modpath := filepath.Join(p.sitePackagesDir(), mod) // TODO(bliu): add a test case for top-level module libs
-				if r, err := filepath.Rel(modpath, pySymPath); err == nil && !strings.HasPrefix(r, "..") {
+				if r, err := filepath.Rel(modpath, pyDefPath); err == nil && !strings.HasPrefix(r, "..") {
 					foundReq = &req
 					break FindReq
 				}
@@ -407,42 +407,42 @@ func (p *pythonEnv) pysonarSymPathToSymbolKey(pySymPath string, u unit.SourceUni
 		}
 		if foundReq == nil {
 			return nil, fmt.Errorf("Could not find requirement matching path %s, stdlib-dir: %s, site-packages-dir: %s with candidates %v",
-				pySymPath, p.stdLibDir(), p.sitePackagesDir(), candidates)
+				pyDefPath, p.stdLibDir(), p.sitePackagesDir(), candidates)
 		}
 
 		var reqUnit = foundReq.DistPackage()
-		return &graph.SymbolKey{
+		return &graph.DefKey{
 			Repo:     repo.MakeURI(foundReq.RepoURL),
 			UnitType: unit.Type(reqUnit),
 			Unit:     reqUnit.Name(),
-			Path:     graph.SymbolPath(relpath),
+			Path:     graph.DefPath(relpath),
 		}, nil
-	} else if relpath, err := filepath.Rel(p.stdLibDir(), pySymPath); err == nil && !strings.HasPrefix(relpath, "..") {
+	} else if relpath, err := filepath.Rel(p.stdLibDir(), pyDefPath); err == nil && !strings.HasPrefix(relpath, "..") {
 		// Case 3: in std lib
-		return &graph.SymbolKey{
+		return &graph.DefKey{
 			Repo:     stdLibRepo,
 			UnitType: unit.Type(stdLibUnit),
 			Unit:     stdLibUnit.Name(),
-			Path:     graph.SymbolPath(relpath),
+			Path:     graph.DefPath(relpath),
 		}, nil
 	} else {
-		// Case 4: built-in symbol or error
+		// Case 4: built-in def or error
 		for prefix, newPrefix := range builtinPrefixes {
-			if strings.HasPrefix(pySymPath, prefix) {
-				return &graph.SymbolKey{
+			if strings.HasPrefix(pyDefPath, prefix) {
+				return &graph.DefKey{
 					Repo:     stdLibRepo,
 					UnitType: unit.Type(stdLibUnit),
 					Unit:     stdLibUnit.Name(),
-					Path:     graph.SymbolPath(strings.Replace(pySymPath, prefix, newPrefix, 1)),
+					Path:     graph.DefPath(strings.Replace(pyDefPath, prefix, newPrefix, 1)),
 				}, nil
 			}
 		}
-		return nil, fmt.Errorf("Could not find requirement matching PySonar path %s", pySymPath)
+		return nil, fmt.Errorf("Could not find requirement matching PySonar path %s", pyDefPath)
 	}
 }
 
 type graphData_ struct {
-	Syms []*pySym
+	Defs []*pyDef
 	Refs []*pyRef
 	Docs []*pyDoc
 }
@@ -453,7 +453,7 @@ type rawGraphData struct {
 	Extensions *grapher2.Output
 }
 
-type pySym struct {
+type pyDef struct {
 	Path       string
 	Name       string
 	File       string
@@ -469,7 +469,7 @@ type pySym struct {
 }
 
 type pyRef struct {
-	Sym     string
+	Def     string
 	File    string
 	Start   int
 	End     int
@@ -477,15 +477,15 @@ type pyRef struct {
 }
 
 type pyDoc struct {
-	Sym   string
+	Def   string
 	File  string
 	Body  string
 	Start int
 	End   int
 }
 
-// symbolData is stored in graph.Symbol's Data field as JSON.
-type symbolData struct {
+// defData is stored in graph.Def's Data field as JSON.
+type defData struct {
 	Kind          string
 	FuncSignature string
 }

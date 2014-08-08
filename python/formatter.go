@@ -11,27 +11,27 @@ import (
 )
 
 func init() {
-	graph.RegisterMakeSymbolFormatter(DistPackageDisplayName, newSymbolFormatter)
+	graph.RegisterMakeDefFormatter(DistPackageDisplayName, newDefFormatter)
 }
 
-func newSymbolFormatter(s *graph.Symbol) graph.SymbolFormatter {
-	var si symbolData
+func newDefFormatter(s *graph.Def) graph.DefFormatter {
+	var si defData
 	if len(s.Data) > 0 {
 		if err := json.Unmarshal(s.Data, &si); err != nil {
-			panic("unmarshal Python symbol data: " + err.Error())
+			panic("unmarshal Python def data: " + err.Error())
 		}
 	}
-	return symbolFormatter{s, &si}
+	return defFormatter{s, &si}
 }
 
-type symbolFormatter struct {
-	symbol *graph.Symbol
-	data   *symbolData
+type defFormatter struct {
+	def *graph.Def
+	data   *defData
 }
 
-func (f symbolFormatter) Language() string { return "Python" }
+func (f defFormatter) Language() string { return "Python" }
 
-func (f symbolFormatter) DefKeyword() string {
+func (f defFormatter) DefKeyword() string {
 	if f.isFunc() {
 		return "def"
 	}
@@ -47,31 +47,31 @@ func (f symbolFormatter) DefKeyword() string {
 	return ""
 }
 
-func (f symbolFormatter) Kind() string { return f.data.Kind }
+func (f defFormatter) Kind() string { return f.data.Kind }
 
 func dotted(slashed string) string { return strings.Replace(slashed, "/", ".", -1) }
 
-func (f symbolFormatter) Name(qual graph.Qualification) string {
+func (f defFormatter) Name(qual graph.Qualification) string {
 	if qual == graph.Unqualified {
-		return f.symbol.Name
+		return f.def.Name
 	}
 
 	// Get the name of the containing package or module
 	var containerName string
-	if filename := filepath.Base(f.symbol.File); filename == "__init__.py" {
-		containerName = filepath.Base(filepath.Dir(f.symbol.File))
+	if filename := filepath.Base(f.def.File); filename == "__init__.py" {
+		containerName = filepath.Base(filepath.Dir(f.def.File))
 	} else if strings.HasSuffix(filename, ".py") {
 		containerName = filename[:len(filename)-len(".py")]
 	} else if strings.HasSuffix(filename, ".c") {
 		// Special case for Standard Lib C extensions
-		return dotted(string(f.symbol.TreePath))
+		return dotted(string(f.def.TreePath))
 	} else {
 		// Should never reach here, but fall back to TreePath if we do
-		return string(f.symbol.TreePath)
+		return string(f.def.TreePath)
 	}
 
 	// Compute the path relative to the containing package or module
-	var treePathCmps = strings.Split(string(f.symbol.TreePath), "/")
+	var treePathCmps = strings.Split(string(f.def.TreePath), "/")
 	// Note(kludge): The first occurrence of the container name in the treepath may not be the correct occurrence.
 	containerCmpIdx := -1
 	for t, component := range treePathCmps {
@@ -88,7 +88,7 @@ func (f symbolFormatter) Name(qual graph.Qualification) string {
 		}
 	} else {
 		// Should never reach here, but fall back to the unqualified name if we do
-		relTreePath = f.symbol.Name
+		relTreePath = f.def.Name
 	}
 
 	switch qual {
@@ -97,26 +97,26 @@ func (f symbolFormatter) Name(qual graph.Qualification) string {
 	case graph.DepQualified:
 		return dotted(filepath.Join(containerName, relTreePath))
 	case graph.RepositoryWideQualified:
-		return dotted(string(f.symbol.TreePath))
+		return dotted(string(f.def.TreePath))
 	case graph.LanguageWideQualified:
-		return string(f.symbol.Repo) + "/" + f.Name(graph.RepositoryWideQualified)
+		return string(f.def.Repo) + "/" + f.Name(graph.RepositoryWideQualified)
 	}
 	panic("Name: unhandled qual " + string(qual))
 }
 
-func (f symbolFormatter) isFunc() bool {
+func (f defFormatter) isFunc() bool {
 	k := f.data.Kind
 	return k == "function" || k == "method" || k == "constructor"
 }
 
-func (f symbolFormatter) NameAndTypeSeparator() string {
+func (f defFormatter) NameAndTypeSeparator() string {
 	if f.isFunc() {
 		return ""
 	}
 	return " "
 }
 
-func (f symbolFormatter) Type(qual graph.Qualification) string {
+func (f defFormatter) Type(qual graph.Qualification) string {
 	fullSig := f.data.FuncSignature
 	if strings.Contains(fullSig, ")") { // kludge to get rid of extra type info (very noisy)
 		return fullSig[:strings.Index(fullSig, ")")+1]
