@@ -1,0 +1,22 @@
+language: go
+
+go:
+  - 1.3
+  - tip
+
+before_install:
+  - mkdir -p $HOME/gopath/src/sourcegraph.com/sourcegraph
+  - mv $TRAVIS_BUILD_DIR $HOME/gopath/src/sourcegraph.com/sourcegraph/srclib-python
+  - export TRAVIS_BUILD_DIR=$HOME/gopath/src/sourcegraph.com/sourcegraph/srclib-python
+
+install:
+  - sudo wget -NO /usr/local/bin/src https://github.com/sourcegraph/srclib/releases/download/v0.0.9/src
+  - sudo chmod +x /usr/local/bin/src
+  - src toolchain add sourcegraph.com/sourcegraph/srclib-python
+  - go get -d -v ./... && go build -v ./...
+  - make
+
+# TODO(sqs): add `go test`
+script:
+  - src test -m program
+
