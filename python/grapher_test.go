@@ -27,15 +27,15 @@ func Test_GrapherTransform(t *testing.T) {
 		},
 		In: &rawGraphData{
 			Graph: graphData_{
-				Syms: []*pySym{{
+				Defs: []*pyDef{{
 					Path: filepath.Join(srcRoot, "pkg/module1/class/method1"),
 					File: filepath.Join(srcRoot, "pkg/module1.py"),
 				}},
 				Refs: []*pyRef{{
-					Sym:  filepath.Join(srcRoot, "pkg/module1/class/method1"),
+					Def:  filepath.Join(srcRoot, "pkg/module1/class/method1"),
 					File: filepath.Join(srcRoot, "pkg/module2.py"),
 				}, {
-					Sym:  filepath.Join(p.sitePackagesDir(), "dep1/module"),
+					Def:  filepath.Join(p.sitePackagesDir(), "dep1/module"),
 					File: filepath.Join(srcRoot, "pkg/module1.py"),
 				}},
 				Docs: []*pyDoc{},
@@ -48,8 +48,8 @@ func Test_GrapherTransform(t *testing.T) {
 			}},
 		},
 		Out: &grapher2.Output{
-			Symbols: []*graph.Symbol{{
-				SymbolKey: graph.SymbolKey{
+			Defs: []*graph.Def{{
+				DefKey: graph.DefKey{
 					Path:     "pkg/module1/class/method1",
 					Unit:     "Pkg",
 					UnitType: "PipPackage",
@@ -58,17 +58,17 @@ func Test_GrapherTransform(t *testing.T) {
 				File:     "pkg/module1.py",
 			}},
 			Refs: []*graph.Ref{{
-				SymbolUnitType: "PipPackage",
-				SymbolUnit:     "Pkg",
-				SymbolPath:     "pkg/module1/class/method1",
+				DefUnitType: "PipPackage",
+				DefUnit:     "Pkg",
+				DefPath:     "pkg/module1/class/method1",
 				UnitType:       "PipPackage",
 				Unit:           "Pkg",
 				File:           "pkg/module2.py",
 			}, {
-				SymbolRepo:     "g.com/o/dep1",
-				SymbolUnitType: "PipPackage",
-				SymbolUnit:     "Dep1",
-				SymbolPath:     "dep1/module",
+				DefRepo:     "g.com/o/dep1",
+				DefUnitType: "PipPackage",
+				DefUnit:     "Dep1",
+				DefPath:     "dep1/module",
 				UnitType:       "PipPackage",
 				Unit:           "Pkg",
 				File:           "pkg/module1.py",
@@ -83,7 +83,7 @@ func Test_GrapherTransform(t *testing.T) {
 		In: &rawGraphData{
 			Graph: graphData_{
 				Refs: []*pyRef{{
-					Sym:  filepath.Join(p.sitePackagesDir(), "dep1/module"),
+					Def:  filepath.Join(p.sitePackagesDir(), "dep1/module"),
 					File: filepath.Join(srcRoot, "pkg/module1.py"),
 				}},
 				Docs: []*pyDoc{},
@@ -117,16 +117,16 @@ func Test_GrapherTransform(t *testing.T) {
 			if len(out.Refs) == 0 {
 				out.Refs = nil
 			}
-			if len(out.Symbols) == 0 {
-				out.Symbols = nil
+			if len(out.Defs) == 0 {
+				out.Defs = nil
 			}
 			// Ignore data field
-			for _, sym := range out.Symbols {
-				sym.Data = nil
+			for _, def := range out.Defs {
+				def.Data = nil
 			}
 
-			if !reflect.DeepEqual(test.Out.Symbols, out.Symbols) {
-				t.Errorf(`Test "%s": Expected output symbols %+v but got %+v`, test.TestName, test.Out.Symbols, out.Symbols)
+			if !reflect.DeepEqual(test.Out.Defs, out.Defs) {
+				t.Errorf(`Test "%s": Expected output defs %+v but got %+v`, test.TestName, test.Out.Defs, out.Defs)
 			}
 			if !reflect.DeepEqual(test.Out.Refs, out.Refs) {
 				var expRefs, actRefs []graph.Ref

@@ -67,7 +67,7 @@ func (c *GraphContext) transform(raw *RawOutput, unit *unit.SourceUnit) *grapher
 	var out grapher.Output
 
 	for _, def := range raw.Defs {
-		out.Symbols = append(out.Symbols, c.transformDef(def))
+		out.Defs = append(out.Defs, c.transformDef(def))
 		if doc := c.transformDefDoc(def); doc != nil {
 			out.Docs = append(out.Docs, doc)
 		}
@@ -83,7 +83,7 @@ func (c *GraphContext) transform(raw *RawOutput, unit *unit.SourceUnit) *grapher
 	return &out
 }
 
-var jediKindToSymbolKind = map[string]graph.SymbolKind{
+var jediKindToDefKind = map[string]graph.DefKind{
 	"statement":        graph.Var,
 	"statementelement": graph.Var,
 	"param":            graph.Var,
@@ -95,16 +95,16 @@ var jediKindToSymbolKind = map[string]graph.SymbolKind{
 	"import":           graph.Var,
 }
 
-func (c *GraphContext) transformDef(rawDef *RawDef) *graph.Symbol {
-	return &graph.Symbol{
-		SymbolKey: graph.SymbolKey{
+func (c *GraphContext) transformDef(rawDef *RawDef) *graph.Def {
+	return &graph.Def{
+		DefKey: graph.DefKey{
 			Repo:     c.Unit.Repo,
 			Unit:     c.Unit.Name,
 			UnitType: c.Unit.Type,
-			Path:     graph.SymbolPath(rawDef.Path),
+			Path:     graph.DefPath(rawDef.Path),
 		},
 		TreePath: graph.TreePath(rawDef.Path), // TODO: make this consistent w/ old way
-		Kind:     jediKindToSymbolKind[rawDef.Kind],
+		Kind:     jediKindToDefKind[rawDef.Kind],
 		Name:     rawDef.Name,
 		File:     rawDef.File,
 		DefStart: rawDef.DefStart,
@@ -121,10 +121,10 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 	}
 
 	return &graph.Ref{
-		SymbolRepo:     defUnit.Repo,
-		SymbolUnitType: defUnit.Type,
-		SymbolUnit:     defUnit.Name,
-		SymbolPath:     graph.SymbolPath(rawRef.DefPath),
+		DefRepo:     defUnit.Repo,
+		DefUnitType: defUnit.Type,
+		DefUnit:     defUnit.Name,
+		DefPath:     graph.DefPath(rawRef.DefPath),
 
 		Repo:     c.Unit.Repo,
 		Unit:     c.Unit.Name,

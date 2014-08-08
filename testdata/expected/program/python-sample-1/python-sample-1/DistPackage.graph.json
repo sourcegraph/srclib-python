@@ -1,5 +1,5 @@
 {
-  "Symbols": [
+  "Defs": [
     {
       "Repo": "github.com/sgtest/python-sample-1",
       "UnitType": "DistPackage",
@@ -59,10 +59,10 @@
   ],
   "Refs": [
     {
-      "SymbolRepo": "hg.python.org/cpython",
-      "SymbolUnitType": "DistPackage",
-      "SymbolUnit": "Python",
-      "SymbolPath": "distutils/core/setup",
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "DistPackage",
+      "DefUnit": "Python",
+      "DefPath": "distutils/core/setup",
       "Def": false,
       "Repo": "github.com/sgtest/python-sample-1",
       "UnitType": "DistPackage",
