@@ -10,4 +10,6 @@ install-docker:
 	go install .
 	sudo pip install -r requirements.txt --upgrade
 	sudo pip install . --upgrade
+
+update-dockerfile:
 	src toolchain build sourcegraph.com/sourcegraph/srclib-python
