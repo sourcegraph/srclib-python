@@ -58,9 +58,19 @@ def main():
             Data=None,
         ))
 
+    # De-duplicate definitions (local variables may be defined in more than one
+    # place). Could do something smarter here, but for now, just take the first
+    # definition that appears.
+    unique_defs = []
+    unique_def_paths = set([])
+    for def_ in defs:
+        if not def_.Path in unique_def_paths:
+            unique_defs.append(def_)
+            unique_def_paths.add(def_.Path)
+
     json_indent = 2 if args.pretty else None
     print json.dumps({
-        'Defs': [d.__dict__ for d in defs],
+        'Defs': [d.__dict__ for d in unique_defs],
         'Refs': [r.__dict__ for r in refs],
     }, indent=json_indent)
 
