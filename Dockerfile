@@ -27,7 +27,7 @@ RUN pip install git+git://github.com/sourcegraph/pydep.git@$PYDEP_VERSION
 ENV IN_DOCKER_CONTAINER true
 
 # Add this toolchain
-RUN echo 2f97f3612 > /dev/null
+RUN echo 2f97f3612_4 > /dev/null
 ADD . /srclib/src/sourcegraph.com/sourcegraph/srclib-python/
 WORKDIR /srclib/src/sourcegraph.com/sourcegraph/srclib-python
 RUN go get -v -d
