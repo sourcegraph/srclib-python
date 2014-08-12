@@ -262,8 +262,16 @@ class ParserContext(object):
                     column=name_part.start_pos[1],
                     resolve_variables_to_types=False,
                 ).goto_definitions()
+
+                # Note(beyang): For now, only yield the first definition.
+                # Otherwise, multiple references to multiple definitions will
+                # yield dup references. In the future, might want to do
+                # something smarter here.
+                i = 0
                 for def_ in defs:
+                    if i > 0: break
                     yield (name_part, def_)
+                    i += 1
 
 def resolve_import_paths(scopes):
     for s in scopes.copy():
