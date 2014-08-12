@@ -249,19 +249,18 @@ class ParserContext(object):
             if not isinstance(token, jedi.parser.representation.Name):
                 continue
             for name_part in token.names:
-                # TODO: we call goto_definitions instead of goto_assignments,
+                # Note: we call goto_definitions instead of goto_assignments,
                 # because otherwise the reference will not follow imports (and
-                # thus generates bogus definitions whose paths conflict with
-                # those of actual definitions). However, goto_assignments *also*
-                # follows assignment statements, and so will mark instances of a
-                # type as a reference to the type. This is isn't really what we
-                # want. But for now, it's fine. We should really just extend
-                # Jedi to have a goto_definitions that follows imports, but not
-                # statements
+                # also generates bogus local definitions whose paths conflict
+                # with those of actual definitions). This uses a modified
+                # goto_definitions (resolve_variables_to_types option) that
+                # *DOES NOT* follow assignment statements to resolve variables
+                # to types (because that's not what we want).
                 defs = jedi.api.Script(
                     path=self.source_file,
                     line=name_part.start_pos[0],
                     column=name_part.start_pos[1],
+                    resolve_variables_to_types=False,
                 ).goto_definitions()
                 for def_ in defs:
                     yield (name_part, def_)
