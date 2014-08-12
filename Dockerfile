@@ -33,6 +33,12 @@ WORKDIR /srclib/src/sourcegraph.com/sourcegraph/srclib-python
 RUN go get -v -d
 RUN make install-docker
 
+# Add srclib (unprivileged) user
+RUN useradd -ms /bin/bash srclib
+RUN mkdir /src
+RUN chown -R srclib /src /srclib
+USER srclib
+
 # Project source code is mounted at src
 WORKDIR /src
 
