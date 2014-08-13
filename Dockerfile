@@ -27,7 +27,7 @@ RUN pip install git+git://github.com/sourcegraph/pydep.git@$PYDEP_VERSION
 ENV IN_DOCKER_CONTAINER true
 
 # Add this toolchain
-RUN echo 2f97f3612_4 > /dev/null
+RUN echo 66a3c308e_5 > /dev/null
 ADD . /srclib/src/sourcegraph.com/sourcegraph/srclib-python/
 WORKDIR /srclib/src/sourcegraph.com/sourcegraph/srclib-python
 RUN go get -v -d
@@ -37,6 +37,11 @@ RUN make install-docker
 RUN useradd -ms /bin/bash srclib
 RUN mkdir /src
 RUN chown -R srclib /src /srclib
+
+# Jedi cache directory permissions
+RUN mkdir -p /.cache
+RUN chown -R srclib /.cache
+
 USER srclib
 
 # Project source code is mounted at src
