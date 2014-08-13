@@ -68,6 +68,25 @@ def main():
             unique_defs.append(def_)
             unique_def_paths.add(def_.Path)
 
+    # Add self-references
+    unique_ref_keys = set([])
+    for ref in refs:
+        unique_ref_keys.add((ref.DefPath, ref.DefFile, ref.File, ref.Start, ref.End))
+    for def_ in unique_defs:
+        ref = Ref(
+            DefPath=def_.Path,
+            DefFile=path.abspath(def_.File),
+            Def=True,
+            File=def_.File,
+            Start=def_.DefStart,
+            End=def_.DefEnd,
+            ToBuiltin=False,
+        )
+        ref_key = (ref.DefPath, ref.DefFile, ref.File, ref.Start, ref.End)
+        if ref_key not in unique_ref_keys:
+            unique_ref_keys.add(ref_key)
+            refs.append(ref)
+
     json_indent = 2 if args.pretty else None
     print json.dumps({
         'Defs': [d.__dict__ for d in unique_defs],
