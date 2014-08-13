@@ -18,7 +18,7 @@ type defData struct {
 }
 
 func init() {
-	graph.RegisterMakeDefFormatter(DistPackageSourceUnitType, newDefFormatter)
+	graph.RegisterMakeDefFormatter("PipPackage", newDefFormatter)
 }
 
 func newDefFormatter(s *graph.Def) graph.DefFormatter {
