@@ -224,6 +224,9 @@ class ParserContext(object):
         for stmt in scope.statements:
             for r in self.stmt_refs(stmt):
                 yield r
+        for ret in scope.returns:
+            for r in self.stmt_refs(ret):
+                yield r
         for subscope in scope.subscopes:
             for r in self.scope_refs(subscope):
                 yield r
