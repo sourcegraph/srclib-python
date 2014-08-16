@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	DistPackageSourceUnitType = "DistPackage"
+	DistPackageSourceUnitType = "PipPackage"
 )
 
 type pythonEnv struct {
