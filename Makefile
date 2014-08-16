@@ -13,5 +13,5 @@ update-dockerfile:
 
 install-docker:
 	go install .
-	sudo pip install -r requirements.txt --upgrade
-	sudo pip install . --upgrade
+	pip install -r requirements.txt --upgrade
+	pip install . --upgrade

@@ -41,10 +41,10 @@ func (c *GraphContext) Graph() (*grapher.Output, error) {
 		if err != nil {
 			return nil, err
 		}
+		runCmdLogError(exec.Command("pip", "install", "-I", c.Unit.Dir))
 		for _, requirementFile := range requirementFiles {
-			exec.Command("pip", "install", "-r", requirementFile)
+			runCmdLogError(exec.Command("pip", "install", "-r", requirementFile))
 		}
-		exec.Command("pip", "install", "-I", c.Unit.Dir)
 	}
 
 	cmd := exec.Command("python", "-m", "grapher.graph", c.Unit.Dir, "--verbose")
