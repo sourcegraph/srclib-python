@@ -131,10 +131,6 @@ func (c *GraphCmd) Execute(args []string) error {
 		return err
 	}
 
-	if os.Getenv("IN_DOCKER_CONTAINER") != "" {
-		// TODO: install pip dependencies
-	}
-
 	ctx := python.NewGraphContext(unit)
 	out, err := ctx.Graph()
 	if err != nil {
