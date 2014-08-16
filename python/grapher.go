@@ -138,6 +138,7 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 		File:  rawRef.File,
 		Start: rawRef.Start,
 		End:   rawRef.End,
+		Def:   rawRef.Def,
 	}, nil
 }
 
