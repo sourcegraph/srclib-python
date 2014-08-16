@@ -270,6 +270,8 @@ class ParserContext(object):
             return
         if isinstance(stmt, jedi.parser.representation.Flow):
             return
+        if stmt is None:
+            return
 
         for token in stmt._token_list:
             if not isinstance(token, jedi.parser.representation.Name):
