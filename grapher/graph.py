@@ -68,14 +68,9 @@ def main():
             unique_defs.append(def_)
             unique_def_paths.add(def_.Path)
 
-    # Add self-references
+    # Self-references, dedup
     unique_refs = []
     unique_ref_keys = set([])
-    for ref in refs:
-        ref_key = (ref.DefPath, ref.DefFile, ref.File, ref.Start, ref.End)
-        if ref_key not in unique_ref_keys:
-            unique_ref_keys.add(ref_key)
-            unique_refs.append(ref)
     for def_ in unique_defs:
         ref = Ref(
             DefPath=def_.Path,
@@ -86,6 +81,11 @@ def main():
             End=def_.DefEnd,
             ToBuiltin=False,
         )
+        ref_key = (ref.DefPath, ref.DefFile, ref.File, ref.Start, ref.End)
+        if ref_key not in unique_ref_keys:
+            unique_ref_keys.add(ref_key)
+            unique_refs.append(ref)
+    for ref in refs:
         ref_key = (ref.DefPath, ref.DefFile, ref.File, ref.Start, ref.End)
         if ref_key not in unique_ref_keys:
             unique_ref_keys.add(ref_key)
