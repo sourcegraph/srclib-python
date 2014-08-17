@@ -9,32 +9,20 @@ from collections import namedtuple
 
 import jedi
 
-global verbose, quiet
+global verbose_, quiet_
 
 def log(msg):
-    if verbose:
+    if verbose_:
         sys.stderr.write(msg + '\n')
 
 def error(msg):
-    if not quiet:
+    if not quiet_:
         sys.stderr.write(msg + '\n')
 
-def main():
-    argser = ap.ArgumentParser(description='graph.py is a command that dumps all Python definitions and references found in code rooted at a directory')
-    argser.add_argument('dir', help='path to root directory of code')
-    argser.add_argument('--pretty', help='pretty print JSON output', action='store_true', default=False)
-    argser.add_argument('--verbose', help='verbose', action='store_true', default=False)
-    argser.add_argument('--quiet', help='quiet', action='store_true', default=False)
-
-    args = argser.parse_args()
-    global verbose, quiet
-    verbose, quiet = args.verbose, args.quiet
-
-    if args.dir == '':
-        error('target directory must not be empty')
-        os.exit(1)
-
-    os.chdir(args.dir)          # set working directory to be source directory
+def graph(dir_, pretty=False, verbose=False, quiet=False):
+    global verbose_, quiet_
+    verbose_, quiet_ = verbose, quiet
+    os.chdir(dir_)          # set working directory to be source directory
 
     source_files = get_source_files('.')
 
@@ -90,7 +78,7 @@ def main():
             unique_ref_keys.add(ref_key)
             unique_refs.append(ref)
 
-    json_indent = 2 if args.pretty else None
+    json_indent = 2 if pretty else None
     print json.dumps({
         'Defs': [d.__dict__ for d in unique_defs],
         'Refs': [r.__dict__ for r in unique_refs],
@@ -337,4 +325,13 @@ class LineColToOffConverter(object):
         return self._cumulative_off[line] + col
 
 if __name__ == '__main__':
-    main()
+    argser = ap.ArgumentParser(description='graph.py is a command that dumps all Python definitions and references found in code rooted at a directory')
+    argser.add_argument('dir', help='path to root directory of code')
+    argser.add_argument('--pretty', help='pretty print JSON output', action='store_true', default=False)
+    argser.add_argument('--verbose', help='verbose', action='store_true', default=False)
+    argser.add_argument('--quiet', help='quiet', action='store_true', default=False)
+    args = argser.parse_args()
+    if args.dir == '':
+        error('target directory must not be empty')
+        os.exit(1)
+    graph(args.dir, pretty=args.pretty, verbose=args.verbose, quiet=args.quiet)
