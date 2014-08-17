@@ -36,8 +36,7 @@ def main():
 
     os.chdir(args.dir)          # set working directory to be source directory
 
-    source_files = glob('**/*.py')
-    source_files.extend(glob('*.py'))
+    source_files = get_source_files('.')
 
     modules_and_files = [(filename_to_module_name(f), f) for f in source_files]
     jedi.api.preload_module([mf[0] for mf in modules_and_files])
@@ -96,6 +95,15 @@ def main():
         'Defs': [d.__dict__ for d in unique_defs],
         'Refs': [r.__dict__ for r in unique_refs],
     }, indent=json_indent)
+
+def get_source_files(dir_):
+    source_files = []
+    for dirpath, dirnames, filenames in os.walk(dir_):
+        rel_dirpath = os.path.relpath(dirpath, dir_)
+        for filename in filenames:
+            if os.path.splitext(filename)[1] == '.py':
+                source_files.append(os.path.join(rel_dirpath, filename))
+    return source_files
 
 def get_defs(source_files):
     for source_file in source_files:
