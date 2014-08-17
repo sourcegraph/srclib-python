@@ -106,8 +106,8 @@ def get_source_files(dir_):
     return source_files
 
 def get_defs(source_files):
-    for source_file in source_files:
-        log('getting defs for source file %s' % source_file)
+    for i, source_file in enumerate(source_files):
+        log('getting defs for source file (%d/%d) %s' % (i, len(source_files), source_file))
         try:
             source = None
             with open(source_file) as sf:
@@ -159,8 +159,8 @@ def jedi_def_to_def(def_, source_file, linecoler):
     ), None
 
 def get_refs(source_files):
-    for source_file in source_files:
-        log('getting refs for source file %s' % source_file)
+    for i, source_file in enumerate(source_files):
+        log('getting refs for source file (%d/%d) %s' % (i, len(source_files), source_file))
         try:
             parserContext = ParserContext(source_file)
             linecoler = LineColToOffConverter(parserContext.source)
