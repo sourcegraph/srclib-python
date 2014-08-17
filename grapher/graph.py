@@ -19,12 +19,14 @@ def error(msg):
     if not quiet_:
         sys.stderr.write(msg + '\n')
 
-def graph(dir_, pretty=False, verbose=False, quiet=False):
+def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None):
     global verbose_, quiet_
     verbose_, quiet_ = verbose, quiet
     os.chdir(dir_)          # set working directory to be source directory
 
     source_files = get_source_files('.')
+    if nSourceFilesTrunc is not None:
+        source_files = source_files[:nSourceFilesTrunc]
 
     modules_and_files = [(filename_to_module_name(f), f) for f in source_files]
     jedi.api.preload_module([mf[0] for mf in modules_and_files])
