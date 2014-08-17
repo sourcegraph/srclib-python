@@ -28,11 +28,14 @@ def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None
     if nSourceFilesTrunc is not None:
         source_files = source_files[:nSourceFilesTrunc]
 
-    modules_and_files = [(filename_to_module_name(f), f) for f in source_files]
-    jedi.api.preload_module([mf[0] for mf in modules_and_files])
+    jedi.cache.never_clear_cache = True # never clear caches, because running in batch
 
-    defs = [d for d in get_defs(source_files)]
+    modules_and_files = [(filename_to_module_name(f), f) for f in source_files]
+    for mf in modules_and_files:
+        jedi.api.precache_parser(mf[1])
+
     refs = [r for r in get_refs(source_files)]
+    defs = [d for d in get_defs(source_files)]
 
     for module, filename in modules_and_files:
         defs.append(Def(
