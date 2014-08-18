@@ -269,9 +269,11 @@ class ParserContext(object):
     def stmt_refs(self, stmt):
         if isinstance(stmt, jedi.parser.representation.KeywordStatement):
             return
-        if isinstance(stmt, jedi.parser.representation.Flow):
-            return
         if stmt is None:
+            return
+
+        if stmt.is_scope():
+            for r in self.scope_refs(stmt): yield r
             return
 
         for token in stmt._token_list:
