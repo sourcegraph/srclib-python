@@ -34,9 +34,6 @@ def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None
     for mf in modules_and_files:
         jedi.api.precache_parser(mf[1])
 
-    # defs = [d for d in get_defs(source_files)]
-    # refs = [r for r in get_refs(source_files)]
-
     defs, refs = get_defs_refs(source_files)
 
     # Add module/package defs
@@ -147,20 +144,6 @@ def get_defs_refs(source_files):
     return defs, refs
 
 
-def get_defs(source_files):
-    evaluator = jedi.evaluate.Evaluator()
-    for i, source_file in enumerate(source_files):
-        log('getting defs for source file (%d/%d) %s' % (i, len(source_files), source_file))
-        parserContext = ParserContext(source_file)
-        linecoler = LineColToOffConverter(parserContext.source)
-        for def_name in parserContext.defs():
-            jedi_def = jedi.api.classes.Definition(evaluator, def_name)
-            def_, err = jedi_def_to_def(jedi_def, source_file, linecoler)
-            if err is None:
-                yield def_
-            else:
-                error(err)
-
 def jedi_def_to_def(def_, source_file, linecoler):
     full_name, err = full_name_of_def(def_)
     if err is not None:
@@ -187,32 +170,6 @@ def jedi_def_to_def(def_, source_file, linecoler):
         Data=None,
     ), None
 
-def get_refs(source_files):
-    for i, source_file in enumerate(source_files):
-        log('getting refs for source file (%d/%d) %s' % (i, len(source_files), source_file))
-        try:
-            parserContext = ParserContext(source_file)
-            linecoler = LineColToOffConverter(parserContext.source)
-            for name_part, def_ in parserContext.refs():
-                try:
-                    full_name, err = full_name_of_def(def_, from_ref=True)
-                    if err is not None or full_name == '':
-                        raise Exception(err)
-                    start = linecoler.convert(name_part.start_pos)
-                    end = linecoler.convert(name_part.end_pos)
-                    yield Ref(
-                        DefPath=full_name.replace('.', '/'),
-                        DefFile=def_.module_path,
-                        Def=False,
-                        File=source_file,
-                        Start=start,
-                        End=end,
-                        ToBuiltin=def_.in_builtin_module(),
-                    )
-                except Exception as e:
-                    error('failed to get ref (%s) in source file %s: %s' % (str((name_part, def_)), source_file, str(e)))
-        except Exception as e:
-            error('failed to get refs for source file %s: %s' % (source_file, str(e)))
 
 def full_name_of_def(def_, from_ref=False):
     # TODO: This function
