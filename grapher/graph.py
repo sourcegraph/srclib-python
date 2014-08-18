@@ -34,9 +34,10 @@ def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None
     for mf in modules_and_files:
         jedi.api.precache_parser(mf[1])
 
-    refs = [r for r in get_refs(source_files)]
     defs = [d for d in get_defs(source_files)]
+    refs = [r for r in get_refs(source_files)]
 
+    # Add module/package defs
     for module, filename in modules_and_files:
         defs.append(Def(
             Path=module.replace('.', '/'),
@@ -52,7 +53,7 @@ def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None
 
     # De-duplicate definitions (local variables may be defined in more than one
     # place). Could do something smarter here, but for now, just take the first
-    # definition that appears.
+    # definition that appears. (References also point to the first definition.)
     unique_defs = []
     unique_def_paths = set([])
     for def_ in defs:
@@ -99,53 +100,40 @@ def get_source_files(dir_):
     return source_files
 
 def get_defs(source_files):
+    evaluator = jedi.evaluate.Evaluator()
     for i, source_file in enumerate(source_files):
         log('getting defs for source file (%d/%d) %s' % (i, len(source_files), source_file))
-        try:
-            source = None
-            with open(source_file) as sf:
-                source = unicode(sf.read())
-            linecoler = LineColToOffConverter(source)
-
-            defs = jedi.api.defined_names(source, path=source_file)
-            for def_ in defs:
-                for d in get_defs_(def_, source_file, linecoler):
-                    yield d
-        except Exception as e:
-            error('failed to get defs for source file %s: %s' % (source_file, str(e)))
-
-def get_defs_(def_, source_file, linecoler):
-    # ignore import definitions because these just redefine things imported from elsewhere
-    if def_.type == 'import':
-        return
-    
-    def__, err = jedi_def_to_def(def_, source_file, linecoler)
-    if err is None:
-        yield def__
-    else:
-        error(err)
-
-    if def_.type not in ['function', 'class', 'module']:
-        return
-
-    subdefs = def_.defined_names()
-    for subdef in subdefs:
-        for d in get_defs_(subdef, source_file, linecoler):
-            yield d
+        parserContext = ParserContext(source_file)
+        linecoler = LineColToOffConverter(parserContext.source)
+        for def_name in parserContext.defs():
+            jedi_def = jedi.api.classes.Definition(evaluator, def_name)
+            def_, err = jedi_def_to_def(jedi_def, source_file, linecoler)
+            if err is None:
+                yield def_
+            else:
+                error(err)
 
 def jedi_def_to_def(def_, source_file, linecoler):
     full_name, err = full_name_of_def(def_)
     if err is not None:
         return None, err
 
-    start_pos = linecoler.convert(def_.start_pos)
+    # If def_ is a name, then the location of the definition is the last name part
+    if isinstance(def_._definition, jedi.parser.representation.Name):
+        last_name = def_._definition.names[-1]
+        start = linecoler.convert(last_name.start_pos)
+        end = start + len(last_name._string)
+    else:
+        start = linecoler.convert(def_.start_pos)
+        end = start_pos + len(def_.name)
+
     return Def(
         Path=full_name.replace('.', '/'),
         Kind=def_.type,
         Name=def_.name,
         File=source_file,
-        DefStart=start_pos,
-        DefEnd=start_pos+len(def_.name),
+        DefStart=start,
+        DefEnd=end,
         Exported=True,          # TODO: not all vars are exported
         Docstring=def_.docstring(),
         Data=None,
@@ -186,7 +174,19 @@ def full_name_of_def(def_, from_ref=False):
     if def_.in_builtin_module():
         return def_.full_name, None
 
-    full_name = ('%s.%s' % (def_.full_name, def_.name)) if def_.type in set(['statement', 'param']) else def_.full_name
+    if def_.type == 'statement':
+        # kludge for self.* definitions
+        if def_.parent().type == 'function' and def_._definition.names[0]._string == u'self':
+            parent = def_.parent()
+            while parent.type != 'class':
+                parent = parent.parent()
+            full_name = ('%s.%s' % (parent.full_name, def_.name))
+        else:
+            full_name = ('%s.%s' % (def_.full_name, def_.name))
+    elif def_.type == 'param':
+        full_name = ('%s.%s' % (def_.full_name, def_.name))
+    else:
+        full_name = def_.full_name
 
     module_path = def_.module_path
     if from_ref:
@@ -234,8 +234,21 @@ class ParserContext(object):
     def __init__(self, source_file):
         self.source_file = source_file
         with open(source_file) as sf:
-            self.source = unicode(sf.read())
-            self.parser = jedi.parser.Parser(self.source, source_file)
+            self.source = jedi.common.source_to_unicode(sf.read(), 'utf-8')
+            self.parser = jedi.parser.Parser(self.source, module_path=source_file)
+
+    def defs(self):
+        for name in self.parser.module.get_defined_names():
+            for d in self.defs_(name): yield d
+
+    def defs_(self, name):
+        if isinstance(name.parent, jedi.parser.representation.Import):
+            return
+
+        yield name
+        if isinstance(name.parent, jedi.parser.representation.Scope):
+            for subname in name.parent.get_defined_names():
+                for d in self.defs_(subname): yield d
 
     def refs(self):
         for r in self.scope_refs(self.parser.module):
