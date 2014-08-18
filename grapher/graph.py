@@ -34,8 +34,10 @@ def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None
     for mf in modules_and_files:
         jedi.api.precache_parser(mf[1])
 
-    defs = [d for d in get_defs(source_files)]
-    refs = [r for r in get_refs(source_files)]
+    # defs = [d for d in get_defs(source_files)]
+    # refs = [r for r in get_refs(source_files)]
+
+    defs, refs = get_defs_refs(source_files)
 
     # Add module/package defs
     for module, filename in modules_and_files:
@@ -98,6 +100,52 @@ def get_source_files(dir_):
             if os.path.splitext(filename)[1] == '.py':
                 source_files.append(os.path.join(rel_dirpath, filename))
     return source_files
+
+def get_defs_refs(source_files):
+    defs, refs = [], []
+
+    evaluator = jedi.evaluate.Evaluator()
+    for i, source_file in enumerate(source_files):
+        parserContext = ParserContext(source_file)
+        linecoler = LineColToOffConverter(parserContext.source)
+
+        log('getting defs for source file (%d/%d) %s' % (i, len(source_files), source_file))
+        try:
+            for def_name in parserContext.defs():
+                jedi_def = jedi.api.classes.Definition(evaluator, def_name)
+                def_, err = jedi_def_to_def(jedi_def, source_file, linecoler)
+                if err is None:
+                    defs.append(def_)
+                else:
+                    error(err)
+        except Exception as e:
+            error('failed to get defs for source file %s: %s' % (source_file, str(e)))
+
+        log('getting refs for source file (%d/%d) %s' % (i, len(source_files), source_file))
+        try:
+            for name_part, def_ in parserContext.refs():
+                try:
+                    full_name, err = full_name_of_def(def_, from_ref=True)
+                    if err is not None or full_name == '':
+                        raise Exception(err)
+                    start = linecoler.convert(name_part.start_pos)
+                    end = linecoler.convert(name_part.end_pos)
+                    refs.append(Ref(
+                        DefPath=full_name.replace('.', '/'),
+                        DefFile=def_.module_path,
+                        Def=False,
+                        File=source_file,
+                        Start=start,
+                        End=end,
+                        ToBuiltin=def_.in_builtin_module(),
+                    ))
+                except Exception as e:
+                    error('failed to convert ref (%s) in source file %s: %s' % (str((name_part, def_)), source_file, str(e)))
+        except Exception as e:
+            error('failed to get refs for source file %s: %s' % (source_file, str(e)))
+
+    return defs, refs
+
 
 def get_defs(source_files):
     evaluator = jedi.evaluate.Evaluator()
