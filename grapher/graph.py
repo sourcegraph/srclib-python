@@ -251,7 +251,7 @@ class ParserContext(object):
             return
 
         yield name
-        if isinstance(name.parent, jedi.parser.representation.Scope):
+        if isinstance(name.parent, jedi.parser.representation.Scope) and not isinstance(name.parent, jedi.parser.representation.Flow):
             for subname in name.parent.get_defined_names():
                 for d in self.defs_(subname): yield d
 
