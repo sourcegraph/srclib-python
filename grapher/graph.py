@@ -123,8 +123,10 @@ def get_defs_refs(source_files):
             for name_part, def_ in parserContext.refs():
                 try:
                     full_name, err = full_name_of_def(def_, from_ref=True)
-                    if err is not None or full_name == '':
+                    if err is not None:
                         raise Exception(err)
+                    elif full_name == '':
+                        raise Exception('full_name is empty')
                     start = linecoler.convert(name_part.start_pos)
                     end = linecoler.convert(name_part.end_pos)
                     refs.append(Ref(
@@ -177,7 +179,7 @@ def full_name_of_def(def_, from_ref=False):
     # - doesn't distinguish between m(module).n(submodule) and m(module).n(contained-variable)
 
     if def_.in_builtin_module():
-        return def_.full_name, None
+        return def_.name, None
 
     if def_.type == 'statement':
         # kludge for self.* definitions
