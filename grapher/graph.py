@@ -32,7 +32,10 @@ def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None
 
     modules_and_files = [(filename_to_module_name(f), f) for f in source_files]
     for mf in modules_and_files:
-        jedi.api.precache_parser(mf[1])
+        try:
+            jedi.api.precache_parser(mf[1])
+        except Exception as e:
+            error("could not precache parser for %s: %s" % (mf[1], str(e)))
 
     defs, refs = get_defs_refs(source_files)
 
