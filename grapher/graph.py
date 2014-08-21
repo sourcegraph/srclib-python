@@ -360,8 +360,9 @@ if __name__ == '__main__':
     argser.add_argument('--pretty', help='pretty print JSON output', action='store_true', default=False)
     argser.add_argument('--verbose', help='verbose', action='store_true', default=False)
     argser.add_argument('--quiet', help='quiet', action='store_true', default=False)
+    argser.add_argument('--maxfiles', help='maximum number of files to process', default=None, type=int)
     args = argser.parse_args()
     if args.dir == '':
         error('target directory must not be empty')
         os.exit(1)
-    graph(args.dir, pretty=args.pretty, verbose=args.verbose, quiet=args.quiet)
+    graph(args.dir, pretty=args.pretty, verbose=args.verbose, quiet=args.quiet, nSourceFilesTrunc=args.maxfiles)
