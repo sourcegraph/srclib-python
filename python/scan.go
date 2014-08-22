@@ -55,22 +55,29 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 		units[i].Dependencies = reqs_
 	}
 
-	//TODO(rameshvarun): Scan for packages based off __init__.py files
-
 	// Scan for independant scripts, appending to the current set of source units
-	scriptUnits := findScripts(srcdir, units)
-	units = append(units, scriptUnits...)
+	scripts := findScripts(srcdir, units)
+	if len(scripts) > 0 {
+		scriptsUnit := unit.SourceUnit {
+			Name: "PythonScripts",
+			Type: "PythonScripts",
+			Files: scripts,
+			Dir: ".",
+			Dependencies: scriptDeps(scripts),
+			Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
+		}
 
-	//TODO(rameshvarun): Try to merge script units in the same directory
+		units = append(units, &scriptsUnit)
+	}
 
 	return units, nil
 }
 
 // Checks to see if a script is accounted for in the files of the given units
-func scriptInUnits(script_file string, units []*unit.SourceUnit) bool {
+func scriptInUnits(scriptfile string, units []*unit.SourceUnit) bool {
 	for _, unit := range units {
 		for _, file := range unit.Files {
-			if script_file == file {
+			if scriptfile == file {
 				return true
 			}
 		}
@@ -78,14 +85,14 @@ func scriptInUnits(script_file string, units []*unit.SourceUnit) bool {
 	return false
 }
 
-func scriptDeps(filename string) []interface{} {
-	//TODO: Return the dependencies that a script uses, possibly by crossreferencing imports and pip freeze output
+func scriptDeps(scripts []string) []interface{} {
+	//TODO(rameshvarun): Return the dependencies that scripts uses, possibly by crossreferencing imports and pip freeze output
 	return nil
 }
 
 // Scan for single file scripts that are not part of any PIP packages
-func findScripts(dir string, units []*unit.SourceUnit) []*unit.SourceUnit {
-	var scriptUnits []*unit.SourceUnit
+func findScripts(dir string, units []*unit.SourceUnit) []string {
+	var scripts []string
 
 	// Walk through the file system, looking for files ending in .py
 	walker := fs.Walk(dir)
@@ -94,21 +101,21 @@ func findScripts(dir string, units []*unit.SourceUnit) []*unit.SourceUnit {
 			file, _ := filepath.Rel(dir, walker.Path())
 
 			if(!scriptInUnits(file, units)) {
-				scriptUnit := unit.SourceUnit {
+				/*scriptUnit := unit.SourceUnit {
 					Name: file,
 					Type: "PythonScript",
 					Files: []string{file},
 					Dir: filepath.Dir(file),
 					Dependencies: scriptDeps(file),
 					Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
-				}
+				}*/
 
-				scriptUnits = append(scriptUnits, &scriptUnit)
+				scripts = append(scripts, file)
 			}
 		}
 	}
 
-	return scriptUnits;
+	return scripts;
 }
 
 func requirements(unitDir string) ([]*requirement, error) {
