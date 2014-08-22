@@ -3,6 +3,7 @@ import sys
 import json
 import string
 import argparse as ap
+import subprocess
 from os import path
 from glob import glob
 from collections import namedtuple
@@ -10,6 +11,7 @@ from collections import namedtuple
 import jedi
 
 global verbose_, quiet_
+SOURCE_FILE_BATCH = 50
 
 def log(msg):
     if verbose_:
@@ -19,7 +21,7 @@ def error(msg):
     if not quiet_:
         sys.stderr.write(msg + '\n')
 
-def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None):
+def graph_wrapper(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None):
     global verbose_, quiet_
     verbose_, quiet_ = verbose, quiet
     os.chdir(dir_)          # set working directory to be source directory
@@ -27,6 +29,36 @@ def graph(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTrunc=None
     source_files = get_source_files('.')
     if nSourceFilesTrunc is not None:
         source_files = source_files[:nSourceFilesTrunc]
+    source_files.sort()
+
+    all_data = { 'Defs': [], 'Refs': [] }
+    for i in xrange(0, len(source_files), SOURCE_FILE_BATCH):
+        log('processing source files %d to %d of %d' % (i, i+SOURCE_FILE_BATCH, len(source_files)))
+        batch = source_files[i:i+SOURCE_FILE_BATCH]
+
+        args = ["python", "-m", "grapher.graph", "--dir", "."]
+        if verbose: args.append('--verbose')
+        if quiet: args.append('--quiet')
+        if pretty: args.append('--pretty')
+        args.append('--files')
+        args.extend(batch)
+        p = subprocess.Popen(args, stdout=subprocess.PIPE)
+        out, err = p.communicate()
+        if err is not None:
+            sys.stderr.write(err)
+
+        data = json.loads(out)
+        all_data['Defs'].extend(data['Defs'])
+        all_data['Refs'].extend(data['Refs'])
+
+    json_indent = 2 if pretty else None
+    print json.dumps(all_data, indent=json_indent)
+
+
+def graph(dir_, source_files, pretty=False, verbose=False, quiet=False):
+    global verbose_, quiet_
+    verbose_, quiet_ = verbose, quiet
+    os.chdir(dir_)          # set working directory to be source directory
 
     jedi.cache.never_clear_cache = True # never clear caches, because running in batch
 
@@ -356,13 +388,18 @@ class LineColToOffConverter(object):
 
 if __name__ == '__main__':
     argser = ap.ArgumentParser(description='graph.py is a command that dumps all Python definitions and references found in code rooted at a directory')
-    argser.add_argument('dir', help='path to root directory of code')
+    argser.add_argument('--dir', help='path to root directory of code')
+    argser.add_argument('--files', help='path code files', nargs='+')
     argser.add_argument('--pretty', help='pretty print JSON output', action='store_true', default=False)
     argser.add_argument('--verbose', help='verbose', action='store_true', default=False)
     argser.add_argument('--quiet', help='quiet', action='store_true', default=False)
     argser.add_argument('--maxfiles', help='maximum number of files to process', default=None, type=int)
     args = argser.parse_args()
-    if args.dir == '':
+
+    if args.files is not None and len(args.files) > 0:
+        graph(args.dir, args.files, pretty=args.pretty, verbose=args.verbose, quiet=args.quiet)
+    elif args.dir is not None and args.dir != '':
+        graph_wrapper(args.dir, pretty=args.pretty, verbose=args.verbose, quiet=args.quiet, nSourceFilesTrunc=args.maxfiles)
+    else:
         error('target directory must not be empty')
         os.exit(1)
-    graph(args.dir, pretty=args.pretty, verbose=args.verbose, quiet=args.quiet, nSourceFilesTrunc=args.maxfiles)
