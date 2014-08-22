@@ -29,7 +29,6 @@ def graph_wrapper(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTr
     source_files = get_source_files('.')
     if nSourceFilesTrunc is not None:
         source_files = source_files[:nSourceFilesTrunc]
-    source_files.sort()
 
     all_data = { 'Defs': [], 'Refs': [] }
     for i in xrange(0, len(source_files), SOURCE_FILE_BATCH):
