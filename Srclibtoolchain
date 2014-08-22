@@ -5,7 +5,7 @@
       "Op": "scan",
       "SourceUnitTypes": [
         "PipPackage",
-        "PythonScript"
+        "PythonScripts"
       ]
     },
     {
@@ -13,7 +13,7 @@
       "Op": "graph",
       "SourceUnitTypes": [
         "PipPackage",
-        "PythonScript"
+        "PythonScripts"
       ]
     },
     {
@@ -21,7 +21,7 @@
       "Op": "depresolve",
       "SourceUnitTypes": [
         "PipPackage",
-        "PythonScript"
+        "PythonScripts"
       ]
     }
   ]
