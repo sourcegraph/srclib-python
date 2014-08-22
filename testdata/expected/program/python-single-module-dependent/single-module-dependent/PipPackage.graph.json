@@ -1,0 +1,73 @@
+{
+  "Defs": [
+    {
+      "Repo": "github.com/sgtest/python-single-module-dependent",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-dependent",
+      "Path": "app",
+      "TreePath": "app",
+      "Kind": "module",
+      "Name": "app",
+      "Callable": false,
+      "File": "app.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true
+    },
+    {
+      "Repo": "github.com/sgtest/python-single-module-dependent",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-dependent",
+      "Path": "setup",
+      "TreePath": "setup",
+      "Kind": "module",
+      "Name": "setup",
+      "Callable": false,
+      "File": "setup.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true
+    }
+  ],
+  "Refs": [
+    {
+      "DefRepo": "github.com/sgtest/python-single-module-dependent",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-dependent",
+      "DefPath": "app",
+      "Def": true,
+      "Repo": "github.com/sgtest/python-single-module-dependent",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-dependent",
+      "File": "app.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "print",
+      "Def": false,
+      "Repo": "github.com/sgtest/python-single-module-dependent",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-dependent",
+      "File": "app.py",
+      "Start": 12,
+      "End": 17
+    },
+    {
+      "DefRepo": "github.com/sgtest/python-single-module-dependent",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-dependent",
+      "DefPath": "setup",
+      "Def": true,
+      "Repo": "github.com/sgtest/python-single-module-dependent",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-dependent",
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    }
+  ]
+}
