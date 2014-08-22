@@ -6,10 +6,10 @@
 	url = https://github.com/sgtest/python-sample-1.git
 [submodule "testdata/case/python-sample-2"]
 	path = testdata/case/python-sample-2
-	url = git@github.com:sgtest/python-sample-2.git
+	url = https://github.com/sgtest/python-sample-2.git
 [submodule "testdata/case/python-single-module-dependent"]
 	path = testdata/case/python-single-module-dependent
-	url = git@github.com:sgtest/python-single-module-dependent.git
+	url = https://github.com/sgtest/python-single-module-dependent.git
 [submodule "testdata/case/python-single-module-lib"]
 	path = testdata/case/python-single-module-lib
-	url = git@github.com:sgtest/python-single-module-lib.git
+	url = https://github.com/sgtest/python-single-module-lib.git
