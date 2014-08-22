@@ -130,7 +130,7 @@ def get_source_files(dir_):
         rel_dirpath = os.path.relpath(dirpath, dir_)
         for filename in filenames:
             if os.path.splitext(filename)[1] == '.py':
-                source_files.append(os.path.join(rel_dirpath, filename))
+                source_files.append(os.path.normpath(os.path.join(rel_dirpath, filename)))
     return source_files
 
 def get_defs_refs(source_files):
