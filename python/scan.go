@@ -57,8 +57,11 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 
 	//TODO(rameshvarun): Scan for packages based off __init__.py files
 
+	// Scan for independant scripts, appending to the current set of source units
 	scriptUnits := findScripts(srcdir, units)
 	units = append(units, scriptUnits...)
+
+	//TODO(rameshvarun): Try to merge script units in the same directory
 
 	return units, nil
 }
@@ -75,10 +78,16 @@ func scriptInUnits(script_file string, units []*unit.SourceUnit) bool {
 	return false
 }
 
+func scriptDeps(filename string) []interface{} {
+	//TODO: Return the dependencies that a script uses, possibly by crossreferencing imports and pip freeze output
+	return nil
+}
+
 // Scan for single file scripts that are not part of any PIP packages
 func findScripts(dir string, units []*unit.SourceUnit) []*unit.SourceUnit {
 	var scriptUnits []*unit.SourceUnit
 
+	// Walk through the file system, looking for files ending in .py
 	walker := fs.Walk(dir)
 	for walker.Step() {
 		if err := walker.Err(); err == nil && !walker.Stat().IsDir() && filepath.Ext(walker.Path()) == ".py" {
@@ -90,7 +99,7 @@ func findScripts(dir string, units []*unit.SourceUnit) []*unit.SourceUnit {
 					Type: "PythonScript",
 					Files: []string{file},
 					Dir: filepath.Dir(file),
-					Dependencies: nil,
+					Dependencies: scriptDeps(file),
 					Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
 				}
 
