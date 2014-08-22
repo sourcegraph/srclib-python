@@ -4,21 +4,24 @@
       "Subcmd": "scan",
       "Op": "scan",
       "SourceUnitTypes": [
-        "PipPackage"
+        "PipPackage",
+        "PythonScript"
       ]
     },
     {
       "Subcmd": "graph",
       "Op": "graph",
       "SourceUnitTypes": [
-        "PipPackage"
+        "PipPackage",
+        "PythonScript"
       ]
     },
     {
       "Subcmd": "depresolve",
       "Op": "depresolve",
       "SourceUnitTypes": [
-        "PipPackage"
+        "PipPackage",
+        "PythonScript"
       ]
     }
   ]
