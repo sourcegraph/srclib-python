@@ -11,7 +11,7 @@ from collections import namedtuple
 import jedi
 
 global verbose_, quiet_
-SOURCE_FILE_BATCH = 50
+SOURCE_FILE_BATCH = 10
 
 def log(msg):
     if verbose_:
