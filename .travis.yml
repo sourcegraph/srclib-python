@@ -16,9 +16,9 @@ install:
   - sudo chmod +x /usr/local/bin/src
   - src toolchain add sourcegraph.com/sourcegraph/srclib-python
   - go get -d -v ./... && go build -v ./...
+  - make travis-dependencies
   - make install
 
 # TODO(sqs): add `go test`
 script:
   - src test -m program
-
