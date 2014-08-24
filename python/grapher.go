@@ -83,16 +83,16 @@ func (c *GraphContext) transform(raw *RawOutput, unit *unit.SourceUnit) *grapher
 	return &out
 }
 
-var jediKindToDefKind = map[string]graph.DefKind{
-	"statement":        graph.Var,
-	"statementelement": graph.Var,
-	"param":            graph.Var,
-	"module":           graph.Module,
-	"submodule":        graph.Module,
-	"class":            graph.Type,
-	"function":         graph.Func,
-	"lambda":           graph.Func,
-	"import":           graph.Var,
+var jediKindToDefKind = map[string]string{
+	"statement":        "var",
+	"statementelement": "var",
+	"param":            "var",
+	"module":           "module",
+	"submodule":        "module",
+	"class":            "type",
+	"function":         "func",
+	"lambda":           "func",
+	"import":           "var",
 }
 
 func (c *GraphContext) transformDef(rawDef *RawDef) *graph.Def {
