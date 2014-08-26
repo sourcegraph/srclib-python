@@ -9,6 +9,8 @@ import (
 
 	"github.com/kr/fs"
 
+	"strings"
+
 	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
@@ -56,18 +58,23 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	}
 
 	// Scan for independant scripts, appending to the current set of source units
-	scripts := findScripts(srcdir, units)
-	if len(scripts) > 0 {
-		scriptsUnit := unit.SourceUnit {
-			Name: "PythonScripts",
-			Type: "PythonScripts",
-			Files: scripts,
-			Dir: ".",
-			Dependencies: scriptDeps(scripts),
-			Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
-		}
+	scanForScripts := os.Getenv("SRCLIB_PYTHON_IGNORESCRIPTS") == "" || strings.ToLower(os.Getenv("SRCLIB_PYTHON_IGNORESCRIPTS")) == "false"
+	if scanForScripts {
+		log.Printf("Ignoring loose python scripts.")
+	} else {
+		scripts := findScripts(srcdir, units)
+		if len(scripts) > 0 {
+			scriptsUnit := unit.SourceUnit {
+				Name: "PythonScripts",
+				Type: "PythonScripts",
+				Files: scripts,
+				Dir: ".",
+				Dependencies: scriptDeps(scripts),
+				Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
+			}
 
-		units = append(units, &scriptsUnit)
+			units = append(units, &scriptsUnit)
+		}
 	}
 
 	return units, nil
@@ -86,7 +93,7 @@ func scriptInUnits(scriptfile string, units []*unit.SourceUnit) bool {
 }
 
 func scriptDeps(scripts []string) []interface{} {
-	//TODO(rameshvarun): Return the dependencies that scripts uses, possibly by crossreferencing imports and pip freeze output
+	//TODO(rameshvarun): Return the dependencies that scripts uses, possibly through requirements.txt
 	return nil
 }
 
@@ -101,15 +108,6 @@ func findScripts(dir string, units []*unit.SourceUnit) []string {
 			file, _ := filepath.Rel(dir, walker.Path())
 
 			if(!scriptInUnits(file, units)) {
-				/*scriptUnit := unit.SourceUnit {
-					Name: file,
-					Type: "PythonScript",
-					Files: []string{file},
-					Dir: filepath.Dir(file),
-					Dependencies: scriptDeps(file),
-					Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
-				}*/
-
 				scripts = append(scripts, file)
 			}
 		}
