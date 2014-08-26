@@ -8,8 +8,8 @@ install:
 	sudo pip install -r requirements.txt --upgrade
 	sudo pip install . --upgrade
 
-travis-dependencies:
-	sudo pip install -r .travis.requirements.txt --upgrade
+test-dependencies:
+	sudo pip install -r .test.requirements.txt --upgrade
 
 update-dockerfile:
 	src toolchain build sourcegraph.com/sourcegraph/srclib-python

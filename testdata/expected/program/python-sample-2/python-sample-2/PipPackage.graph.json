@@ -1,0 +1,97 @@
+{
+  "Defs": [
+    {
+      "Repo": "github.com/sgtest/python-sample-2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "Path": "app",
+      "TreePath": "app",
+      "Name": "app",
+      "Kind": "module",
+      "File": "app/__init__.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true
+    },
+    {
+      "Repo": "github.com/sgtest/python-sample-2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "Path": "app/app",
+      "TreePath": "app/app",
+      "Name": "app",
+      "Kind": "module",
+      "File": "app/app.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true
+    },
+    {
+      "Repo": "github.com/sgtest/python-sample-2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "Path": "setup",
+      "TreePath": "setup",
+      "Name": "setup",
+      "Kind": "module",
+      "File": "setup.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true
+    }
+  ],
+  "Refs": [
+    {
+      "DefRepo": "github.com/sgtest/python-sample-2",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-2",
+      "DefPath": "app/app",
+      "Def": true,
+      "Repo": "github.com/sgtest/python-sample-2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "app/app.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefRepo": "github.com/sgtest/python-sample-2",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-2",
+      "DefPath": "app",
+      "Def": true,
+      "Repo": "github.com/sgtest/python-sample-2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "app/__init__.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefRepo": "github.com/kennethreitz/requests",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "requests",
+      "DefPath": "requests",
+      "Def": false,
+      "Repo": "github.com/sgtest/python-sample-2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "app/app.py",
+      "Start": 7,
+      "End": 15
+    },
+    {
+      "DefRepo": "github.com/sgtest/python-sample-2",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-2",
+      "DefPath": "setup",
+      "Def": true,
+      "Repo": "github.com/sgtest/python-sample-2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    }
+  ]
+}

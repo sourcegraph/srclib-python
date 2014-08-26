@@ -1,8 +1,6 @@
 // +build off
 package python
 
-import "sourcegraph.com/sourcegraph/srclib/graph"
-
 const (
 	Package = "package"
 	Module  = "module"
@@ -18,15 +16,15 @@ var callableDefKinds = map[string]bool{
 	"METHOD":      true,
 }
 
-var defKinds = map[string]graph.DefKind{
-	"ATTRIBUTE":   graph.Field,
-	"CLASS":       graph.Type,
-	"CONSTRUCTOR": graph.Func,
-	"FUNCTION":    graph.Func,
-	"METHOD":      graph.Func,
-	"MODULE":      graph.Module,
-	"PACKAGE":     graph.Package,
-	"PARAMETER":   graph.Var,
-	"SCOPE":       graph.Var,
-	"VARIABLE":    graph.Var,
+var defKinds = map[string]string{
+	"ATTRIBUTE":   "field",
+	"CLASS":       "type",
+	"CONSTRUCTOR": "func",
+	"FUNCTION":    "func",
+	"METHOD":      "func",
+	"MODULE":      "module",
+	"PACKAGE":     "package",
+	"PARAMETER":   "var",
+	"SCOPE":       "var",
+	"VARIABLE":    "var",
 }
