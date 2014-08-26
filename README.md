@@ -40,6 +40,11 @@ editor plugins) will support Python.
 Most people use `srclib` (and by extension `srclib-python`) via an [editor plugin](https://srclib.org/plugins/emacs/) or
 via [Sourcegraph](https://sourcegraph.com/). You can also use `srclib-python` on the command line using the [`src` command](https://srclib.org/api/overview/).
 
+## Customization
+
+Primarily for local code analysis, the scanner will find scripts that are not part of a package and analyze them. However, this may not be suitable
+for server environments, due to the ubiquity of Pythons scripts for automation. In this case, set the environment variable SRCLIB_PYTHON_IGNORESCRIPTS to "TRUE" to
+ignore these loose scripts.
 
 ## Known issues
 
