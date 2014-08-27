@@ -9,8 +9,6 @@ import (
 
 	"github.com/kr/fs"
 
-	"strings"
-
 	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
@@ -58,23 +56,18 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	}
 
 	// Scan for independant scripts, appending to the current set of source units
-	scanForScripts := os.Getenv("SRCLIB_PYTHON_IGNORESCRIPTS") == "" || strings.ToLower(os.Getenv("SRCLIB_PYTHON_IGNORESCRIPTS")) == "false"
-	if scanForScripts {
-		log.Printf("Ignoring loose python scripts.")
-	} else {
-		scripts := findScripts(srcdir, units)
-		if len(scripts) > 0 {
-			scriptsUnit := unit.SourceUnit {
-				Name: "PythonScripts",
-				Type: "PythonScripts",
-				Files: scripts,
-				Dir: ".",
-				Dependencies: scriptDeps(scripts),
-				Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
-			}
-
-			units = append(units, &scriptsUnit)
+	scripts := findScripts(srcdir, units)
+	if len(scripts) > 0 {
+		scriptsUnit := unit.SourceUnit {
+			Name: "PythonScripts",
+			Type: "PythonScripts",
+			Files: scripts,
+			Dir: ".",
+			Dependencies: scriptDeps(scripts),
+			Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
 		}
+
+		units = append(units, &scriptsUnit)
 	}
 
 	return units, nil
