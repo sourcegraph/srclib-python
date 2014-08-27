@@ -39,10 +39,13 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 		return nil, err
 	}
 
+	// Keep track of all files that have been successfully discovered
+	discoveredScripts := make(map[string]bool)
+
 	units := make([]*unit.SourceUnit, len(pkgs))
 	for i, pkg := range pkgs {
 		units[i] = pkg.SourceUnit()
-		units[i].Files = pythonSourceFiles(pkg.RootDir)
+		units[i].Files = pythonSourceFiles(pkg.RootDir, discoveredScripts)
 
 		reqs, err := requirements(pkg.RootDir)
 		if err != nil {
@@ -56,57 +59,29 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	}
 
 	// Scan for independant scripts, appending to the current set of source units
-	scripts := findScripts(srcdir, units)
+	scripts := pythonSourceFiles(srcdir,	discoveredScripts)
 	if len(scripts) > 0 {
 		scriptsUnit := unit.SourceUnit {
-			Name: "PythonScripts",
-			Type: "PythonScripts",
+			Name: "PythonProgram",
+			Type: "PythonProgram",
 			Files: scripts,
 			Dir: ".",
-			Dependencies: scriptDeps(scripts),
 			Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
+		}
+
+		reqs, err := requirements(srcdir)
+		if err == nil {
+			reqs_ := make([]interface{}, len(reqs))
+			for i, req := range reqs {
+				reqs_[i] = req
+			}
+			scriptsUnit.Dependencies = reqs_
 		}
 
 		units = append(units, &scriptsUnit)
 	}
 
 	return units, nil
-}
-
-// Checks to see if a script is accounted for in the files of the given units
-func scriptInUnits(scriptfile string, units []*unit.SourceUnit) bool {
-	for _, unit := range units {
-		for _, file := range unit.Files {
-			if scriptfile == file {
-				return true
-			}
-		}
-	}
-	return false
-}
-
-func scriptDeps(scripts []string) []interface{} {
-	//TODO(rameshvarun): Return the dependencies that scripts uses, possibly through requirements.txt
-	return nil
-}
-
-// Scan for single file scripts that are not part of any PIP packages
-func findScripts(dir string, units []*unit.SourceUnit) []string {
-	var scripts []string
-
-	// Walk through the file system, looking for files ending in .py
-	walker := fs.Walk(dir)
-	for walker.Step() {
-		if err := walker.Err(); err == nil && !walker.Stat().IsDir() && filepath.Ext(walker.Path()) == ".py" {
-			file, _ := filepath.Rel(dir, walker.Path())
-
-			if(!scriptInUnits(file, units)) {
-				scripts = append(scripts, file)
-			}
-		}
-	}
-
-	return scripts;
 }
 
 func requirements(unitDir string) ([]*requirement, error) {
@@ -135,12 +110,17 @@ func requirements(unitDir string) ([]*requirement, error) {
 }
 
 // Get all python source files under dir
-func pythonSourceFiles(dir string) (files []string) {
+func pythonSourceFiles(dir string, discoveredScripts map[string]bool) (files []string) {
 	walker := fs.Walk(dir)
 	for walker.Step() {
 		if err := walker.Err(); err == nil && !walker.Stat().IsDir() && filepath.Ext(walker.Path()) == ".py" {
 			file, _ := filepath.Rel(dir, walker.Path())
-			files = append(files, file)
+			_, found := discoveredScripts[file]
+
+			if !found {
+				files = append(files, file)
+				discoveredScripts[file] = true
+			}
 		}
 	}
 	return
