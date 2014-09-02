@@ -62,7 +62,7 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	scripts := pythonSourceFiles(srcdir,	discoveredScripts)
 	if len(scripts) > 0 {
 		scriptsUnit := unit.SourceUnit {
-			Name: "PythonProgram",
+			Name: ".",
 			Type: "PythonProgram",
 			Files: scripts,
 			Dir: ".",
