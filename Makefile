@@ -4,6 +4,7 @@ all: install update-dockerfile
 
 install:
 	@mkdir -p .bin
+	go get
 	go build -o .bin/srclib-python
 	sudo pip install -r requirements.txt --upgrade
 	sudo pip install . --upgrade
