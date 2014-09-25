@@ -13,3 +13,6 @@
 [submodule "testdata/case/python-single-module-lib"]
 	path = testdata/case/python-single-module-lib
 	url = https://github.com/sgtest/python-single-module-lib.git
+[submodule "testdata/case/python-no-url"]
+	path = testdata/case/python-no-url
+	url = https://github.com/sgtest/python-no-url.git
