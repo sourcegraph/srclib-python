@@ -1,6 +1,8 @@
 package python
 
 import (
+	"log"
+
 	"sourcegraph.com/sourcegraph/srclib/repo"
 	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
@@ -94,10 +96,15 @@ type pkgInfo struct {
 }
 
 func (p *pkgInfo) SourceUnit() *unit.SourceUnit {
+	repoURI, err := repo.TryMakeURI(p.RepoURL)
+	if err != nil {
+		log.Printf("Could not make repo URI from %s: %s", p.RepoURL, err)
+		repoURI = ""
+	}
 	return &unit.SourceUnit{
 		Name:         p.ProjectName,
 		Type:         DistPackageSourceUnitType,
-		Repo:         repo.MakeURI(p.RepoURL),
+		Repo:         repoURI,
 		Dir:          p.RootDir,
 		Dependencies: nil, // nil, because scanner does not resolve dependencies
 		Ops:          map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
