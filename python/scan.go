@@ -9,6 +9,7 @@ import (
 
 	"github.com/kr/fs"
 
+	"sourcegraph.com/sourcegraph/srclib/repo"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
@@ -41,6 +42,7 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	for i, pkg := range pkgs {
 		units[i] = pkg.SourceUnit()
 		units[i].Files = pythonSourceFiles(pkg.RootDir)
+		units[i].Repo = repo.URI(repoURI) // override whatever's in the setup.py file with the actual repository URI
 
 		reqs, err := requirements(pkg.RootDir)
 		if err != nil {
