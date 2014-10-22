@@ -47,7 +47,7 @@ func (c *GraphContext) Graph() (*grapher.Output, error) {
 		}
 	}
 
-	cmd := exec.Command("python", "-m", "grapher.graph", "--dir", c.Unit.Dir, "--verbose")
+	cmd := exec.Command("python", "-m", "grapher.graph2", "--dir", c.Unit.Dir, "--verbose")
 	cmd.Stderr = os.Stderr
 	b, err := cmd.Output()
 	if err != nil {
