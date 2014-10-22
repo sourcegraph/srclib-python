@@ -78,6 +78,9 @@ def graph(dir_, source_files, pretty=False, verbose=False, quiet=False):
                 continue
 
             sg_def, err = jedi_def_to_def_key(ref_defs[0])
+            if err != None:
+                error(err)
+                continue
 
             ref_start = linecoler.convert(jedi_ref.start_pos)
             ref_end = ref_start + len(jedi_ref.name)
@@ -115,9 +118,12 @@ def get_source_files(dir_):
 
 
 def jedi_def_to_def_key(def_):
-    full_name, err = full_name_of_def(def_)
-    if err is not None:
-        return None, err
+    try:
+        full_name, err = full_name_of_def(def_)
+        if err is not None:
+            return None, err
+    except Exception as e:
+        return None, str(e)
 
     return Def(
         Path=full_name.replace('.', '/'),
@@ -132,9 +138,12 @@ def jedi_def_to_def_key(def_):
     ), None
 
 def jedi_def_to_def(def_, source_file, linecoler):
-    full_name, err = full_name_of_def(def_)
-    if err is not None:
-        return None, err
+    try:
+        full_name, err = full_name_of_def(def_)
+        if err is not None:
+            return None, err
+    except Exception as e:
+        return None, str(e)
 
     # If def_ is a name, then the location of the definition is the last name part
     if isinstance(def_._definition, jedi.parser.representation.Name):
@@ -149,7 +158,7 @@ def jedi_def_to_def(def_, source_file, linecoler):
         Path=full_name.replace('.', '/'),
         Kind=def_.type,
         Name=def_.name,
-        File=source_file,
+        File=def_.module_path,
         DefStart=start,
         DefEnd=end,
         Exported=True,          # TODO: not all vars are exported
