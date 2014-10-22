@@ -76,8 +76,8 @@ def graph(dir_, source_files, pretty=False, verbose=False, quiet=False):
                     End=ref_end,
                     ToBuiltin=ref_defs[0].in_builtin_module(),
                 ))
-        except ValueError as e:
-            error('error parsing names in %s: %s' % (source_file, str(e)))
+        except Exception as e:
+            error('error parsing %s: %s' % (source_file, str(e)))
 
     print json.dumps({
         'Defs': [d.__dict__ for d in defs],
