@@ -3,6 +3,7 @@
 all: install update-dockerfile
 
 install:
+	./set_path.sh
 	@mkdir -p .bin
 	go get -d ./...
 	go build -o .bin/srclib-python
