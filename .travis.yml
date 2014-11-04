@@ -15,6 +15,7 @@ install:
   - src toolchain add sourcegraph.com/sourcegraph/srclib-python
   - go get -d -v ./... && go build -v ./...
   - make test-dependencies
+  - export PATH=$PATH:$HOME/.local/bin
   - make install
 
 # TODO(sqs): add `go test`
