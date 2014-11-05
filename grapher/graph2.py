@@ -39,12 +39,13 @@ def graph(dir_, source_files, pretty=False, verbose=False, quiet=False):
 
     defs, refs = [], []
     for source_file in source_files:
+        sys.stderr.write('processing source_file: %s\n' % source_file)
+
         with open(source_file) as sf:
             source_ = sf.read()
         source = jedi.common.source_to_unicode(source_, 'utf-8')
         linecoler = LineColToOffConverter(source)
 
-        sys.stderr.write('# source_file: %s\n' % source_file)
         jedi_names = None
         try:
             jedi_names = jedi.names(source=source, path=source_file, all_scopes=True,
@@ -53,8 +54,7 @@ def graph(dir_, source_files, pretty=False, verbose=False, quiet=False):
             error('error parsing %s: %s' % (source_file, str(e)))
             continue
 
-        jedi_defs = []
-        jedi_refs = []
+        jedi_defs, jedi_refs = [], []
         for jedi_name in jedi_names:
             if jedi_name.is_definition():
                 jedi_defs.append(jedi_name)
@@ -68,32 +68,32 @@ def graph(dir_, source_files, pretty=False, verbose=False, quiet=False):
             else:
                 error(err)
 
-        for jedi_ref in jedi_refs:
-            try:
-                ref_defs = jedi_ref.goto_assignments()
-            except Exception:
-                error('error getting definitions for reference %s' % str(jedi_ref)[0:50])
-                continue
-            if len(ref_defs) == 0:
-                continue
+        # for jedi_ref in jedi_refs:
+        #     try:
+        #         ref_defs = jedi_ref.goto_assignments()
+        #     except Exception:
+        #         error('error getting definitions for reference %s' % str(jedi_ref)[0:50])
+        #         continue
+        #     if len(ref_defs) == 0:
+        #         continue
 
-            sg_def, err = jedi_def_to_def_key(ref_defs[0])
-            if err != None:
-                error(err)
-                continue
+        #     sg_def, err = jedi_def_to_def_key(ref_defs[0])
+        #     if err != None:
+        #         error(err)
+        #         continue
 
-            ref_start = linecoler.convert(jedi_ref.start_pos)
-            ref_end = ref_start + len(jedi_ref.name)
+        #     ref_start = linecoler.convert(jedi_ref.start_pos)
+        #     ref_end = ref_start + len(jedi_ref.name)
 
-            refs.append(Ref(
-                DefPath=sg_def.Path,
-                DefFile=sg_def.File,
-                Def=False,
-                File=source_file,
-                Start=ref_start,
-                End=ref_end,
-                ToBuiltin=ref_defs[0].in_builtin_module(),
-            ))
+        #     refs.append(Ref(
+        #         DefPath=sg_def.Path,
+        #         DefFile=sg_def.File,
+        #         Def=False,
+        #         File=source_file,
+        #         Start=ref_start,
+        #         End=ref_end,
+        #         ToBuiltin=ref_defs[0].in_builtin_module(),
+        #     ))
 
     print json.dumps({
         'Defs': [d.__dict__ for d in defs],
