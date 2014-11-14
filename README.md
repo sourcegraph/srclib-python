@@ -40,7 +40,6 @@ editor plugins) will support Python.
 Most people use `srclib` (and by extension `srclib-python`) via an [editor plugin](https://srclib.org/plugins/emacs/) or
 via [Sourcegraph](https://sourcegraph.com/). You can also use `srclib-python` on the command line using the [`src` command](https://srclib.org/api/overview/).
 
-
 ## Known issues
 
 srclib-python is alpha-quality software. It powers code analysis on
