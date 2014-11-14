@@ -9,6 +9,7 @@ import (
 
 	"github.com/kr/fs"
 
+	"sourcegraph.com/sourcegraph/srclib/repo"
 	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
@@ -46,6 +47,7 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	for i, pkg := range pkgs {
 		units[i] = pkg.SourceUnit()
 		units[i].Files = pythonSourceFiles(pkg.RootDir, discoveredScripts)
+		units[i].Repo = repo.URI(repoURI) // override whatever's in the setup.py file with the actual repository URI
 
 		reqs, err := requirements(pkg.RootDir)
 		if err != nil {
@@ -59,14 +61,14 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 	}
 
 	// Scan for independant scripts, appending to the current set of source units
-	scripts := pythonSourceFiles(srcdir,	discoveredScripts)
+	scripts := pythonSourceFiles(srcdir, discoveredScripts)
 	if len(scripts) > 0 {
-		scriptsUnit := unit.SourceUnit {
-			Name: ".",
-			Type: "PythonProgram",
+		scriptsUnit := unit.SourceUnit{
+			Name:  ".",
+			Type:  "PythonProgram",
 			Files: scripts,
-			Dir: ".",
-			Ops: map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
+			Dir:   ".",
+			Ops:   map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
 		}
 
 		reqs, err := requirements(srcdir)
