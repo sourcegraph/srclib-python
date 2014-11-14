@@ -37,7 +37,7 @@ func (c *GraphContext) Graph() (*grapher.Output, error) {
 	if os.Getenv("IN_DOCKER_CONTAINER") != "" {
 		// NOTE: this may cause an error when graphing any source unit that depends
 		// on jedi (or any other dependency of the graph code)
-		requirementFiles, err := filepath.Glob(filepath.Join(c.Unit.Dir, "*requirements.txt"))
+		requirementFiles, err := filepath.Glob(filepath.Join(c.Unit.Dir, "*requirements*.txt"))
 		if err != nil {
 			return nil, err
 		}

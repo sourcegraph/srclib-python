@@ -24,15 +24,11 @@ RUN apt-get update -qq && apt-get install -qq python-dev libxslt1-dev libxml2-de
 RUN virtualenv /venv
 ENV PATH /venv/bin:$PATH
 
-# Install pydep (TODO: move version dependency to Makefile)
-ENV PYDEP_VERSION debfd0e681c3b60e33eec237a4473aed1f767004
-RUN pip install git+git://github.com/sourcegraph/pydep.git@$PYDEP_VERSION
-
 # Allow determining whether we're running in Docker
 ENV IN_DOCKER_CONTAINER true
 
 # Add this toolchain
-RUN echo 66a3c308e_5 > /dev/null
+RUN echo 4a893a4 > /dev/null
 ADD . /srclib/src/sourcegraph.com/sourcegraph/srclib-python/
 WORKDIR /srclib/src/sourcegraph.com/sourcegraph/srclib-python
 RUN go get -v -d
