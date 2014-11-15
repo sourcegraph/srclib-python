@@ -367,7 +367,7 @@ def resolve_import_paths(scopes):
 
 def filename_to_module_name(filename):
     if path.basename(filename) == '__init__.py':
-        return path.dirname(filename).replace('/', '.')
+        return path.normpath(path.dirname(filename)).replace('/', '.')
     return path.splitext(filename)[0].replace('/', '.')
 
 class LineColToOffConverter(object):
