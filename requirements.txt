@@ -1,2 +1,2 @@
 git+https://github.com/beyang/jedi.git@c4a51cba12bc4849e19c4aa25aeb30d66e5fd238
-git+https://github.com/sourcegraph/pydep.git@3e0a84f64d1667a6ed22e15b3b8dfca4e8f17cd7
+git+https://github.com/sourcegraph/pydep.git@554344dd81b66d7c7fc411163cc55a49c2893dec
