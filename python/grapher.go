@@ -3,6 +3,7 @@ package python
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -43,7 +44,17 @@ func (c *GraphContext) Graph() (*grapher.Output, error) {
 		}
 		runCmdLogError(exec.Command("pip", "install", "-I", c.Unit.Dir))
 		for _, requirementFile := range requirementFiles {
-			runCmdLogError(exec.Command("pip", "install", "-r", requirementFile))
+			err := runCmdStderr(exec.Command("pip", "install", "-r", requirementFile))
+			if err != nil {
+				log.Printf("Error installing dependencies in %s. Trying piecemeal install")
+				if b, err := ioutil.ReadFile(requirementFile); err == nil {
+					for _, req := range strings.Split(string(b), "\n") {
+						runCmdLogError(exec.Command("pip", "install", req))
+					}
+				} else {
+					log.Printf("Could not read %s: %s", requirementFile, err)
+				}
+			}
 		}
 	}
 
