@@ -116,7 +116,7 @@ func pythonSourceFiles(dir string, discoveredScripts map[string]bool) (files []s
 	walker := fs.Walk(dir)
 	for walker.Step() {
 		if err := walker.Err(); err == nil && !walker.Stat().IsDir() && filepath.Ext(walker.Path()) == ".py" {
-			file, _ := filepath.Rel(dir, walker.Path())
+			file := walker.Path()
 			_, found := discoveredScripts[file]
 
 			if !found {
