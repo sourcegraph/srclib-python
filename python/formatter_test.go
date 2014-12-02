@@ -6,7 +6,6 @@ import (
 
 	"github.com/jmoiron/sqlx/types"
 	"sourcegraph.com/sourcegraph/srclib/graph"
-	"sourcegraph.com/sourcegraph/srclib/repo"
 )
 
 func TestDefFormatter_Name(t *testing.T) {
@@ -59,7 +58,7 @@ func defDataJSON(si defData) types.JsonText {
 
 type defInfo struct {
 	SID         int
-	Repo        repo.URI
+	Repo        string
 	CommitID    string
 	UnitType    string
 	Unit        string

@@ -1,12 +1,9 @@
 package python
 
-import (
-	"sourcegraph.com/sourcegraph/srclib/repo"
-	"sourcegraph.com/sourcegraph/srclib/unit"
-)
+import "sourcegraph.com/sourcegraph/srclib/unit"
 
 type repoUnit struct {
-	Repo     repo.URI
+	Repo     string
 	Unit     string
 	UnitType string
 }
