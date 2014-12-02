@@ -3,7 +3,7 @@ package python
 import (
 	"log"
 
-	"sourcegraph.com/sourcegraph/srclib/repo"
+	"sourcegraph.com/sourcegraph/srclib/graph"
 	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
@@ -68,7 +68,7 @@ func (p *DistPackage) Paths() []string {
 }
 
 // NameInRepository implements unit.Info.
-func (p *DistPackage) NameInRepository(defining repo.URI) string { return p.Name() }
+func (p *DistPackage) NameInRepository(defining string) string { return p.Name() }
 
 // GlobalName implements unit.Info.
 func (p *DistPackage) GlobalName() string { return p.Name() }
@@ -96,7 +96,7 @@ type pkgInfo struct {
 }
 
 func (p *pkgInfo) SourceUnit() *unit.SourceUnit {
-	repoURI, err := repo.TryMakeURI(p.RepoURL)
+	repoURI, err := graph.TryMakeURI(p.RepoURL)
 	if err != nil {
 		log.Printf("Could not make repo URI from %s: %s", p.RepoURL, err)
 		repoURI = ""
@@ -147,7 +147,7 @@ func (r *requirement) SourceUnit() *unit.SourceUnit {
 	return &unit.SourceUnit{
 		Name: r.ProjectName,
 		Type: DistPackageSourceUnitType,
-		Repo: repo.MakeURI(r.RepoURL),
+		Repo: graph.MakeURI(r.RepoURL),
 	}
 }
 
