@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/jmoiron/sqlx/types"
 	"sourcegraph.com/sourcegraph/srclib/graph"
+	"sourcegraph.com/sourcegraph/srclib/util/sqltypes"
 )
 
 func TestDefFormatter_Name(t *testing.T) {
@@ -48,7 +48,7 @@ func TestDefFormatter_Name(t *testing.T) {
 	}
 }
 
-func defDataJSON(si defData) types.JsonText {
+func defDataJSON(si defData) sqltypes.JSON {
 	b, err := json.Marshal(si)
 	if err != nil {
 		panic(err)

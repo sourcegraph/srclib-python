@@ -9,7 +9,7 @@ import (
 
 	"github.com/kr/fs"
 
-	"sourcegraph.com/sourcegraph/srclib/toolchain"
+	"sourcegraph.com/sourcegraph/srclib"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
@@ -67,7 +67,7 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 			Type:  "PythonProgram",
 			Files: scripts,
 			Dir:   ".",
-			Ops:   map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
+			Ops:   map[string]*srclib.ToolRef{"depresolve": nil, "graph": nil},
 		}
 
 		reqs, err := requirements(srcdir)
