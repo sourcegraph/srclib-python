@@ -3,8 +3,8 @@ package python
 import (
 	"log"
 
+	"sourcegraph.com/sourcegraph/srclib"
 	"sourcegraph.com/sourcegraph/srclib/graph"
-	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
@@ -107,7 +107,7 @@ func (p *pkgInfo) SourceUnit() *unit.SourceUnit {
 		Repo:         repoURI,
 		Dir:          p.RootDir,
 		Dependencies: nil, // nil, because scanner does not resolve dependencies
-		Ops:          map[string]*toolchain.ToolRef{"depresolve": nil, "graph": nil},
+		Ops:          map[string]*srclib.ToolRef{"depresolve": nil, "graph": nil},
 	}
 }
 
