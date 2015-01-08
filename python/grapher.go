@@ -60,6 +60,7 @@ func (c *GraphContext) Graph() (*grapher.Output, error) {
 
 	cmd := exec.Command("python", "-m", "grapher.graph", "--dir", c.Unit.Dir, "--verbose")
 	cmd.Stderr = os.Stderr
+	log.Printf("Running %v", cmd.Args)
 	b, err := cmd.Output()
 	if err != nil {
 		return nil, err
