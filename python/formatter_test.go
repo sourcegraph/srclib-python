@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"sourcegraph.com/sourcegraph/srclib/graph"
-	"sourcegraph.com/sourcegraph/srclib/util/sqltypes"
 )
 
 func TestDefFormatter_Name(t *testing.T) {
@@ -48,7 +47,7 @@ func TestDefFormatter_Name(t *testing.T) {
 	}
 }
 
-func defDataJSON(si defData) sqltypes.JSON {
+func defDataJSON(si defData) json.RawMessage {
 	b, err := json.Marshal(si)
 	if err != nil {
 		panic(err)
@@ -65,7 +64,7 @@ type defInfo struct {
 	Path        string
 	File        string
 	Name        string
-	TreePath    graph.TreePath
+	TreePath    string
 	NotExported bool
 	Data        []byte
 }
@@ -88,7 +87,7 @@ func (s defInfo) Def() *graph.Def {
 		data = []byte(`{}`)
 	}
 	return &graph.Def{
-		DefKey:   graph.DefKey{Repo: repo, CommitID: s.CommitID, UnitType: unitType, Unit: unit, Path: graph.DefPath(s.Path)},
+		DefKey:   graph.DefKey{Repo: repo, CommitID: s.CommitID, UnitType: unitType, Unit: unit, Path: string(s.Path)},
 		Name:     s.Name,
 		File:     s.File,
 		TreePath: s.TreePath,

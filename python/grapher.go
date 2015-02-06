@@ -12,7 +12,6 @@ import (
 	"strings"
 
 	"sourcegraph.com/sourcegraph/srclib/graph"
-	"sourcegraph.com/sourcegraph/srclib/grapher"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
@@ -34,7 +33,7 @@ func NewGraphContext(unit *unit.SourceUnit) *GraphContext {
 
 // Graphs the Python source unit. If run outside of a Docker container, this assumes that the source unit has already
 // been installed (via pip or `python setup.py install`).
-func (c *GraphContext) Graph() (*grapher.Output, error) {
+func (c *GraphContext) Graph() (*graph.Output, error) {
 	if os.Getenv("IN_DOCKER_CONTAINER") != "" {
 		// NOTE: this may cause an error when graphing any source unit that depends
 		// on jedi (or any other dependency of the graph code)
@@ -76,8 +75,8 @@ func (c *GraphContext) Graph() (*grapher.Output, error) {
 	return out, nil
 }
 
-func (c *GraphContext) transform(raw *RawOutput, unit *unit.SourceUnit) *grapher.Output {
-	var out grapher.Output
+func (c *GraphContext) transform(raw *RawOutput, unit *unit.SourceUnit) *graph.Output {
+	var out graph.Output
 
 	for _, def := range raw.Defs {
 		out.Defs = append(out.Defs, c.transformDef(def))
@@ -114,9 +113,9 @@ func (c *GraphContext) transformDef(rawDef *RawDef) *graph.Def {
 			Repo:     c.Unit.Repo,
 			Unit:     c.Unit.Name,
 			UnitType: c.Unit.Type,
-			Path:     graph.DefPath(rawDef.Path),
+			Path:     string(rawDef.Path),
 		},
-		TreePath: graph.TreePath(rawDef.Path), // TODO: make this consistent w/ old way
+		TreePath: string(rawDef.Path), // TODO: make this consistent w/ old way
 		Kind:     jediKindToDefKind[rawDef.Kind],
 		Name:     rawDef.Name,
 		File:     rawDef.File,
@@ -133,7 +132,7 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 		return nil, err
 	}
 
-	defPath := graph.DefPath(rawRef.DefPath)
+	defPath := string(rawRef.DefPath)
 	if defPath == "" {
 		defPath = "."
 	}
@@ -256,8 +255,8 @@ type RawDef struct {
 	Kind      string
 	Name      string
 	File      string // relative path (to source unit directory)
-	DefStart  int
-	DefEnd    int
+	DefStart  uint32
+	DefEnd    uint32
 	Exported  bool
 	Docstring string
 	Data      interface{}
@@ -268,7 +267,7 @@ type RawRef struct {
 	Def       bool
 	DefFile   string // absolute path
 	File      string // relative path (to source unit directory)
-	Start     int
-	End       int
+	Start     uint32
+	End       uint32
 	ToBuiltin bool
 }
