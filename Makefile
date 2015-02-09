@@ -3,19 +3,20 @@
 all: install update-dockerfile
 
 install:
+	./set_path.sh
 	@mkdir -p .bin
 	go get -d ./...
 	go build -o .bin/srclib-python
-	sudo pip install -r requirements.txt --upgrade
-	sudo pip install . --upgrade
+	pip install -r requirements.txt --upgrade --user
+	pip install . --upgrade --user
 
 test-dependencies:
-	sudo pip install -r .test.requirements.txt --upgrade
+	pip install -r .test.requirements.txt --upgrade --user
 
 update-dockerfile:
 	src toolchain build sourcegraph.com/sourcegraph/srclib-python
 
 install-docker:
 	go install .
-	pip install -r requirements.txt --upgrade
-	pip install . --upgrade
+	pip install -r requirements.txt --upgrade --user
+	pip install . --upgrade --user
