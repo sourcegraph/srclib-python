@@ -56,8 +56,11 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 			}
 		}
 	}
-
-	cmd := exec.Command("python", "-m", "grapher.graph", "--verbose", "--dir", c.Unit.Dir, "--files")
+	p, err := getVENVBinPath()
+	if err != nil {
+		return nil, err
+	}
+	cmd := exec.Command(filepath.Join(p, "python"), "-m", "grapher.graph", "--verbose", "--dir", c.Unit.Dir, "--files")
 	cmd.Args = append(cmd.Args, c.Unit.Files...)
 	cmd.Stderr = os.Stderr
 	log.Printf("Running %v", cmd.Args)
