@@ -35,13 +35,13 @@ def graph_wrapper(dir_, pretty=False, verbose=False, quiet=False, nSourceFilesTr
         log('processing source files %d to %d of %d' % (i, i+SOURCE_FILE_BATCH, len(source_files)))
         batch = source_files[i:i+SOURCE_FILE_BATCH]
 
-        args = ["python", "-m", "grapher.graph", "--dir", "."]
+        args = [sys.executable, "-m", "grapher.graph", "--dir", "."]
         if verbose: args.append('--verbose')
         if quiet: args.append('--quiet')
         if pretty: args.append('--pretty')
         args.append('--files')
         args.extend(batch)
-        p = subprocess.Popen(args, stdout=subprocess.PIPE)
+        p = subprocess.Popen(args, stdout=subprocess.PIPE, env=os.environ.copy())
         out, err = p.communicate()
         if err is not None:
             sys.stderr.write(err)
@@ -266,7 +266,7 @@ def abs_module_path_to_relative_module_path(module_path):
     if pIdx != -1:
         return path.join(*components[i+1:]), None
     return None, ("could not convert absolute module path %s to relative module path" % module_path)
-        
+
 
 Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'DefStart', 'DefEnd', 'Exported', 'Docstring', 'Data'])
 Ref = namedtuple('Ref', ['DefPath', 'DefFile', 'Def', 'File', 'Start', 'End', "ToBuiltin"])
