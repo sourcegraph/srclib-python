@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"sourcegraph.com/sourcegraph/toolchain"
+	"sourcegraph.com/sourcegraph/srclib/toolchain"
 )
 
 func runCmdLogError(cmd *exec.Cmd) {
