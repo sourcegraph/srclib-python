@@ -19,7 +19,7 @@ install:
 	.env/bin/pip install . --upgrade
 
 test-dependencies:
-	sudo pip install -r .test.requirements.txt --upgrade
+	.env/bin/pip install -r .test.requirements.txt --upgrade
 
 update-dockerfile:
 	src toolchain build sourcegraph.com/sourcegraph/srclib-python
