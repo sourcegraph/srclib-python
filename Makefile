@@ -1,16 +1,28 @@
 .PHONY: install install-docker update-dockerfile
 
+ENV_URL_BASE := https://pypi.python.org/packages/source/v/virtualenv
+ENV_VERSION := 12.0.7
+
 all: install update-dockerfile
 
-install:
+.env:
+	# Setup virtual env.
+	curl -O $(ENV_URL_BASE)/virtualenv-$(ENV_VERSION).tar.gz
+	tar xzf virtualenv-$(ENV_VERSION).tar.gz
+	python2 virtualenv-$(ENV_VERSION)/virtualenv.py .env
+	rm virtualenv-$(ENV_VERSION).tar.gz
+	rm -r virtualenv-$(ENV_VERSION)
+
+install: .env
 	@mkdir -p .bin
 	go get -d ./...
 	go build -o .bin/srclib-python
-	sudo pip install -r requirements.txt --upgrade
-	sudo pip install . --upgrade
 
-test-dependencies:
-	sudo pip install -r .test.requirements.txt --upgrade
+	.env/bin/pip install -r requirements.txt --upgrade
+	.env/bin/pip install . --upgrade
+
+test-dependencies: .env 
+	.env/bin/pip install -r .test.requirements.txt --upgrade
 
 update-dockerfile:
 	src toolchain build sourcegraph.com/sourcegraph/srclib-python

@@ -5,51 +5,47 @@
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "Path": "mod",
-      "TreePath": "mod",
       "Name": "mod",
       "Kind": "module",
       "File": "mod.py",
       "DefStart": 0,
       "DefEnd": 0,
-      "Exported": true
+      "Exported": true,
+      "TreePath": "mod"
     },
     {
       "Repo": "github.com/sgtest/python-single-module-lib",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "Path": "setup",
-      "TreePath": "setup",
       "Name": "setup",
       "Kind": "module",
       "File": "setup.py",
       "DefStart": 0,
       "DefEnd": 0,
-      "Exported": true
+      "Exported": true,
+      "TreePath": "setup"
     }
   ],
   "Refs": [
     {
-      "DefRepo": "github.com/sgtest/python-single-module-lib",
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
       "DefPath": "mod",
-      "Def": true,
-      "Repo": "github.com/sgtest/python-single-module-lib",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
+      "Def": true,
       "File": "mod.py",
       "Start": 0,
       "End": 0
     },
     {
-      "DefRepo": "github.com/sgtest/python-single-module-lib",
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
       "DefPath": "setup",
-      "Def": true,
-      "Repo": "github.com/sgtest/python-single-module-lib",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
+      "Def": true,
       "File": "setup.py",
       "Start": 0,
       "End": 0

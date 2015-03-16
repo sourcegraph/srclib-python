@@ -1,4 +1,5 @@
 .bin
+.env
 build/
 dist/
 grapher.egg-info/
