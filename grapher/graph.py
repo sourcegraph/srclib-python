@@ -136,7 +136,7 @@ def get_defs_refs(source_files):
     defs, refs = [], []
 
     evaluator = jedi.evaluate.Evaluator()
-    for i, source_file in enumerate(source_files):
+    for i, source_file in enumerate(source_files, start=1):
         parserContext = ParserContext(source_file)
         linecoler = LineColToOffConverter(parserContext.source)
 
