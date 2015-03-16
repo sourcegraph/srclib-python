@@ -23,6 +23,8 @@ func runCmdStderr(cmd *exec.Cmd) error {
 	return cmd.Run()
 }
 
+// getVENVBinPath returns toolchains Python virtualenv path. If toolchain is ran in
+// `docker` mode, it will return empty string because there is no virtualenv.
 func getVENVBinPath() (string, error) {
 	if os.Getenv("IN_DOCKER_CONTAINER") == "" {
 		tc, err := toolchain.Lookup("sourcegraph.com/sourcegraph/srclib-python")
