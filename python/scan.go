@@ -19,7 +19,11 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 		return units, nil
 	}
 
-	cmd := exec.Command("pydep-run.py", "list", srcdir)
+	p, err := getVENVBinPath()
+	if err != nil {
+		return nil, err
+	}
+	cmd := exec.Command(filepath.Join(p, "pydep-run.py"), "list", srcdir)
 
 	cmd.Stderr = os.Stderr
 	stdout, err := cmd.StdoutPipe()
@@ -86,7 +90,11 @@ func Scan(srcdir string, repoURI string, repoSubdir string) ([]*unit.SourceUnit,
 }
 
 func requirements(unitDir string) ([]*requirement, error) {
-	depCmd := exec.Command("pydep-run.py", "dep", unitDir)
+	p, err := getVENVBinPath()
+	if err != nil {
+		return nil, err
+	}
+	depCmd := exec.Command(filepath.Join(p, "pydep-run.py"), "dep", unitDir)
 	depCmd.Stderr = os.Stderr
 	b, err := depCmd.Output()
 	if err != nil {
