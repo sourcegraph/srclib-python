@@ -5,77 +5,71 @@
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "Path": "mod0",
-      "TreePath": "mod0",
       "Name": "mod0",
       "Kind": "module",
       "File": "mod0.py",
       "DefStart": 0,
       "DefEnd": 0,
-      "Exported": true
+      "Exported": true,
+      "TreePath": "mod0"
     },
     {
       "Repo": "github.com/sgtest/python-no-url",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "Path": "mod0/foo",
-      "TreePath": "mod0/foo",
       "Name": "foo",
       "Kind": "func",
       "File": "mod0.py",
       "DefStart": 4,
       "DefEnd": 7,
-      "Exported": true
+      "Exported": true,
+      "TreePath": "mod0/foo"
     },
     {
       "Repo": "github.com/sgtest/python-no-url",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "Path": "setup",
-      "TreePath": "setup",
       "Name": "setup",
       "Kind": "module",
       "File": "setup.py",
       "DefStart": 0,
       "DefEnd": 0,
-      "Exported": true
+      "Exported": true,
+      "TreePath": "setup"
     }
   ],
   "Refs": [
     {
-      "DefRepo": "github.com/sgtest/python-no-url",
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
       "DefPath": "mod0/foo",
-      "Def": true,
-      "Repo": "github.com/sgtest/python-no-url",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
+      "Def": true,
       "File": "mod0.py",
       "Start": 4,
       "End": 7
     },
     {
-      "DefRepo": "github.com/sgtest/python-no-url",
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
       "DefPath": "mod0",
-      "Def": true,
-      "Repo": "github.com/sgtest/python-no-url",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
+      "Def": true,
       "File": "mod0.py",
       "Start": 0,
       "End": 0
     },
     {
-      "DefRepo": "github.com/sgtest/python-no-url",
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
       "DefPath": "setup",
-      "Def": true,
-      "Repo": "github.com/sgtest/python-no-url",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
+      "Def": true,
       "File": "setup.py",
       "Start": 0,
       "End": 0
