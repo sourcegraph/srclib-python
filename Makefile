@@ -21,7 +21,7 @@ install: .env
 	.env/bin/pip install -r requirements.txt --upgrade
 	.env/bin/pip install . --upgrade
 
-test-dependencies:
+test-dependencies: .env 
 	.env/bin/pip install -r .test.requirements.txt --upgrade
 
 update-dockerfile:
