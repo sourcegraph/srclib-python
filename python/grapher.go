@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -13,6 +14,7 @@ import (
 
 	"sourcegraph.com/sourcegraph/srclib/graph"
 	"sourcegraph.com/sourcegraph/srclib/unit"
+	"sourcegraph.com/sourcegraph/toolchain"
 )
 
 type GraphContext struct {
@@ -34,33 +36,64 @@ func NewGraphContext(unit *unit.SourceUnit) *GraphContext {
 // Graphs the Python source unit. If run outside of a Docker container, this assumes that the source unit has already
 // been installed (via pip or `python setup.py install`).
 func (c *GraphContext) Graph() (*graph.Output, error) {
-	if os.Getenv("IN_DOCKER_CONTAINER") != "" {
-		// NOTE: this may cause an error when graphing any source unit that depends
-		// on jedi (or any other dependency of the graph code)
-		requirementFiles, err := filepath.Glob(filepath.Join(c.Unit.Dir, "*requirements*.txt"))
-		if err != nil {
-			return nil, err
-		}
-		runCmdLogError(exec.Command("pip", "install", "-I", c.Unit.Dir))
-		for _, requirementFile := range requirementFiles {
-			err := runCmdStderr(exec.Command("pip", "install", "-r", requirementFile))
-			if err != nil {
-				log.Printf("Error installing dependencies in %s. Trying piecemeal install")
-				if b, err := ioutil.ReadFile(requirementFile); err == nil {
-					for _, req := range strings.Split(string(b), "\n") {
-						runCmdLogError(exec.Command("pip", "install", req))
-					}
-				} else {
-					log.Printf("Could not read %s: %s", requirementFile, err)
-				}
-			}
-		}
-	}
-	p, err := getVENVBinPath()
+	programMode := os.Getenv("IN_DOCKER_CONTAINER") == ""
+	tc, err := toolchain.Lookup("sourcegraph.com/sourcegraph/srclib-python")
 	if err != nil {
 		return nil, err
 	}
-	cmd := exec.Command(filepath.Join(p, "python"), "-m", "grapher.graph", "--verbose", "--dir", c.Unit.Dir, "--files")
+	pipBin := "pip"
+	pythonBin := "python"
+
+	if programMode {
+		tempPath, err := getTempPath()
+		if err != nil {
+			return nil, err
+		}
+		envName := fmt.Sprintf("%s-%s-env", getHash(c.Unit.Dir), url.QueryEscape(c.Unit.Name))
+		envDir := filepath.Join(tempPath, envName)
+
+		if _, err := os.Stat(filepath.Join(envDir)); os.IsNotExist(err) {
+			// We don't have virtual env for this SourceUnit, create one.
+			tcVENVBinPath := filepath.Join(tc.Dir, ".env", "bin")
+			cmd := exec.Command(filepath.Join(tcVENVBinPath, "virtualenv"), envDir)
+			if err := runCmdStderr(cmd); err != nil {
+				return nil, err
+			}
+		}
+		// Use binaries from our virutal env.
+		pipBin = filepath.Join(envDir, "bin", "pip")
+		pythonBin = filepath.Join(envDir, "bin", "python")
+	}
+
+	// NOTE: this may cause an error when graphing any source unit that depends
+	// on jedi (or any other dependency of the graph code)
+	requirementFiles, err := filepath.Glob(filepath.Join(c.Unit.Dir, "*requirements*.txt"))
+	if err != nil {
+		return nil, err
+	}
+	if _, err := os.Stat(filepath.Join(c.Unit.Dir, "setup.py")); !os.IsNotExist(err) {
+		runCmdLogError(exec.Command(pipBin, "install", "-I", c.Unit.Dir))
+	}
+	installPipRequirements(pipBin, requirementFiles)
+
+	if programMode {
+		// Unlike in docker mode, this environment doesn't have toolchain requirements installed,
+		// so install them.
+		// NOTE: Doing this last to ensure toolchain has priority when it comes to seting dependency
+		//       versions.
+		// Todo(MaikuMori): Use symlinks from toolchains virtualenv to project virtual env.
+		requirementFile := filepath.Join(tc.Dir, "requirements.txt")
+		if err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile)); err != nil {
+			return nil, err
+		}
+		// Install grapher in `editable` mode aka `setup.py develop` mode.
+		// Will not require constant reinstalls.
+		if err := runCmdStderr(exec.Command(pipBin, "install", "-e", tc.Dir)); err != nil {
+			return nil, err
+		}
+	}
+
+	cmd := exec.Command(pythonBin, "-m", "grapher.graph", "--verbose", "--dir", c.Unit.Dir, "--files")
 	cmd.Args = append(cmd.Args, c.Unit.Files...)
 	cmd.Stderr = os.Stderr
 	log.Printf("Running %v", cmd.Args)
@@ -189,7 +222,7 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 		fileSubCmps := fileCmps[pkgsDirIdx+1:]
 		fileSubPath := filepath.Join(fileSubCmps...)
 
-		var foundReq *requirement = nil
+		var foundReq *requirement
 	FindReq:
 		for _, req := range reqs {
 			for _, pkg := range req.Packages {
@@ -213,6 +246,8 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 			} else {
 				candidatesStr = fmt.Sprintf("%v...", reqs[:7])
 			}
+			// XXX: This doesn't work, note the pointer in `[]*requirement`. As error you get
+			//      string representation of array of pointers.
 			return nil, fmt.Errorf("Could not find requirement that contains file %s. Candidates were: %s",
 				file, candidatesStr)
 		}
@@ -273,4 +308,20 @@ type RawRef struct {
 	Start     uint32
 	End       uint32
 	ToBuiltin bool
+}
+
+func installPipRequirements(pipBin string, requirementFiles []string) {
+	for _, requirementFile := range requirementFiles {
+		err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile))
+		if err != nil {
+			log.Printf("Error installing dependencies in %s. Trying piecemeal install", requirementFile)
+			if b, err := ioutil.ReadFile(requirementFile); err == nil {
+				for _, req := range strings.Split(string(b), "\n") {
+					runCmdLogError(exec.Command(pipBin, "install", req))
+				}
+			} else {
+				log.Printf("Could not read %s: %s", requirementFile, err)
+			}
+		}
+	}
 }
