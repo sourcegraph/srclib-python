@@ -13,8 +13,8 @@ import (
 	"strings"
 
 	"sourcegraph.com/sourcegraph/srclib/graph"
+	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
-	"sourcegraph.com/sourcegraph/toolchain"
 )
 
 type GraphContext struct {
@@ -86,9 +86,7 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 		if err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile)); err != nil {
 			return nil, err
 		}
-		// Install grapher in `editable` mode aka `setup.py develop` mode.
-		// Will not require constant reinstalls.
-		if err := runCmdStderr(exec.Command(pipBin, "install", "-e", tc.Dir)); err != nil {
+		if err := runCmdStderr(exec.Command(pipBin, "install", "-I", tc.Dir)); err != nil {
 			return nil, err
 		}
 	}
@@ -246,8 +244,8 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 			} else {
 				candidatesStr = fmt.Sprintf("%v...", reqs[:7])
 			}
-			// XXX: This doesn't work, note the pointer in `[]*requirement`. As error you get
-			//      string representation of array of pointers.
+			// FIXME: This doesn't work, note the pointer in `[]*requirement`. As error you get
+			//        string representation of array of pointers.
 			return nil, fmt.Errorf("Could not find requirement that contains file %s. Candidates were: %s",
 				file, candidatesStr)
 		}
