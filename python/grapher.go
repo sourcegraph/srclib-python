@@ -52,6 +52,10 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 		envName := fmt.Sprintf("%s-%s-env", getHash(c.Unit.Dir), url.QueryEscape(c.Unit.Name))
 		envDir := filepath.Join(tempPath, envName)
 
+		// Use binaries from our virutal env.
+		pipBin = filepath.Join(envDir, "bin", "pip")
+		pythonBin = filepath.Join(envDir, "bin", "python")
+
 		if _, err := os.Stat(filepath.Join(envDir)); os.IsNotExist(err) {
 			// We don't have virtual env for this SourceUnit, create one.
 			tcVENVBinPath := filepath.Join(tc.Dir, ".env", "bin")
@@ -59,10 +63,20 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 			if err := runCmdStderr(cmd); err != nil {
 				return nil, err
 			}
+			// Install our dependencies.
+			// Todo(MaikuMori): Use symlinks from toolchains virtualenv to project virtual env.
+			// NOTE: If SourceUnit requirements overwrite our requirements, things will fail.
+			// 			 We could install them last, but then we would have to do this before each
+			//			 graphing which noticably increases graphing time (since our deps are always
+			//       downloaded by pip due to dependency on git commit not actual package version).
+			requirementFile := filepath.Join(tc.Dir, "requirements.txt")
+			if err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile)); err != nil {
+				return nil, err
+			}
+			if err := runCmdStderr(exec.Command(pipBin, "install", "-I", tc.Dir)); err != nil {
+				return nil, err
+			}
 		}
-		// Use binaries from our virutal env.
-		pipBin = filepath.Join(envDir, "bin", "pip")
-		pythonBin = filepath.Join(envDir, "bin", "python")
 	}
 
 	// NOTE: this may cause an error when graphing any source unit that depends
@@ -75,21 +89,6 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 		runCmdLogError(exec.Command(pipBin, "install", "-I", c.Unit.Dir))
 	}
 	installPipRequirements(pipBin, requirementFiles)
-
-	if programMode {
-		// Unlike in docker mode, this environment doesn't have toolchain requirements installed,
-		// so install them.
-		// NOTE: Doing this last to ensure toolchain has priority when it comes to seting dependency
-		//       versions.
-		// Todo(MaikuMori): Use symlinks from toolchains virtualenv to project virtual env.
-		requirementFile := filepath.Join(tc.Dir, "requirements.txt")
-		if err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile)); err != nil {
-			return nil, err
-		}
-		if err := runCmdStderr(exec.Command(pipBin, "install", "-I", tc.Dir)); err != nil {
-			return nil, err
-		}
-	}
 
 	cmd := exec.Command(pythonBin, "-m", "grapher.graph", "--verbose", "--dir", c.Unit.Dir, "--files")
 	cmd.Args = append(cmd.Args, c.Unit.Files...)
