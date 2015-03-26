@@ -1,6 +1,8 @@
 package python
 
 import (
+	"crypto/sha1"
+	"encoding/hex"
 	"log"
 	"os"
 	"os/exec"
@@ -34,4 +36,14 @@ func getVENVBinPath() (string, error) {
 		return filepath.Join(tc.Dir, ".env", "bin"), nil
 	}
 	return "", nil
+}
+
+func getTempPath() (string, error) {
+	return toolchain.TempDir("sourcegraph.com/sourcegraph/srclib-python")
+}
+
+func getHash(text string) string {
+	hasher := sha1.New()
+	hasher.Write([]byte(text))
+	return hex.EncodeToString(hasher.Sum(nil))[:8]
 }
