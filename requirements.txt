@@ -3,3 +3,4 @@ git+https://github.com/sourcegraph/pydep.git@96fdf7afd479e219acf7af865f21fa1f1fe
 # Pydep doesn't work with 6.0+ versions of pip:
 # https://github.com/sourcegraph/pydep/issues/8
 pip<6.0
+virtualenv==12.0.7
