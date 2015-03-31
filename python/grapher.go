@@ -73,7 +73,7 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 			if err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile)); err != nil {
 				return nil, err
 			}
-			if err := runCmdStderr(exec.Command(pipBin, "install", "-I", tc.Dir)); err != nil {
+			if err := runCmdStderr(exec.Command(pipBin, "install", "-e", tc.Dir)); err != nil {
 				return nil, err
 			}
 		}
