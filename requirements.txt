@@ -1,4 +1,4 @@
-git+https://github.com/beyang/jedi.git@c4a51cba12bc4849e19c4aa25aeb30d66e5fd238
+git+https://github.com/davidhalter/jedi.git@dev#egg=jedi
 git+https://github.com/sourcegraph/pydep.git@96fdf7afd479e219acf7af865f21fa1f1fe2bf5b
 # Pydep doesn't work with 6.0+ versions of pip:
 # https://github.com/sourcegraph/pydep/issues/8
