@@ -45,8 +45,10 @@ class Grapher(object):
 
             jedi_defs, jedi_refs = [], []
             for jedi_name in jedi_names:
+                # For some reason imports are considered definitions.
+                # if jedi_name.is_definition() and jedi_name.type != "import":
                 if jedi_name.is_definition():
-                    jedi_defs.append(jedi_name)
+                        jedi_defs.append(jedi_name)
                 else:
                     jedi_refs.append(jedi_name)
 
@@ -57,7 +59,7 @@ class Grapher(object):
                     defs.append(sg_def)
                     unique_def_paths.add(sg_def.Path)
 
-            unique_ref_paths = set()
+            # unique_ref_paths = set()
             for jedi_ref in jedi_refs:
                 # noinspection PyBroadException
                 try:
@@ -70,21 +72,21 @@ class Grapher(object):
                     continue
 
                 sg_def = self.jedi_def_to_def_key(ref_defs[0])
-                if sg_def.Path not in unique_ref_paths:
-                    ref_start = linecoler.convert((jedi_ref.line, jedi_ref.column))
-                    ref_end = ref_start + len(jedi_ref.name)
-                    refs.append(Ref(
-                        DefPath=sg_def.Path,
-                        DefFile=sg_def.File,
-                        Def=False,
-                        File=fp,
-                        Start=ref_start,
-                        End=ref_end,
-                        # ToBuiltin=ref_defs[0].in_builtin_module(),
-                        ToBuiltin="sg_def.Kind={}, ref.Kind={}".format(sg_def.Kind, jedi_ref.type),
-                    ))
-                    unique_ref_paths.add(sg_def.Path)
-        self.log.error("\n".join([d.Path for d in defs if d.Path.startswith("user/User")]))
+                # if sg_def.Path not in unique_ref_paths:
+                ref_start = linecoler.convert((jedi_ref.line, jedi_ref.column))
+                ref_end = ref_start + len(jedi_ref.name)
+                refs.append(Ref(
+                    DefPath=sg_def.Path,
+                    DefFile=sg_def.File,
+                    Def=False,
+                    File=fp,
+                    Start=ref_start,
+                    End=ref_end,
+                    ToBuiltin=ref_defs[0].in_builtin_module(),
+                    # ToBuiltin="sg_def.Kind={}, ref.Kind={}".format(sg_def.Kind, jedi_ref.type),
+                ))
+                    # unique_ref_paths.add(sg_def.Path)
+
         return json.dumps({
             # Using `__dict__` as a hacky way to get dictionary from namedtuple.
             # Works on Python 2.7+
@@ -141,6 +143,9 @@ class Grapher(object):
             parent_module = os.path.dirname(os.path.dirname(module_path))
         else:
             parent_module = os.path.dirname(module_path)
+
+        if parent_module == "":
+            return name
 
         return "{}.{}".format(parent_module, name)
 
