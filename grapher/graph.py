@@ -57,7 +57,7 @@ if __name__ == '__main__':
         logger.info('processing file: {}'.format(f))
         fg = FileGrapher(args.dir, f, logger)
         try:
-            d, r = fg.graph()
+            d, r = fg.graph
         except FileGrapherException as e:
             logger.error('failed to graph {}: {}'.format(f, str(e)))
             continue

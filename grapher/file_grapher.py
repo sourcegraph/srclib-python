@@ -26,6 +26,7 @@ class FileGrapher(object):
         self._defs = {}
         self._refs = {}
 
+    @property
     def graph(self):
         # TODO: Maybe move to `__init__`?
         self._load()
@@ -56,31 +57,54 @@ class FileGrapher(object):
 
         jedi_defs, jedi_refs = [], []
         for jedi_name in jedi_names:
-            if jedi_name.is_definition():
+            # Imports should be refs.
+            if jedi_name.is_definition() and jedi_name.type != 'import':
                     jedi_defs.append(jedi_name)
             else:
                 jedi_refs.append(jedi_name)
 
         # Defs.
         for jedi_def in jedi_defs:
-            if jedi_def.type != 'import':
-                # Skip imports.
-                continue
             self._add_def(self._jedi_def_to_def(jedi_def))
 
         # Refs.
         for jedi_ref in jedi_refs:
-            # noinspection PyBroadException
-            try:
-                ref_defs = jedi_ref.goto_assignments()
-            except Exception:
-                self._log.error('error getting definitions for reference {}'.format(str(jedi_ref)[0:50]))
+            self._log.error(
+                'Processing ref: %s | %s | %s',
+                jedi_ref.desc_with_module,
+                jedi_ref.name,
+                jedi_ref.type,
+            )
+
+            # Try to find definition.
+            ref_def = jedi_ref
+            # If def is import, then follow it.
+            while not ref_def.is_definition() or ref_def.type == "import":
+                # noinspection PyBroadException
+                try:
+                    ref_defs = ref_def.goto_assignments()
+                except Exception:
+                    self._log.error('error getting definitions for reference {}'.format(str(jedi_ref)[0:50]))
+                    break
+
+                if len(ref_defs) == 0:
+                    break
+
+                ref_def = ref_defs[0]
+
+            if not ref_def.is_definition():
+                # We didn't find anything.
                 continue
 
-            if len(ref_defs) == 0:
-                continue
+            sg_def = self._jedi_def_to_def_key(ref_def)
+            self._log.error(
+                'Def: %s | %s | %s | %s \n',
+                sg_def.Name,
+                sg_def.Path,
+                sg_def.Kind,
+                sg_def.File,
+            )
 
-            sg_def = self._jedi_def_to_def_key(ref_defs[0])
             ref_start = self._to_offset(jedi_ref.line, jedi_ref.column)
             ref_end = ref_start + len(jedi_ref.name)
             self._add_ref(self.Ref(
@@ -90,8 +114,7 @@ class FileGrapher(object):
                 File=self._file,
                 Start=ref_start,
                 End=ref_end,
-                ToBuiltin=ref_defs[0].in_builtin_module(),
-                # ToBuiltin='sg_def.Kind={}, ref.Kind={}'.format(sg_def.Kind, jedi_ref.type),
+                ToBuiltin=ref_def.in_builtin_module(),
             ))
 
         return self._defs, self._refs
@@ -186,6 +209,7 @@ class FileGrapher(object):
 
     def _add_def(self, d):
         """ Add definition, also adds self-reference. """
+        # self._log.error('Adding def: %s | %s', d.Name, d.Path)
         if d.Path not in self._defs:
             self._defs[d.Path] = d
             # Add self-reference.
@@ -202,6 +226,7 @@ class FileGrapher(object):
 
     def _add_ref(self, r):
         """ Add reference. """
+        # self._log.error('Adding ref: %s', r.DefPath)
         key = (r.DefPath, r.DefFile, r.File, r.Start, r.End)
         if key not in self._refs:
             self._refs[key] = r
