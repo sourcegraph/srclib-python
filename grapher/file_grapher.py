@@ -3,6 +3,17 @@ import os
 import jedi
 
 
+def _debug_print_tree(node, indent=0, func=repr):
+    """ Print visual representation of Jedi AST. """
+    ret = "\t" * indent + func(node) + "\n"
+
+    children = getattr(node, "children", None)
+    if children:
+        for child in children:
+            ret += _debug_print_tree(child, indent=indent+1, func=func)
+    return ret
+
+
 class FileGrapherException(Exception):
     """ Something went wrong while graphing the file. """
 
@@ -65,12 +76,18 @@ class FileGrapher(object):
 
         # Defs.
         for jedi_def in jedi_defs:
+            self._log.error(
+                '\nProcessing def: %s | %s | %s',
+                jedi_def.desc_with_module,
+                jedi_def.name,
+                jedi_def.type,
+            )
             self._add_def(self._jedi_def_to_def(jedi_def))
 
         # Refs.
         for jedi_ref in jedi_refs:
             self._log.error(
-                'Processing ref: %s | %s | %s',
+                '\nProcessing ref: %s | %s | %s',
                 jedi_ref.desc_with_module,
                 jedi_ref.name,
                 jedi_ref.type,
@@ -98,7 +115,7 @@ class FileGrapher(object):
 
             sg_def = self._jedi_def_to_def_key(ref_def)
             self._log.error(
-                'Def: %s | %s | %s | %s \n',
+                'Ref-Def: %s | %s | %s | %s \n',
                 sg_def.Name,
                 sg_def.Path,
                 sg_def.Kind,
@@ -166,9 +183,39 @@ class FileGrapher(object):
     def _full_name(self, d):
         if d.in_builtin_module():
             return d.name
-        if d.type == 'statement' or d.type == 'param':
-            name = '{}.{}'.format(d.full_name, d.name)
+        if d.type == 'statement':
+            # Workaround for self.* definitions:
+            # 1. Must be inside function.
+            # 2. Must be in form self.something[.something ...] = thing
+            jd = d._definition
+            if d.parent().type == 'function':
+                self._log.error('\n%s\n', _debug_print_tree(jd, func=lambda n: '{} -> {}'.format(type(n), n.type)))
+
+            if (d.parent().type == 'function' and
+                    (isinstance(jd.children[0], jedi.parser.tree.Node) or
+                     isinstance(jd.children[0], jedi.evaluate.representation.InstanceElement)) and
+                    jd.children[0].children[0].value == 'self'):
+                parent = d.parent()
+                # Stop when:
+                # - We find class or instance of class
+                # - We reach module, which means we failed.
+                while parent.type != 'class' and parent.type != 'instance' and parent.type != 'module':
+                    self._log.error('Finding paren %s -> %s | %s', parent.type, parent, jd.children[0].children[0].value)
+                    parent = parent.parent()
+
+                rest = jd.children[0].children[1:]
+                chain = []
+                for node in rest:
+                    chain.append(node.children[1].value)
+                if parent.type != 'module':
+                    name = '{}.{}'.format(parent.full_name, '.'.join(chain))
+                else:
+                    name = '{}.{}'.format(d.full_name, d.name)
+
+            else:
+                name = '{}.{}'.format(d.full_name, d.name)
         else:
+            self._log.error('Not-statement: %s | %s', d.full_name, d.type)
             name = d.full_name
 
         # module_path = os.path.relpath(d.module_path, self.base_dir)
@@ -182,6 +229,12 @@ class FileGrapher(object):
 
         if parent_module == '':
             return name
+
+        self._log.error(
+            'Name: %s | %s ',
+            parent_module,
+            name,
+        )
 
         return '{}.{}'.format(parent_module, name)
 
@@ -209,20 +262,19 @@ class FileGrapher(object):
 
     def _add_def(self, d):
         """ Add definition, also adds self-reference. """
-        # self._log.error('Adding def: %s | %s', d.Name, d.Path)
+        self._log.error('Adding def: %s | %s | %s', d.Name, d.Path, d.Kind)
         if d.Path not in self._defs:
             self._defs[d.Path] = d
-            # Add self-reference.
-            if d.Kind != "module":
-                self._add_ref(self.Ref(
-                    DefPath=d.Path,
-                    DefFile=os.path.abspath(d.File),
-                    Def=True,
-                    File=d.File,
-                    Start=d.DefStart,
-                    End=d.DefEnd,
-                    ToBuiltin=False,
-                ))
+        # Add self-reference.
+        self._add_ref(self.Ref(
+            DefPath=d.Path,
+            DefFile=os.path.abspath(d.File),
+            Def=True,
+            File=d.File,
+            Start=d.DefStart,
+            End=d.DefEnd,
+            ToBuiltin=False,
+        ))
 
     def _add_ref(self, r):
         """ Add reference. """
