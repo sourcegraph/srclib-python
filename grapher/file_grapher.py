@@ -76,7 +76,7 @@ class FileGrapher(object):
 
         # Defs.
         for jedi_def in jedi_defs:
-            self._log.error(
+            self._log.debug(
                 '\nProcessing def: %s | %s | %s',
                 jedi_def.desc_with_module,
                 jedi_def.name,
@@ -86,7 +86,7 @@ class FileGrapher(object):
 
         # Refs.
         for jedi_ref in jedi_refs:
-            self._log.error(
+            self._log.debug(
                 '\nProcessing ref: %s | %s | %s',
                 jedi_ref.desc_with_module,
                 jedi_ref.name,
@@ -101,7 +101,11 @@ class FileGrapher(object):
                 try:
                     ref_defs = ref_def.goto_assignments()
                 except Exception:
-                    self._log.error('error getting definitions for reference {}'.format(str(jedi_ref)[0:50]))
+                    self._log.error('\n%s\n', _debug_print_tree(
+                        ref_def,
+                        func=lambda n: '{} | {} | {}'.format(str(n)[:10], type(n), n.type)
+                    ))
+                    self._log.error('error getting definitions for reference {}'.format(jedi_ref))
                     break
 
                 if len(ref_defs) == 0:
@@ -114,7 +118,7 @@ class FileGrapher(object):
                 continue
 
             sg_def = self._jedi_def_to_def_key(ref_def)
-            self._log.error(
+            self._log.debug(
                 'Ref-Def: %s | %s | %s | %s \n',
                 sg_def.Name,
                 sg_def.Path,
@@ -181,15 +185,18 @@ class FileGrapher(object):
         )
 
     def _full_name(self, d):
-        if d.in_builtin_module():
+        if d.in_builtin_module() or d.module_path is None:
             return d.name
         if d.type == 'statement':
             # Workaround for self.* definitions:
-            # 1. Must be inside function.
+            # 1. Must be inside function
             # 2. Must be in form self.something[.something ...] = thing
             jd = d._definition
             if d.parent().type == 'function':
-                self._log.error('\n%s\n', _debug_print_tree(jd, func=lambda n: '{} -> {}'.format(type(n), n.type)))
+                self._log.debug('\n%s\n', _debug_print_tree(
+                    jd,
+                    func=lambda n: '{} | {} | {}'.format(str(n)[:10], type(n), n.type)
+                ))
 
             if (d.parent().type == 'function' and
                     (isinstance(jd.children[0], jedi.parser.tree.Node) or
@@ -198,9 +205,14 @@ class FileGrapher(object):
                 parent = d.parent()
                 # Stop when:
                 # - We find class or instance of class
-                # - We reach module, which means we failed.
+                # - We reach module, which means we failed
                 while parent.type != 'class' and parent.type != 'instance' and parent.type != 'module':
-                    self._log.error('Finding paren %s -> %s | %s', parent.type, parent, jd.children[0].children[0].value)
+                    self._log.debug(
+                        'Finding paren %s -> %s | %s',
+                        parent.type,
+                        parent,
+                        jd.children[0].children[0].value
+                    )
                     parent = parent.parent()
 
                 rest = jd.children[0].children[1:]
@@ -215,11 +227,18 @@ class FileGrapher(object):
             else:
                 name = '{}.{}'.format(d.full_name, d.name)
         else:
-            self._log.error('Not-statement: %s | %s', d.full_name, d.type)
+            self._log.debug('Not-statement: %s | %s', d.name, d.module_path)
+            self._log.debug('\n%s\n', _debug_print_tree(
+                d,
+                func=lambda n: '{} | {} | {}'.format(str(n)[:10], type(n), n.type)
+            ))
             name = d.full_name
 
+        # FIXME: Old code used to check if it's def or ref and only call this on refs.
         # module_path = os.path.relpath(d.module_path, self.base_dir)
         # if not d.is_definition():
+        self._log.debug('Module path: %s | %s', d.module_path, d.in_builtin_module())
+
         module_path = self._abs_module_path_to_relative_module_path(d.module_path)
 
         if os.path.basename(module_path) == '__init__.py':
@@ -230,7 +249,7 @@ class FileGrapher(object):
         if parent_module == '':
             return name
 
-        self._log.error(
+        self._log.debug(
             'Name: %s | %s ',
             parent_module,
             name,
@@ -262,7 +281,7 @@ class FileGrapher(object):
 
     def _add_def(self, d):
         """ Add definition, also adds self-reference. """
-        self._log.error('Adding def: %s | %s | %s', d.Name, d.Path, d.Kind)
+        self._log.debug('Adding def: %s | %s | %s', d.Name, d.Path, d.Kind)
         if d.Path not in self._defs:
             self._defs[d.Path] = d
         # Add self-reference.
@@ -278,7 +297,7 @@ class FileGrapher(object):
 
     def _add_ref(self, r):
         """ Add reference. """
-        # self._log.error('Adding ref: %s', r.DefPath)
+        self._log.debug('Adding ref: %s', r.DefPath)
         key = (r.DefPath, r.DefFile, r.File, r.Start, r.End)
         if key not in self._refs:
             self._refs[key] = r
