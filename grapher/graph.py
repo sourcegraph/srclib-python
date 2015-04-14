@@ -24,6 +24,7 @@ if __name__ == '__main__':
     arg_parser.add_argument('--files', help='path code files', nargs='+')
     arg_parser.add_argument('--pretty', help='pretty print JSON output', action='store_true', default=False)
     arg_parser.add_argument('--verbose', help='verbose', action='store_true', default=False)
+    arg_parser.add_argument('--debug', help='debug', action='store_true', default=False)
     arg_parser.add_argument('--quiet', help='quiet', action='store_true', default=False)
     arg_parser.add_argument('--maxfiles', help='maximum number of files to process', default=None, type=int)
     args = arg_parser.parse_args()
@@ -35,6 +36,9 @@ if __name__ == '__main__':
     logger.addHandler(handler)
     # By default only report errors.
     logger.setLevel(logging.ERROR)
+
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
 
     if args.verbose:
         logger.setLevel(logging.INFO)
