@@ -1,5 +1,6 @@
 from collections import namedtuple
 import os
+
 import jedi
 
 
@@ -96,15 +97,13 @@ class FileGrapher(object):
             # Try to find definition.
             ref_def = jedi_ref
             # If def is import, then follow it.
-            while not ref_def.is_definition() or ref_def.type == "import":
+            depth = 0
+            while (not ref_def.is_definition() or ref_def.type == "import") and depth < 100:
+                depth += 1
                 # noinspection PyBroadException
                 try:
                     ref_defs = ref_def.goto_assignments()
                 except Exception:
-                    self._log.error('\n%s\n', _debug_print_tree(
-                        ref_def,
-                        func=lambda n: '{} | {} | {}'.format(str(n)[:10], type(n), n.type)
-                    ))
                     self._log.error('error getting definitions for reference {}'.format(jedi_ref))
                     break
 
