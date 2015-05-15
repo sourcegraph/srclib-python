@@ -112,7 +112,7 @@ class FileGrapher(object):
 
                 ref_def = ref_defs[0]
 
-            if not ref_def.is_definition():
+            if not ref_def.is_definition() or ref_def.type == "import":
                 # We didn't find anything.
                 continue
 
@@ -200,6 +200,8 @@ class FileGrapher(object):
             if (d.parent().type == 'function' and
                     (isinstance(jd.children[0], jedi.parser.tree.Node) or
                      isinstance(jd.children[0], jedi.evaluate.representation.InstanceElement)) and
+                    (isinstance(jd.children[0].children[0], jedi.parser.tree.Name) or
+                     isinstance(jd.children[0].children[0], jedi.evaluate.representation.InstanceName)) and
                     jd.children[0].children[0].value == 'self'):
                 parent = d.parent()
                 # Stop when:
@@ -229,7 +231,7 @@ class FileGrapher(object):
             self._log.debug('Not-statement: %s | %s', d.name, d.module_path)
             self._log.debug('\n%s\n', _debug_print_tree(
                 d,
-                func=lambda n: '{} | {} | {}'.format(str(n)[:10], type(n), n.type)
+                func=lambda n: u'{} | {} | {}'.format(unicode(n)[:10], type(n), n.type)
             ))
             name = d.full_name
 
