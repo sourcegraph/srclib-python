@@ -165,7 +165,7 @@ class FileGrapher(object):
             DefEnd=end,
             # TODO: not all vars are exported
             Exported=True,
-            Docstring=d.docstring(),
+            Docstring=d.docstring(raw=True),
             Data=None,
         )
 
@@ -179,7 +179,7 @@ class FileGrapher(object):
             DefEnd=None,
             # TODO: not all vars are exported.
             Exported=True,
-            Docstring=d.docstring(),
+            Docstring=d.docstring(raw=True),
             Data=None,
         )
 
