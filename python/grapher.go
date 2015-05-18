@@ -188,7 +188,15 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 }
 
 func (c *GraphContext) transformDefDoc(rawDef *RawDef) *graph.Doc {
-	return nil
+	return &graph.Doc{
+		DefKey: graph.DefKey{
+			Repo:     c.Unit.Repo,
+			Unit:     c.Unit.Name,
+			UnitType: c.Unit.Type,
+			Path:     string(rawDef.Path),
+		},
+		Data:  rawDef.Docstring,
+	}
 }
 
 func (c *GraphContext) inferSourceUnit(rawRef *RawRef, reqs []*requirement) (*unit.SourceUnit, error) {
