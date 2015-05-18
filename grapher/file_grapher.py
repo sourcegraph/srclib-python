@@ -111,9 +111,17 @@ class FileGrapher(object):
                     break
 
                 ref_def = ref_defs[0]
+            else:
+                self._log.debug(
+                    'Ref def search (precondition failed) | %s | %s | %s\n',
+                    ref_def.is_definition(),
+                    ref_def.type,
+                    ref_def.name
+                )
 
-            if not ref_def.is_definition() or ref_def.type == "import":
+            if ref_def.type == "import":
                 # We didn't find anything.
+                self._log.debug('Ref def not found \n')
                 continue
 
             sg_def = self._jedi_def_to_def_key(ref_def)
@@ -233,7 +241,16 @@ class FileGrapher(object):
                 d,
                 func=lambda n: u'{} | {} | {}'.format(unicode(n)[:10], type(n), n.type)
             ))
-            name = d.full_name
+            # This is needed for situations like these:
+            # class x(object):
+            #   def yyy(self): pass
+            #   def xxx(self, a):
+            #     if a == 1:
+            #       self.yyy(a) # <- A parameter.
+            if d.is_definition():
+                name = d.full_name
+            else:
+                name = '{}.{}'.format(d.full_name, d.name)
 
         # FIXME: Old code used to check if it's def or ref and only call this on refs.
         # module_path = os.path.relpath(d.module_path, self.base_dir)
