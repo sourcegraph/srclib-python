@@ -195,7 +195,7 @@ func (c *GraphContext) transformDefDoc(rawDef *RawDef) *graph.Doc {
 			UnitType: c.Unit.Type,
 			Path:     string(rawDef.Path),
 		},
-		Data:  rawDef.Docstring,
+		Data: rawDef.Docstring,
 	}
 }
 
@@ -245,16 +245,21 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 		}
 
 		if foundReq == nil {
-			var candidatesStr string
-			if len(reqs) <= 7 {
-				candidatesStr = fmt.Sprintf("%v", reqs)
-			} else {
-				candidatesStr = fmt.Sprintf("%v...", reqs[:7])
+			var formattedCanditates []string
+			end := ""
+			candiates := reqs
+
+			if len(reqs) > 7 {
+				candiates = reqs[:7]
+				end = ", ..."
 			}
-			// FIXME: This doesn't work, note the pointer in `[]*requirement`. As error you get
-			//        string representation of array of pointers.
+
+			for _, candidate := range candiates {
+				formattedCanditates = append(formattedCanditates, fmt.Sprintf("%v", *candidate))
+			}
+
 			return nil, fmt.Errorf("Could not find requirement that contains file %s. Candidates were: %s",
-				file, candidatesStr)
+				file, strings.Join(formattedCanditates, ", ")+end)
 		}
 
 		return foundReq.SourceUnit(), nil
