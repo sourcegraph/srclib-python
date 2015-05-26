@@ -1,5 +1,6 @@
 from collections import namedtuple
 import os
+import re
 
 import jedi
 
@@ -25,6 +26,8 @@ class FileGrapher(object):
     """
     Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'DefStart', 'DefEnd', 'Exported', 'Docstring', 'Data'])
     Ref = namedtuple('Ref', ['DefPath', 'DefFile', 'Def', 'File', 'Start', 'End', 'ToBuiltin'])
+
+    _exported_regex = re.compile('\_[a-zA-Z0-9]')
 
     def __init__(self, base_dir, source_file, log):
         """
@@ -171,8 +174,7 @@ class FileGrapher(object):
             File=self._file,
             DefStart=start,
             DefEnd=end,
-            # TODO: not all vars are exported
-            Exported=True,
+            Exported=self._is_exported(d.name),
             Docstring=d.docstring(raw=True),
             Data=None,
         )
@@ -185,8 +187,7 @@ class FileGrapher(object):
             File=d.module_path,
             DefStart=None,
             DefEnd=None,
-            # TODO: not all vars are exported.
-            Exported=True,
+            Exported=self._is_exported(d.name),
             Docstring=d.docstring(raw=True),
             Data=None,
         )
@@ -297,8 +298,20 @@ class FileGrapher(object):
         raise FileGrapherException('could not convert absolute module path {} '
                                    'to relative module path'.format(module_path))
 
+    def _is_exported(self, name):
+        """ Checks if keyword is public or non-public.
+
+        There are no private methods/variables in Python, however:
+
+        There is a convention to prefix private methods/variables with
+        underscore. And that's what we're going to use.
+
+        https://www.python.org/dev/peps/pep-0008/#id40
+        """
+        return self._exported_regex.match(name) is not None
+
     def _add_def(self, d):
-        """ Add definition, also adds self-reference. """
+        """ Add a definition, also adds a self-reference. """
         self._log.debug('Adding def: %s | %s | %s', d.Name, d.Path, d.Kind)
         if d.Path not in self._defs:
             self._defs[d.Path] = d
@@ -314,7 +327,7 @@ class FileGrapher(object):
         ))
 
     def _add_ref(self, r):
-        """ Add reference. """
+        """ Add a reference. """
         self._log.debug('Adding ref: %s', r.DefPath)
         key = (r.DefPath, r.DefFile, r.File, r.Start, r.End)
         if key not in self._refs:
