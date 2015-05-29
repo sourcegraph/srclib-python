@@ -195,7 +195,11 @@ class FileGrapher(object):
     def _full_name(self, d):
         if d.in_builtin_module() or d.module_path is None:
             return d.name
-        if d.type == 'statement':
+        # This detects `self` and `cls` parameters makes them to point to the class:
+        # To trigger this parameters must be for a method (a class function).
+        if d.type == "param" and (d.name == "self" or d.name == "cls") and d.parent().parent().type == "class":
+            name = d.parent().parent().full_name
+        elif d.type == 'statement':
             # Workaround for self.* definitions:
             # 1. Must be inside function
             # 2. Must be in form self.something[.something ...] = thing
@@ -211,7 +215,8 @@ class FileGrapher(object):
                      isinstance(jd.children[0], jedi.evaluate.representation.InstanceElement)) and
                     (isinstance(jd.children[0].children[0], jedi.parser.tree.Name) or
                      isinstance(jd.children[0].children[0], jedi.evaluate.representation.InstanceName)) and
-                    jd.children[0].children[0].value == 'self'):
+                    (jd.children[0].children[0].value == 'self' or
+                     jd.children[0].children[0].value == 'self')):
                 parent = d.parent()
                 # Stop when:
                 # - We find class or instance of class
