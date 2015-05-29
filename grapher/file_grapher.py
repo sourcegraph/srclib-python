@@ -197,7 +197,7 @@ class FileGrapher(object):
             return d.name
         # This detects `self` and `cls` parameters makes them to point to the class:
         # To trigger this parameters must be for a method (a class function).
-        if d.type == "param" and (d.name == "self" or d.name == "cls") and d.parent().parent().type == "class":
+        if d.type == 'param' and (d.name == 'self' or d.name == 'cls') and d.parent().parent().type == 'class':
             name = d.parent().parent().full_name
         elif d.type == 'statement':
             # Workaround for self.* definitions:
