@@ -86,7 +86,15 @@ class FileGrapher(object):
                 jedi_def.name,
                 jedi_def.type,
             )
-            self._add_def(self._jedi_def_to_def(jedi_def))
+            try:
+                self._add_def(self._jedi_def_to_def(jedi_def))
+            except Exception as e:
+                self._log.error(
+                    '\nFailed to process def `%s`: %s',
+                    jedi_def.name,
+                    e,
+                )
+                continue
 
         # Refs.
         for jedi_ref in jedi_refs:
@@ -127,7 +135,16 @@ class FileGrapher(object):
                 self._log.debug('Ref def not found \n')
                 continue
 
-            sg_def = self._jedi_def_to_def_key(ref_def)
+            try:
+                sg_def = self._jedi_def_to_def_key(ref_def)
+            except Exception as e:
+                self._log.error(
+                    '\nFailed to process def to def-key `%s`: %s',
+                    ref_def.name,
+                    e,
+                )
+                continue
+
             self._log.debug(
                 'Ref-Def: %s | %s | %s | %s \n',
                 sg_def.Name,
@@ -216,7 +233,7 @@ class FileGrapher(object):
                     (isinstance(jd.children[0].children[0], jedi.parser.tree.Name) or
                      isinstance(jd.children[0].children[0], jedi.evaluate.representation.InstanceName)) and
                     (jd.children[0].children[0].value == 'self' or
-                     jd.children[0].children[0].value == 'self')):
+                     jd.children[0].children[0].value == 'cls')):
                 parent = d.parent()
                 # Stop when:
                 # - We find class or instance of class
