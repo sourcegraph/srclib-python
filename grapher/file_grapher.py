@@ -41,7 +41,6 @@ class FileGrapher(object):
         self._defs = {}
         self._refs = {}
 
-    @property
     def graph(self):
         # TODO: Maybe move to `__init__`?
         self._load()
@@ -90,7 +89,7 @@ class FileGrapher(object):
                 self._add_def(self._jedi_def_to_def(jedi_def))
             except Exception as e:
                 self._log.error(
-                    '\nFailed to process def `%s`: %s',
+                    u'\nFailed to process def `%s`: %s',
                     jedi_def.name,
                     e,
                 )
@@ -115,7 +114,7 @@ class FileGrapher(object):
                 try:
                     ref_defs = ref_def.goto_assignments()
                 except Exception:
-                    self._log.error('error getting definitions for reference {}'.format(jedi_ref))
+                    self._log.error(u'error getting definitions for reference {}'.format(jedi_ref))
                     break
 
                 if len(ref_defs) == 0:
@@ -139,7 +138,7 @@ class FileGrapher(object):
                 sg_def = self._jedi_def_to_def_key(ref_def)
             except Exception as e:
                 self._log.error(
-                    '\nFailed to process def to def-key `%s`: %s',
+                    u'\nFailed to process def to def-key `%s`: %s',
                     ref_def.name,
                     e,
                 )

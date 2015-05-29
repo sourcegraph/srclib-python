@@ -57,11 +57,12 @@ if __name__ == '__main__':
 
     defs = {}
     refs = {}
-    for f in files:
-        logger.info('processing file: {}'.format(f))
+    total = len(files)
+    for i, f in enumerate(files, start=1):
+        logger.info('processing file: {} ({}/{})'.format(f, i, total))
         fg = FileGrapher(args.dir, f, logger)
         try:
-            d, r = fg.graph
+            d, r = fg.graph()
         except FileGrapherException as e:
             logger.error('failed to graph {}: {}'.format(f, str(e)))
             continue
