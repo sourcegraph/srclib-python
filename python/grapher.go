@@ -188,14 +188,18 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 }
 
 func (c *GraphContext) transformDefDoc(rawDef *RawDef) *graph.Doc {
-	return &graph.Doc{
-		DefKey: graph.DefKey{
-			Repo:     c.Unit.Repo,
-			Unit:     c.Unit.Name,
-			UnitType: c.Unit.Type,
-			Path:     string(rawDef.Path),
-		},
-		Data: rawDef.Docstring,
+	if rawDef.Docstring != "" {
+		return &graph.Doc{
+			DefKey: graph.DefKey{
+				Repo:     c.Unit.Repo,
+				Unit:     c.Unit.Name,
+				UnitType: c.Unit.Type,
+				Path:     string(rawDef.Path),
+			},
+			Data: rawDef.Docstring,
+		}
+	} else {
+		return nil
 	}
 }
 
