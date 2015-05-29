@@ -77,6 +77,46 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-2",
+      "DefPath": "setup/name",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-2",
+      "DefPath": "setup/packages",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 143,
+      "End": 151
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-2",
+      "DefPath": "setup/url",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 90,
+      "End": 93
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-2",
+      "DefPath": "setup/version",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 69,
+      "End": 76
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-2",
       "DefPath": "setup",
       "UnitType": "PipPackage",
       "Unit": "python-sample-2",
