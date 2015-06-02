@@ -49,6 +49,8 @@ adapted for other use cases.
 It also expects projects to follow best practices such as including a `setup.py` file. It doesn't currently handle
 decorators or namespace packages correctly.
 
+There also seems to be a problem with some function parameter type detection.
+
 srclib-python runs on Python 2.7 (and some glue code in Go), but it can still process Python 3 libraries.
 
 

@@ -1,7 +1,6 @@
 package python
 
 import (
-	"encoding/json"
 	"testing"
 
 	"sourcegraph.com/sourcegraph/srclib/graph"
@@ -45,14 +44,6 @@ func TestDefFormatter_Name(t *testing.T) {
 			}
 		}
 	}
-}
-
-func defDataJSON(si defData) json.RawMessage {
-	b, err := json.Marshal(si)
-	if err != nil {
-		panic(err)
-	}
-	return b
 }
 
 type defInfo struct {

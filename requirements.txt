@@ -1,6 +1,5 @@
-git+https://github.com/beyang/jedi.git@c4a51cba12bc4849e19c4aa25aeb30d66e5fd238
-git+https://github.com/sourcegraph/pydep.git@96fdf7afd479e219acf7af865f21fa1f1fe2bf5b
-# Pydep doesn't work with 6.0+ versions of pip:
-# https://github.com/sourcegraph/pydep/issues/8
-pip<6.0
-virtualenv==12.0.7
+# git+https://github.com/davidhalter/jedi.git@dev#egg=jedi
+git+https://github.com/sourcegraph/pydep.git@cb96c3bae6c9aab7c5b67d59c9b68fb0ce60e556
+virtualenv==13.0.3
+pip==7.0.3
+jedi==0.9.0
