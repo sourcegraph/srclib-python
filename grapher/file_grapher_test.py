@@ -4,7 +4,7 @@ import unittest
 class TestFileGrapher(unittest.TestCase):
     """
     """
-    # TODO: Add at least unit tests.
+    # TODO(MaikuMori): Add at least unit tests.
     # def test_filename_to_module_name(self):
     #     cases = [
     #         ('foo.py', 'foo'),
