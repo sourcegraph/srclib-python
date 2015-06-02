@@ -1,6 +1,5 @@
 # git+https://github.com/davidhalter/jedi.git@dev#egg=jedi
-# git+https://github.com/sourcegraph/pydep.git@ed1e378c50d07257ae46524de308e60b85723723
-git+https://github.com/maikumori/pydep.git@69dc96bc0e98c6ed0b73f81d38fa6fc177109a74
+git+https://github.com/sourcegraph/pydep.git@cb96c3bae6c9aab7c5b67d59c9b68fb0ce60e556
 virtualenv==13.0.3
 pip==7.0.3
 jedi==0.9.0
