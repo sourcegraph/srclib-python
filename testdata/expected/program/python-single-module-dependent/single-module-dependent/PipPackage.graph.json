@@ -62,15 +62,34 @@
       "End": 10
     },
     {
-      "DefRepo": "hg.python.org/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
-      "DefPath": "print",
+      "DefUnit": "single-module-dependent",
+      "DefPath": "setup/name",
       "UnitType": "PipPackage",
       "Unit": "single-module-dependent",
-      "File": "app.py",
-      "Start": 12,
-      "End": 17
+      "File": "setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-dependent",
+      "DefPath": "setup/url",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-dependent",
+      "File": "setup.py",
+      "Start": 98,
+      "End": 101
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-dependent",
+      "DefPath": "setup/version",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-dependent",
+      "File": "setup.py",
+      "Start": 77,
+      "End": 84
     },
     {
       "DefUnitType": "PipPackage",

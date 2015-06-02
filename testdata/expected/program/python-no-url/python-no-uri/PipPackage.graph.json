@@ -23,7 +23,6 @@
       "File": "mod0.py",
       "DefStart": 4,
       "DefEnd": 7,
-      "Exported": true,
       "TreePath": "mod0/foo"
     },
     {
@@ -62,6 +61,46 @@
       "File": "mod0.py",
       "Start": 0,
       "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-no-uri",
+      "DefPath": "setup/install_requires",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 113,
+      "End": 129
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-no-uri",
+      "DefPath": "setup/name",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-no-uri",
+      "DefPath": "setup/py_modules",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 88,
+      "End": 98
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-no-uri",
+      "DefPath": "setup/version",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 67,
+      "End": 74
     },
     {
       "DefUnitType": "PipPackage",

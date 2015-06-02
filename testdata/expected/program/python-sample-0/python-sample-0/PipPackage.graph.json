@@ -36,7 +36,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 60,
       "DefEnd": 66,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0"
     },
     {
@@ -49,21 +48,7 @@
       "File": "pkg0/m0.py",
       "DefStart": 124,
       "DefEnd": 129,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0/meth0"
-    },
-    {
-      "Repo": "github.com/sgtest/python-sample-0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0/meth0/self",
-      "Name": "self",
-      "Kind": "var",
-      "File": "pkg0/m0.py",
-      "DefStart": 130,
-      "DefEnd": 134,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class0/meth0/self"
     },
     {
       "Repo": "github.com/sgtest/python-sample-0",
@@ -75,7 +60,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 107,
       "DefEnd": 111,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0/var0"
     },
     {
@@ -88,7 +72,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 337,
       "DefEnd": 345,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0_0"
     },
     {
@@ -101,7 +84,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 363,
       "DefEnd": 371,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0_0/__init__"
     },
     {
@@ -114,7 +96,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 378,
       "DefEnd": 382,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0_0/__init__/arg0"
     },
     {
@@ -127,7 +108,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 384,
       "DefEnd": 388,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0_0/__init__/arg1"
     },
     {
@@ -140,7 +120,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 391,
       "DefEnd": 395,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0_0/__init__/args"
     },
     {
@@ -153,21 +132,7 @@
       "File": "pkg0/m0.py",
       "DefStart": 399,
       "DefEnd": 405,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class0_0/__init__/kwargs"
-    },
-    {
-      "Repo": "github.com/sgtest/python-sample-0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0_0/__init__/self",
-      "Name": "self",
-      "Kind": "var",
-      "File": "pkg0/m0.py",
-      "DefStart": 372,
-      "DefEnd": 376,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class0_0/__init__/self"
     },
     {
       "Repo": "github.com/sgtest/python-sample-0",
@@ -179,7 +144,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 149,
       "DefEnd": 155,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class1"
     },
     {
@@ -192,21 +156,7 @@
       "File": "pkg0/m0.py",
       "DefStart": 173,
       "DefEnd": 181,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class1/__init__"
-    },
-    {
-      "Repo": "github.com/sgtest/python-sample-0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1/__init__/self",
-      "Name": "self",
-      "Kind": "var",
-      "File": "pkg0/m0.py",
-      "DefStart": 182,
-      "DefEnd": 186,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class1/__init__/self"
     },
     {
       "Repo": "github.com/sgtest/python-sample-0",
@@ -218,21 +168,7 @@
       "File": "pkg0/m0.py",
       "DefStart": 268,
       "DefEnd": 273,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class1/meth0"
-    },
-    {
-      "Repo": "github.com/sgtest/python-sample-0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1/meth0/self",
-      "Name": "self",
-      "Kind": "var",
-      "File": "pkg0/m0.py",
-      "DefStart": 274,
-      "DefEnd": 278,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class1/meth0/self"
     },
     {
       "Repo": "github.com/sgtest/python-sample-0",
@@ -244,7 +180,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 289,
       "DefEnd": 293,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class1/meth0/var0"
     },
     {
@@ -257,7 +192,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 202,
       "DefEnd": 206,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class1/var0"
     },
     {
@@ -270,7 +204,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 247,
       "DefEnd": 251,
-      "Exported": true,
       "TreePath": "pkg0/m0/Class1/var1"
     },
     {
@@ -283,7 +216,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 451,
       "DefEnd": 453,
-      "Exported": true,
       "TreePath": "pkg0/m0/f0"
     },
     {
@@ -296,7 +228,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 461,
       "DefEnd": 465,
-      "Exported": true,
       "TreePath": "pkg0/m0/f0/var0"
     },
     {
@@ -309,7 +240,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 481,
       "DefEnd": 485,
-      "Exported": true,
       "TreePath": "pkg0/m0/f0/var1"
     },
     {
@@ -322,7 +252,6 @@
       "File": "pkg0/m0.py",
       "DefStart": 501,
       "DefEnd": 505,
-      "Exported": true,
       "TreePath": "pkg0/m0/f0/var2"
     },
     {
@@ -348,7 +277,6 @@
       "File": "pkg0/m1.py",
       "DefStart": 90,
       "DefEnd": 98,
-      "Exported": true,
       "TreePath": "pkg0/m1/Class0_0"
     },
     {
@@ -361,21 +289,7 @@
       "File": "pkg0/m1.py",
       "DefStart": 116,
       "DefEnd": 124,
-      "Exported": true,
       "TreePath": "pkg0/m1/Class0_0/__init__"
-    },
-    {
-      "Repo": "github.com/sgtest/python-sample-0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m1/Class0_0/__init__/self",
-      "Name": "self",
-      "Kind": "var",
-      "File": "pkg0/m1.py",
-      "DefStart": 125,
-      "DefEnd": 129,
-      "Exported": true,
-      "TreePath": "pkg0/m1/Class0_0/__init__/self"
     },
     {
       "Repo": "github.com/sgtest/python-sample-0",
@@ -387,7 +301,6 @@
       "File": "pkg0/m1.py",
       "DefStart": 178,
       "DefEnd": 184,
-      "Exported": true,
       "TreePath": "pkg0/m1/m2_fn1"
     },
     {
@@ -400,7 +313,6 @@
       "File": "pkg0/m1.py",
       "DefStart": 192,
       "DefEnd": 196,
-      "Exported": true,
       "TreePath": "pkg0/m1/m2_fn1/var0"
     },
     {
@@ -413,7 +325,6 @@
       "File": "pkg0/m1.py",
       "DefStart": 212,
       "DefEnd": 216,
-      "Exported": true,
       "TreePath": "pkg0/m1/m2_fn1/var1"
     },
     {
@@ -435,6 +346,17 @@
       "DefRepo": "hg.python.org/cpython",
       "DefUnitType": "PipPackage",
       "DefUnit": "Python",
+      "DefPath": "None",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 254,
+      "End": 258
+    },
+    {
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
       "DefPath": "__init__",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -446,23 +368,34 @@
       "DefRepo": "hg.python.org/cpython",
       "DefUnitType": "PipPackage",
       "DefUnit": "Python",
+      "DefPath": "object",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 156,
+      "End": 162
+    },
+    {
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "object",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 67,
+      "End": 73
+    },
+    {
+      "DefRepo": "hg.python.org/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
       "DefPath": "os",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
       "Start": 50,
       "End": 52
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0/meth0/self",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 130,
-      "End": 134
     },
     {
       "DefUnitType": "PipPackage",
@@ -502,9 +435,30 @@
       "DefPath": "pkg0/m0/Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 130,
+      "End": 134
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
       "Start": 296,
       "End": 302
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 346,
+      "End": 352
     },
     {
       "DefUnitType": "PipPackage",
@@ -546,6 +500,16 @@
       "File": "pkg0/m1.py",
       "Start": 76,
       "End": 82
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m1.py",
+      "Start": 99,
+      "End": 105
     },
     {
       "DefUnitType": "PipPackage",
@@ -594,17 +558,6 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0/__init__/self",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 372,
-      "End": 376
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
       "DefPath": "pkg0/m0/Class0_0/__init__",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -623,6 +576,17 @@
       "File": "pkg0/m0.py",
       "Start": 337,
       "End": 345
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 372,
+      "End": 376
     },
     {
       "DefUnitType": "PipPackage",
@@ -667,17 +631,6 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/__init__/self",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 182,
-      "End": 186
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
       "DefPath": "pkg0/m0/Class1/__init__",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -685,17 +638,6 @@
       "File": "pkg0/m0.py",
       "Start": 173,
       "End": 181
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/meth0/self",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 274,
-      "End": 278
     },
     {
       "DefUnitType": "PipPackage",
@@ -746,6 +688,7 @@
       "DefPath": "pkg0/m0/Class1/var0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
+      "Def": true,
       "File": "pkg0/m0.py",
       "Start": 224,
       "End": 228
@@ -767,6 +710,7 @@
       "DefPath": "pkg0/m0/Class1/var1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
+      "Def": true,
       "File": "pkg0/m0.py",
       "Start": 318,
       "End": 322
@@ -781,6 +725,17 @@
       "File": "pkg0/m0.py",
       "Start": 149,
       "End": 155
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 182,
+      "End": 186
     },
     {
       "DefUnitType": "PipPackage",
@@ -811,6 +766,17 @@
       "File": "pkg0/m0.py",
       "Start": 242,
       "End": 246
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0/Class1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 274,
+      "End": 278
     },
     {
       "DefUnitType": "PipPackage",
@@ -920,37 +886,6 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m1.py",
-      "Start": 246,
-      "End": 248
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m1.py",
-      "Start": 66,
-      "End": 68
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/Class0_0/__init__/self",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m1.py",
-      "Start": 125,
-      "End": 129
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
       "DefPath": "pkg0/m1/Class0_0/__init__",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -958,6 +893,17 @@
       "File": "pkg0/m1.py",
       "Start": 116,
       "End": 124
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1/Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m1.py",
+      "Start": 125,
+      "End": 129
     },
     {
       "DefUnitType": "PipPackage",
@@ -1047,6 +993,26 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/pkg0/m0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m1.py",
+      "Start": 246,
+      "End": 248
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/pkg0/m0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m1.py",
+      "Start": 66,
+      "End": 68
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
       "DefPath": "pkg0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -1088,6 +1054,56 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
+      "DefPath": "setup/install_requires",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 166,
+      "End": 182
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "setup/name",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "setup/packages",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 143,
+      "End": 151
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "setup/url",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 90,
+      "End": 93
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "setup/version",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 69,
+      "End": 76
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
       "DefPath": "setup",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -1117,6 +1133,24 @@
       "File": "pkg0/m1.py",
       "Start": 140,
       "End": 145
+    }
+  ],
+  "Docs": [
+    {
+      "Repo": "github.com/sgtest/python-sample-0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0/Class0",
+      "Format": "",
+      "Data": "Class0 docstring"
+    },
+    {
+      "Repo": "github.com/sgtest/python-sample-0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0/Class0/var0",
+      "Format": "",
+      "Data": "Class0 docstring"
     }
   ]
 }
