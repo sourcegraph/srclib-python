@@ -35,16 +35,13 @@ class FileGrapher(object):
         """
         self._base_dir = base_dir
         self._file = source_file
-        # TODO: Can easily remove `log` to have cleaner class. Only used once.
         self._log = log
         self._source = None
         self._defs = {}
         self._refs = {}
-
-    def graph(self):
-        # TODO: Maybe move to `__init__`?
         self._load()
 
+    def graph(self):
         # Add module/package defs.
         module = os.path.splitext(self._file)[0]
         if os.path.basename(self._file) == '__init__.py':
@@ -58,12 +55,12 @@ class FileGrapher(object):
             DefStart=0,
             DefEnd=0,
             Exported=True,
-            # TODO: extract module/package-level doc.
+            # TODO(MaikuMori): extract module/package-level doc.
             Docstring='',
             Data=None,
         ))
 
-        # Jedi.
+        # Get occurrences of names via Jedi.
         try:
             jedi_names = jedi.names(source=self._source, path=self._file, all_scopes=True, references=True)
         except Exception as e:
@@ -104,34 +101,9 @@ class FileGrapher(object):
                 jedi_ref.type,
             )
 
-            # Try to find definition.
-            ref_def = jedi_ref
-            # If def is import, then follow it.
-            depth = 0
-            while (not ref_def.is_definition() or ref_def.type == "import") and depth < 100:
-                depth += 1
-                # noinspection PyBroadException
-                try:
-                    ref_defs = ref_def.goto_assignments()
-                except Exception:
-                    self._log.error(u'error getting definitions for reference {}'.format(jedi_ref))
-                    break
-
-                if len(ref_defs) == 0:
-                    break
-
-                ref_def = ref_defs[0]
-            else:
-                self._log.debug(
-                    'Ref def search (precondition failed) | %s | %s | %s\n',
-                    ref_def.is_definition(),
-                    ref_def.type,
-                    ref_def.name
-                )
-
-            if ref_def.type == "import":
-                # We didn't find anything.
-                self._log.debug('Ref def not found \n')
+            ref_def = self._find_def_for_ref(jedi_ref)
+            # We found nothing.
+            if ref_def is None:
                 continue
 
             try:
@@ -166,19 +138,51 @@ class FileGrapher(object):
 
         return self._defs, self._refs
 
+    def _find_def_for_ref(self, jedi_ref, max_depth=100):
+        """ Attempt to lookup definition for the reference. If lookup fails return None. """
+        ref_def = jedi_ref
+        # If def is import, then follow it.
+        depth = 0
+        while (not ref_def.is_definition() or ref_def.type == "import") and depth < max_depth:
+            depth += 1
+            # noinspection PyBroadException
+            try:
+                ref_defs = ref_def.goto_assignments()
+            except Exception:
+                self._log.error(u'error getting definitions for reference {}'.format(jedi_ref))
+                break
+
+            if len(ref_defs) == 0:
+                break
+
+            ref_def = ref_defs[0]
+        else:
+            self._log.debug(
+                'Ref def search (precondition failed) | %s | %s | %s\n',
+                ref_def.is_definition(),
+                ref_def.type,
+                ref_def.name
+            )
+
+        if ref_def.type == "import":
+            # We didn't find anything.
+            self._log.debug('Ref def not found \n')
+            return None
+
+        return ref_def
+
     def _load(self):
         """ Load file in memory. """
         with open(self._file) as f:
             self._source = f.read()
 
-        # TODO: Does this work with windows style newlines?
-        source_lines = self._source.split('\n')
+        source_lines = self._source.splitlines()
         self._cumulative_off = [0]
         for line in source_lines:
             self._cumulative_off.append(self._cumulative_off[-1] + len(line) + 1)
 
     def _jedi_def_to_def(self, d):
-        # TODO: Add back this if needed:
+        # TODO(MaikuMori): Add back this if needed:
         # If def is a name, then the location of the definition is the last name part
         start = self._to_offset(d.line, d.column)
         end = start + len(d.name)
