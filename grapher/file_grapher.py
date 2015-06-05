@@ -278,17 +278,10 @@ class FileGrapher(object):
             else:
                 name = '{}.{}'.format(d.full_name, d.name)
 
-        # FIXME: Old code used to check if it's def or ref and only call this on refs.
-        # module_path = os.path.relpath(d.module_path, self.base_dir)
-        # if not d.is_definition():
         self._log.debug('Module path: %s | %s', d.module_path, d.in_builtin_module())
 
         module_path = self._abs_module_path_to_relative_module_path(d.module_path)
-
-        if os.path.basename(module_path) == '__init__.py':
-            parent_module = os.path.dirname(os.path.dirname(module_path))
-        else:
-            parent_module = os.path.dirname(module_path)
+        parent_module = self._get_module_parent_from_module_path(module_path)
 
         if parent_module == '':
             return name
@@ -300,6 +293,14 @@ class FileGrapher(object):
         )
 
         return '{}.{}'.format(parent_module, name)
+
+    @staticmethod
+    def _get_module_parent_from_module_path(module_path):
+        if os.path.basename(module_path) == '__init__.py':
+            parent_module =  os.path.dirname(os.path.dirname(module_path))
+        else:
+            parent_module = os.path.dirname(module_path)
+        return parent_module.replace(os.sep, '.')
 
     def _abs_module_path_to_relative_module_path(self, module_path):
         rel_path = os.path.relpath(module_path, self._base_dir)
