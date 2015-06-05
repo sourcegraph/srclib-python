@@ -5,51 +5,97 @@
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "Path": "mod",
-      "TreePath": "mod",
       "Name": "mod",
       "Kind": "module",
       "File": "mod.py",
       "DefStart": 0,
       "DefEnd": 0,
-      "Exported": true
+      "Exported": true,
+      "TreePath": "mod"
     },
     {
       "Repo": "github.com/sgtest/python-single-module-lib",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "Path": "setup",
-      "TreePath": "setup",
       "Name": "setup",
       "Kind": "module",
       "File": "setup.py",
       "DefStart": 0,
       "DefEnd": 0,
-      "Exported": true
+      "Exported": true,
+      "TreePath": "setup"
     }
   ],
   "Refs": [
     {
-      "DefRepo": "github.com/sgtest/python-single-module-lib",
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
       "DefPath": "mod",
-      "Def": true,
-      "Repo": "github.com/sgtest/python-single-module-lib",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
+      "Def": true,
       "File": "mod.py",
       "Start": 0,
       "End": 0
     },
     {
-      "DefRepo": "github.com/sgtest/python-single-module-lib",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-lib",
+      "DefPath": "setup/install_requires",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 177,
+      "End": 193
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-lib",
+      "DefPath": "setup/name",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-lib",
+      "DefPath": "setup/py_modules",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 153,
+      "End": 163
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-lib",
+      "DefPath": "setup/url",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 92,
+      "End": 95
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-lib",
+      "DefPath": "setup/version",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 71,
+      "End": 78
+    },
+    {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
       "DefPath": "setup",
-      "Def": true,
-      "Repo": "github.com/sgtest/python-single-module-lib",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
+      "Def": true,
       "File": "setup.py",
       "Start": 0,
       "End": 0
