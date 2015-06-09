@@ -1,23 +1,27 @@
 import unittest
+from grapher.file_grapher import FileGrapher
 
 
 class TestFileGrapher(unittest.TestCase):
     """
+    Tests for FileGrapher.
     """
-    # TODO(MaikuMori): Add at least unit tests.
-    # def test_filename_to_module_name(self):
-    #     cases = [
-    #         ('foo.py', 'foo'),
-    #         ('foo/bar.py', 'foo.bar'),
-    #         ('foo/__init__.py', 'foo'),
-    #         ('foo/bar/__init__.py', 'foo.bar'),
-    #         ('__init__.py', ''),
-    #     ]
-    #     for case in cases:
-    #         filename, exp_module_name = case[0], case[1]
-    #         act_module_name = filename_to_module_name(filename)
-    #         self.assertEqual(
-    #             exp_module_name,
-    #             act_module_name,
-    #             msg=('{}: {} != {}'.format(filename, exp_module_name, act_module_name))
-    #         )
+    def test_module_path_to_parent_module_name(self):
+        """ Check if parent module name is correctly detected. """
+        cases = [
+            ('foo.py', ''),
+            ('foo/bar.py', 'foo'),
+            ('foo/__init__.py', ''),
+            ('foo/bar/__init__.py', 'foo'),
+            ('foo/bar/chocolate/__init__.py', 'foo.bar'),
+            ('foo/bar/chocolate/crunchy.py', 'foo.bar.chocolate'),
+            ('__init__.py', ''),
+        ]
+        for case in cases:
+            filepath, exp_module_name = case[0], case[1]
+            act_module_name = FileGrapher._get_module_parent_from_module_path(filepath)
+            self.assertEqual(
+                exp_module_name,
+                act_module_name,
+                msg=('{}: {} != {}'.format(filepath, exp_module_name, act_module_name))
+            )
