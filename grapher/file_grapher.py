@@ -333,7 +333,7 @@ class FileGrapher(object):
 
         https://www.python.org/dev/peps/pep-0008/#id40
         """
-        return self._exported_regex.match(name) is not None
+        return self._exported_regex.match(name) is None
 
     def _add_def(self, d):
         """ Add a definition, also adds a self-reference. """
