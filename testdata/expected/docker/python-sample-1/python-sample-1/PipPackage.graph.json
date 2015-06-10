@@ -36,6 +36,7 @@
       "File": "app/app.py",
       "DefStart": 16,
       "DefEnd": 17,
+      "Exported": true,
       "TreePath": "app/app/x"
     },
     {

@@ -23,6 +23,7 @@
       "File": "mod0.py",
       "DefStart": 4,
       "DefEnd": 7,
+      "Exported": true,
       "TreePath": "mod0/foo"
     },
     {
