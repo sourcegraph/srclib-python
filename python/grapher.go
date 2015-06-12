@@ -37,14 +37,15 @@ func NewGraphContext(unit *unit.SourceUnit) *GraphContext {
 // been installed (via pip or `python setup.py install`).
 func (c *GraphContext) Graph() (*graph.Output, error) {
 	programMode := os.Getenv("IN_DOCKER_CONTAINER") == ""
-	tc, err := toolchain.Lookup("sourcegraph.com/sourcegraph/srclib-python")
-	if err != nil {
-		return nil, err
-	}
 	pipBin := "pip"
 	pythonBin := "python"
 
 	if programMode {
+		tc, err := toolchain.Lookup("sourcegraph.com/sourcegraph/srclib-python")
+		if err != nil {
+			return nil, err
+		}
+
 		tempPath, err := getTempPath()
 		if err != nil {
 			return nil, err

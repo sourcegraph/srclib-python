@@ -1,1 +1,1 @@
-{"Name":"python-sample-0","Type":"PipPackage","Repo":"github.com/sgtest/python-sample-0","Globs":null,"Files":["pkg0/__init__.py","pkg0/m0.py","pkg0/m1.py","setup.py"],"Dir":".","Ops":{"depresolve":null,"graph":null}}
+{"Name":"python-sample-0","Type":"PipPackage","Repo":"github.com/sgtest/python-sample-0","Files":["pkg0/__init__.py","pkg0/m0.py","pkg0/m1.py","setup.py"],"Dir":".","Ops":{"depresolve":null,"graph":null}}

@@ -1,1 +1,1 @@
-{"Name":"single-module-lib","Type":"PipPackage","Repo":"github.com/sgtest/python-single-module-lib","Globs":null,"Files":["mod.py","setup.py"],"Dir":".","Ops":{"depresolve":null,"graph":null}}
+{"Name":"single-module-lib","Type":"PipPackage","Repo":"github.com/sgtest/python-single-module-lib","Files":["mod.py","setup.py"],"Dir":".","Ops":{"depresolve":null,"graph":null}}
