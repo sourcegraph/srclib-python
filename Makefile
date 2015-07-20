@@ -1,18 +1,9 @@
 .PHONY: install install-docker update-dockerfile
 
-ENV_URL_BASE := https://pypi.python.org/packages/source/v/virtualenv
-ENV_VERSION := 12.0.7
-
 all: install update-dockerfile
 
 .env:
-	# Setup virtual env.
-	curl -O $(ENV_URL_BASE)/virtualenv-$(ENV_VERSION).tar.gz
-	tar xzf virtualenv-$(ENV_VERSION).tar.gz
-	python2 virtualenv-$(ENV_VERSION)/virtualenv.py .env
-	rm virtualenv-$(ENV_VERSION).tar.gz
-	rm -r virtualenv-$(ENV_VERSION)
-
+	./install_env.sh
 install: .env
 	@mkdir -p .bin
 	go get -d ./...
