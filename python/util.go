@@ -38,10 +38,6 @@ func getVENVBinPath() (string, error) {
 	return "", nil
 }
 
-func getTempPath() (string, error) {
-	return toolchain.TempDir("sourcegraph.com/sourcegraph/srclib-python")
-}
-
 func getHash(text string) string {
 	hasher := sha1.New()
 	hasher.Write([]byte(text))
