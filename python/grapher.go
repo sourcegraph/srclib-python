@@ -46,12 +46,13 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 			return nil, err
 		}
 
-		tempPath, err := getTempPath()
+		tempDir, err := ioutil.TempDir("", "srclib-python-graph")
 		if err != nil {
 			return nil, err
 		}
+		defer os.RemoveAll(tempDir)
 		envName := fmt.Sprintf("%s-%s-env", getHash(c.Unit.Dir), url.QueryEscape(c.Unit.Name))
-		envDir := filepath.Join(tempPath, envName)
+		envDir := filepath.Join(tempDir, envName)
 
 		// Use binaries from our virutal env.
 		pipBin = filepath.Join(envDir, "bin", "pip")
