@@ -3,24 +3,16 @@
 ENV_URL_BASE="https://pypi.python.org/packages/source/v/virtualenv"
 ENV_VERSION="13.1.0"
 
-# Try to use `python2`, otherwise use `python`.
-PYTHON_BIN=$(which python2)
-if ! [ -x "$PYTHON_BIN" ]; then
-    PYTHON_BIN=$(which python);
-    if ! [ -x "$PYTHON_BIN" ]; then
-            echo "Error: failed to locate python executable."
-            exit 1
-    fi
-fi
-
-# Check if we have Python 2.
-PYTHON_VERSION=$($PYTHON_BIN --version 2>&1)
-# Python 2.7.10
-#        ^ - 7th char.
-if [ "${PYTHON_VERSION:7:1}" != '2' ] ; then
-    echo "Error: failed to locate Python2."
+# By usign the pprint module, which is supported with the same syntax in python 2 and 3
+# this python command can return the version as a single string for checking in bash.
+if [ "$(python -c 'from pprint import pprint; pprint(int(__import__("sys").version_info[:1][0]))')" = '2' ] ; then
+    PYTHON_BIN=$(which python)
+elif [ "$(python2 -c 'from pprint import pprint; pprint(int(__import__("sys").version_info[:1][0]))')" = '2' ] ; then
+    PYTHON_BIN=$(which python2)
+else
+    echo "Error: failed to locate a version of Python 2."
     echo "       \`srclib-python\` currently only works with Python 2."
-    exit 2
+    exit 1
 fi
 
 # Setup virtual env.
