@@ -3,7 +3,7 @@
 all: install update-dockerfile
 
 .env:
-	./install_env.sh
+	bash ./install_env.sh
 install: .env
 	@mkdir -p .bin
 	go get -d ./...
