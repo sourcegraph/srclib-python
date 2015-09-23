@@ -1,7 +1,9 @@
 ifeq ($(OS),Windows_NT)
 	EXE = .bin/srclib-python.exe
+	PIP = cmd /C .env\\Scripts\\pip.exe --isolated --disable-pip-version-check
 else
 	EXE = .bin/srclib-python
+	PIP = .env/bin/pip
 endif
 
 .PHONY: install install-docker update-dockerfile
@@ -10,18 +12,20 @@ all: install update-dockerfile
 
 .env:
 	bash ./install_env.sh
-install: .env
+
+$(EXE):
 	@mkdir -p .bin
 	go get -d ./...
 	go build -o $(EXE)
 
-	.env/bin/pip install -r requirements.txt --upgrade
-	.env/bin/pip install . --upgrade
+install: .env $(EXE)
+	$(PIP) install -r requirements.txt --upgrade
+	$(PIP) install . --upgrade
 
 update-dockerfile:
 	src toolchain build sourcegraph.com/sourcegraph/srclib-python
 
-install-docker:
+install-docker: .env
 	go install .
-	pip install -r requirements.txt --upgrade
-	pip install . --upgrade
+	$(PIP) install -r requirements.txt --upgrade
+	$(PIP) install . --upgrade

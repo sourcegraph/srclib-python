@@ -13,7 +13,6 @@ import (
 	"strings"
 
 	"sourcegraph.com/sourcegraph/srclib/graph"
-	"sourcegraph.com/sourcegraph/srclib/toolchain"
 	"sourcegraph.com/sourcegraph/srclib/unit"
 )
 
@@ -36,12 +35,11 @@ func NewGraphContext(unit *unit.SourceUnit) *GraphContext {
 // Graphs the Python source unit. If run outside of a Docker container, this assumes that the source unit has already
 // been installed (via pip or `python setup.py install`).
 func (c *GraphContext) Graph() (*graph.Output, error) {
-	programMode := os.Getenv("IN_DOCKER_CONTAINER") == ""
 	pipBin := "pip"
 	pythonBin := "python"
 
-	if programMode {
-		tc, err := toolchain.Lookup("sourcegraph.com/sourcegraph/srclib-python")
+	if dockerEnv == "" {
+		dir, err := getProgramPath()
 		if err != nil {
 			return nil, err
 		}
@@ -54,28 +52,36 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 		envName := fmt.Sprintf("%s-%s-env", getHash(c.Unit.Dir), url.QueryEscape(c.Unit.Name))
 		envDir := filepath.Join(tempDir, envName)
 
-		// Use binaries from our virutal env.
-		pipBin = filepath.Join(envDir, "bin", "pip")
-		pythonBin = filepath.Join(envDir, "bin", "python")
+		// Use binaries from our virtual env.
+		pipBin = filepath.Join(envDir, getEnvBinDir(), "pip")
+		pythonBin = filepath.Join(envDir, getEnvBinDir(), "python")
 
 		if _, err := os.Stat(filepath.Join(envDir)); os.IsNotExist(err) {
+			log.Println("Creating virtual env")
 			// We don't have virtual env for this SourceUnit, create one.
-			tcVENVBinPath := filepath.Join(tc.Dir, ".env", "bin")
+			tcVENVBinPath, err := getVENVBinPath()
+    		if err != nil {
+    			return nil, err
+    		}
+
 			cmd := exec.Command(filepath.Join(tcVENVBinPath, "virtualenv"), envDir)
 			if err := runCmdStderr(cmd); err != nil {
 				return nil, err
 			}
+
+			log.Println("Installing srclib-python requirements")
 			// Install our dependencies.
 			// Todo(MaikuMori): Use symlinks from toolchains virtualenv to project virtual env.
 			// NOTE: If SourceUnit requirements overwrite our requirements, things will fail.
 			// 			 We could install them last, but then we would have to do this before each
 			//			 graphing which noticably increases graphing time (since our deps are always
 			//       downloaded by pip due to dependency on git commit not actual package version).
-			requirementFile := filepath.Join(tc.Dir, "requirements.txt")
+			requirementFile := filepath.Join(dir, "requirements.txt")
 			if err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile)); err != nil {
 				return nil, err
 			}
-			if err := runCmdStderr(exec.Command(pipBin, "install", "-e", tc.Dir)); err != nil {
+			log.Println("Updating srclib-python project in editable mode")
+			if err := runCmdStderr(exec.Command(pipBin, "install", "-e", dir)); err != nil {
 				return nil, err
 			}
 		}
@@ -88,10 +94,13 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 		return nil, err
 	}
 	if _, err := os.Stat(filepath.Join(c.Unit.Dir, "setup.py")); !os.IsNotExist(err) {
+		log.Println("Re-installing unit")
 		runCmdLogError(exec.Command(pipBin, "install", "-I", c.Unit.Dir))
 	}
+	log.Println("Installing unit requirements")
 	installPipRequirements(pipBin, requirementFiles)
 
+	log.Println("Building graph")
 	cmd := exec.Command(pythonBin, "-m", "grapher.graph", "--verbose", "--dir", c.Unit.Dir, "--files")
 	cmd.Args = append(cmd.Args, c.Unit.Files...)
 	cmd.Stderr = os.Stderr
