@@ -128,7 +128,7 @@ func pythonSourceFiles(dir string, discoveredScripts map[string]bool) (files []s
 			_, found := discoveredScripts[file]
 
 			if !found {
-				files = append(files, file)
+				files = append(files, filepath.ToSlash(file))
 				discoveredScripts[file] = true
 			}
 		}

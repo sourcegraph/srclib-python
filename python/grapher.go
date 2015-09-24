@@ -53,18 +53,14 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 		envDir := filepath.Join(tempDir, envName)
 
 		// Use binaries from our virtual env.
-		pipBin = filepath.Join(envDir, getEnvBinDir(), "pip")
-		pythonBin = filepath.Join(envDir, getEnvBinDir(), "python")
+		pipBin = filepath.Join(dir, ".env", getEnvBinDir(), "pip")
+		pythonBin = filepath.Join(dir, ".env", getEnvBinDir(), "python")
 
 		if _, err := os.Stat(filepath.Join(envDir)); os.IsNotExist(err) {
 			log.Println("Creating virtual env")
 			// We don't have virtual env for this SourceUnit, create one.
-			tcVENVBinPath, err := getVENVBinPath()
-    		if err != nil {
-    			return nil, err
-    		}
 
-			cmd := exec.Command(filepath.Join(tcVENVBinPath, "virtualenv"), envDir)
+			cmd := exec.Command(pythonBin, filepath.Join(dir, "virtualenv", "virtualenv.py"), envDir)
 			if err := runCmdStderr(cmd); err != nil {
 				return nil, err
 			}
@@ -162,7 +158,7 @@ func (c *GraphContext) transformDef(rawDef *RawDef) *graph.Def {
 		TreePath: string(rawDef.Path), // TODO: make this consistent w/ old way
 		Kind:     jediKindToDefKind[rawDef.Kind],
 		Name:     rawDef.Name,
-		File:     rawDef.File,
+		File:     filepath.ToSlash(rawDef.File),
 		DefStart: rawDef.DefStart,
 		DefEnd:   rawDef.DefEnd,
 		Exported: rawDef.Exported,
@@ -185,13 +181,13 @@ func (c *GraphContext) transformRef(rawRef *RawRef) (*graph.Ref, error) {
 		DefRepo:     defUnit.Repo,
 		DefUnitType: defUnit.Type,
 		DefUnit:     defUnit.Name,
-		DefPath:     defPath,
+		DefPath:     filepath.ToSlash(defPath),
 
 		Repo:     c.Unit.Repo,
 		Unit:     c.Unit.Name,
 		UnitType: c.Unit.Type,
 
-		File:  rawRef.File,
+		File:  filepath.ToSlash(rawRef.File),
 		Start: rawRef.Start,
 		End:   rawRef.End,
 		Def:   rawRef.Def,
@@ -295,7 +291,7 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 	return nil, fmt.Errorf("Cannot infer source unit for file %s", file)
 }
 
-func isSubPath(parent, child string) bool {
+func isSubPath(parent, child string) bool {	
 	relpath, err := filepath.Rel(parent, child)
 	return err == nil && !strings.HasPrefix(relpath, "..")
 }
