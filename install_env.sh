@@ -31,9 +31,9 @@ curl -O $ENV_URL_BASE/virtualenv-$ENV_VERSION.tar.gz
 tar xzf virtualenv-$ENV_VERSION.tar.gz
 
 if [ "$OS" = 'Windows_NT' ] ; then
-	cmd /C $PYTHON_BIN virtualenv/virtualenv.py .env
+	cmd /C $PYTHON_BIN virtualenv-$ENV_VERSION/virtualenv.py .env
 else
-	$PYTHON_BIN virtualenv/virtualenv.py .env
+	$PYTHON_BIN virtualenv-$ENV_VERSION/virtualenv.py .env
 fi
 
 # Cleanup.
