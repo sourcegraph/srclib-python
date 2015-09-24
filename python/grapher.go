@@ -58,7 +58,7 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 			log.Println("Creating virtual env")
 			// We don't have virtual env for this SourceUnit, create one.
 
-			cmd := exec.Command(pythonBin, filepath.Join(dir, "virtualenv", "virtualenv.py"), envDir)
+			cmd := exec.Command(filepath.Join(dir, ".env", getEnvBinDir(), "virtualenv"), envDir)
 			if err := runCmdStderr(cmd); err != nil {
 				return nil, err
 			}
