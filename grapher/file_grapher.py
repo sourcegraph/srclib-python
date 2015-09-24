@@ -316,7 +316,7 @@ class FileGrapher(object):
                 pi1 = i
                 break
             # Fallback.
-			# Windows case .env/lib/file.py, Unix case .env/lib/python.../file.py
+            # Windows case .env/lib/file.py, Unix case .env/lib/python.../file.py
             if pi2 == -1 and component == 'lib' and prev_component == '.env':
                 pi2 = i
             elif pi2 == prev_index and component.startswith('python'):
