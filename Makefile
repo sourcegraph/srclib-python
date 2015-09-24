@@ -13,7 +13,7 @@ all: install update-dockerfile
 .env:
 	bash ./install_env.sh
 
-$(EXE):
+$(EXE): $(shell /usr/bin/find . -type f -name '*.go')
 	@mkdir -p .bin
 	go get -d ./...
 	go build -o $(EXE)
