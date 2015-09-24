@@ -14,6 +14,7 @@ import (
 var dockerEnv = os.Getenv("IN_DOCKER_CONTAINER")
 
 func runCmdLogError(cmd *exec.Cmd) {
+	log.Printf("Running %v", cmd.Args)
 	err := runCmdStderr(cmd)
 	if err != nil {
 		log.Printf("Error running `%s`: %s", strings.Join(cmd.Args, " "), err)

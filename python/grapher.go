@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"net/url"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -49,8 +48,7 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 			return nil, err
 		}
 		defer os.RemoveAll(tempDir)
-		envName := fmt.Sprintf("%s-%s-env", getHash(c.Unit.Dir), url.QueryEscape(c.Unit.Name))
-		envDir := filepath.Join(tempDir, envName)
+		envDir := filepath.Join(tempDir, ".env")
 
 		// Use binaries from our virtual env.
 		pipBin = filepath.Join(dir, ".env", getEnvBinDir(), "pip")
@@ -65,6 +63,10 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 				return nil, err
 			}
 
+			// using python and pip from temporary env directory
+			pipBin = filepath.Join(envDir, getEnvBinDir(), "pip")
+			pythonBin = filepath.Join(envDir, getEnvBinDir(), "python")
+
 			log.Println("Installing srclib-python requirements")
 			// Install our dependencies.
 			// Todo(MaikuMori): Use symlinks from toolchains virtualenv to project virtual env.
@@ -73,7 +75,12 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 			//			 graphing which noticably increases graphing time (since our deps are always
 			//       downloaded by pip due to dependency on git commit not actual package version).
 			requirementFile := filepath.Join(dir, "requirements.txt")
-			if err := runCmdStderr(exec.Command(pipBin, "install", "-r", requirementFile)); err != nil {
+			if err := runCmdStderr(exec.Command(pipBin, 
+				"--isolated",  
+				"--disable-pip-version-check", 
+				"install", 
+				"-r", 
+				requirementFile)); err != nil {
 				return nil, err
 			}
 			log.Println("Updating srclib-python project in editable mode")
@@ -91,7 +98,12 @@ func (c *GraphContext) Graph() (*graph.Output, error) {
 	}
 	if _, err := os.Stat(filepath.Join(c.Unit.Dir, "setup.py")); !os.IsNotExist(err) {
 		log.Println("Re-installing unit")
-		runCmdLogError(exec.Command(pipBin, "install", "-I", c.Unit.Dir))
+		runCmdLogError(exec.Command(pipBin, 
+				"--isolated",  
+				"--disable-pip-version-check", 
+				"install", 
+				"-I", 
+				c.Unit.Dir))
 	}
 	log.Println("Installing unit requirements")
 	installPipRequirements(pipBin, requirementFiles)
@@ -276,13 +288,15 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 		return foundReq.SourceUnit(), nil
 	}
 
-	// Case 3: in std lib
+	// Case 3: in std lib (.env/lib optionally followed by python..)
 	pythonDirIdx := -1
+	prev := ``
 	for i, cmp := range fileCmps {
-		if strings.HasPrefix(cmp, "python") {
+		if cmp == "lib" && prev == ".env"  {
 			pythonDirIdx = i
 			break
 		}
+		prev = cmp
 	}
 	if pythonDirIdx != -1 {
 		return stdLibPkg.SourceUnit(), nil
