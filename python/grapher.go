@@ -305,7 +305,7 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 	return nil, fmt.Errorf("Cannot infer source unit for file %s", file)
 }
 
-func isSubPath(parent, child string) bool {	
+func isSubPath(parent, child string) bool {
 	relpath, err := filepath.Rel(parent, child)
 	return err == nil && !strings.HasPrefix(relpath, "..")
 }
