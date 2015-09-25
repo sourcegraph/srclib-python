@@ -309,13 +309,20 @@ class FileGrapher(object):
 
         components = module_path.split(os.sep)
         pi1 = pi2 = -1
+        prev_component = None
+        prev_index = -1
         for i, component in enumerate(components):
             if component in ['site-packages', 'dist-packages']:
                 pi1 = i
                 break
             # Fallback.
-            if pi2 == -1 and component.startswith('python'):
+            # Windows case .env/lib/file.py, Unix case .env/lib/python.../file.py
+            if pi2 == -1 and component == 'lib' and prev_component == '.env':
                 pi2 = i
+            elif pi2 == prev_index and component.startswith('python'):
+                pi2 = i
+            prev_component = component
+            prev_index = i
 
         pi = pi1 if pi1 != -1 else pi2
         if pi != -1:
