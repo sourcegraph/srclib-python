@@ -31,10 +31,7 @@ func runCmdStderr(cmd *exec.Cmd) error {
 // In `docker` mode, it will return empty string because there is no virtualenv.
 func getProgramPath() (string, error) {
 	if dockerEnv == "" {
-		path, err := filepath.EvalSymlinks(filepath.Join(filepath.Dir(os.Args[0]), ".."))
-		if err != nil {
-			return ``, err
-		}
+		path := filepath.Join(filepath.Dir(os.Args[0]), "..")
 		return filepath.Abs(path)
 	}
 	return "", nil

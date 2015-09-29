@@ -148,7 +148,7 @@ class FileGrapher(object):
             # noinspection PyBroadException
             try:
                 ref_defs = ref_def.goto_assignments()
-            except Exception:
+            except:
                 self._log.error(u'error getting definitions for reference {}'.format(jedi_ref))
                 break
 
@@ -176,10 +176,10 @@ class FileGrapher(object):
         with open(self._file) as f:
             self._source = f.read()
 
-        source_lines = self._source.splitlines()
+        source_lines = self._source.splitlines(True)
         self._cumulative_off = [0]
         for line in source_lines:
-            self._cumulative_off.append(self._cumulative_off[-1] + len(line) + 1)
+            self._cumulative_off.append(self._cumulative_off[-1] + len(line))
 
     def _jedi_def_to_def(self, d):
         # TODO(MaikuMori): Add back this if needed:
@@ -303,9 +303,15 @@ class FileGrapher(object):
         return parent_module.replace(os.sep, '.')
 
     def _abs_module_path_to_relative_module_path(self, module_path):
-        rel_path = os.path.relpath(module_path, self._base_dir)
-        if not rel_path.startswith('..'):
-            return rel_path
+        rel_path = module_path
+        try:    
+            rel_path = os.path.relpath(module_path, self._base_dir)
+            if not rel_path.startswith('..'):
+                return rel_path
+        except ValueError:
+            # (alexsaveliev) virtualenv may use python from the different location.
+            # This situation may cause "path is on drive C:, start on drive D:"
+            pass
 
         components = module_path.split(os.sep)
         pi1 = pi2 = -1
@@ -320,6 +326,8 @@ class FileGrapher(object):
             if pi2 == -1 and component == 'lib' and prev_component == '.env':
                 pi2 = i
             elif pi2 == prev_index and component.startswith('python'):
+                pi2 = i
+            elif pi2 == -1 and prev_component is not None and prev_component.lower().startswith('python') and component.lower() == 'lib':
                 pi2 = i
             prev_component = component
             prev_index = i
