@@ -295,6 +295,9 @@ func (c *GraphContext) inferSourceUnitFromFile(file string, reqs []*requirement)
 		if cmp == "lib" && prev == ".env"  {
 			pythonDirIdx = i
 			break
+		} else if strings.EqualFold(cmp, "lib") && strings.HasPrefix(strings.ToLower(prev), "python")  {
+			pythonDirIdx = i
+			break
 		}
 		prev = cmp
 	}
