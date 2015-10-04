@@ -23,10 +23,10 @@ ENV PATH /venv/bin:$PATH
 ENV IN_DOCKER_CONTAINER true
 
 # Add this toolchain
-RUN echo 4a893a4 > /dev/null
 ADD . /srclib/src/sourcegraph.com/sourcegraph/srclib-python/
 WORKDIR /srclib/src/sourcegraph.com/sourcegraph/srclib-python
-RUN go get -v -d && make install-docker
+RUN go get -v -d
+RUN make install-docker
 
 # Add srclib (unprivileged) user
 RUN useradd -ms /bin/bash srclib && \
