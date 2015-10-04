@@ -1,4 +1,6 @@
-ifeq ($(OS),Windows_NT)
+ifeq ($(IN_DOCKER_CONTAINER),true)
+	PIP = pip
+else ifeq ($(OS),Windows_NT)
 	EXE = .bin/srclib-python.exe
 	PIP = cmd /C .env\\Scripts\\pip.exe --isolated --disable-pip-version-check
 else
