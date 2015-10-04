@@ -42,12 +42,12 @@ func getProgramPath() (string, error) {
 func getVENVBinPath() (string, error) {
 	if dockerEnv == "" {
 		path, err := getProgramPath()
-		if (err != nil) {
-			return ``, err
+		if err != nil {
+			return "", err
 		}
 		return filepath.Abs(filepath.Join(path, ".env", getEnvBinDir()))
 	}
-	return "", nil
+	return "/venv/bin", nil
 }
 
 // Returns binaries directory of virtualenv which may be different on Windows and Unix
@@ -58,7 +58,6 @@ func getEnvBinDir() string {
 		return "bin"
 	}
 }
-
 
 func getHash(text string) string {
 	hasher := sha1.New()
