@@ -9,7 +9,7 @@ before_install:
 
 install:
   - sudo curl -Lo /tmp/srclib.gz https://srclib-release.s3.amazonaws.com/srclib/0.1.1-no-docker5/linux-amd64/srclib.gz 
-  - sudo gunzip -f /tmp/srclib.gz -d /usr/local/bin
+  - sudo gunzip -f /tmp/srclib.gz -r /usr/local/bin
   - sudo chmod +x /usr/local/bin/srclib
   - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph/
   - ln -s $TRAVIS_BUILD_DIR $HOME/.srclib/sourcegraph.com/sourcegraph/srclib-python
