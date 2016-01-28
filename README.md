@@ -56,30 +56,7 @@ srclib-python runs on Python 2.7 (and some glue code in Go), but it can still pr
 
 ## Tests
 
-Testing this toolchain requires that you have installed `src` from
-[srclib](https://sourcegraph.com/sourcegraph/srclib) and that you have this
-toolchain set up. See srclib documentation for more information.
-
-To test this toolchain's output against the expected output, run:
-
-```
-# build the Docker container to run the tests in isolation
-src toolchain build sourcegraph.com/sourcegraph/srclib-python
-
-# run the tests
-src test
-```
-
-By default, that command runs tests in an isolated Docker container. To run the
-tests on your local machine, run `src test -m program`. See the srclib
-documentation for more information about the differences between these two
-execution methods.
-
-## TODO
-
-Add screenshots
-
-
+TODO: needs updating.
 
 ## Contributing
 

@@ -1,6 +1,4 @@
-ifeq ($(IN_DOCKER_CONTAINER),true)
-	PIP = pip
-else ifeq ($(OS),Windows_NT)
+ifeq ($(OS),Windows_NT)
 	EXE = .bin/srclib-python.exe
 	PIP = cmd /C .env\\Scripts\\pip.exe --isolated --disable-pip-version-check
 else
@@ -8,9 +6,7 @@ else
 	PIP = .env/bin/pip
 endif
 
-.PHONY: install install-docker update-dockerfile
-
-all: install update-dockerfile
+.PHONY: install docker-image release
 
 .env:
 	bash ./install_env.sh
@@ -24,10 +20,8 @@ install: .env $(EXE)
 	$(PIP) install -r requirements.txt --upgrade
 	$(PIP) install . --upgrade
 
-update-dockerfile:
-	src toolchain build sourcegraph.com/sourcegraph/srclib-python
+docker-image:
+	docker build -t srclib/srclib-python .
 
-install-docker: .env
-	go install .
-	$(PIP) install -r requirements.txt --upgrade
-	$(PIP) install . --upgrade
+release: docker-image
+	docker push srclib/srclib-python
