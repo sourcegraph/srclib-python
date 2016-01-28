@@ -6,12 +6,14 @@ before_install:
   - mkdir -p $HOME/gopath/src/sourcegraph.com/sourcegraph
   - mv $TRAVIS_BUILD_DIR $HOME/gopath/src/sourcegraph.com/sourcegraph/srclib-python
   - export TRAVIS_BUILD_DIR=$HOME/gopath/src/sourcegraph.com/sourcegraph/srclib-python
+  - mkdir -p $HOME/bin
+  - export PATH=$PATH:$HOME/bin
+  - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph/
 
 install:
-  - sudo curl -Lo /tmp/srclib.gz https://srclib-release.s3.amazonaws.com/srclib/0.1.1-no-docker5/linux-amd64/srclib.gz 
-  - sudo gunzip -c /tmp/srclib.gz > /usr/local/bin/srclib
-  - sudo chmod +x /usr/local/bin/srclib
-  - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph/
+  - curl -Lo $HOME/bin/srclib.gz https://srclib-release.s3.amazonaws.com/srclib/0.1.1-no-docker5/linux-amd64/srclib.gz 
+  - gunzip -c $HOME/bin/srclib.gz > $HOME/bin/srclib
+  - sudo chmod +x $HOME/bin/srclib
   - ln -s $TRAVIS_BUILD_DIR $HOME/.srclib/sourcegraph.com/sourcegraph/srclib-python
   - make install
 
