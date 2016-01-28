@@ -11,8 +11,6 @@ import (
 	"strings"
 )
 
-var dockerEnv = os.Getenv("IN_DOCKER_CONTAINER")
-
 func runCmdLogError(cmd *exec.Cmd) {
 	log.Printf("Running %v", cmd.Args)
 	err := runCmdStderr(cmd)
@@ -28,26 +26,18 @@ func runCmdStderr(cmd *exec.Cmd) error {
 }
 
 // getProgramPath returns path to toolchain (assuming that exe file is located in .bin, path is <path-to-.bin>/..
-// In `docker` mode, it will return empty string because there is no virtualenv.
 func getProgramPath() (string, error) {
-	if dockerEnv == "" {
-		path := filepath.Join(filepath.Dir(os.Args[0]), "..")
-		return filepath.Abs(path)
-	}
-	return "", nil
+	path := filepath.Join(filepath.Dir(os.Args[0]), "..")
+	return filepath.Abs(path)
 }
 
-// getVENVBinPath returns toolchains Python virtualenv path. If toolchain is ran in
-// `docker` mode, it will return empty string because there is no virtualenv.
+// getVENVBinPath returns toolchains Python virtualenv path.
 func getVENVBinPath() (string, error) {
-	if dockerEnv == "" {
-		path, err := getProgramPath()
-		if err != nil {
-			return "", err
-		}
-		return filepath.Abs(filepath.Join(path, ".env", getEnvBinDir()))
+	path, err := getProgramPath()
+	if err != nil {
+		return "", err
 	}
-	return "/venv/bin", nil
+	return filepath.Abs(filepath.Join(path, ".env", getEnvBinDir()))
 }
 
 // Returns binaries directory of virtualenv which may be different on Windows and Unix
