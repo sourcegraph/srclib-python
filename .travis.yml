@@ -11,9 +11,12 @@ before_install:
   - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph/
 
 install:
-  - curl -Lo $HOME/bin/srclib.gz https://srclib-release.s3.amazonaws.com/srclib/0.1.1-no-docker5/linux-amd64/srclib.gz 
-  - gunzip -c $HOME/bin/srclib.gz > $HOME/bin/srclib
-  - sudo chmod +x $HOME/bin/srclib
+# installing srclib
+  - mkdir $HOME/gocode
+  - export GOPATH=$HOME/gocode
+  - go get -u -v sourcegraph.com/sourcegraph/srclib/cmd/srclib
+  - export PATH=$PATH:$HOME/gocode/bin
+# installing toolchain
   - ln -s $TRAVIS_BUILD_DIR $HOME/.srclib/sourcegraph.com/sourcegraph/srclib-python
   - make install
 
