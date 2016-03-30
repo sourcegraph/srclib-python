@@ -6,22 +6,21 @@ else
 	PIP = .env/bin/pip
 endif
 
-.PHONY: install docker-image release
+.PHONY: install
+
+default: govendor .env install
 
 .env:
 	bash ./install_env.sh
 
 $(EXE): $(shell /usr/bin/find . -type f -name '*.go')
 	@mkdir -p .bin
-	go get -d ./...
 	go build -o $(EXE)
 
-install: .env $(EXE)
+install: $(EXE)
 	$(PIP) install -r requirements.txt --upgrade
 	$(PIP) install . --upgrade
 
-docker-image:
-	docker build -t srclib/srclib-python .
-
-release: docker-image
-	docker push srclib/srclib-python
+govendor:
+	go get github.com/kardianos/govendor
+	govendor sync
