@@ -6,7 +6,7 @@ else
 	PIP = .env/bin/pip
 endif
 
-.PHONY: install
+.PHONY: install govendor
 
 default: govendor .env install
 
