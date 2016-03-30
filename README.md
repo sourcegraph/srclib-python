@@ -15,14 +15,14 @@ This toolchain is not a standalone program; it provides additional functionality
 to applications that use [srclib](https://srclib.org).
 
 First,
-[install the `src` program (see srclib installation instructions)](https://srclib.org/gettingstarted/).
+[install the `srclib` program (see srclib installation instructions)](https://srclib.org/gettingstarted/).
 
-Installing `src` should automatically install `srclib-python`.
+Installing `srclib` should automatically install `srclib-python`.
 
 To verify that installation succeeded, run:
 
 ```
-src toolchain list
+srclib toolchain list
 ```
 
 You should see this srclib-python toolchain in the list.
