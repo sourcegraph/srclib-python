@@ -1,6 +1,6 @@
 language: go
 
-go: 1.4.2
+go: 1.6
 
 before_install:
   - mkdir -p $HOME/gopath/src/sourcegraph.com/sourcegraph
