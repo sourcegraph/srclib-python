@@ -10,7 +10,7 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "mod"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
@@ -22,7 +22,7 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "setup"
+      "Data": null
     }
   ],
   "Refs": [
@@ -40,7 +40,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
-      "DefPath": "setup/install_requires",
+      "DefPath": "setup.py/setup.install_requires",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "File": "setup.py",
@@ -50,7 +50,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
-      "DefPath": "setup/name",
+      "DefPath": "setup.py/setup.name",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "File": "setup.py",
@@ -60,7 +60,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
-      "DefPath": "setup/py_modules",
+      "DefPath": "setup.py/setup.py_modules",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "File": "setup.py",
@@ -70,7 +70,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
-      "DefPath": "setup/url",
+      "DefPath": "setup.py/setup.url",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "File": "setup.py",
@@ -80,7 +80,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
-      "DefPath": "setup/version",
+      "DefPath": "setup.py/setup.version",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "File": "setup.py",
@@ -97,6 +97,39 @@
       "File": "setup.py",
       "Start": 0,
       "End": 0
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 23,
+      "End": 28
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 30,
+      "End": 35
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setuptools",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "File": "setup.py",
+      "Start": 5,
+      "End": 15
     }
   ]
 }

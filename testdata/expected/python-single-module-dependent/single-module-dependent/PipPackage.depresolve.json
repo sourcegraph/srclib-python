@@ -1,1 +1,1 @@
-[{"Raw":{"extras":null,"key":"https://github.com/sgtest/python-single-module-lib","modules":["mod"],"packages":null,"project_name":"single-module-lib","repo_url":"https://github.com/sgtest/python-single-module-lib","resolved":true,"specs":null,"type":"vcs","unsafe_name":""},"Target":{"ToRepoCloneURL":"https://github.com/sgtest/python-single-module-lib","ToUnit":"single-module-lib","ToUnitType":"PipPackage","ToVersionString":"","ToRevSpec":""}}]
+[]

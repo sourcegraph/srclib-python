@@ -10,7 +10,7 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "pkg0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
@@ -22,235 +22,271 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "pkg0/m0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0",
+      "Path": "pkg0/m0.py/m0.Class0.Class0",
       "Name": "Class0",
-      "Kind": "type",
+      "Kind": "class",
       "File": "pkg0/m0.py",
       "DefStart": 60,
       "DefEnd": 66,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0/meth0",
+      "Path": "pkg0/m0.py/m0.Class0.meth0.meth0",
       "Name": "meth0",
-      "Kind": "func",
+      "Kind": "function",
       "File": "pkg0/m0.py",
       "DefStart": 124,
       "DefEnd": 129,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class0/meth0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0/var0",
+      "Path": "pkg0/m0.py/m0.Class0.var0",
       "Name": "var0",
-      "Kind": "var",
+      "Kind": "statement",
       "File": "pkg0/m0.py",
       "DefStart": 107,
       "DefEnd": 111,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class0/var0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0_0",
+      "Path": "pkg0/m0.py/m0.Class0_0.Class0_0",
       "Name": "Class0_0",
-      "Kind": "type",
+      "Kind": "class",
       "File": "pkg0/m0.py",
-      "DefStart": 337,
-      "DefEnd": 345,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class0_0"
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0_0/__init__",
-      "Name": "__init__",
-      "Kind": "func",
-      "File": "pkg0/m0.py",
-      "DefStart": 363,
-      "DefEnd": 371,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class0_0/__init__"
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0_0/__init__/arg0",
-      "Name": "arg0",
-      "Kind": "var",
-      "File": "pkg0/m0.py",
-      "DefStart": 378,
-      "DefEnd": 382,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class0_0/__init__/arg0"
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0_0/__init__/arg1",
-      "Name": "arg1",
-      "Kind": "var",
-      "File": "pkg0/m0.py",
-      "DefStart": 384,
+      "DefStart": 380,
       "DefEnd": 388,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class0_0/__init__/arg1"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0_0/__init__/args",
+      "Path": "pkg0/m0.py/m0.Class0_0.__init__.__init__",
+      "Name": "__init__",
+      "Kind": "function",
+      "File": "pkg0/m0.py",
+      "DefStart": 406,
+      "DefEnd": 414,
+      "Exported": true,
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.Class0_0.__init__.arg0.arg0",
+      "Name": "arg0",
+      "Kind": "param",
+      "File": "pkg0/m0.py",
+      "DefStart": 421,
+      "DefEnd": 425,
+      "Exported": true,
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.Class0_0.__init__.arg1.arg1",
+      "Name": "arg1",
+      "Kind": "param",
+      "File": "pkg0/m0.py",
+      "DefStart": 427,
+      "DefEnd": 431,
+      "Exported": true,
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.Class0_0.__init__.args.args",
       "Name": "args",
-      "Kind": "var",
+      "Kind": "param",
       "File": "pkg0/m0.py",
-      "DefStart": 391,
-      "DefEnd": 395,
+      "DefStart": 434,
+      "DefEnd": 438,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class0_0/__init__/args"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0_0/__init__/kwargs",
+      "Path": "pkg0/m0.py/m0.Class0_0.__init__.kwargs.kwargs",
       "Name": "kwargs",
-      "Kind": "var",
+      "Kind": "param",
       "File": "pkg0/m0.py",
-      "DefStart": 399,
-      "DefEnd": 405,
+      "DefStart": 442,
+      "DefEnd": 448,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class0_0/__init__/kwargs"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1",
+      "Path": "pkg0/m0.py/m0.Class1.Class1",
       "Name": "Class1",
-      "Kind": "type",
+      "Kind": "class",
       "File": "pkg0/m0.py",
       "DefStart": 149,
       "DefEnd": 155,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class1"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1/__init__",
+      "Path": "pkg0/m0.py/m0.Class1.__init__.__init__",
       "Name": "__init__",
-      "Kind": "func",
+      "Kind": "function",
       "File": "pkg0/m0.py",
       "DefStart": 173,
       "DefEnd": 181,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class1/__init__"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1/meth0",
-      "Name": "meth0",
-      "Kind": "func",
-      "File": "pkg0/m0.py",
-      "DefStart": 268,
-      "DefEnd": 273,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class1/meth0"
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1/meth0/var0",
+      "Path": "pkg0/m0.py/m0.Class1.__init__.var0",
       "Name": "var0",
-      "Kind": "var",
-      "File": "pkg0/m0.py",
-      "DefStart": 289,
-      "DefEnd": 293,
-      "Exported": true,
-      "TreePath": "pkg0/m0/Class1/meth0/var0"
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1/var0",
-      "Name": "var0",
-      "Kind": "var",
+      "Kind": "statement",
       "File": "pkg0/m0.py",
       "DefStart": 202,
       "DefEnd": 206,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class1/var0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class1/var1",
+      "Path": "pkg0/m0.py/m0.Class1.__init__.var1",
       "Name": "var1",
-      "Kind": "var",
+      "Kind": "statement",
       "File": "pkg0/m0.py",
       "DefStart": 247,
       "DefEnd": 251,
       "Exported": true,
-      "TreePath": "pkg0/m0/Class1/var1"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/f0",
-      "Name": "f0",
-      "Kind": "func",
+      "Path": "pkg0/m0.py/m0.Class1.meth0.meth0",
+      "Name": "meth0",
+      "Kind": "function",
       "File": "pkg0/m0.py",
-      "DefStart": 451,
-      "DefEnd": 453,
+      "DefStart": 268,
+      "DefEnd": 273,
       "Exported": true,
-      "TreePath": "pkg0/m0/f0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/f0/var0",
+      "Path": "pkg0/m0.py/m0.Class1.meth0.var0",
       "Name": "var0",
-      "Kind": "var",
+      "Kind": "statement",
       "File": "pkg0/m0.py",
-      "DefStart": 461,
-      "DefEnd": 465,
+      "DefStart": 289,
+      "DefEnd": 293,
       "Exported": true,
-      "TreePath": "pkg0/m0/f0/var0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/f0/var1",
+      "Path": "pkg0/m0.py/m0.Class1.meth0.var1",
       "Name": "var1",
-      "Kind": "var",
+      "Kind": "statement",
       "File": "pkg0/m0.py",
-      "DefStart": 481,
-      "DefEnd": 485,
+      "DefStart": 339,
+      "DefEnd": 343,
       "Exported": true,
-      "TreePath": "pkg0/m0/f0/var1"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m0/f0/var2",
-      "Name": "var2",
-      "Kind": "var",
+      "Path": "pkg0/m0.py/m0.Class1.meth0.x",
+      "Name": "x",
+      "Kind": "statement",
       "File": "pkg0/m0.py",
-      "DefStart": 501,
-      "DefEnd": 505,
+      "DefStart": 359,
+      "DefEnd": 360,
       "Exported": true,
-      "TreePath": "pkg0/m0/f0/var2"
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.f0.f0",
+      "Name": "f0",
+      "Kind": "function",
+      "File": "pkg0/m0.py",
+      "DefStart": 494,
+      "DefEnd": 496,
+      "Exported": true,
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.f0.var0",
+      "Name": "var0",
+      "Kind": "statement",
+      "File": "pkg0/m0.py",
+      "DefStart": 504,
+      "DefEnd": 508,
+      "Exported": true,
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.f0.var1",
+      "Name": "var1",
+      "Kind": "statement",
+      "File": "pkg0/m0.py",
+      "DefStart": 524,
+      "DefEnd": 528,
+      "Exported": true,
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.f0.var2",
+      "Name": "var2",
+      "Kind": "statement",
+      "File": "pkg0/m0.py",
+      "DefStart": 544,
+      "DefEnd": 548,
+      "Exported": true,
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.x",
+      "Name": "x",
+      "Kind": "statement",
+      "File": "pkg0/m0.py",
+      "DefStart": 630,
+      "DefEnd": 631,
+      "Exported": true,
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
@@ -262,67 +298,79 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "pkg0/m1"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m1/Class0_0",
+      "Path": "pkg0/m1.py/m1.Class0_0.Class0_0",
       "Name": "Class0_0",
-      "Kind": "type",
+      "Kind": "class",
       "File": "pkg0/m1.py",
       "DefStart": 90,
       "DefEnd": 98,
       "Exported": true,
-      "TreePath": "pkg0/m1/Class0_0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m1/Class0_0/__init__",
+      "Path": "pkg0/m1.py/m1.Class0_0.__init__.__init__",
       "Name": "__init__",
-      "Kind": "func",
+      "Kind": "function",
       "File": "pkg0/m1.py",
       "DefStart": 116,
       "DefEnd": 124,
       "Exported": true,
-      "TreePath": "pkg0/m1/Class0_0/__init__"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m1/m2_fn1",
+      "Path": "pkg0/m1.py/m1.m2_fn1.m2_fn1",
       "Name": "m2_fn1",
-      "Kind": "func",
+      "Kind": "function",
       "File": "pkg0/m1.py",
       "DefStart": 178,
       "DefEnd": 184,
       "Exported": true,
-      "TreePath": "pkg0/m1/m2_fn1"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m1/m2_fn1/var0",
+      "Path": "pkg0/m1.py/m1.m2_fn1.var0",
       "Name": "var0",
-      "Kind": "var",
+      "Kind": "statement",
       "File": "pkg0/m1.py",
       "DefStart": 192,
       "DefEnd": 196,
       "Exported": true,
-      "TreePath": "pkg0/m1/m2_fn1/var0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Path": "pkg0/m1/m2_fn1/var1",
+      "Path": "pkg0/m1.py/m1.m2_fn1.var1",
       "Name": "var1",
-      "Kind": "var",
+      "Kind": "statement",
       "File": "pkg0/m1.py",
       "DefStart": 212,
       "DefEnd": 216,
       "Exported": true,
-      "TreePath": "pkg0/m1/m2_fn1/var1"
+      "Data": null
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m1.py/m1.m2_fn1.var2",
+      "Name": "var2",
+      "Kind": "statement",
+      "File": "pkg0/m1.py",
+      "DefStart": 234,
+      "DefEnd": 238,
+      "Exported": true,
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
@@ -334,26 +382,15 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "setup"
+      "Data": null
     }
   ],
   "Refs": [
     {
-      "DefRepo": "hg.python.org/cpython",
+      "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
-      "DefPath": "None",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m0.py",
-      "Start": 254,
-      "End": 258
-    },
-    {
-      "DefRepo": "hg.python.org/cpython",
-      "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
-      "DefPath": "__init__",
+      "DefUnit": "__builtin__",
+      "DefPath": "object.__init__",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
@@ -361,9 +398,9 @@
       "End": 170
     },
     {
-      "DefRepo": "hg.python.org/cpython",
+      "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "__builtin__",
       "DefPath": "object",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -372,9 +409,9 @@
       "End": 162
     },
     {
-      "DefRepo": "hg.python.org/cpython",
+      "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "__builtin__",
       "DefPath": "object",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -383,10 +420,10 @@
       "End": 73
     },
     {
-      "DefRepo": "hg.python.org/cpython",
+      "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
-      "DefPath": "os",
+      "DefUnit": "os.py",
+      "DefPath": "os.py/os.os",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
@@ -396,39 +433,37 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0/meth0",
+      "DefPath": "pkg0/__init__.py/pkg0.pkg0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 124,
-      "End": 129
+      "File": "pkg0/m1.py",
+      "Start": 265,
+      "End": 269
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0/meth0",
+      "DefPath": "pkg0/__init__.py/pkg0.pkg0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "File": "pkg0/m0.py",
-      "Start": 438,
-      "End": 443
+      "File": "pkg0/m1.py",
+      "Start": 51,
+      "End": 55
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0/var0",
+      "DefPath": "pkg0/__init__.py/pkg0.pkg0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 107,
-      "End": 111
+      "File": "pkg0/m1.py",
+      "Start": 61,
+      "End": 65
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -439,7 +474,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
@@ -449,27 +484,27 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
-      "Start": 346,
-      "End": 352
+      "Start": 389,
+      "End": 395
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
-      "Start": 468,
-      "End": 474
+      "Start": 511,
+      "End": 517
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -480,7 +515,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
@@ -490,7 +525,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
@@ -500,7 +535,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0",
+      "DefPath": "pkg0/m0.py/m0.Class0.Class0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
@@ -510,211 +545,176 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0/__init__/arg0",
+      "DefPath": "pkg0/m0.py/m0.Class0.meth0.meth0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
       "File": "pkg0/m0.py",
-      "Start": 378,
-      "End": 382
+      "Start": 124,
+      "End": 129
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0/__init__/arg1",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 384,
-      "End": 388
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0/__init__/args",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 391,
-      "End": 395
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0/__init__/kwargs",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 399,
-      "End": 405
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0/__init__",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 363,
-      "End": 371
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 337,
-      "End": 345
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 372,
-      "End": 376
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0",
+      "DefPath": "pkg0/m0.py/m0.Class0.meth0.meth0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
-      "Start": 422,
-      "End": 430
+      "Start": 318,
+      "End": 323
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0",
+      "DefPath": "pkg0/m0.py/m0.Class0.meth0.meth0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
-      "Start": 432,
-      "End": 436
+      "Start": 481,
+      "End": 486
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m0.py",
-      "Start": 508,
-      "End": 516
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class0_0",
+      "DefPath": "pkg0/m0.py/m0.Class0.meth0.meth0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
-      "Start": 249,
-      "End": 257
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/__init__",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 173,
-      "End": 181
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/meth0/var0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 289,
-      "End": 293
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/meth0/var0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m0.py",
-      "Start": 325,
-      "End": 329
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/meth0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 268,
-      "End": 273
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/var0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 202,
-      "End": 206
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/var0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 224,
-      "End": 228
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/var1",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 247,
+      "Start": 246,
       "End": 251
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1/var1",
+      "DefPath": "pkg0/m0.py/m0.Class0.var0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
       "File": "pkg0/m0.py",
-      "Start": 318,
-      "End": 322
+      "Start": 107,
+      "End": 111
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 380,
+      "End": 388
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 415,
+      "End": 419
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 465,
+      "End": 473
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 475,
+      "End": 479
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 551,
+      "End": 559
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.Class0_0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m1.py",
+      "Start": 273,
+      "End": 281
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.__init__.__init__",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 406,
+      "End": 414
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.__init__.arg0.arg0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 421,
+      "End": 425
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.__init__.arg1.arg1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 427,
+      "End": 431
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.__init__.args.args",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 434,
+      "End": 438
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class0_0.__init__.kwargs.kwargs",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 442,
+      "End": 448
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -725,7 +725,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -736,7 +736,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
@@ -746,7 +746,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
@@ -756,7 +756,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
@@ -766,7 +766,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -777,7 +777,103 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 334,
+      "End": 338
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 363,
+      "End": 367
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.Class1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 531,
+      "End": 537
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.__init__.__init__",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 173,
+      "End": 181
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.__init__.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 202,
+      "End": 206
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.__init__.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 224,
+      "End": 228
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.__init__.var1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 247,
+      "End": 251
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.meth0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 268,
+      "End": 273
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 289,
+      "End": 293
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.var0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
@@ -787,86 +883,160 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/Class1",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.var0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
-      "Start": 488,
-      "End": 494
+      "Start": 346,
+      "End": 350
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/f0/var0",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.var1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
       "File": "pkg0/m0.py",
-      "Start": 461,
-      "End": 465
+      "Start": 339,
+      "End": 343
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/f0/var0",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.var1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
-      "Start": 535,
-      "End": 539
+      "Start": 368,
+      "End": 372
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/f0/var1",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 481,
-      "End": 485
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/f0/var1",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m0.py",
-      "Start": 541,
-      "End": 545
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/f0/var2",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.x",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
       "File": "pkg0/m0.py",
-      "Start": 501,
-      "End": 505
+      "Start": 359,
+      "End": 360
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/f0/var2",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m0.py",
-      "Start": 547,
-      "End": 551
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0/f0",
+      "DefPath": "pkg0/m0.py/m0.f0.f0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
       "File": "pkg0/m0.py",
-      "Start": 451,
-      "End": 453
+      "Start": 494,
+      "End": 496
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.f0.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 504,
+      "End": 508
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.f0.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 578,
+      "End": 582
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.f0.var1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 524,
+      "End": 528
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.f0.var1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 584,
+      "End": 588
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.f0.var2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 544,
+      "End": 548
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.f0.var2",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m0.py",
+      "Start": 590,
+      "End": 594
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.x",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 630,
+      "End": 631
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.x",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 649,
+      "End": 650
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/pkg0.m0.m0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m1.py",
+      "Start": 270,
+      "End": 272
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/pkg0.m0.m0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m1.py",
+      "Start": 66,
+      "End": 68
     },
     {
       "DefUnitType": "PipPackage",
@@ -882,18 +1052,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/Class0_0/__init__",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m1.py",
-      "Start": 116,
-      "End": 124
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/Class0_0",
+      "DefPath": "pkg0/m1.py/m1.Class0_0.Class0_0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -904,7 +1063,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/Class0_0",
+      "DefPath": "pkg0/m1.py/m1.Class0_0.Class0_0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
@@ -914,7 +1073,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/Class0_0",
+      "DefPath": "pkg0/m1.py/m1.Class0_0.Class0_0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
@@ -924,7 +1083,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/Class0_0",
+      "DefPath": "pkg0/m1.py/m1.Class0_0.Class0_0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
@@ -934,7 +1093,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/Class0_0",
+      "DefPath": "pkg0/m1.py/m1.Class0_0.Class0_0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -945,7 +1104,29 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/m2_fn1/var0",
+      "DefPath": "pkg0/m1.py/m1.Class0_0.__init__.__init__",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m1.py",
+      "Start": 116,
+      "End": 124
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1.py/m1.m2_fn1.m2_fn1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m1.py",
+      "Start": 178,
+      "End": 184
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1.py/m1.m2_fn1.var0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -956,7 +1137,17 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/m2_fn1/var1",
+      "DefPath": "pkg0/m1.py/m1.m2_fn1.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "pkg0/m1.py",
+      "Start": 241,
+      "End": 245
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m1.py/m1.m2_fn1.var1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -967,13 +1158,13 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m1/m2_fn1",
+      "DefPath": "pkg0/m1.py/m1.m2_fn1.var2",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
       "File": "pkg0/m1.py",
-      "Start": 178,
-      "End": 184
+      "Start": 234,
+      "End": 238
     },
     {
       "DefUnitType": "PipPackage",
@@ -989,26 +1180,6 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/pkg0/m0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m1.py",
-      "Start": 246,
-      "End": 248
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/pkg0/m0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m1.py",
-      "Start": 66,
-      "End": 68
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
       "DefPath": "pkg0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -1020,37 +1191,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m1.py",
-      "Start": 241,
-      "End": 245
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m1.py",
-      "Start": 51,
-      "End": 55
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "File": "pkg0/m1.py",
-      "Start": 61,
-      "End": 65
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "setup/install_requires",
+      "DefPath": "setup.py/setup.install_requires",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "setup.py",
@@ -1060,7 +1201,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "setup/name",
+      "DefPath": "setup.py/setup.name",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "setup.py",
@@ -1070,7 +1211,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "setup/packages",
+      "DefPath": "setup.py/setup.packages",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "setup.py",
@@ -1080,7 +1221,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "setup/url",
+      "DefPath": "setup.py/setup.url",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "setup.py",
@@ -1090,7 +1231,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "setup/version",
+      "DefPath": "setup.py/setup.version",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "setup.py",
@@ -1109,42 +1250,59 @@
       "End": 0
     },
     {
-      "DefRepo": "hg.python.org/cpython",
+      "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 23,
+      "End": 28
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 30,
+      "End": 35
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setuptools",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "File": "setup.py",
+      "Start": 5,
+      "End": 15
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "__builtin__",
       "DefPath": "super",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
-      "Start": 416,
-      "End": 421
+      "Start": 459,
+      "End": 464
     },
     {
-      "DefRepo": "hg.python.org/cpython",
+      "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "__builtin__",
       "DefPath": "super",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m1.py",
       "Start": 140,
       "End": 145
-    }
-  ],
-  "Docs": [
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0",
-      "Format": "",
-      "Data": "Class0 docstring"
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0/Class0/var0",
-      "Format": "",
-      "Data": "Class0 docstring"
     }
   ]
 }

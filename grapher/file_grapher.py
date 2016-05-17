@@ -4,6 +4,7 @@ import re
 
 import jedi
 
+from .structures import *
 
 def _debug_print_tree(node, indent=0, func=repr):
     """ Print visual representation of Jedi AST. """
@@ -19,27 +20,35 @@ def _debug_print_tree(node, indent=0, func=repr):
 class FileGrapherException(Exception):
     """ Something went wrong while graphing the file. """
 
+REPO_STDLIB = "github.com/python/cpython"
 
 class FileGrapher(object):
     """
     FileGrapher is used to extract definitions and references from single Python source file.
     """
-    Def = namedtuple('Def', ['Path', 'Kind', 'Name', 'File', 'DefStart', 'DefEnd', 'Exported', 'Docstring', 'Data'])
-    Ref = namedtuple('Ref', ['DefPath', 'DefFile', 'Def', 'File', 'Start', 'End', 'ToBuiltin'])
-
     _exported_regex = re.compile('\_[a-zA-Z0-9]')
 
-    def __init__(self, base_dir, source_file, log):
+    def __init__(self, base_dir, source_file, unit, unit_type, modulePathPrefixToDep, syspath, log):
         """
         Create a new grapher.
         """
         self._base_dir = base_dir
+        self._abs_base_dir = os.path.abspath(base_dir)
         self._file = source_file
+        self._unit = unit
+        self._unit_type = unit_type
+        self._modulePathPrefixToDep = modulePathPrefixToDep
+        self._syspath = list(reversed(sorted(syspath)))
         self._log = log
         self._source = None
         self._defs = {}
         self._refs = {}
         self._load()
+
+        self._stdlibpaths = []
+        for p in syspath:
+            if not p.endswith('site-packages'):
+                self._stdlibpaths.append(p)
 
     def graph(self):
         # Add module/package defs.
@@ -47,7 +56,10 @@ class FileGrapher(object):
         if os.path.basename(self._file) == '__init__.py':
             module = os.path.normpath(os.path.dirname(self._file))
 
-        self._add_def(self.Def(
+        self._add_def(Def(
+            Repo="",
+            Unit=self._unit,
+            UnitType=self._unit_type,
             Path=module,
             Kind='module',
             Name=module.split('/')[-1],
@@ -55,10 +67,9 @@ class FileGrapher(object):
             DefStart=0,
             DefEnd=0,
             Exported=True,
-            # TODO(MaikuMori): extract module/package-level doc.
-            Docstring='',
             Data=None,
         ))
+        # TODO(beyang): extract module/package-level doc.
 
         # Get occurrences of names via Jedi.
         try:
@@ -70,23 +81,26 @@ class FileGrapher(object):
         for jedi_name in jedi_names:
             # Imports should be refs.
             if jedi_name.is_definition() and jedi_name.type != 'import':
-                    jedi_defs.append(jedi_name)
+                jedi_defs.append(jedi_name)
             else:
                 jedi_refs.append(jedi_name)
 
         # Defs.
         for jedi_def in jedi_defs:
             self._log.debug(
-                '\nProcessing def: %s | %s | %s',
+                'Processing def: %s | %s | %s',
                 jedi_def.desc_with_module,
                 jedi_def.name,
                 jedi_def.type,
             )
             try:
-                self._add_def(self._jedi_def_to_def(jedi_def))
+                def_, doc = self._jedi_def_to_def(jedi_def)
+                self._add_def(def_)
+                if doc is not None:
+                    self._add_doc(doc)
             except Exception as e:
                 self._log.error(
-                    u'\nFailed to process def `%s`: %s',
+                    u'Failed to process def `%s`: %s',
                     jedi_def.name,
                     e,
                 )
@@ -95,7 +109,7 @@ class FileGrapher(object):
         # Refs.
         for jedi_ref in jedi_refs:
             self._log.debug(
-                '\nProcessing ref: %s | %s | %s',
+                'Processing ref: %s | %s | %s',
                 jedi_ref.desc_with_module,
                 jedi_ref.name,
                 jedi_ref.type,
@@ -110,25 +124,21 @@ class FileGrapher(object):
                 sg_def = self._jedi_def_to_def_key(ref_def)
             except Exception as e:
                 self._log.error(
-                    u'\nFailed to process def to def-key `%s`: %s',
+                    u'Failed to process def to def-key `%s`: %s',
                     ref_def.name,
                     e,
                 )
                 continue
 
-            self._log.debug(
-                'Ref-Def: %s | %s | %s | %s \n',
-                sg_def.Name,
-                sg_def.Path,
-                sg_def.Kind,
-                sg_def.File,
-            )
-
             ref_start = self._to_offset(jedi_ref.line, jedi_ref.column)
             ref_end = ref_start + len(jedi_ref.name)
-            self._add_ref(self.Ref(
+            self._add_ref(Ref(
+                DefRepo=sg_def.Repo,
+                DefUnit=sg_def.Unit,
+                DefUnitType=sg_def.UnitType,
                 DefPath=sg_def.Path,
-                DefFile=sg_def.File,
+                Unit=self._unit,
+                UnitType=self._unit_type,
                 Def=False,
                 File=self._file,
                 Start=ref_start,
@@ -149,7 +159,7 @@ class FileGrapher(object):
             try:
                 ref_defs = ref_def.goto_assignments()
             except:
-                self._log.error(u'error getting definitions for reference {}'.format(jedi_ref))
+                self._log.error(u'jedi error getting definitions for reference {}'.format(jedi_ref))
                 break
 
             if len(ref_defs) == 0:
@@ -158,7 +168,7 @@ class FileGrapher(object):
             ref_def = ref_defs[0]
         else:
             self._log.debug(
-                'Ref def search (precondition failed) | %s | %s | %s\n',
+                'Ref def search (precondition failed) | %s | %s | %s',
                 ref_def.is_definition(),
                 ref_def.type,
                 ref_def.name
@@ -166,7 +176,7 @@ class FileGrapher(object):
 
         if ref_def.type == "import":
             # We didn't find anything.
-            self._log.debug('Ref def not found \n')
+            self._log.debug('Ref def not found')
             return None
 
         return ref_def
@@ -186,113 +196,104 @@ class FileGrapher(object):
         # If def is a name, then the location of the definition is the last name part
         start = self._to_offset(d.line, d.column)
         end = start + len(d.name)
-
-        return self.Def(
-            Path=self._full_name(d).replace('.', '/'),
+        path, dep = self._full_name_and_dep(d)
+        if dep is not None:
+            repo, unit, unit_type = dep.Repo, dep.Name, dep.Type
+        else:
+            repo, unit, unit_type = "", self._unit, self._unit_type
+        def_ = Def(
+            Repo=repo,
+            Unit=unit,
+            UnitType=unit_type,
+            Path=path,
             Kind=d.type,
             Name=d.name,
             File=self._file,
             DefStart=start,
             DefEnd=end,
             Exported=self._is_exported(d.name),
-            Docstring=d.docstring(raw=True),
             Data=None,
         )
+
+        doc = None
+        docstring = d.docstring(raw=True)
+        if docstring is not None:
+            doc = Doc(
+                Unit=def_.Unit,
+                UnitType=def_.UnitType,
+                Path=def_.Path,
+                Format='plaintext',
+                Data=docstring,
+                File=def_.File,
+            )
+
+        return def_, doc
 
     def _jedi_def_to_def_key(self, d):
-        return self.Def(
-            Path=self._full_name(d).replace('.', '/'),
-            Kind=d.type,
-            Name=d.name,
-            File=d.module_path,
-            DefStart=None,
-            DefEnd=None,
-            Exported=self._is_exported(d.name),
-            Docstring=d.docstring(raw=True),
-            Data=None,
+        path, dep = self._full_name_and_dep(d)
+        if dep is not None:
+            repo, unit, unit_type = dep.Repo, dep.Name, dep.Type
+        else:
+            repo, unit, unit_type = "", self._unit, self._unit_type
+        return DefKey(
+            Repo=repo,
+            Unit=unit,
+            UnitType=unit_type,
+            Path=path,
         )
 
-    def _full_name(self, d):
-        if d.in_builtin_module() or d.module_path is None:
-            return d.name
+    # _rel_module_path returns (relative_module_path, is_internal)
+    # TODO(beyang): replace startswith with os.path.commonpath (Python 3 function)
+    def _rel_module_path(self, module_path):
+        for p in self._syspath:
+            if p == '':
+                continue
+            if module_path.startswith(p):
+                return os.path.relpath(module_path, p), False # external
+
+        if module_path.startswith(self._abs_base_dir):
+            return os.path.relpath(module_path, self._abs_base_dir), True # internal
+
+        return None, False
+
+    def _module_to_dep(self, m):
+        # Check explicit pip dependencies
+        for pkg, dep in self._modulePathPrefixToDep.items():
+            if m.startswith(pkg):
+                return dep, None
+        # Fall back to heuristics
+        if m.startswith('setuptools'):
+            return UnitKey(Repo=REPO_STDLIB, Type=UNIT_PIP, Name='setuptools', CommitID='', Version=''), None
+        for stdlibpath in self._stdlibpaths:
+            if os.path.lexists(os.path.join(stdlibpath, m)):
+                # Standard lib module
+                return UnitKey(Repo=REPO_STDLIB, Type=UNIT_PIP, Name=m, CommitID='', Version=''), None
+        return None, ('could not find dep module for module %s, candidates were %s' % (m, repr(self._modulePathPrefixToDep.keys())))
+
+    def _full_name_and_dep(self, d):
+        if d.in_builtin_module():
+            return d.full_name, UnitKey(Repo=REPO_STDLIB, Type=UNIT_PIP, Name="__builtin__", CommitID="", Version="")
+
+        if d.module_path is None:
+            raise Exception('no module path for definition %s' % repr(d))
+
         # This detects `self` and `cls` parameters makes them to point to the class:
         # To trigger this parameters must be for a method (a class function).
         if d.type == 'param' and (d.name == 'self' or d.name == 'cls') and d.parent().parent().type == 'class':
-            name = d.parent().parent().full_name
-        elif d.type == 'statement':
-            # Workaround for self.* definitions:
-            # 1. Must be inside function
-            # 2. Must be in form self.something[.something ...] = thing
-            jd = d._definition
-            if d.parent().type == 'function':
-                self._log.debug('\n%s\n', _debug_print_tree(
-                    jd,
-                    func=lambda n: '{} | {} | {}'.format(str(n)[:10], type(n), n.type)
-                ))
+            # import pdb; pdb.set_trace();
+            d = d.parent().parent()
 
-            if (d.parent().type == 'function' and
-                    (isinstance(jd.children[0], jedi.parser.tree.Node) or
-                     isinstance(jd.children[0], jedi.evaluate.representation.InstanceElement)) and
-                    (isinstance(jd.children[0].children[0], jedi.parser.tree.Name) or
-                     isinstance(jd.children[0].children[0], jedi.evaluate.representation.InstanceName)) and
-                    (jd.children[0].children[0].value == 'self' or
-                     jd.children[0].children[0].value == 'cls')):
-                parent = d.parent()
-                # Stop when:
-                # - We find class or instance of class
-                # - We reach module, which means we failed
-                while parent.type != 'class' and parent.type != 'instance' and parent.type != 'module':
-                    self._log.debug(
-                        'Finding paren %s -> %s | %s',
-                        parent.type,
-                        parent,
-                        jd.children[0].children[0].value
-                    )
-                    parent = parent.parent()
+        module_path, is_internal = self._rel_module_path(d.module_path)
+        if module_path is None:
+            raise Exception('could not find name for module path %s' % module_path)
 
-                rest = jd.children[0].children[1:]
-                chain = []
-                for node in rest:
-                    chain.append(node.children[1].value)
-                if parent.type != 'module':
-                    name = '{}.{}'.format(parent.full_name, '.'.join(chain))
-                else:
-                    name = '{}.{}'.format(d.full_name, d.name)
+        dep = None
+        if not is_internal:
+            dep, err = self._module_to_dep(module_path)
+            if err is not None:
+                raise Exception(err)
 
-            else:
-                name = '{}.{}'.format(d.full_name, d.name)
-        else:
-            self._log.debug('Not-statement: %s | %s', d.name, d.module_path)
-            self._log.debug('\n%s\n', _debug_print_tree(
-                d,
-                func=lambda n: u'{} | {} | {}'.format(unicode(n)[:10], type(n), n.type)
-            ))
-            # This is needed for situations like these:
-            # class x(object):
-            #   def yyy(self): pass
-            #   def xxx(self, a):
-            #     if a == 1:
-            #       self.yyy(a) # <- A parameter.
-            if d.is_definition():
-                name = d.full_name
-            else:
-                name = '{}.{}'.format(d.full_name, d.name)
-
-        self._log.debug('Module path: %s | %s', d.module_path, d.in_builtin_module())
-
-        module_path = self._abs_module_path_to_relative_module_path(d.module_path)
-        parent_module = self._get_module_parent_from_module_path(module_path)
-
-        if parent_module == '':
-            return name
-
-        self._log.debug(
-            'Name: %s | %s ',
-            parent_module,
-            name,
-        )
-
-        return '{}.{}'.format(parent_module, name)
+        return '{}/{}.{}'.format(module_path, d.full_name, d.name), dep
 
     @staticmethod
     def _get_module_parent_from_module_path(module_path):
@@ -357,9 +358,13 @@ class FileGrapher(object):
         if d.Path not in self._defs:
             self._defs[d.Path] = d
         # Add self-reference.
-        self._add_ref(self.Ref(
+        self._add_ref(Ref(
+            DefRepo=d.Repo,
+            DefUnit=d.Unit,
+            DefUnitType=d.UnitType,
             DefPath=d.Path,
-            DefFile=os.path.abspath(d.File),
+            Unit=self._unit,
+            UnitType=self._unit_type,
             Def=True,
             File=d.File,
             Start=d.DefStart,
@@ -370,9 +375,13 @@ class FileGrapher(object):
     def _add_ref(self, r):
         """ Add a reference. """
         self._log.debug('Adding ref: %s', r.DefPath)
-        key = (r.DefPath, r.DefFile, r.File, r.Start, r.End)
+        key = (r.DefPath, r.File, r.Start, r.End)
         if key not in self._refs:
             self._refs[key] = r
+
+    def _add_doc(self, d):
+        """ Add a docstring. """
+        # TODO
 
     def _to_offset(self, line, column):
         """

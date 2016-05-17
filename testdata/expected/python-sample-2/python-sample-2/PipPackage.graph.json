@@ -10,7 +10,7 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "app"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
@@ -22,7 +22,7 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "app/app"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
@@ -34,7 +34,7 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "setup"
+      "Data": null
     }
   ],
   "Refs": [
@@ -61,10 +61,10 @@
       "End": 0
     },
     {
-      "DefRepo": "github.com/kennethreitz/requests",
+      "DefRepo": "?",
       "DefUnitType": "PipPackage",
       "DefUnit": "requests",
-      "DefPath": "requests",
+      "DefPath": "requests/__init__.py/requests.requests",
       "UnitType": "PipPackage",
       "Unit": "python-sample-2",
       "File": "app/app.py",
@@ -74,7 +74,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-2",
-      "DefPath": "setup/name",
+      "DefPath": "setup.py/setup.name",
       "UnitType": "PipPackage",
       "Unit": "python-sample-2",
       "File": "setup.py",
@@ -84,7 +84,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-2",
-      "DefPath": "setup/packages",
+      "DefPath": "setup.py/setup.packages",
       "UnitType": "PipPackage",
       "Unit": "python-sample-2",
       "File": "setup.py",
@@ -94,7 +94,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-2",
-      "DefPath": "setup/url",
+      "DefPath": "setup.py/setup.url",
       "UnitType": "PipPackage",
       "Unit": "python-sample-2",
       "File": "setup.py",
@@ -104,7 +104,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-2",
-      "DefPath": "setup/version",
+      "DefPath": "setup.py/setup.version",
       "UnitType": "PipPackage",
       "Unit": "python-sample-2",
       "File": "setup.py",
@@ -121,6 +121,39 @@
       "File": "setup.py",
       "Start": 0,
       "End": 0
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 23,
+      "End": 28
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 30,
+      "End": 35
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setuptools",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-2",
+      "File": "setup.py",
+      "Start": 5,
+      "End": 15
     }
   ]
 }

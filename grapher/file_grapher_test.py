@@ -1,7 +1,6 @@
 import unittest
 from grapher.file_grapher import FileGrapher
 
-
 class TestFileGrapher(unittest.TestCase):
     """
     Tests for FileGrapher.

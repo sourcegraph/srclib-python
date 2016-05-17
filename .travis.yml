@@ -1,22 +1,24 @@
-language: go
+language: python
 
-go: 1.6
+python: "3.5"
 
 before_install:
-  - mkdir -p $GOPATH/src/sourcegraph.com/sourcegraph
-  - mv $TRAVIS_BUILD_DIR $GOPATH/src/sourcegraph.com/sourcegraph/srclib-python
-  - export TRAVIS_BUILD_DIR=$GOPATH/src/sourcegraph.com/sourcegraph/srclib-python
+  - mkdir -p $HOME/src/sourcegraph.com/sourcegraph
+  - mv $TRAVIS_BUILD_DIR $HOME/src/sourcegraph.com/sourcegraph/srclib-python
+  - export TRAVIS_BUILD_DIR=$HOME/src/sourcegraph.com/sourcegraph/srclib-python
   - mkdir -p $HOME/bin
   - export PATH=$PATH:$HOME/bin
   - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph/
 
 install:
 # installing srclib
+  - export GOPATH=$HOME
   - go get -u -v sourcegraph.com/sourcegraph/srclib/cmd/srclib
+  - export PATH=$PATH:$GOPATH/bin
 # installing toolchain
   - ln -s $TRAVIS_BUILD_DIR $HOME/.srclib/sourcegraph.com/sourcegraph/srclib-python
-  - make
+  - make install
 
 # TODO(sqs): add `go test`
 script:
-  - srclib test 
+  - make test

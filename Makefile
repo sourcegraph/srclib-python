@@ -1,26 +1,27 @@
 ifeq ($(OS),Windows_NT)
-	EXE = .bin/srclib-python.exe
-	PIP = cmd /C .env\\Scripts\\pip.exe --isolated --disable-pip-version-check
+       PIP = cmd /C .env\\Scripts\\pip.exe --isolated --disable-pip-version-check
 else
-	EXE = .bin/srclib-python
-	PIP = .env/bin/pip
+       PIP = .env/bin/pip
 endif
 
-.PHONY: install govendor
+.PHONY: install
 
-default: govendor .env install
+default: .env install test
 
 .env:
-	bash ./install_env.sh
+	virtualenv -p python3.5 .env
 
-$(EXE): $(shell /usr/bin/find . -type f -name '*.go')
-	@mkdir -p .bin
-	go build -o $(EXE)
+.env/bin/mypy:
+	$(PIP) install mypy-lang
 
-install: $(EXE)
-	$(PIP) install -r requirements.txt --upgrade
+install-force: .env
 	$(PIP) install . --upgrade
+	$(PIP) install -r requirements.txt --upgrade
 
-govendor:
-	go get github.com/kardianos/govendor
-	govendor sync
+install: .env
+	$(PIP) install .
+	$(PIP) install -r requirements.txt
+
+test:
+	.env/bin/mypy --silent-imports grapher
+	srclib test

@@ -5,6 +5,7 @@ setup(
     version='0.0',
     url='http://sourcegraph.com/sourcegraph/srclib-python',
     packages=['grapher'],
+    py_modules=['srclib-python'],
     author='Beyang Liu',
     description='Generate the graph for a Python code rooted at a directory'
     'Help: graph.py -h',

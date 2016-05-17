@@ -10,19 +10,19 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "mod0"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
-      "Path": "mod0/foo",
+      "Path": "mod0.py/mod0.foo.foo",
       "Name": "foo",
-      "Kind": "func",
+      "Kind": "function",
       "File": "mod0.py",
       "DefStart": 4,
       "DefEnd": 7,
       "Exported": true,
-      "TreePath": "mod0/foo"
+      "Data": null
     },
     {
       "UnitType": "PipPackage",
@@ -34,14 +34,14 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "TreePath": "setup"
+      "Data": null
     }
   ],
   "Refs": [
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
-      "DefPath": "mod0/foo",
+      "DefPath": "mod0.py/mod0.foo.foo",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "Def": true,
@@ -63,7 +63,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
-      "DefPath": "setup/install_requires",
+      "DefPath": "setup.py/setup.install_requires",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "File": "setup.py",
@@ -73,7 +73,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
-      "DefPath": "setup/name",
+      "DefPath": "setup.py/setup.name",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "File": "setup.py",
@@ -83,7 +83,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
-      "DefPath": "setup/py_modules",
+      "DefPath": "setup.py/setup.py_modules",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "File": "setup.py",
@@ -93,7 +93,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
-      "DefPath": "setup/version",
+      "DefPath": "setup.py/setup.version",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "File": "setup.py",
@@ -110,6 +110,39 @@
       "File": "setup.py",
       "Start": 0,
       "End": 0
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 23,
+      "End": 28
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 30,
+      "End": 35
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setuptools",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 5,
+      "End": 15
     }
   ]
 }
