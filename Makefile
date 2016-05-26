@@ -22,6 +22,6 @@ install: .env
 	$(PIP) install .
 	$(PIP) install -r requirements.txt
 
-test:
+test: .env .env/bin/mypy
 	.env/bin/mypy --silent-imports grapher
 	srclib test
