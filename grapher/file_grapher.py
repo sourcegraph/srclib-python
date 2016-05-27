@@ -89,7 +89,7 @@ class FileGrapher(object):
         # Defs.
         for jedi_def in jedi_defs:
             self._log.debug(
-                'Processing def: %s | %s | %s',
+                'processing def: %s | %s | %s',
                 jedi_def.desc_with_module,
                 jedi_def.name,
                 jedi_def.type,
@@ -101,7 +101,7 @@ class FileGrapher(object):
                     self._add_doc(doc)
             except Exception as e:
                 self._log.error(
-                    u'Failed to process def `%s`: %s',
+                    u'failed to process def `%s`: %s',
                     jedi_def.name,
                     e,
                 )
@@ -110,7 +110,7 @@ class FileGrapher(object):
         # Refs.
         for jedi_ref in jedi_refs:
             self._log.debug(
-                'Processing ref: %s | %s | %s',
+                'processing ref: %s | %s | %s',
                 jedi_ref.desc_with_module,
                 jedi_ref.name,
                 jedi_ref.type,
@@ -125,7 +125,7 @@ class FileGrapher(object):
                 sg_def = self._jedi_def_to_def_key(ref_def)
             except Exception as e:
                 self._log.error(
-                    u'Failed to process def to def-key `%s`: %s',
+                    u'failed to process def to def-key `%s`: %s',
                     ref_def.name,
                     e,
                 )
@@ -169,7 +169,7 @@ class FileGrapher(object):
             ref_def = ref_defs[0]
         else:
             self._log.debug(
-                'Ref def search (precondition failed) | %s | %s | %s',
+                'ref def search (precondition failed) | %s | %s | %s',
                 ref_def.is_definition(),
                 ref_def.type,
                 ref_def.name
@@ -177,7 +177,7 @@ class FileGrapher(object):
 
         if ref_def.type == "import":
             # We didn't find anything.
-            self._log.debug('Ref def not found')
+            self._log.debug('ref def not found')
             return None
 
         return ref_def
@@ -355,7 +355,7 @@ class FileGrapher(object):
 
     def _add_def(self, d):
         """ Add a definition, also adds a self-reference. """
-        self._log.debug('Adding def: %s | %s | %s', d.Name, d.Path, d.Kind)
+        self._log.debug('adding def: %s | %s | %s', d.Name, d.Path, d.Kind)
         if d.Path not in self._defs:
             self._defs[d.Path] = d
         # Add self-reference.
@@ -375,7 +375,7 @@ class FileGrapher(object):
 
     def _add_ref(self, r):
         """ Add a reference. """
-        self._log.debug('Adding ref: %s', r.DefPath)
+        self._log.debug('adding ref: %s', r.DefPath)
         key = (r.DefPath, r.File, r.Start, r.End)
         if key not in self._refs:
             self._refs[key] = r
