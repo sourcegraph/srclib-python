@@ -1,7 +1,9 @@
 ifeq ($(OS),Windows_NT)
        PIP = cmd /C .env\\Scripts\\pip.exe --isolated --disable-pip-version-check
+       ENV = virtualenv
 else
        PIP = .env/bin/pip
+       ENV = virtualenv -p python3.5
 endif
 
 .PHONY: install test check
@@ -9,7 +11,7 @@ endif
 default: .env install test
 
 .env:
-	virtualenv -p python3.5 .env
+	$(ENV) .env
 
 .env/bin/mypy:
 	$(PIP) install mypy-lang
