@@ -4,7 +4,7 @@ else
        PIP = .env/bin/pip
 endif
 
-.PHONY: install
+.PHONY: install test check
 
 default: .env install test
 
@@ -22,7 +22,9 @@ install: .env
 	$(PIP) install .
 	$(PIP) install -r requirements.txt
 
-test: .env .env/bin/mypy
+test: .env check
 	go test $(shell go list ./... | grep -v /vendor/)
-	.env/bin/mypy --silent-imports grapher
 	srclib test
+
+check: .env/bin/mypy
+	.env/bin/mypy --silent-imports grapher
