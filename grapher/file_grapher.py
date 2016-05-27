@@ -249,10 +249,10 @@ class FileGrapher(object):
             if p == '':
                 continue
             if module_path.startswith(p):
-                return os.path.relpath(module_path, p), False # external
+                return self._path(os.path.relpath(module_path, p)), False # external
 
         if module_path.startswith(self._abs_base_dir):
-            return os.path.relpath(module_path, self._abs_base_dir), True # internal
+            return self._path(os.path.relpath(module_path, self._abs_base_dir)), True # internal
 
         return None, False
 
@@ -395,3 +395,7 @@ class FileGrapher(object):
                 len(self._cumulative_off) - 1)
             )
         return self._cumulative_off[line] + column
+
+    def _path(self, p):
+        """ Transform p to Unix-style by replacing backslashes """
+        return p.replace('\\', '/')
