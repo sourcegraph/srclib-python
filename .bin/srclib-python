@@ -1,13 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.5
 
 import sys
 import os
 import os.path
-from subprocess import call
+import subprocess
 
 rootdir = os.path.dirname(os.path.dirname(__file__))
 python = os.path.join(rootdir, ".env", "bin", "python3.5")
 
 args = [python, "-m", "srclib-python"]
 args.extend(sys.argv[1:])
-call(args)
+subprocess.run(args, check=True)
