@@ -124,7 +124,7 @@ def scan(diry: str) -> None:
     # special case for standard library
     stdunit, isStdlib = stdlibUnit(diry)
     if isStdlib:
-        json.dump([stdunit], sys.stdout, sort_keys=True)
+        json.dump([stdunit.todict()], sys.stdout, sort_keys=True)
         return
 
     pkgs = findpkgs(diry)

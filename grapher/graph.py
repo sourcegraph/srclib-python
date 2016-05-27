@@ -12,6 +12,9 @@ from .file_grapher import FileGrapher, FileGrapherException
 
 
 def getModulePathPrefixToDep(u: Unit) -> Dict[str, UnitKey]:
+    if not u.Data:
+        return {}
+
     prefixToDep = {}
     for req in u.Data:
         if req['repo_url']:
