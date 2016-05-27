@@ -3,7 +3,7 @@ import os
 import sys
 
 from grapher.scan import scan
-from grapher.graph2 import graph
+from grapher.graph import graph
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="")
