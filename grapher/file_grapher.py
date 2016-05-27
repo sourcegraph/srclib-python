@@ -5,6 +5,7 @@ import re
 import jedi
 
 from .structures import *
+from .util import normalize
 
 def _debug_print_tree(node, indent=0, func=repr):
     """ Print visual representation of Jedi AST. """
@@ -63,7 +64,7 @@ class FileGrapher(object):
             Path=module,
             Kind='module',
             Name=module.split('/')[-1],
-            File=self._file,
+            File=normalize(self._file),
             DefStart=0,
             DefEnd=0,
             Exported=True,
@@ -140,7 +141,7 @@ class FileGrapher(object):
                 Unit=self._unit,
                 UnitType=self._unit_type,
                 Def=False,
-                File=self._file,
+                File=normalize(self._file),
                 Start=ref_start,
                 End=ref_end,
                 ToBuiltin=ref_def.in_builtin_module(),
@@ -208,7 +209,7 @@ class FileGrapher(object):
             Path=path,
             Kind=d.type,
             Name=d.name,
-            File=self._file,
+            File=normalize(self._file),
             DefStart=start,
             DefEnd=end,
             Exported=self._is_exported(d.name),
@@ -249,10 +250,10 @@ class FileGrapher(object):
             if p == '':
                 continue
             if module_path.startswith(p):
-                return self._path(os.path.relpath(module_path, p)), False # external
+                return normalize(os.path.relpath(module_path, p)), False # external
 
         if module_path.startswith(self._abs_base_dir):
-            return self._path(os.path.relpath(module_path, self._abs_base_dir)), True # internal
+            return normalize(os.path.relpath(module_path, self._abs_base_dir)), True # internal
 
         return None, False
 
@@ -395,7 +396,3 @@ class FileGrapher(object):
                 len(self._cumulative_off) - 1)
             )
         return self._cumulative_off[line] + column
-
-    def _path(self, p):
-        """ Transform p to Unix-style by replacing backslashes """
-        return p.replace('\\', '/')

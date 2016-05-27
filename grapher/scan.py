@@ -8,6 +8,7 @@ import pydep.req
 
 from typing import Tuple, Dict
 from .structures import *
+from .util import normalize
 
 
 def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
@@ -57,11 +58,12 @@ def get_source_files(diry: str) -> List[str]:
     files = [] # type: List[str]
     for path, _, filenames in os.walk(diry):
         rel_dir = os.path.relpath(path, diry)
-        files.extend([os.path.normpath(os.path.join(rel_dir, f)) for f in filenames if os.path.splitext(f)[1] == '.py'])
+        files.extend([normalize(os.path.normpath(os.path.join(rel_dir, f))) for f in filenames if os.path.splitext(f)[1] == '.py'])
     if diry != "" and diry != ".":
         for i in range(len(files)):
             if files[i].startswith('./'):
                 files[i] = files[i][2:]
+            files[i] = normalize(files[i])
     return files
 
 def source_files_for_unit(unit_dir: str) -> List[str]:
@@ -78,11 +80,11 @@ def source_files_for_unit(unit_dir: str) -> List[str]:
 
     files = []
     for module in modules:
-        files.append('{}.py'.format(module))
+        files.append('{}.py'.format(normalize(module)))
     for pkg in packages:
         pkg_files = get_source_files(pkg.replace('.', '/'))
         for pkg_file in pkg_files:
-            files.append(os.path.join(pkg.replace('.', '/'), pkg_file))
+            files.append(normalize(os.path.join(pkg.replace('.', '/'), pkg_file)))
     files.append('setup.py')
     files = list(set(files))
     return files
