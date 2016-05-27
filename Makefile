@@ -23,5 +23,6 @@ install: .env
 	$(PIP) install -r requirements.txt
 
 test: .env .env/bin/mypy
+	go test $(shell go list ./... | grep -v /vendor/)
 	.env/bin/mypy --silent-imports grapher
 	srclib test
