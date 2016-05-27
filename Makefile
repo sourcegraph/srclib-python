@@ -6,13 +6,17 @@ endif
 
 .PHONY: install test check
 
-default: .env install test
+default: .env install govendor test
 
 .env:
 	virtualenv -p python3.5 .env
 
 .env/bin/mypy:
 	$(PIP) install mypy-lang
+
+govendor:
+	go get github.com/kardianos/govendor
+	govendor sync
 
 install-force: .env
 	$(PIP) install . --upgrade
