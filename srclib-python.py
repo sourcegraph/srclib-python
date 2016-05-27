@@ -12,7 +12,7 @@ def main() -> None:
     scanparser = subparsers.add_parser("scan", help="")
     depresolveparser = subparsers.add_parser("depresolve", help="")
     graphparser = subparsers.add_parser("graph", help="")
-    graphparser.add_argument('--verbose', help='verbose', action='store_true', default=False)
+    graphparser.add_argument('--verbose', help='verbose', action='store_true', default=True)
     graphparser.add_argument('--debug', help='debug', action='store_true', default=False)
     graphparser.add_argument('--quiet', help='quiet', action='store_true', default=False)
     graphparser.add_argument('--unit-file', help="debugging purposes", default=None)
