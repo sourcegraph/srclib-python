@@ -286,7 +286,7 @@ class FileGrapher(object):
 
         module_path, is_internal = self._rel_module_path(d.module_path)
         if module_path is None:
-            raise Exception('could not find name for module path %s' % module_path)
+            raise Exception('could not find name for module path %s' % d.module_path)
 
         dep = None
         if not is_internal:
