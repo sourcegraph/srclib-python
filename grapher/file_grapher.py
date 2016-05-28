@@ -21,8 +21,6 @@ def _debug_print_tree(node, indent=0, func=repr):
 class FileGrapherException(Exception):
     """ Something went wrong while graphing the file. """
 
-REPO_STDLIB = "github.com/python/cpython"
-
 class FileGrapher(object):
     """
     FileGrapher is used to extract definitions and references from single Python source file.
@@ -264,16 +262,24 @@ class FileGrapher(object):
                 return dep, None
         # Fall back to heuristics
         if m.startswith('setuptools'):
-            return UnitKey(Repo=REPO_STDLIB, Type=UNIT_PIP, Name='setuptools', CommitID='', Version=''), None
+            return UnitKey(Repo=STDLIB_UNIT_KEY.Repo,
+                           Type=STDLIB_UNIT_KEY.Type,
+                           Name=STDLIB_UNIT_KEY.Name,
+                           CommitID=STDLIB_UNIT_KEY.CommitID,
+                           Version=STDLIB_UNIT_KEY.Version), None
         for stdlibpath in self._stdlibpaths:
             if os.path.lexists(os.path.join(stdlibpath, m)):
                 # Standard lib module
-                return UnitKey(Repo=REPO_STDLIB, Type=UNIT_PIP, Name=m, CommitID='', Version=''), None
+                return UnitKey(Repo=STDLIB_UNIT_KEY.Repo,
+                               Type=STDLIB_UNIT_KEY.Type,
+                               Name=STDLIB_UNIT_KEY.Name,
+                               CommitID=STDLIB_UNIT_KEY.CommitID,
+                               Version=STDLIB_UNIT_KEY.Version), None
         return None, ('could not find dep module for module %s, candidates were %s' % (m, repr(self._modulePathPrefixToDep.keys())))
 
     def _full_name_and_dep(self, d):
         if d.in_builtin_module():
-            return d.full_name, UnitKey(Repo=REPO_STDLIB, Type=UNIT_PIP, Name="__builtin__", CommitID="", Version="")
+            return d.full_name, UnitKey(Repo=STDLIB_UNIT_KEY.Repo, Type=UNIT_PIP, Name="__builtin__", CommitID="", Version="")
 
         if d.module_path is None:
             raise Exception('no module path for definition %s' % repr(d))
