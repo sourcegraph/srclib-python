@@ -3,6 +3,7 @@ language: python
 python: "3.5"
 
 before_install:
+  - pip install setuptools
   - mkdir -p $HOME/src/sourcegraph.com/sourcegraph
   - mv $TRAVIS_BUILD_DIR $HOME/src/sourcegraph.com/sourcegraph/srclib-python
   - export TRAVIS_BUILD_DIR=$HOME/src/sourcegraph.com/sourcegraph/srclib-python
