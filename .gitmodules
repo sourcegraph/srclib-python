@@ -16,3 +16,6 @@
 [submodule "testdata/case/python-no-url"]
 	path = testdata/case/python-no-url
 	url = https://github.com/sgtest/python-no-url.git
+[submodule "testdata/case/python-stdlib-refs"]
+	path = testdata/case/python-stdlib-refs
+	url = https://github.com/sgtest/python-stdlib-refs
