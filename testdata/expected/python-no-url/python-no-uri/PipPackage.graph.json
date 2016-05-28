@@ -114,7 +114,7 @@
     {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "setuptools",
+      "DefUnit": "Python",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
@@ -125,7 +125,7 @@
     {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "setuptools",
+      "DefUnit": "Python",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
@@ -136,7 +136,7 @@
     {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "setuptools",
+      "DefUnit": "Python",
       "DefPath": "setuptools/__init__.py/setuptools.setuptools",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
