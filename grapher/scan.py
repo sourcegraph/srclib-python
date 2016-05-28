@@ -24,10 +24,11 @@ def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
     )]
 
     return Unit(
-        Name = 'Python',
-        Type = UNIT_PIP,
-        Repo = 'github.com/python/cpython',
-        CommitID = '',
+        Name = STDLIB_UNIT_KEY.Name,
+        Type = STDLIB_UNIT_KEY.Type,
+        Repo = STDLIB_UNIT_KEY.Repo,
+        CommitID = STDLIB_UNIT_KEY.CommitID,
+        Version = STDLIB_UNIT_KEY.Version,
         Files = sorted(files),
         Dir = 'Lib',
         Dependencies = [],
