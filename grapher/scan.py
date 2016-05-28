@@ -19,7 +19,9 @@ def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
         return None, False
 
     # HACK(performance): filter out test files in standard lib
-    files = [f for f in get_source_files(diry) if (('/test/' not in f) and ('_test' not in f) and ('test_' not in f))]
+    files = [f for f in get_source_files(diry) if (
+        (f.startswith('Lib/')) and ('/test/' not in f) and ('_test' not in f) and ('test_' not in f)
+    )]
 
     return Unit(
         Name = 'Python',
