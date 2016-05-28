@@ -1304,5 +1304,23 @@
       "Start": 140,
       "End": 145
     }
+  ],
+  "Docs": [
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.Class0.Class0",
+      "Format": "plaintext",
+      "Data": "Class0 docstring",
+      "File": "pkg0/m0.py"
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.Class0.var0",
+      "Format": "plaintext",
+      "Data": "Class0 docstring",
+      "File": "pkg0/m0.py"
+    }
   ]
 }

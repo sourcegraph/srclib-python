@@ -42,6 +42,7 @@ class FileGrapher(object):
         self._source = None
         self._defs = {}
         self._refs = {}
+        self._docs = {}
         self._load()
 
         self._stdlibpaths = []
@@ -84,7 +85,7 @@ class FileGrapher(object):
             else:
                 jedi_refs.append(jedi_name)
 
-        # Defs.
+        # Defs and docs.
         for jedi_def in jedi_defs:
             self._log.debug(
                 'processing def: %s | %s | %s',
@@ -95,7 +96,7 @@ class FileGrapher(object):
             try:
                 def_, doc = self._jedi_def_to_def(jedi_def)
                 self._add_def(def_)
-                if doc is not None:
+                if doc is not None and doc.Data is not None and len(doc.Data) > 0:
                     self._add_doc(doc)
             except Exception as e:
                 self._log.error(
@@ -145,7 +146,7 @@ class FileGrapher(object):
                 ToBuiltin=ref_def.in_builtin_module(),
             ))
 
-        return self._defs, self._refs
+        return self._defs, self._refs, self._docs
 
     def _find_def_for_ref(self, jedi_ref, max_depth=100):
         """ Attempt to lookup definition for the reference. If lookup fails return None. """
@@ -388,7 +389,10 @@ class FileGrapher(object):
 
     def _add_doc(self, d):
         """ Add a docstring. """
-        # TODO
+        key = DefKey(Repo="", Unit=d.Unit, UnitType=d.UnitType, Path=d.Path)
+        if key in self._docs:
+            raise Exception("Attempt to add duplicate doc for {}", key)
+        self._docs[key] = d
 
     def _to_offset(self, line, column):
         """
