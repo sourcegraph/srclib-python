@@ -61,12 +61,13 @@ def graphunit(logger, args, u: Unit) -> None:
 
     defs = {} # type: Dict[str, Def]
     refs = {} # type: Dict[str, Ref]
+    docs = {} # type: Dict[str, Doc]
     total = len(u.Files)
     for i, f in enumerate(u.Files, start=1):
         logger.info('processing file: {} ({}/{})'.format(f, i, total))
         try:
             fg = FileGrapher(u.Dir, f, u.Name, u.Type, prefixToDep, sys.path, logger)
-            d, r = fg.graph()
+            defs_, refs_, docs_ = fg.graph()
         except FileGrapherException as e:
             logger.error('failed to graph {}: {}'.format(f, str(e)))
             continue
@@ -74,10 +75,12 @@ def graphunit(logger, args, u: Unit) -> None:
             logger.error('failed to graph {} due to unanticipated error: {}'.format(f, str(e)))
         # Note: This uses last version of def/ref, but since file order is random anyway,
         #       it should be OK.
-        defs.update(d)
-        refs.update(r)
+        defs.update(defs_)
+        refs.update(refs_)
+        docs.update(docs_)
 
     json.dump({
-        'Defs': [d._asdict() for d in defs.values()], # type: ignore (NamedTuple._asdict)
-        'Refs': [r._asdict() for r in refs.values()], # type: ignore (NamedTuple._asdict)
+        'Defs': [x._asdict() for x in defs.values()], # type: ignore (NamedTuple._asdict)
+        'Refs': [x._asdict() for x in refs.values()], # type: ignore (NamedTuple._asdict)
+        'Docs': [x._asdict() for x in docs.values()], # type: ignore (NamedTuple._asdict)
     }, sys.stdout, sort_keys=True)

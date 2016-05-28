@@ -90,7 +90,7 @@ Doc = NamedTuple('Doc', [
     ('UnitType', str),
     ('Path', str),
     ('Format', str),
-    ('Data', Any),
+    ('Data', str),
     ('File', str),
 ])
 
