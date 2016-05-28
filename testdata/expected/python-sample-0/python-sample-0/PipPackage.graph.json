@@ -422,7 +422,7 @@
     {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "os.py",
+      "DefUnit": "Python",
       "DefPath": "os.py/os.os",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -1252,7 +1252,7 @@
     {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "setuptools",
+      "DefUnit": "Python",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -1263,7 +1263,7 @@
     {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "setuptools",
+      "DefUnit": "Python",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -1274,7 +1274,7 @@
     {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
-      "DefUnit": "setuptools",
+      "DefUnit": "Python",
       "DefPath": "setuptools/__init__.py/setuptools.setuptools",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
