@@ -96,3 +96,10 @@ Doc = NamedTuple('Doc', [
 
 UNIT_PIP = "PipPackage"
 REPO_UNRESOLVED = "?"
+STDLIB_UNIT_KEY = UnitKey(
+    Name = 'Python',
+    Type = UNIT_PIP,
+    Repo = 'github.com/python/cpython',
+    CommitID = '',
+    Version='',
+)
