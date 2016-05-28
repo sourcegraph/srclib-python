@@ -64,12 +64,14 @@ def graphunit(logger, args, u: Unit) -> None:
     total = len(u.Files)
     for i, f in enumerate(u.Files, start=1):
         logger.info('processing file: {} ({}/{})'.format(f, i, total))
-        fg = FileGrapher(u.Dir, f, u.Name, u.Type, prefixToDep, sys.path, logger)
         try:
+            fg = FileGrapher(u.Dir, f, u.Name, u.Type, prefixToDep, sys.path, logger)
             d, r = fg.graph()
         except FileGrapherException as e:
             logger.error('failed to graph {}: {}'.format(f, str(e)))
             continue
+        except Exception as e:
+            logger.error('failed to graph {} due to unanticipated error: {}'.format(f, str(e)))
         # Note: This uses last version of def/ref, but since file order is random anyway,
         #       it should be OK.
         defs.update(d)
