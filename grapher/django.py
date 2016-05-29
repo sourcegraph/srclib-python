@@ -29,17 +29,20 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
             unit.Files[i] = os.path.join(unit.Dir, unit.Files[i])
 
         reqs = [] # type: List[Dict]
+        reqfiles = [] # type: List[str]
         if global_requirements is not None:
             reqs.extend(global_requirements)
+            reqfiles.append(os.path.join(diry, "requirements.txt"))
         reqs_, err = pydep.req.requirements_from_requirements_txt(unit.Dir)
         if err is None:
             reqs.extend([x.to_dict() for x in reqs_])
+            reqfiles.append(os.path.join(diry, "requirements.txt"))
 
         deps = [] # type: List[UnitKey]
         for r in reqs:
             deps.append(pkgToUnitKey(r))
         unit.Dependencies = deps
-        unit.Data = reqs
+        unit.Data = Data(Reqs=reqs, ReqFiles=reqfiles)
 
     return units
 

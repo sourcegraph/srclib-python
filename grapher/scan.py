@@ -96,27 +96,27 @@ def pkgToUnit(pkg: Dict) -> Unit:
         CommitID = "",
         Files = sorted(files),
         Dir = pkgdir,
-        Dependencies = deps,      # don't resolve dependencies
-        Data = pkgreqs,
+        Dependencies = deps,      # unresolved dependencies
+        Data = Data(
+            Reqs = pkgreqs,
+            ReqFiles = [os.path.join(pkgdir, "requirements.txt")],
+        )
     )
-
-def reqToUnit(req):
-    pass
 
 def scan(diry: str) -> None:
     # special case for standard library
     stdunit, isStdlib = stdlibUnit(diry)
     if isStdlib:
-        json.dump([stdunit.todict()], sys.stdout, sort_keys=True)
+        json.dump([toJSONable(stdunit)], sys.stdout, sort_keys=True)
         return
 
-    units = [] # type: List[Dict]
+    units = [] # type: List[Unit]
     for pkg in find_pip_pkgs(diry):
-        units.append(pkgToUnit(pkg).todict())
+        units.append(pkgToUnit(pkg))
     for proj in django.find_units("."):
-        units.append(proj.todict())
+        units.append(proj)
 
-    json.dump(units, sys.stdout, sort_keys=True)
+    json.dump(toJSONable(units), sys.stdout, sort_keys=True)
 
 
 #

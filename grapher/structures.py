@@ -2,25 +2,31 @@ import json
 import os
 
 from copy import copy
-from typing import List, Dict, Tuple, NamedTuple, Any
+from typing import List, Dict, Tuple, NamedTuple, Union, Any
+
+# TODO(beyang): START HERE: fix JSON marshaling / unmarshaling issue
+
+class Data:
+    def __init__(self,
+                 Reqs: List[Dict[str, Any]] = [],
+                 ReqFiles: List[str] = [],
+    ) -> None:
+        self.Reqs = Reqs # type: List[Dict]
+        self.ReqFiles = ReqFiles # type: List[str]
 
 class UnitKey:
-    def __init__(
-            self,
-            Name: str,
-            Type: str,
-            Repo: str,
-            CommitID: str,
-            Version: str,
+    def __init__(self,
+                 Name: str,
+                 Type: str,
+                 Repo: str = "",
+                 CommitID: str = "",
+                 Version: str = "",
     ) -> None:
         self.Name = Name
         self.Type = Type
         self.Repo = Repo
         self.CommitID = CommitID
         self.Version = Version
-
-    # def __repr__(self):
-    #     return json.dumps(self.__dict__)
 
 class Unit:
     def __init__(
@@ -33,7 +39,7 @@ class Unit:
             Repo: str = "",
             CommitID: str = "",
             Version: str = "",
-            Data: List[Any] = None, # List of raw requirements
+            Data: Data = None, # List of raw requirements
     ) -> None:
         self.Name = Name
         self.Type = Type
@@ -44,12 +50,6 @@ class Unit:
         self.Dir = Dir
         self.Dependencies = Dependencies if Dependencies is not None else []
         self.Data = Data
-
-    def todict(self):
-        d = copy(self.__dict__)
-        for i in range(len(d['Dependencies'])):
-            d['Dependencies'][i] = copy(d['Dependencies'][i].__dict__)
-        return d
 
 DefKey = NamedTuple('DefKey', [
     ('Repo', str),
@@ -130,3 +130,72 @@ def pkgToUnitKey(pkg: Dict) -> UnitKey:
         Version = "",
         CommitID = "",
     )
+
+def fromJSONable(j: Any, dst_t: Union[type, List, Dict]) -> Any:
+    if j is None:
+        return None
+    elif str(dst_t) == 'typing.Any':
+        return copy(j)
+    elif str(dst_t).startswith('typing.List['):
+        if type(j) is not list:
+            raise Exception('attempting to unmarshal non-list {} into list'.format(j))
+        return [fromJSONable(e, dst_t.__parameters__[0]) for e in j] # type: ignore (List.__parameters_ exists)
+    elif dst_t is list:
+        if type(j) is not list:
+            raise Exception('attempting to unmarshal non-list into list')
+        return copy(j)
+    elif str(dst_t).startswith('typing.Dict['):
+        if type(j) is not dict:
+            raise Exception('attempting to unmarshal non-dict into dict')
+        if dst_t.__parameters__[0] is not str: # type: ignore (Dict.__parameters_ exists)
+            raise Exception('attempting to unmarshal into a dict with non-str keys')
+        value_t = dst_t.__parameters__[1] # type: ignore (Dict.__parameters_ exists)
+        return {k: fromJSONable(v, value_t) for k, v in j.items()}
+    elif dst_t is dict:
+        if type(j) is not dict:
+            raise Exception('attempting to unmarshal non-dict into dict')
+        return copy(j)
+    elif dst_t is str:
+        if type(j) is not str:
+            raise Exception('attempting to umarshal non-str into str')
+        return j
+    elif dst_t is int or dst_t is float:
+        if type(j) is not int and type(j) is not float:
+            raise Exception('attempting to unmarshal non-number into number')
+        return j
+    else: # dst_t is a Class
+        if not isinstance(dst_t, type):
+            raise Exception("couldn't find a constructor for type {}".format(dst_t))
+        if not isinstance(j, dict):
+            raise Exception("couldn't recognize JSON j (type {}) as serializable into type {}".format(type(j), dst_t))
+        params = copy(dst_t.__init__.__annotations__) # type: ignore (SomeClass.__init__ exists)
+        if 'return' in params:
+            del params['return']
+        jk = set([e for e in j.keys()])
+        pk = set([e for e in params.keys()])
+        if not jk.issubset(pk):
+            import pdb; pdb.set_trace()
+            raise Exception('attempting to unmarshal from JSON object into class {}: {} is not a subset of {}'.format(dst_t, jk, pk))
+        d = {k: fromJSONable(v, params[k]) for k, v in j.items()}
+        return dst_t(**d)
+
+def toJSONable(c: Any) -> Union[Dict, List, str, int]:
+    if isinstance(c, int):
+        return c
+    elif isinstance(c, str):
+        return c
+    elif isinstance(c, list):
+        return [toJSONable(e) for e in c]
+    elif c is None:
+        return c
+    elif isinstance(c, dict):
+        for k in c:
+            if not isinstance(k, str):
+                raise Exception("cannot serialize dictionary with key {} (type wasn't str)".format(k))
+        return {k: toJSONable(v) for k, v in c.items()}
+    else:
+        fields = [f for f in dir(c) if not f.startswith('_')]
+        return {f: toJSONable(c.__getattribute__(f)) for f in fields if not ismethod(c.__getattribute__(f))}
+
+def ismethod(m: Any) -> bool:
+    return hasattr(m, '__call__') and hasattr(m, '__self__')
