@@ -1,7 +1,8 @@
 import json
+import os
 
 from copy import copy
-from typing import List, NamedTuple, Any
+from typing import List, Dict, Tuple, NamedTuple, Any
 
 class UnitKey:
     def __init__(
@@ -95,6 +96,7 @@ Doc = NamedTuple('Doc', [
 ])
 
 UNIT_PIP = "PipPackage"
+UNIT_DJANGO = "DjangoApp"
 REPO_UNRESOLVED = "?"
 STDLIB_UNIT_KEY = UnitKey(
     Name = 'Python',
@@ -103,3 +105,28 @@ STDLIB_UNIT_KEY = UnitKey(
     CommitID = '',
     Version='',
 )
+
+"""
+Helper functions
+"""
+
+def get_source_files(diry: str) -> List[str]:
+    """ Get list of all Python source files in a directory. """
+    files = [] # type: List[str]
+    for path, _, filenames in os.walk(diry):
+        rel_dir = os.path.relpath(path, diry)
+        files.extend([os.path.normpath(os.path.join(rel_dir, f)) for f in filenames if os.path.splitext(f)[1] == '.py'])
+    if diry != "" and diry != ".":
+        for i in range(len(files)):
+            if files[i].startswith('./'):
+                files[i] = files[i][2:]
+    return files
+
+def pkgToUnitKey(pkg: Dict) -> UnitKey:
+    return UnitKey(
+        Name = pkg['project_name'],
+        Type = UNIT_PIP,
+        Repo = REPO_UNRESOLVED,
+        Version = "",
+        CommitID = "",
+    )

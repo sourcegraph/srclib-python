@@ -4,7 +4,6 @@ import logging
 import pip
 import os.path
 
-from typing import Dict
 from subprocess import call
 
 from .structures import *
