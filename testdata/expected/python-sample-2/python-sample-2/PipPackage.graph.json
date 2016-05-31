@@ -10,7 +10,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "app",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -22,7 +28,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "app",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -34,7 +46,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "setup",
+        "Separator": "",
+        "Type": ""
+      }
     }
   ],
   "Refs": [

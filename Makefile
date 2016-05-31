@@ -11,7 +11,7 @@ endif
 
 .PHONY: install test check
 
-default: .env install govendor test
+default: .env install test
 
 .env:
 	$(ENV) .env
@@ -22,10 +22,6 @@ endif
 .env/bin/mypy:
 	$(PIPCMD) install mypy-lang
 
-govendor:
-	go get github.com/kardianos/govendor
-	govendor sync
-
 install-force: .env
 	$(PIPCMD) install . --upgrade
 	$(COPYPIPCMD) install -r requirements.txt --upgrade
@@ -35,7 +31,6 @@ install: .env
 	$(COPYPIPCMD) install -r requirements.txt
 
 test: .env check
-	go test $(shell go list ./... | grep -v /vendor/)
 	srclib test
 
 check: .env/bin/mypy

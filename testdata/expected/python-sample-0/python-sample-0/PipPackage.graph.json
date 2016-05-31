@@ -10,7 +10,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "pkg0",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -22,7 +28,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "m0",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -34,7 +46,13 @@
       "DefStart": 60,
       "DefEnd": 66,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "class",
+        "Kind": "class",
+        "Name": "Class0",
+        "Separator": " ",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -46,7 +64,13 @@
       "DefStart": 124,
       "DefEnd": 129,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "meth0",
+        "Separator": "",
+        "Type": "(self)"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -58,7 +82,13 @@
       "DefStart": 107,
       "DefEnd": 111,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var0",
+        "Separator": " ",
+        "Type": "= 0"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -70,7 +100,13 @@
       "DefStart": 380,
       "DefEnd": 388,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "class",
+        "Kind": "class",
+        "Name": "Class0_0",
+        "Separator": " ",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -82,7 +118,13 @@
       "DefStart": 406,
       "DefEnd": 414,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "__init__",
+        "Separator": "",
+        "Type": "(self, arg0, arg1, args, kwargs)"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -94,7 +136,13 @@
       "DefStart": 421,
       "DefEnd": 425,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "param",
+        "Name": "arg0",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -106,7 +154,13 @@
       "DefStart": 427,
       "DefEnd": 431,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "param",
+        "Name": "arg1",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -118,7 +172,13 @@
       "DefStart": 434,
       "DefEnd": 438,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "param",
+        "Name": "args",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -130,7 +190,13 @@
       "DefStart": 442,
       "DefEnd": 448,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "param",
+        "Name": "kwargs",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -142,7 +208,13 @@
       "DefStart": 149,
       "DefEnd": 155,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "class",
+        "Kind": "class",
+        "Name": "Class1",
+        "Separator": " ",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -154,7 +226,13 @@
       "DefStart": 173,
       "DefEnd": 181,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "__init__",
+        "Separator": "",
+        "Type": "(self)"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -166,7 +244,13 @@
       "DefStart": 202,
       "DefEnd": 206,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var0",
+        "Separator": " ",
+        "Type": "= {0, []}"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -178,7 +262,13 @@
       "DefStart": 247,
       "DefEnd": 251,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var1",
+        "Separator": " ",
+        "Type": "= {None, var0}"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -190,7 +280,13 @@
       "DefStart": 268,
       "DefEnd": 273,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "meth0",
+        "Separator": "",
+        "Type": "(self)"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -202,7 +298,13 @@
       "DefStart": 289,
       "DefEnd": 293,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var0",
+        "Separator": " ",
+        "Type": "= Class0()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -214,7 +316,13 @@
       "DefStart": 339,
       "DefEnd": 343,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var1",
+        "Separator": " ",
+        "Type": "= {None, var0}"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -226,7 +334,13 @@
       "DefStart": 359,
       "DefEnd": 360,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "x",
+        "Separator": " ",
+        "Type": "= self.var1"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -238,7 +352,13 @@
       "DefStart": 494,
       "DefEnd": 496,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "f0",
+        "Separator": "",
+        "Type": "()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -250,7 +370,13 @@
       "DefStart": 504,
       "DefEnd": 508,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var0",
+        "Separator": " ",
+        "Type": "= Class0()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -262,7 +388,13 @@
       "DefStart": 524,
       "DefEnd": 528,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var1",
+        "Separator": " ",
+        "Type": "= Class1()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -274,7 +406,13 @@
       "DefStart": 544,
       "DefEnd": 548,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var2",
+        "Separator": " ",
+        "Type": "= Class0_0(1, 2)"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -286,7 +424,13 @@
       "DefStart": 630,
       "DefEnd": 631,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "x",
+        "Separator": " ",
+        "Type": "= 1"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -298,7 +442,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "m1",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -310,7 +460,13 @@
       "DefStart": 90,
       "DefEnd": 98,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "class",
+        "Kind": "class",
+        "Name": "Class0_0",
+        "Separator": " ",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -322,7 +478,13 @@
       "DefStart": 116,
       "DefEnd": 124,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "__init__",
+        "Separator": "",
+        "Type": "(self)"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -334,7 +496,13 @@
       "DefStart": 178,
       "DefEnd": 184,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "m2_fn1",
+        "Separator": "",
+        "Type": "()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -346,7 +514,13 @@
       "DefStart": 192,
       "DefEnd": 196,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var0",
+        "Separator": " ",
+        "Type": "= Class0()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -358,7 +532,13 @@
       "DefStart": 212,
       "DefEnd": 216,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var1",
+        "Separator": " ",
+        "Type": "= Class0_0()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -370,7 +550,13 @@
       "DefStart": 234,
       "DefEnd": 238,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "var2",
+        "Separator": " ",
+        "Type": "= var0.meth0()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -382,7 +568,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "setup",
+        "Separator": "",
+        "Type": ""
+      }
     }
   ],
   "Refs": [

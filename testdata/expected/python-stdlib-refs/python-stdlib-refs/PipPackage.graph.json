@@ -10,7 +10,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "pkg",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -22,7 +28,13 @@
       "DefStart": 2810,
       "DefEnd": 2826,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "argparse_example",
+        "Separator": "",
+        "Type": "()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -34,7 +46,13 @@
       "DefStart": 3294,
       "DefEnd": 3298,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "args",
+        "Separator": " ",
+        "Type": "= parser.parse_args()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -46,7 +64,13 @@
       "DefStart": 2834,
       "DefEnd": 2840,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "parser",
+        "Separator": " ",
+        "Type": "= argparse.ArgumentParser(description='ddd')"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -58,7 +82,13 @@
       "DefStart": 3399,
       "DefEnd": 3415,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "datetime_example",
+        "Separator": "",
+        "Type": "()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -70,7 +100,13 @@
       "DefStart": 3423,
       "DefEnd": 3427,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "year",
+        "Separator": " ",
+        "Type": "= timedelta(days=365)"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -82,7 +118,13 @@
       "DefStart": 3455,
       "DefEnd": 3465,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "os_example",
+        "Separator": "",
+        "Type": "()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -94,7 +136,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "setup",
+        "Separator": "",
+        "Type": ""
+      }
     }
   ],
   "Refs": [
