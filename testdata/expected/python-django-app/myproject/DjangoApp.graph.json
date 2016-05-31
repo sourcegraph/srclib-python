@@ -10,7 +10,13 @@
       "DefStart": 83,
       "DefEnd": 94,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "class",
+        "Kind": "class",
+        "Name": "MyappConfig",
+        "Separator": " ",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -22,7 +28,13 @@
       "DefStart": 111,
       "DefEnd": 115,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "name",
+        "Separator": " ",
+        "Type": "= 'myapp'"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -34,7 +46,13 @@
       "DefStart": 55,
       "DefEnd": 66,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "urlpatterns",
+        "Separator": " ",
+        "Type": "= [ url(r'^$', views.index, name='index'), ]"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -46,7 +64,13 @@
       "DefStart": 78,
       "DefEnd": 83,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "index",
+        "Separator": "",
+        "Type": "(request)"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -58,7 +82,13 @@
       "DefStart": 84,
       "DefEnd": 91,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "param",
+        "Name": "request",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -70,7 +100,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "manage",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -82,7 +118,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "myapp",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -94,7 +136,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "admin",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -106,7 +154,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "apps",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -118,7 +172,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "migrations",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -130,7 +190,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "models",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -142,7 +208,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "tests",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -154,7 +226,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "urls",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -166,7 +244,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "views",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -178,7 +262,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "myproject",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -190,7 +280,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "settings",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -202,7 +298,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "urls",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -214,7 +316,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "wsgi",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -226,7 +334,13 @@
       "DefStart": 816,
       "DefEnd": 829,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "ALLOWED_HOSTS",
+        "Separator": " ",
+        "Type": "= []"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -238,7 +352,13 @@
       "DefStart": 2452,
       "DefEnd": 2476,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "AUTH_PASSWORD_VALIDATORS",
+        "Separator": " ",
+        "Type": "= [ { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', }, { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', }, { 'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', }, { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', }, ]"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -250,7 +370,13 @@
       "DefStart": 393,
       "DefEnd": 401,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "BASE_DIR",
+        "Separator": " ",
+        "Type": "= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -262,7 +388,13 @@
       "DefStart": 2207,
       "DefEnd": 2216,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "DATABASES",
+        "Separator": " ",
+        "Type": "= { 'default': { 'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), } }"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -274,7 +406,13 @@
       "DefStart": 802,
       "DefEnd": 807,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "DEBUG",
+        "Separator": " ",
+        "Type": "= True"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -286,7 +424,13 @@
       "DefStart": 863,
       "DefEnd": 877,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "INSTALLED_APPS",
+        "Separator": " ",
+        "Type": "= [ 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles', ]"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -298,7 +442,13 @@
       "DefStart": 2955,
       "DefEnd": 2968,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "LANGUAGE_CODE",
+        "Separator": " ",
+        "Type": "= 'en-us'"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -310,7 +460,13 @@
       "DefStart": 1071,
       "DefEnd": 1089,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "MIDDLEWARE_CLASSES",
+        "Separator": " ",
+        "Type": "= [ 'django.middleware.security.SecurityMiddleware', 'django.contrib.sessions.middleware.SessionMiddleware', 'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.auth.middleware.SessionAuthenticationMiddleware', 'django.contrib.messages.middleware.MessageMiddleware', 'django.middleware.clickjacking.XFrameOptionsMiddleware', ]"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -322,7 +478,13 @@
       "DefStart": 1563,
       "DefEnd": 1575,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "ROOT_URLCONF",
+        "Separator": " ",
+        "Type": "= 'myproject.urls'"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -334,7 +496,13 @@
       "DefStart": 669,
       "DefEnd": 679,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "SECRET_KEY",
+        "Separator": " ",
+        "Type": "= '8par!\u0026@1+t0xr@+y1f7@vje((8^tlrd+_k1h#x9dz4w$lafkyx'"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -346,7 +514,13 @@
       "DefStart": 3151,
       "DefEnd": 3161,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "STATIC_URL",
+        "Separator": " ",
+        "Type": "= '/static/'"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -358,7 +532,13 @@
       "DefStart": 1596,
       "DefEnd": 1605,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "TEMPLATES",
+        "Separator": " ",
+        "Type": "= [ { 'BACKEND': 'django.template.backends.django.DjangoTemplates', 'DIRS': [], 'APP_DIRS': True, 'OPTIONS': { 'context_processors': [ 'django.template.context_processors.debug', 'django.template.context_processors.request', 'django.contrib.auth.context_processors.auth', 'django.contrib.messages.context_processors.messages', ], }, }, ]"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -370,7 +550,13 @@
       "DefStart": 2980,
       "DefEnd": 2989,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "TIME_ZONE",
+        "Separator": " ",
+        "Type": "= 'UTC'"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -382,7 +568,13 @@
       "DefStart": 2999,
       "DefEnd": 3007,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "USE_I18N",
+        "Separator": " ",
+        "Type": "= True"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -394,7 +586,13 @@
       "DefStart": 3016,
       "DefEnd": 3024,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "USE_L10N",
+        "Separator": " ",
+        "Type": "= True"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -406,7 +604,13 @@
       "DefStart": 3033,
       "DefEnd": 3039,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "USE_TZ",
+        "Separator": " ",
+        "Type": "= True"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -418,7 +622,13 @@
       "DefStart": 2081,
       "DefEnd": 2097,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "WSGI_APPLICATION",
+        "Separator": " ",
+        "Type": "= 'myproject.wsgi.application'"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -430,7 +640,13 @@
       "DefStart": 718,
       "DefEnd": 729,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "urlpatterns",
+        "Separator": " ",
+        "Type": "= [ url(r'^myapp/', include('myapp.urls')), url(r'^admin/', admin.site.urls), ]"
+      }
     },
     {
       "UnitType": "DjangoApp",
@@ -442,7 +658,13 @@
       "DefStart": 358,
       "DefEnd": 369,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "var",
+        "Kind": "statement",
+        "Name": "application",
+        "Separator": " ",
+        "Type": "= get_wsgi_application()"
+      }
     }
   ],
   "Refs": [

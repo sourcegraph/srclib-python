@@ -66,7 +66,13 @@ class FileGrapher(object):
             DefStart=0,
             DefEnd=0,
             Exported=True,
-            Data=None,
+            Data=DefFormatData(
+                Name=module.split('/')[-1],
+                Keyword='',
+                Type='',
+                Kind='module',
+                Separator='',
+            ),
         ))
         # TODO(beyang): extract module/package-level doc.
 
@@ -190,6 +196,72 @@ class FileGrapher(object):
         for line in source_lines:
             self._cumulative_off.append(self._cumulative_off[-1] + len(line))
 
+    def _jedi_def_to_name_and_type(self, df) -> Tuple[str, str]:
+        if df.type == 'function':
+            return df.name, '('+', '.join([self._jedi_def_to_name_and_type(p)[0] for p in df.params])+')'
+        elif df.type == 'class':
+            return df.name, ''
+        elif df.type == 'statement':
+            def_types = set([])
+            for df_ in df.goto_assignments():
+                idx = df_.description.index('=')
+                if idx != -1:
+                    def_types.add(df_.description[idx+1:].strip())
+                else:
+                    def_types.add('?')
+                # df_.description
+                """
+                rhs = df_._definition.get_rhs()
+                if 'value' in dir(rhs):
+                    import pdb; pdb.set_trace()
+                    if not isinstance(rhs.type, str):
+                        import pdb; pdb.set_trace()
+                    def_types.append(rhs.type)
+                elif 'first_leaf' in dir(rhs):
+                    if not isinstance(rhs.first_leaf().value, str):
+                        import pdb; pdb.set_trace()
+                    def_types.append(rhs.first_leaf().value)
+                else:
+                    # TODO: what here?
+                    import pdb; pdb.set_trace()
+                """
+            # return df.name, df.parent().name
+            # return df.name, df._definition.get_rhs().type
+            if len(def_types) == 0:
+                return df.name, ''
+            elif len(def_types) == 1:
+                return df.name, '= '+list(def_types)[0]
+            else:
+                return df.name, '= {'+', '.join(sorted(def_types))+'}'
+        elif df.type == 'param':
+            return df.name, ''
+        else:
+            raise Exception('unrecognized Jedi definition type {}'.format(df.type))
+
+    def _jedi_def_to_format_data(self, df) -> DefFormatData:
+        name, typ = self._jedi_def_to_name_and_type(df)
+        keyword, sep = '', ''
+        if df.type == 'function':
+            keyword = 'def'
+        elif df.type == 'class':
+            keyword = 'class'
+            sep = ' '
+        elif df.type == 'statement':
+            keyword = 'var'
+            sep = ' '
+        elif df.type == 'param':
+            pass
+        else:
+            raise Exception('unrecognized Jedi definition type {}'.format(df.type))
+
+        return DefFormatData(
+            Name = name,
+            Type = typ,
+            Keyword = keyword,
+            Kind = df.type,
+            Separator = sep,
+        )
+
     def _jedi_def_to_def(self, d):
         # TODO(MaikuMori): Add back this if needed:
         # If def is a name, then the location of the definition is the last name part
@@ -211,7 +283,7 @@ class FileGrapher(object):
             DefStart=start,
             DefEnd=end,
             Exported=self._is_exported(d.name),
-            Data=None,
+            Data=self._jedi_def_to_format_data(d),
         )
 
         doc = None

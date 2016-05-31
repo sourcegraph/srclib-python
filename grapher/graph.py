@@ -77,6 +77,7 @@ def graphunit(logger, args, u: Unit) -> None:
             continue
         except Exception as e:
             logger.error('failed to graph {} due to unanticipated error: {}'.format(f, str(e)))
+            continue
         # Note: This uses last version of def/ref, but since file order is random anyway,
         #       it should be OK.
         defs.update(defs_)

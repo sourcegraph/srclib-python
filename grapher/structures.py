@@ -51,6 +51,21 @@ class Unit:
         self.Dependencies = Dependencies if Dependencies is not None else []
         self.Data = Data
 
+class DefFormatData:
+    def __init__(
+            self,
+            Name: str,
+            Keyword: str,
+            Type: str,
+            Kind: str,
+            Separator: str,
+    ) -> None:
+        self.Name = Name
+        self.Keyword = Keyword
+        self.Type = Type
+        self.Kind = Kind
+        self.Separator = Separator
+
 DefKey = NamedTuple('DefKey', [
     ('Repo', str),
     ('Unit', str),
@@ -69,7 +84,7 @@ Def = NamedTuple('Def', [
     ('DefStart', int),
     ('DefEnd', int),
     ('Exported', str),
-    ('Data', Any),
+    ('Data', DefFormatData),
 ])
 
 Ref = NamedTuple('Ref', [
@@ -174,7 +189,6 @@ def fromJSONable(j: Any, dst_t: Union[type, List, Dict]) -> Any:
         jk = set([e for e in j.keys()])
         pk = set([e for e in params.keys()])
         if not jk.issubset(pk):
-            import pdb; pdb.set_trace()
             raise Exception('attempting to unmarshal from JSON object into class {}: {} is not a subset of {}'.format(dst_t, jk, pk))
         d = {k: fromJSONable(v, params[k]) for k, v in j.items()}
         return dst_t(**d)
