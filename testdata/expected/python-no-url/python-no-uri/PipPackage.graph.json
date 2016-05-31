@@ -10,7 +10,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "mod0",
+        "Separator": "",
+        "Type": ""
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -22,7 +28,13 @@
       "DefStart": 4,
       "DefEnd": 7,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "foo",
+        "Separator": "",
+        "Type": "()"
+      }
     },
     {
       "UnitType": "PipPackage",
@@ -34,7 +46,13 @@
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
-      "Data": null
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "setup",
+        "Separator": "",
+        "Type": ""
+      }
     }
   ],
   "Refs": [

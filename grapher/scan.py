@@ -6,7 +6,8 @@ import json
 import pydep.setup_py
 import pydep.req
 
-from typing import Tuple, Dict
+from . import django
+
 from .structures import *
 
 
@@ -34,7 +35,7 @@ def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
         Dependencies = [],
     ), True
 
-def findpkgs(rootdir: str) -> List:
+def find_pip_pkgs(rootdir: str) -> List:
     setup_dirs = pydep.setup_py.setup_dirs(rootdir)
     setup_infos = []
     for setup_dir in setup_dirs:
@@ -55,19 +56,7 @@ def findpkgs(rootdir: str) -> List:
             setup_dict_to_json_serializable_dict(setup_dict, rootdir=os.path.relpath(setup_dir, rootdir)))
     return setup_infos
 
-def get_source_files(diry: str) -> List[str]:
-    """ Get list of all Python source files in a directory. """
-    files = [] # type: List[str]
-    for path, _, filenames in os.walk(diry):
-        rel_dir = os.path.relpath(path, diry)
-        files.extend([os.path.normpath(os.path.join(rel_dir, f)) for f in filenames if os.path.splitext(f)[1] == '.py'])
-    if diry != "" and diry != ".":
-        for i in range(len(files)):
-            if files[i].startswith('./'):
-                files[i] = files[i][2:]
-    return files
-
-def source_files_for_unit(unit_dir: str) -> List[str]:
+def source_files_for_pip_unit(unit_dir: str) -> List[str]:
     metadata, err = pydep.setup_py.setup_info_dir(unit_dir)
     if err is not None:
         raise Exception(err)
@@ -90,19 +79,10 @@ def source_files_for_unit(unit_dir: str) -> List[str]:
     files = list(set(files))
     return files
 
-def pkgToUnitKey(pkg: Dict) -> UnitKey:
-    return UnitKey(
-        Name = pkg['project_name'],
-        Type = UNIT_PIP,
-        Repo = REPO_UNRESOLVED,
-        Version = "",
-        CommitID = "",
-    )
-
 # pkgToUnit transforms a Pip package struct into a source unit.
 def pkgToUnit(pkg: Dict) -> Unit:
     pkgdir = pkg['rootdir']
-    files = source_files_for_unit(pkgdir)
+    files = source_files_for_pip_unit(pkgdir)
     pkgreqs, err = pydep.req.requirements(pkgdir, True)
     if err is not None:
         raise Exception(err)
@@ -116,25 +96,27 @@ def pkgToUnit(pkg: Dict) -> Unit:
         CommitID = "",
         Files = sorted(files),
         Dir = pkgdir,
-        Dependencies = deps,      # don't resolve dependencies
-        Data = pkgreqs,
+        Dependencies = deps,      # unresolved dependencies
+        Data = Data(
+            Reqs = pkgreqs,
+            ReqFiles = [os.path.join(pkgdir, "requirements.txt")],
+        )
     )
-
-def reqToUnit(req):
-    pass
 
 def scan(diry: str) -> None:
     # special case for standard library
     stdunit, isStdlib = stdlibUnit(diry)
     if isStdlib:
-        json.dump([stdunit.todict()], sys.stdout, sort_keys=True)
+        json.dump([toJSONable(stdunit)], sys.stdout, sort_keys=True)
         return
 
-    pkgs = findpkgs(diry)
-    units = []
-    for pkg in pkgs:
-        units.append(pkgToUnit(pkg).todict())
-    json.dump(units, sys.stdout, sort_keys=True)
+    units = [] # type: List[Unit]
+    for pkg in find_pip_pkgs(diry):
+        units.append(pkgToUnit(pkg))
+    for proj in django.find_units("."):
+        units.append(proj)
+
+    json.dump(toJSONable(units), sys.stdout, sort_keys=True)
 
 
 #

@@ -4,7 +4,6 @@ import logging
 import pip
 import os.path
 
-from typing import Dict
 from subprocess import call
 
 from .structures import *
@@ -16,7 +15,7 @@ def getModulePathPrefixToDep(u: Unit) -> Dict[str, UnitKey]:
         return {}
 
     prefixToDep = {}
-    for req in u.Data:
+    for req in u.Data.Reqs:
         if req['repo_url']:
             repo, unit, unit_type = req['repo_url'], req['project_name'], UNIT_PIP
         else:
@@ -43,19 +42,21 @@ def graph(args, fp) -> None:
     elif args.quiet:
         logger.setLevel(logging.CRITICAL)
 
-    u = Unit(**json.load(fp)) # type: Unit
+    u = fromJSONable(json.load(fp), Unit) # type: Unit
     graphunit(logger, args, u)
 
 def graphunit(logger, args, u: Unit) -> None:
     if u.Dir is None or u.Dir == '':
         raise Exception('target directory must not be empty')
 
-    setupfile = os.path.join('.', u.Dir, 'setup.py')
-    if os.path.lexists(setupfile):
-        pip.main(['install', '-q', '--upgrade', os.path.join('.', u.Dir)])
-    requirementsfile = os.path.join(u.Dir, 'requirements.txt')
-    if os.path.lexists(requirementsfile):
-        pip.main(['install', '-q', '-r', os.path.join('.', u.Dir, 'requirements.txt')])
+    if u.Type == UNIT_PIP:
+        setupfile = os.path.join('.', u.Dir, 'setup.py')
+        if os.path.lexists(setupfile):
+            pip.main(['install', '-q', '--upgrade', os.path.join('.', u.Dir)])
+
+    for reqfile in u.Data.ReqFiles:
+        if os.path.lexists(reqfile):
+            pip.main(['install', '-q', '-r', reqfile])
 
     prefixToDep = getModulePathPrefixToDep(u)
 
@@ -73,14 +74,15 @@ def graphunit(logger, args, u: Unit) -> None:
             continue
         except Exception as e:
             logger.error('failed to graph {} due to unanticipated error: {}'.format(f, str(e)))
+            continue
         # Note: This uses last version of def/ref, but since file order is random anyway,
         #       it should be OK.
         defs.update(defs_)
         refs.update(refs_)
         docs.update(docs_)
 
-    json.dump({
-        'Defs': [x._asdict() for x in defs.values()], # type: ignore (NamedTuple._asdict)
-        'Refs': [x._asdict() for x in refs.values()], # type: ignore (NamedTuple._asdict)
-        'Docs': [x._asdict() for x in docs.values()], # type: ignore (NamedTuple._asdict)
-    }, sys.stdout, sort_keys=True)
+    json.dump(toJSONable({
+        'Defs': [e for e in defs.values()],
+        'Refs': [e for e in refs.values()],
+        'Docs': [e for e in docs.values()],
+    }), sys.stdout, sort_keys=True)

@@ -19,3 +19,6 @@
 [submodule "testdata/case/python-stdlib-refs"]
 	path = testdata/case/python-stdlib-refs
 	url = https://github.com/sgtest/python-stdlib-refs
+[submodule "testdata/case/python-django-app"]
+	path = testdata/case/python-django-app
+	url = https://github.com/sgtest/python-django-app
