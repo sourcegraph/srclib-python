@@ -45,11 +45,11 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
 
         # Sort package and module lists for stable ordering
         for req in reqs:
-            if 'packages' in req:
+            if 'packages' in req and isinstance(req['packages'], list):
                 req['packages'] = sorted(req['packages'])
-            if 'modules' in req:
+            if 'modules' in req and isinstance(req['modules'], list):
                 req['modules'] = sorted(req['modules'])
-            if 'py_modules' in req:
+            if 'py_modules' in req and isinstance(req['py_modules'], list):
                 req['py_modules'] = sorted(req['py_modules'])
 
         deps = [] # type: List[UnitKey]
