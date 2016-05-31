@@ -19,6 +19,7 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
     if os.path.isfile(os.path.join(diry, "requirements.txt")):
         gr, err = pydep.req.requirements_from_requirements_txt(diry)
         if err is None:
+            for e in gr: e.resolve()
             global_requirements = [x.to_dict() for x in gr]
         else:
             log.info('could not get top-level requirements: {}'.format(err))
@@ -26,7 +27,10 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
     for unit in units:
         unit.Files = get_source_files(unit.Dir)
         for i in range(len(unit.Files)):
-            unit.Files[i] = os.path.join(unit.Dir, unit.Files[i])
+            f = os.path.join(unit.Dir, unit.Files[i])
+            if f.startswith('./'):
+                f = f[2:]
+            unit.Files[i] = f
 
         reqs = [] # type: List[Dict]
         reqfiles = [] # type: List[str]
@@ -35,6 +39,7 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
             reqfiles.append(os.path.join(diry, "requirements.txt"))
         reqs_, err = pydep.req.requirements_from_requirements_txt(unit.Dir)
         if err is None:
+            for e in reqs_: e.resolve()
             reqs.extend([x.to_dict() for x in reqs_])
             reqfiles.append(os.path.join(diry, "requirements.txt"))
 

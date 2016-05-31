@@ -19,7 +19,7 @@ type defData struct {
 
 func init() {
 	graph.RegisterMakeDefFormatter("PipPackage", newDefFormatter)
-	graph.RegisterMakeDefFormatter("PythonProgram", newDefFormatter)
+	graph.RegisterMakeDefFormatter("DjangoApp", newDefFormatter)
 }
 
 func newDefFormatter(s *graph.Def) graph.DefFormatter {

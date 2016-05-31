@@ -195,6 +195,8 @@ def toJSONable(c: Any) -> Union[Dict, List, str, int]:
         return {k: toJSONable(v) for k, v in c.items()}
     else:
         fields = [f for f in dir(c) if not f.startswith('_')]
+        if len(fields) == 0:
+            return None
         return {f: toJSONable(c.__getattribute__(f)) for f in fields if not ismethod(c.__getattribute__(f))}
 
 def ismethod(m: Any) -> bool:
