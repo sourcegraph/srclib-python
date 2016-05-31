@@ -96,11 +96,11 @@ def pkgToUnit(pkg: Dict) -> Unit:
         Repo = "",       # empty Repo signals it is from this repository
         CommitID = "",
         Files = sorted(files),
-        Dir = pkgdir,
+        Dir = normalize(pkgdir),
         Dependencies = deps,      # unresolved dependencies
         Data = Data(
             Reqs = pkgreqs,
-            ReqFiles = [os.path.join(pkgdir, "requirements.txt")],
+            ReqFiles = [normalize(os.path.join(pkgdir, "requirements.txt"))],
         )
     )
 

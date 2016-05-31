@@ -55,6 +55,7 @@ class FileGrapher(object):
         module = os.path.splitext(self._file)[0]
         if os.path.basename(self._file) == '__init__.py':
             module = os.path.normpath(os.path.dirname(self._file))
+        module = normalize(module)
 
         self._add_def(Def(
             Repo="",
