@@ -53,9 +53,6 @@ def graphunit(logger, args, u: Unit) -> None:
         setupfile = os.path.join('.', u.Dir, 'setup.py')
         if os.path.lexists(setupfile):
             pip.main(['install', '-q', '--upgrade', os.path.join('.', u.Dir)])
-    # requirementsfile = os.path.join(u.Dir, 'requirements.txt')
-    # if os.path.lexists(requirementsfile):
-    #     pip.main(['install', '-q', '-r', os.path.join('.', u.Dir, 'requirements.txt')])
 
     for reqfile in u.Data.ReqFiles:
         if os.path.lexists(reqfile):
