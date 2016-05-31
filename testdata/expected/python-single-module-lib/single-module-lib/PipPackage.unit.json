@@ -1,1 +1,1 @@
-{"Name":"single-module-lib","Type":"PipPackage","Files":["mod.py","setup.py"],"Dir":".","Data":[]}
+{"Name":"single-module-lib","Type":"PipPackage","Files":["mod.py","setup.py"],"Dir":".","Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}
