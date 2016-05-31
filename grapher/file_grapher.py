@@ -196,6 +196,9 @@ class FileGrapher(object):
         for line in source_lines:
             self._cumulative_off.append(self._cumulative_off[-1] + len(line))
 
+    # _jedi_def_to_name_and_type returns the display name and type of
+    # a Jedi definition. For statements, it displays the set of
+    # inferred possible values as the type.
     def _jedi_def_to_name_and_type(self, df) -> Tuple[str, str]:
         if df.type == 'function':
             return df.name, '('+', '.join([self._jedi_def_to_name_and_type(p)[0] for p in df.params])+')'
@@ -209,24 +212,6 @@ class FileGrapher(object):
                     def_types.add(df_.description[idx+1:].strip())
                 else:
                     def_types.add('?')
-                # df_.description
-                """
-                rhs = df_._definition.get_rhs()
-                if 'value' in dir(rhs):
-                    import pdb; pdb.set_trace()
-                    if not isinstance(rhs.type, str):
-                        import pdb; pdb.set_trace()
-                    def_types.append(rhs.type)
-                elif 'first_leaf' in dir(rhs):
-                    if not isinstance(rhs.first_leaf().value, str):
-                        import pdb; pdb.set_trace()
-                    def_types.append(rhs.first_leaf().value)
-                else:
-                    # TODO: what here?
-                    import pdb; pdb.set_trace()
-                """
-            # return df.name, df.parent().name
-            # return df.name, df._definition.get_rhs().type
             if len(def_types) == 0:
                 return df.name, ''
             elif len(def_types) == 1:
@@ -359,7 +344,6 @@ class FileGrapher(object):
         # This detects `self` and `cls` parameters makes them to point to the class:
         # To trigger this parameters must be for a method (a class function).
         if d.type == 'param' and (d.name == 'self' or d.name == 'cls') and d.parent().parent().type == 'class':
-            # import pdb; pdb.set_trace();
             d = d.parent().parent()
 
         module_path, is_internal = self._rel_module_path(d.module_path)
