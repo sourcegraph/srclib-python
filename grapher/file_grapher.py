@@ -221,7 +221,8 @@ class FileGrapher(object):
         elif df.type == 'param':
             return df.name, ''
         else:
-            raise Exception('unrecognized Jedi definition type {}'.format(df.type))
+            self._log.debug('could not format unrecognized Jedi definition type {}'.format(df.type))
+            return df.name, ''
 
     def _jedi_def_to_format_data(self, df) -> DefFormatData:
         name, typ = self._jedi_def_to_name_and_type(df)
@@ -237,7 +238,7 @@ class FileGrapher(object):
         elif df.type == 'param':
             pass
         else:
-            raise Exception('unrecognized Jedi definition type {}'.format(df.type))
+            self._log.debug('could not format unrecognized Jedi definition type {}'.format(df.type))
 
         return DefFormatData(
             Name = name,
