@@ -39,12 +39,18 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
             reqfiles.append(os.path.join(diry, "requirements.txt"))
         reqs_, err = pydep.req.requirements_from_requirements_txt(unit.Dir)
         if err is None:
-            for rq in reqs_:
-                rq.resolve()
-                if 'packages' in rq:
-                    rq['packages'] = sorted(rq['packages'])
+            for rq in reqs_: rq.resolve()
             reqs.extend([x.to_dict() for x in reqs_])
             reqfiles.append(os.path.join(diry, "requirements.txt"))
+
+        # Sort package and module lists for stable ordering
+        for req in reqs:
+            if 'packages' in req:
+                req['packages'] = sorted(req['packages'])
+            if 'modules' in req:
+                req['modules'] = sorted(req['modules'])
+            if 'py_modules' in req:
+                req['py_modules'] = sorted(req['py_modules'])
 
         deps = [] # type: List[UnitKey]
         for r in reqs:
