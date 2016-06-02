@@ -3,8 +3,8 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-1",
-      "Path": "app",
-      "Name": "app",
+      "Path": "app/__init__.py/app.app",
+      "Name": "__init__.py",
       "Kind": "module",
       "File": "app/__init__.py",
       "DefStart": 0,
@@ -13,7 +13,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "app",
+        "Name": "__init__.py",
         "Separator": "",
         "Type": ""
       }
@@ -21,8 +21,8 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-1",
-      "Path": "app/app",
-      "Name": "app",
+      "Path": "app/app.py/app.app.app",
+      "Name": "app.py",
       "Kind": "module",
       "File": "app/app.py",
       "DefStart": 0,
@@ -31,7 +31,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "app",
+        "Name": "app.py",
         "Separator": "",
         "Type": ""
       }
@@ -57,8 +57,8 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-sample-1",
-      "Path": "setup",
-      "Name": "setup",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
       "Kind": "module",
       "File": "setup.py",
       "DefStart": 0,
@@ -67,13 +67,35 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "setup",
+        "Name": "setup.py",
         "Separator": "",
         "Type": ""
       }
     }
   ],
   "Refs": [
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-1",
+      "DefPath": "app/__init__.py/app.app",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-1",
+      "Def": true,
+      "File": "app/__init__.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-1",
+      "DefPath": "app/app.py/app.app.app",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-1",
+      "Def": true,
+      "File": "app/app.py",
+      "Start": 0,
+      "End": 0
+    },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-1",
@@ -94,28 +116,6 @@
       "File": "app/app.py",
       "Start": 37,
       "End": 38
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-1",
-      "DefPath": "app/app",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-1",
-      "Def": true,
-      "File": "app/app.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-1",
-      "DefPath": "app",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-1",
-      "Def": true,
-      "File": "app/__init__.py",
-      "Start": 0,
-      "End": 0
     },
     {
       "DefRepo": "github.com/sgtest/python-sample-0",
@@ -206,6 +206,17 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-1",
+      "DefPath": "setup.py/setup.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-1",
+      "Def": true,
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-1",
       "DefPath": "setup.py/setup.url",
       "UnitType": "PipPackage",
       "Unit": "python-sample-1",
@@ -222,17 +233,6 @@
       "File": "setup.py",
       "Start": 69,
       "End": 76
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-1",
-      "DefPath": "setup",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-1",
-      "Def": true,
-      "File": "setup.py",
-      "Start": 0,
-      "End": 0
     },
     {
       "DefRepo": "github.com/python/cpython",

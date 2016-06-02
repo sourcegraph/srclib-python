@@ -3,24 +3,6 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
-      "Path": "mod0",
-      "Name": "mod0",
-      "Kind": "module",
-      "File": "mod0.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "mod0",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
       "Path": "mod0.py/mod0.foo.foo",
       "Name": "foo",
       "Kind": "function",
@@ -39,8 +21,26 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
-      "Path": "setup",
-      "Name": "setup",
+      "Path": "mod0.py/mod0.mod0",
+      "Name": "mod0.py",
+      "Kind": "module",
+      "File": "mod0.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "mod0.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
       "Kind": "module",
       "File": "setup.py",
       "DefStart": 0,
@@ -49,7 +49,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "setup",
+        "Name": "setup.py",
         "Separator": "",
         "Type": ""
       }
@@ -70,7 +70,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
-      "DefPath": "mod0",
+      "DefPath": "mod0.py/mod0.mod0",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "Def": true,
@@ -111,23 +111,23 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-no-uri",
-      "DefPath": "setup.py/setup.version",
-      "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
-      "File": "setup.py",
-      "Start": 67,
-      "End": 74
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
-      "DefPath": "setup",
+      "DefPath": "setup.py/setup.setup",
       "UnitType": "PipPackage",
       "Unit": "python-no-uri",
       "Def": true,
       "File": "setup.py",
       "Start": 0,
       "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-no-uri",
+      "DefPath": "setup.py/setup.version",
+      "UnitType": "PipPackage",
+      "Unit": "python-no-uri",
+      "File": "setup.py",
+      "Start": 67,
+      "End": 74
     }
   ]
 }

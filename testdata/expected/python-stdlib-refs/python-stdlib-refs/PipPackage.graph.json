@@ -3,24 +3,6 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
-      "Path": "pkg",
-      "Name": "pkg",
-      "Kind": "module",
-      "File": "pkg/__init__.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "pkg",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-stdlib-refs",
       "Path": "pkg/__init__.py/pkg.argparse_example.argparse_example",
       "Name": "argparse_example",
       "Kind": "function",
@@ -129,8 +111,26 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
-      "Path": "setup",
-      "Name": "setup",
+      "Path": "pkg/__init__.py/pkg.pkg",
+      "Name": "__init__.py",
+      "Kind": "module",
+      "File": "pkg/__init__.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "__init__.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-stdlib-refs",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
       "Kind": "module",
       "File": "setup.py",
       "DefStart": 0,
@@ -139,7 +139,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "setup",
+        "Name": "setup.py",
         "Separator": "",
         "Type": ""
       }
@@ -1749,7 +1749,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-stdlib-refs",
-      "DefPath": "pkg",
+      "DefPath": "pkg/__init__.py/pkg.pkg",
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
       "Def": true,
@@ -2043,6 +2043,17 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-stdlib-refs",
+      "DefPath": "setup.py/setup.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-stdlib-refs",
+      "Def": true,
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-stdlib-refs",
       "DefPath": "setup.py/setup.url",
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
@@ -2059,17 +2070,6 @@
       "File": "setup.py",
       "Start": 72,
       "End": 79
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-stdlib-refs",
-      "DefPath": "setup",
-      "UnitType": "PipPackage",
-      "Unit": "python-stdlib-refs",
-      "Def": true,
-      "File": "setup.py",
-      "Start": 0,
-      "End": 0
     },
     {
       "DefRepo": "github.com/python/cpython",

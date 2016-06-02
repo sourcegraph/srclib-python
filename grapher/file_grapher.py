@@ -51,23 +51,27 @@ class FileGrapher(object):
 
     def graph(self):
         # Add module/package defs.
-        module = os.path.splitext(self._file)[0]
+        basic_module_path = os.path.relpath(self._file, self._base_dir)
+        if basic_module_path.startswith('./'):
+            basic_module_path = basic_module_path[2:]
         if os.path.basename(self._file) == '__init__.py':
-            module = os.path.normpath(os.path.dirname(self._file))
-
+            dot_path = os.path.dirname(basic_module_path).replace('/', '.')
+        else:
+            dot_path = os.path.splitext(basic_module_path)[0].replace('/', '.')
+        module_path = '{}/{}.{}'.format(basic_module_path, dot_path, dot_path.split('.')[-1])
         self._add_def(Def(
             Repo="",
             Unit=self._unit,
             UnitType=self._unit_type,
-            Path=module,
+            Path=module_path,
             Kind='module',
-            Name=module.split('/')[-1],
+            Name=os.path.basename(basic_module_path),
             File=self._file,
             DefStart=0,
             DefEnd=0,
             Exported=True,
             Data=DefFormatData(
-                Name=module.split('/')[-1],
+                Name=os.path.basename(basic_module_path),
                 Keyword='',
                 Type='',
                 Kind='module',

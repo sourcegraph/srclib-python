@@ -3,8 +3,8 @@
     {
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
-      "Path": "mod",
-      "Name": "mod",
+      "Path": "mod.py/mod.mod",
+      "Name": "mod.py",
       "Kind": "module",
       "File": "mod.py",
       "DefStart": 0,
@@ -13,7 +13,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "mod",
+        "Name": "mod.py",
         "Separator": "",
         "Type": ""
       }
@@ -21,8 +21,8 @@
     {
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
-      "Path": "setup",
-      "Name": "setup",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
       "Kind": "module",
       "File": "setup.py",
       "DefStart": 0,
@@ -31,7 +31,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "setup",
+        "Name": "setup.py",
         "Separator": "",
         "Type": ""
       }
@@ -41,7 +41,7 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
-      "DefPath": "mod",
+      "DefPath": "mod.py/mod.mod",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
       "Def": true,
@@ -82,6 +82,17 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "single-module-lib",
+      "DefPath": "setup.py/setup.setup",
+      "UnitType": "PipPackage",
+      "Unit": "single-module-lib",
+      "Def": true,
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "single-module-lib",
       "DefPath": "setup.py/setup.url",
       "UnitType": "PipPackage",
       "Unit": "single-module-lib",
@@ -98,17 +109,6 @@
       "File": "setup.py",
       "Start": 71,
       "End": 78
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "single-module-lib",
-      "DefPath": "setup",
-      "UnitType": "PipPackage",
-      "Unit": "single-module-lib",
-      "Def": true,
-      "File": "setup.py",
-      "Start": 0,
-      "End": 0
     }
   ]
 }
