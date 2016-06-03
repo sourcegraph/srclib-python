@@ -6,7 +6,10 @@ import os.path
 import subprocess
 
 rootdir = os.path.dirname(os.path.dirname(__file__))
+
 python = os.path.join(rootdir, ".env", "bin", "python3.5")
+if len(sys.argv) >= 1 and sys.argv[1].lower() == "scan":
+    python = os.path.join(rootdir, ".env27", "bin", "python")
 
 args = [python, "-m", "srclib-python"]
 args.extend(sys.argv[1:])
