@@ -4,6 +4,13 @@ else
        PIP = .env/bin/pip
 endif
 
+ifeq ($(OS),Windows_NT)
+       PIP27 = cmd /C .env\\Scripts\\pip.exe --isolated --disable-pip-version-check
+else
+       PIP27 = .env27/bin/pip
+endif
+
+
 .PHONY: install test check virtualenvs
 
 default: virtualenvs install test
@@ -22,10 +29,12 @@ virtualenvs: .env .env27
 install-force: virtualenvs
 	$(PIP) install . --upgrade
 	$(PIP) install -r requirements.txt --upgrade
+	$(PIP27) install . --upgrade
+	$(PIP27) install -r requirements.txt --upgrade
 
 install: virtualenvs
-	$(PIP) install .
-	$(PIP) install -r requirements.txt
+	$(PIP27) install .
+	$(PIP27) install -r requirements.txt
 
 test: virtualenvs check
 	srclib test
