@@ -54,9 +54,10 @@ def graphunit(logger, args, u: Unit) -> None:
         if os.path.lexists(setupfile):
             pip.main(['install', '-q', '--upgrade', os.path.join('.', u.Dir)])
 
-    for reqfile in u.Data.ReqFiles:
-        if os.path.lexists(reqfile):
-            pip.main(['install', '-q', '-r', reqfile])
+    if u.Data and u.Data.ReqFiles:
+        for reqfile in u.Data.ReqFiles:
+            if os.path.lexists(reqfile):
+                pip.main(['install', '-q', '-r', reqfile])
 
     prefixToDep = getModulePathPrefixToDep(u)
 
