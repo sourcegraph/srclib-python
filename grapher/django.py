@@ -1,6 +1,6 @@
-import pydep
-
 from .structures import *
+
+from . import pydepwrap
 
 import logging
 log = logging.getLogger('srclib-python.grapher.django')
@@ -17,12 +17,7 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
 
     global_requirements = None # type: List[Dict]
     if os.path.isfile(os.path.join(diry, "requirements.txt")):
-        gr, err = pydep.req.requirements_from_requirements_txt(diry)
-        if err is None:
-            for e in gr: e.resolve()
-            global_requirements = [x.to_dict() for x in gr]
-        else:
-            log.info('could not get top-level requirements: {}'.format(err))
+        global_requirements = pydepwrap.requirements_from_requirements_txt(diry)
 
     for unit in units:
         unit.Files = sorted(get_source_files(unit.Dir))
@@ -37,11 +32,12 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
         if global_requirements is not None:
             reqs.extend(global_requirements)
             reqfiles.append(os.path.join(diry, "requirements.txt"))
-        reqs_, err = pydep.req.requirements_from_requirements_txt(unit.Dir)
-        if err is None:
-            for rq in reqs_: rq.resolve()
-            reqs.extend([x.to_dict() for x in reqs_])
+        try:
+            reqs_ = pydepwrap.requirements_from_requirements_txt(unit.Dir)
+            reqs.extend(reqs_)
             reqfiles.append(os.path.join(diry, "requirements.txt"))
+        except Exception as e:
+            pass
 
         # Sort package and module lists for stable ordering
         for req in reqs:
