@@ -1,0 +1,1 @@
+git+https://github.com/sourcegraph/pydep.git@3424461e062640be404c827b0589a34395988c28

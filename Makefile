@@ -4,9 +4,16 @@ else
        PIP = .env/bin/pip
 endif
 
-.PHONY: install test check
+PIP27 = .env27/bin/pip
 
-default: .env install test
+.PHONY: install test check virtualenvs
+
+default: virtualenvs install test
+
+virtualenvs: .env .env27
+
+.env27:
+	virtualenv -p python2.7 .env27
 
 .env:
 	virtualenv -p python3.5 .env
@@ -14,15 +21,17 @@ default: .env install test
 .env/bin/mypy:
 	$(PIP) install mypy-lang
 
-install-force: .env
+install-force: virtualenvs
 	$(PIP) install . --upgrade
 	$(PIP) install -r requirements.txt --upgrade
+	$(PIP27) install -r requirements-2.7.txt --upgrade
 
-install: .env
+install: virtualenvs
 	$(PIP) install .
 	$(PIP) install -r requirements.txt
+	$(PIP27) install -r requirements-2.7.txt
 
-test: .env check
+test: virtualenvs check
 	srclib test
 
 check: .env/bin/mypy

@@ -7,6 +7,9 @@ import subprocess
 
 rootdir = os.path.dirname(os.path.dirname(__file__))
 python = os.path.join(rootdir, ".env", "bin", "python3.5")
+python2 = os.path.join(rootdir, ".env27", "bin", "python2.7")
+
+os.environ["PYTHON2"] = python2
 
 args = [python, "-m", "srclib-python"]
 args.extend(sys.argv[1:])
