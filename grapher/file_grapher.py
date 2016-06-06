@@ -322,13 +322,6 @@ class FileGrapher(object):
         for pkg, dep in self._modulePathPrefixToDep.items():
             if m.startswith(pkg):
                 return dep, None
-        # Fall back to heuristics
-        if m.startswith('setuptools'):
-            return UnitKey(Repo=STDLIB_UNIT_KEY.Repo,
-                           Type=STDLIB_UNIT_KEY.Type,
-                           Name=STDLIB_UNIT_KEY.Name,
-                           CommitID=STDLIB_UNIT_KEY.CommitID,
-                           Version=STDLIB_UNIT_KEY.Version), None
         for stdlibpath in self._stdlibpaths:
             if os.path.lexists(os.path.join(stdlibpath, m)):
                 # Standard lib module

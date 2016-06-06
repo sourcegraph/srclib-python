@@ -111,6 +111,10 @@ def scan(diry: str) -> None:
     for proj in django.find_units("."):
         units.append(proj)
 
+    # add setuptools as a dependency for all non-stdlib units
+    for u in units:
+        u.Dependencies.append(SETUPTOOLS_UNIT_KEY)
+
     json.dump(toJSONable(units), sys.stdout, sort_keys=True)
 
 

@@ -27,6 +27,10 @@ def getModulePathPrefixToDep(u: Unit) -> Dict[str, UnitKey]:
         if req['modules'] is not None:
             for mod in req['modules']:
                 prefixToDep[mod] = UnitKey(Repo=repo, Name=unit, Type=unit_type, CommitID="", Version="")
+
+    # setuptools special case
+    prefixToDep['setuptools'] = SETUPTOOLS_UNIT_KEY
+
     return prefixToDep
 
 def graph(args, fp) -> None:
