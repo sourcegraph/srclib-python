@@ -3,8 +3,6 @@ import os
 import os.path
 import json
 
-import pydep.req
-
 from . import pydepwrap
 from . import django
 from .structures import *
@@ -78,9 +76,7 @@ def source_files_for_pip_unit(unit_dir: str) -> List[str]:
 def pkgToUnit(pkg: Dict) -> Unit:
     pkgdir = pkg['rootdir']
     files = source_files_for_pip_unit(pkgdir)
-    pkgreqs, err = pydep.req.requirements(pkgdir, True)
-    if err is not None:
-        raise Exception(err)
+    pkgreqs = pydepwrap.requirements(pkgdir, True)
     deps = []
     for pkgreq in pkgreqs:
         deps.append(pkgToUnitKey(pkgreq))
