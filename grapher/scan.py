@@ -3,11 +3,8 @@ import os
 import os.path
 import json
 
-import pydep.setup_py
-import pydep.req
-
+from . import pydepwrap
 from . import django
-
 from .structures import *
 from .util import normalize
 
@@ -37,7 +34,7 @@ def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
     ), True
 
 def find_pip_pkgs(rootdir: str) -> List:
-    setup_dirs = pydep.setup_py.setup_dirs(rootdir)
+    setup_dirs = pydepwrap.setup_dirs(rootdir)
     setup_infos = []
     for setup_dir in setup_dirs:
         # HACK: filter out unwanted setup.py's. Should do this inside pydep.
@@ -50,17 +47,13 @@ def find_pip_pkgs(rootdir: str) -> List:
         if ignore:
             continue
 
-        setup_dict, err = pydep.setup_py.setup_info_dir(setup_dir)
-        if err is not None:
-            raise Exception('failed due to error: {}'.format(err))
+        setup_dict = pydepwrap.setup_info_dir(setup_dir)
         setup_infos.append(
             setup_dict_to_json_serializable_dict(setup_dict, rootdir=os.path.relpath(setup_dir, rootdir)))
     return setup_infos
 
 def source_files_for_pip_unit(unit_dir: str) -> List[str]:
-    metadata, err = pydep.setup_py.setup_info_dir(unit_dir)
-    if err is not None:
-        raise Exception(err)
+    metadata = pydepwrap.setup_info_dir(unit_dir)
     packages, modules = [], [] # type: List[str], List[str]
     if 'packages' in metadata and metadata['packages'] is not None:
         packages.extend(metadata['packages'])
@@ -84,9 +77,7 @@ def source_files_for_pip_unit(unit_dir: str) -> List[str]:
 def pkgToUnit(pkg: Dict) -> Unit:
     pkgdir = pkg['rootdir']
     files = source_files_for_pip_unit(pkgdir)
-    pkgreqs, err = pydep.req.requirements(pkgdir, True)
-    if err is not None:
-        raise Exception(err)
+    pkgreqs = pydepwrap.requirements(pkgdir, True)
     deps = []
     for pkgreq in pkgreqs:
         deps.append(pkgToUnitKey(pkgreq))
@@ -116,6 +107,10 @@ def scan(diry: str) -> None:
         units.append(pkgToUnit(pkg))
     for proj in django.find_units("."):
         units.append(proj)
+
+    # add setuptools as a dependency for all non-stdlib units
+    for u in units:
+        u.Dependencies.append(SETUPTOOLS_UNIT_KEY)
 
     json.dump(toJSONable(units), sys.stdout, sort_keys=True)
 

@@ -3,6 +3,60 @@
     {
       "UnitType": "DjangoApp",
       "Unit": "myproject",
+      "Path": "manage.py/manage.manage",
+      "Name": "manage.py",
+      "Kind": "module",
+      "File": "myproject/manage.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "manage.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myapp/__init__.py/myapp.myapp",
+      "Name": "__init__.py",
+      "Kind": "module",
+      "File": "myproject/myapp/__init__.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "__init__.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myapp/admin.py/myapp.admin.admin",
+      "Name": "admin.py",
+      "Kind": "module",
+      "File": "myproject/myapp/admin.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "admin.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
       "Path": "myapp/apps.py/apps.MyappConfig.MyappConfig",
       "Name": "MyappConfig",
       "Kind": "class",
@@ -39,6 +93,96 @@
     {
       "UnitType": "DjangoApp",
       "Unit": "myproject",
+      "Path": "myapp/apps.py/myapp.apps.apps",
+      "Name": "apps.py",
+      "Kind": "module",
+      "File": "myproject/myapp/apps.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "apps.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myapp/migrations/__init__.py/myapp.migrations.migrations",
+      "Name": "__init__.py",
+      "Kind": "module",
+      "File": "myproject/myapp/migrations/__init__.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "__init__.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myapp/models.py/myapp.models.models",
+      "Name": "models.py",
+      "Kind": "module",
+      "File": "myproject/myapp/models.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "models.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myapp/tests.py/myapp.tests.tests",
+      "Name": "tests.py",
+      "Kind": "module",
+      "File": "myproject/myapp/tests.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "tests.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myapp/urls.py/myapp.urls.urls",
+      "Name": "urls.py",
+      "Kind": "module",
+      "File": "myproject/myapp/urls.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "urls.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
       "Path": "myapp/urls.py/urls.urlpatterns",
       "Name": "urlpatterns",
       "Kind": "statement",
@@ -52,6 +196,24 @@
         "Name": "urlpatterns",
         "Separator": " ",
         "Type": "= [ url(r'^$', views.index, name='index'), ]"
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myapp/views.py/myapp.views.views",
+      "Name": "views.py",
+      "Kind": "module",
+      "File": "myproject/myapp/views.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "views.py",
+        "Separator": "",
+        "Type": ""
       }
     },
     {
@@ -93,170 +255,8 @@
     {
       "UnitType": "DjangoApp",
       "Unit": "myproject",
-      "Path": "myproject/manage",
-      "Name": "manage",
-      "Kind": "module",
-      "File": "myproject/manage.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "manage",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp",
-      "Name": "myapp",
-      "Kind": "module",
-      "File": "myproject/myapp/__init__.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "myapp",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp/admin",
-      "Name": "admin",
-      "Kind": "module",
-      "File": "myproject/myapp/admin.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "admin",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp/apps",
-      "Name": "apps",
-      "Kind": "module",
-      "File": "myproject/myapp/apps.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "apps",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp/migrations",
-      "Name": "migrations",
-      "Kind": "module",
-      "File": "myproject/myapp/migrations/__init__.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "migrations",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp/models",
-      "Name": "models",
-      "Kind": "module",
-      "File": "myproject/myapp/models.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "models",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp/tests",
-      "Name": "tests",
-      "Kind": "module",
-      "File": "myproject/myapp/tests.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "tests",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp/urls",
-      "Name": "urls",
-      "Kind": "module",
-      "File": "myproject/myapp/urls.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "urls",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myapp/views",
-      "Name": "views",
-      "Kind": "module",
-      "File": "myproject/myapp/views.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "views",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myproject",
-      "Name": "myproject",
+      "Path": "myproject/__init__.py/myproject.myproject",
+      "Name": "__init__.py",
       "Kind": "module",
       "File": "myproject/myproject/__init__.py",
       "DefStart": 0,
@@ -265,7 +265,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "myproject",
+        "Name": "__init__.py",
         "Separator": "",
         "Type": ""
       }
@@ -273,8 +273,8 @@
     {
       "UnitType": "DjangoApp",
       "Unit": "myproject",
-      "Path": "myproject/myproject/settings",
-      "Name": "settings",
+      "Path": "myproject/settings.py/myproject.settings.settings",
+      "Name": "settings.py",
       "Kind": "module",
       "File": "myproject/myproject/settings.py",
       "DefStart": 0,
@@ -283,43 +283,7 @@
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "settings",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myproject/urls",
-      "Name": "urls",
-      "Kind": "module",
-      "File": "myproject/myproject/urls.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "urls",
-        "Separator": "",
-        "Type": ""
-      }
-    },
-    {
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Path": "myproject/myproject/wsgi",
-      "Name": "wsgi",
-      "Kind": "module",
-      "File": "myproject/myproject/wsgi.py",
-      "DefStart": 0,
-      "DefEnd": 0,
-      "Exported": true,
-      "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "wsgi",
+        "Name": "settings.py",
         "Separator": "",
         "Type": ""
       }
@@ -633,6 +597,24 @@
     {
       "UnitType": "DjangoApp",
       "Unit": "myproject",
+      "Path": "myproject/urls.py/myproject.urls.urls",
+      "Name": "urls.py",
+      "Kind": "module",
+      "File": "myproject/myproject/urls.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "urls.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
       "Path": "myproject/urls.py/urls.urlpatterns",
       "Name": "urlpatterns",
       "Kind": "statement",
@@ -646,6 +628,24 @@
         "Name": "urlpatterns",
         "Separator": " ",
         "Type": "= [ url(r'^myapp/', include('myapp.urls')), url(r'^admin/', admin.site.urls), ]"
+      }
+    },
+    {
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Path": "myproject/wsgi.py/myproject.wsgi.wsgi",
+      "Name": "wsgi.py",
+      "Kind": "module",
+      "File": "myproject/myproject/wsgi.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "wsgi.py",
+        "Separator": "",
+        "Type": ""
       }
     },
     {
@@ -1265,6 +1265,39 @@
     {
       "DefUnitType": "DjangoApp",
       "DefUnit": "myproject",
+      "DefPath": "manage.py/manage.manage",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/manage.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/__init__.py/myapp.myapp",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/__init__.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/admin.py/myapp.admin.admin",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/admin.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
       "DefPath": "myapp/apps.py/apps.MyappConfig.MyappConfig",
       "UnitType": "DjangoApp",
       "Unit": "myproject",
@@ -1283,6 +1316,61 @@
       "File": "myproject/myapp/apps.py",
       "Start": 111,
       "End": 115
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/apps.py/myapp.apps.apps",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/apps.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/migrations/__init__.py/myapp.migrations.migrations",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/migrations/__init__.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/models.py/myapp.models.models",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/models.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/tests.py/myapp.tests.tests",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/tests.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/urls.py/myapp.urls.urls",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/urls.py",
+      "Start": 0,
+      "End": 0
     },
     {
       "DefUnitType": "DjangoApp",
@@ -1314,6 +1402,17 @@
       "File": "myproject/myapp/urls.py",
       "Start": 86,
       "End": 91
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myapp/views.py/myapp.views.views",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myapp/views.py",
+      "Start": 0,
+      "End": 0
     },
     {
       "DefUnitType": "DjangoApp",
@@ -1350,143 +1449,22 @@
     {
       "DefUnitType": "DjangoApp",
       "DefUnit": "myproject",
-      "DefPath": "myproject/manage",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/manage.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp/admin",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/admin.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp/apps",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/apps.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp/migrations",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/migrations/__init__.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp/models",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/models.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp/tests",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/tests.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp/urls",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/urls.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp/views",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/views.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myapp",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myapp/__init__.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myproject/settings",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myproject/settings.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myproject/urls",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myproject/urls.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myproject/wsgi",
-      "UnitType": "DjangoApp",
-      "Unit": "myproject",
-      "Def": true,
-      "File": "myproject/myproject/wsgi.py",
-      "Start": 0,
-      "End": 0
-    },
-    {
-      "DefUnitType": "DjangoApp",
-      "DefUnit": "myproject",
-      "DefPath": "myproject/myproject",
+      "DefPath": "myproject/__init__.py/myproject.myproject",
       "UnitType": "DjangoApp",
       "Unit": "myproject",
       "Def": true,
       "File": "myproject/myproject/__init__.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myproject/settings.py/myproject.settings.settings",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myproject/settings.py",
       "Start": 0,
       "End": 0
     },
@@ -1700,6 +1678,17 @@
     {
       "DefUnitType": "DjangoApp",
       "DefUnit": "myproject",
+      "DefPath": "myproject/urls.py/myproject.urls.urls",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myproject/urls.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
       "DefPath": "myproject/urls.py/urls.urlpatterns",
       "UnitType": "DjangoApp",
       "Unit": "myproject",
@@ -1707,6 +1696,17 @@
       "File": "myproject/myproject/urls.py",
       "Start": 718,
       "End": 729
+    },
+    {
+      "DefUnitType": "DjangoApp",
+      "DefUnit": "myproject",
+      "DefPath": "myproject/wsgi.py/myproject.wsgi.wsgi",
+      "UnitType": "DjangoApp",
+      "Unit": "myproject",
+      "Def": true,
+      "File": "myproject/myproject/wsgi.py",
+      "Start": 0,
+      "End": 0
     },
     {
       "DefUnitType": "DjangoApp",

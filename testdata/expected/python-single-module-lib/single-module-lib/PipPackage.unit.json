@@ -1,1 +1,1 @@
-{"Name":"single-module-lib","Type":"PipPackage","Files":["mod.py","setup.py"],"Dir":".","Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}
+{"Name":"single-module-lib","Type":"PipPackage","Files":["mod.py","setup.py"],"Dir":".","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}

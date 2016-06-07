@@ -1,1 +1,1 @@
-{"Name":"python-no-uri","Type":"PipPackage","Files":["mod0.py","setup.py"],"Dir":".","Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}
+{"Name":"python-no-uri","Type":"PipPackage","Files":["mod0.py","setup.py"],"Dir":".","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}

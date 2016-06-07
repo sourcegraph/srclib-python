@@ -2,43 +2,25 @@
   "Defs": [
     {
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
-      "Path": "mod0.py/mod0.foo.foo",
-      "Name": "foo",
-      "Kind": "function",
-      "File": "mod0.py",
-      "DefStart": 4,
-      "DefEnd": 7,
-      "Exported": true,
-      "Data": {
-        "Keyword": "def",
-        "Kind": "function",
-        "Name": "foo",
-        "Separator": "",
-        "Type": "()"
-      }
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
-      "Path": "mod0.py/mod0.mod0",
-      "Name": "mod0.py",
+      "Unit": "python-reqstxt-setuppy",
+      "Path": "mod123.py/mod123.mod123",
+      "Name": "mod123.py",
       "Kind": "module",
-      "File": "mod0.py",
+      "File": "mod123.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
         "Keyword": "",
         "Kind": "module",
-        "Name": "mod0.py",
+        "Name": "mod123.py",
         "Separator": "",
         "Type": ""
       }
     },
     {
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
+      "Unit": "python-reqstxt-setuppy",
       "Path": "setup.py/setup.setup",
       "Name": "setup.py",
       "Kind": "module",
@@ -58,62 +40,51 @@
   "Refs": [
     {
       "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
-      "DefPath": "mod0.py/mod0.foo.foo",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "mod123.py/mod123.mod123",
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
+      "Unit": "python-reqstxt-setuppy",
       "Def": true,
-      "File": "mod0.py",
-      "Start": 4,
-      "End": 7
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
-      "DefPath": "mod0.py/mod0.mod0",
-      "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
-      "Def": true,
-      "File": "mod0.py",
+      "File": "mod123.py",
       "Start": 0,
       "End": 0
     },
     {
       "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
+      "DefUnit": "python-reqstxt-setuppy",
       "DefPath": "setup.py/setup.install_requires",
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
+      "Unit": "python-reqstxt-setuppy",
       "File": "setup.py",
-      "Start": 113,
-      "End": 129
+      "Start": 178,
+      "End": 194
     },
     {
       "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
+      "DefUnit": "python-reqstxt-setuppy",
       "DefPath": "setup.py/setup.name",
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
+      "Unit": "python-reqstxt-setuppy",
       "File": "setup.py",
       "Start": 41,
       "End": 45
     },
     {
       "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
+      "DefUnit": "python-reqstxt-setuppy",
       "DefPath": "setup.py/setup.py_modules",
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
+      "Unit": "python-reqstxt-setuppy",
       "File": "setup.py",
-      "Start": 88,
-      "End": 98
+      "Start": 151,
+      "End": 161
     },
     {
       "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
+      "DefUnit": "python-reqstxt-setuppy",
       "DefPath": "setup.py/setup.setup",
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
+      "Unit": "python-reqstxt-setuppy",
       "Def": true,
       "File": "setup.py",
       "Start": 0,
@@ -121,13 +92,23 @@
     },
     {
       "DefUnitType": "PipPackage",
-      "DefUnit": "python-no-uri",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "setup.py/setup.url",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "File": "setup.py",
+      "Start": 92,
+      "End": 95
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
       "DefPath": "setup.py/setup.version",
       "UnitType": "PipPackage",
-      "Unit": "python-no-uri",
+      "Unit": "python-reqstxt-setuppy",
       "File": "setup.py",
-      "Start": 67,
-      "End": 74
+      "Start": 76,
+      "End": 83
     }
   ]
 }

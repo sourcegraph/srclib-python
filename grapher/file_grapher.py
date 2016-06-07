@@ -52,24 +52,27 @@ class FileGrapher(object):
 
     def graph(self):
         # Add module/package defs.
-        module = os.path.splitext(self._file)[0]
+        basic_module_path = os.path.relpath(self._file, self._base_dir)
+        if basic_module_path.startswith('./'):
+            basic_module_path = basic_module_path[2:]
         if os.path.basename(self._file) == '__init__.py':
-            module = os.path.normpath(os.path.dirname(self._file))
-        module = normalize(module)
-
+            dot_path = normalize(os.path.dirname(basic_module_path)).replace('/', '.')
+        else:
+            dot_path = normalize(os.path.splitext(basic_module_path))[0].replace('/', '.')
+        module_path = '{}/{}.{}'.format(basic_module_path, dot_path, dot_path.split('.')[-1])
         self._add_def(Def(
             Repo="",
             Unit=self._unit,
             UnitType=self._unit_type,
-            Path=module,
+            Path=module_path,
             Kind='module',
-            Name=module.split('/')[-1],
+            Name=os.path.basename(basic_module_path),
             File=normalize(self._file),
             DefStart=0,
             DefEnd=0,
             Exported=True,
             Data=DefFormatData(
-                Name=module.split('/')[-1],
+                Name=os.path.basename(basic_module_path),
                 Keyword='',
                 Type='',
                 Kind='module',
@@ -320,13 +323,6 @@ class FileGrapher(object):
         for pkg, dep in self._modulePathPrefixToDep.items():
             if m.startswith(pkg):
                 return dep, None
-        # Fall back to heuristics
-        if m.startswith('setuptools'):
-            return UnitKey(Repo=STDLIB_UNIT_KEY.Repo,
-                           Type=STDLIB_UNIT_KEY.Type,
-                           Name=STDLIB_UNIT_KEY.Name,
-                           CommitID=STDLIB_UNIT_KEY.CommitID,
-                           Version=STDLIB_UNIT_KEY.Version), None
         for stdlibpath in self._stdlibpaths:
             if os.path.lexists(os.path.join(stdlibpath, m)):
                 # Standard lib module

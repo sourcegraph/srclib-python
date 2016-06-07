@@ -22,3 +22,9 @@
 [submodule "testdata/case/python-django-app"]
 	path = testdata/case/python-django-app
 	url = https://github.com/sgtest/python-django-app
+[submodule "testdata/case/python-mock-stdlib"]
+	path = testdata/case/python-mock-stdlib
+	url = https://github.com/sgtest/python-mock-stdlib
+[submodule "testdata/case/python-reqstxt-setuppy"]
+	path = testdata/case/python-reqstxt-setuppy
+	url = https://github.com/sgtest/python-reqstxt-setuppy

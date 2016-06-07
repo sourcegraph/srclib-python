@@ -1,0 +1,113 @@
+{
+  "Defs": [
+    {
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "Path": "os.py/os._exists._exists",
+      "Name": "_exists",
+      "Kind": "function",
+      "File": "Lib/os.py",
+      "DefStart": 1134,
+      "DefEnd": 1141,
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "_exists",
+        "Separator": "",
+        "Type": "(name)"
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "Path": "os.py/os._exists.name.name",
+      "Name": "name",
+      "Kind": "param",
+      "File": "Lib/os.py",
+      "DefStart": 1142,
+      "DefEnd": 1146,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "param",
+        "Name": "name",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "Path": "os.py/os.os",
+      "Name": "os.py",
+      "Kind": "module",
+      "File": "Lib/os.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "os.py",
+        "Separator": "",
+        "Type": ""
+      }
+    }
+  ],
+  "Refs": [
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "__builtin__",
+      "DefPath": "globals",
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "File": "Lib/os.py",
+      "Start": 1172,
+      "End": 1179
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "os.py/os._exists._exists",
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "Def": true,
+      "File": "Lib/os.py",
+      "Start": 1134,
+      "End": 1141
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "os.py/os._exists.name.name",
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "Def": true,
+      "File": "Lib/os.py",
+      "Start": 1142,
+      "End": 1146
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "os.py/os._exists.name.name",
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "File": "Lib/os.py",
+      "Start": 1164,
+      "End": 1168
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "os.py/os.os",
+      "UnitType": "PipPackage",
+      "Unit": "Python",
+      "Def": true,
+      "File": "Lib/os.py",
+      "Start": 0,
+      "End": 0
+    }
+  ]
+}

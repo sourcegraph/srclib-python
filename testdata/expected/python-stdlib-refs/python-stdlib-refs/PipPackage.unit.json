@@ -1,1 +1,1 @@
-{"Name":"python-stdlib-refs","Type":"PipPackage","Files":["pkg/__init__.py","setup.py"],"Dir":".","Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}
+{"Name":"python-stdlib-refs","Type":"PipPackage","Files":["pkg/__init__.py","setup.py"],"Dir":".","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}
