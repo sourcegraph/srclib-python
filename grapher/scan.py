@@ -95,6 +95,8 @@ def pkgToUnit(pkg: Dict) -> Unit:
     )
 
 def scan(diry: str) -> None:
+    raise Exception("fail on purpose")
+
     # special case for standard library
     stdunit, isStdlib = stdlibUnit(diry)
     if isStdlib:
