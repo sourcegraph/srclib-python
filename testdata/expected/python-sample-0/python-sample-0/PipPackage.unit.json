@@ -1,1 +1,1 @@
-{"Name":"python-sample-0","Type":"PipPackage","Files":["pkg0/__init__.py","pkg0/m0.py","pkg0/m1.py","setup.py"],"Dir":".","Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}
+{"Name":"python-sample-0","Type":"PipPackage","Files":["pkg0/__init__.py","pkg0/m0.py","pkg0/m1.py","setup.py"],"Dir":".","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}

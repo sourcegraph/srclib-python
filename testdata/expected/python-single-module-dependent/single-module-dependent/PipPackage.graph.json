@@ -133,9 +133,9 @@
       "End": 84
     },
     {
-      "DefRepo": "github.com/python/cpython",
+      "DefRepo": "github.com/pypa/setuptools",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "setuptools",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "single-module-dependent",
@@ -144,9 +144,9 @@
       "End": 28
     },
     {
-      "DefRepo": "github.com/python/cpython",
+      "DefRepo": "github.com/pypa/setuptools",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "setuptools",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "single-module-dependent",
@@ -155,9 +155,9 @@
       "End": 35
     },
     {
-      "DefRepo": "github.com/python/cpython",
+      "DefRepo": "github.com/pypa/setuptools",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "setuptools",
       "DefPath": "setuptools/__init__.py/setuptools.setuptools",
       "UnitType": "PipPackage",
       "Unit": "single-module-dependent",

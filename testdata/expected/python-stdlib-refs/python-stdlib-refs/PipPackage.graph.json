@@ -2072,9 +2072,9 @@
       "End": 79
     },
     {
-      "DefRepo": "github.com/python/cpython",
+      "DefRepo": "github.com/pypa/setuptools",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "setuptools",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
@@ -2083,9 +2083,9 @@
       "End": 28
     },
     {
-      "DefRepo": "github.com/python/cpython",
+      "DefRepo": "github.com/pypa/setuptools",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "setuptools",
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
@@ -2094,9 +2094,9 @@
       "End": 35
     },
     {
-      "DefRepo": "github.com/python/cpython",
+      "DefRepo": "github.com/pypa/setuptools",
       "DefUnitType": "PipPackage",
-      "DefUnit": "Python",
+      "DefUnit": "setuptools",
       "DefPath": "setuptools/__init__.py/setuptools.setuptools",
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
