@@ -1,0 +1,114 @@
+{
+  "Defs": [
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "Path": "mod123.py/mod123.mod123",
+      "Name": "mod123.py",
+      "Kind": "module",
+      "File": "mod123.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "mod123.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
+      "Kind": "module",
+      "File": "setup.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "setup.py",
+        "Separator": "",
+        "Type": ""
+      }
+    }
+  ],
+  "Refs": [
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "mod123.py/mod123.mod123",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "Def": true,
+      "File": "mod123.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "setup.py/setup.install_requires",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "File": "setup.py",
+      "Start": 178,
+      "End": 194
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "setup.py/setup.name",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "File": "setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "setup.py/setup.py_modules",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "File": "setup.py",
+      "Start": 151,
+      "End": 161
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "setup.py/setup.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "Def": true,
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "setup.py/setup.url",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "File": "setup.py",
+      "Start": 92,
+      "End": 95
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-reqstxt-setuppy",
+      "DefPath": "setup.py/setup.version",
+      "UnitType": "PipPackage",
+      "Unit": "python-reqstxt-setuppy",
+      "File": "setup.py",
+      "Start": 76,
+      "End": 83
+    }
+  ]
+}

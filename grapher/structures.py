@@ -121,6 +121,20 @@ STDLIB_UNIT_KEY = UnitKey(
     Version='',
 )
 
+# SETUPTOOLS_UNIT_KEY is the unit key for the setuptools source unit. This
+# package is treated specially as it is always available (like the standard lib)
+# even when it is not explicitly specified as a requirement. Unlike the standard
+# lib, the setuptools repository builds successfully. However, it needs to be
+# included as a requirement for all third-party Python libraries.
+SETUPTOOLS_UNIT_KEY = UnitKey(
+    Name = 'setuptools',
+    Type = UNIT_PIP,
+    Repo = 'github.com/pypa/setuptools',
+    CommitID = '',
+    Version=''
+)
+
+
 """
 Helper functions
 """
