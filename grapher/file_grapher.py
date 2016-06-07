@@ -5,6 +5,7 @@ import re
 import jedi
 
 from .structures import *
+from .util import normalize
 
 def _debug_print_tree(node, indent=0, func=repr):
     """ Print visual representation of Jedi AST. """
@@ -51,13 +52,13 @@ class FileGrapher(object):
 
     def graph(self):
         # Add module/package defs.
-        basic_module_path = os.path.relpath(self._file, self._base_dir)
+        basic_module_path = normalize(os.path.relpath(self._file, self._base_dir))
         if basic_module_path.startswith('./'):
             basic_module_path = basic_module_path[2:]
         if os.path.basename(self._file) == '__init__.py':
-            dot_path = os.path.dirname(basic_module_path).replace('/', '.')
+            dot_path = normalize(os.path.dirname(basic_module_path)).replace('/', '.')
         else:
-            dot_path = os.path.splitext(basic_module_path)[0].replace('/', '.')
+            dot_path = normalize(os.path.splitext(basic_module_path)[0]).replace('/', '.')
         module_path = '{}/{}.{}'.format(basic_module_path, dot_path, dot_path.split('.')[-1])
         self._add_def(Def(
             Repo="",
@@ -66,7 +67,7 @@ class FileGrapher(object):
             Path=module_path,
             Kind='module',
             Name=os.path.basename(basic_module_path),
-            File=self._file,
+            File=normalize(self._file),
             DefStart=0,
             DefEnd=0,
             Exported=True,
@@ -149,7 +150,7 @@ class FileGrapher(object):
                 Unit=self._unit,
                 UnitType=self._unit_type,
                 Def=False,
-                File=self._file,
+                File=normalize(self._file),
                 Start=ref_start,
                 End=ref_end,
                 ToBuiltin=ref_def.in_builtin_module(),
@@ -269,7 +270,7 @@ class FileGrapher(object):
             Path=path,
             Kind=d.type,
             Name=d.name,
-            File=self._file,
+            File=normalize(self._file),
             DefStart=start,
             DefEnd=end,
             Exported=self._is_exported(d.name),
@@ -310,10 +311,10 @@ class FileGrapher(object):
             if p == '':
                 continue
             if module_path.startswith(p):
-                return os.path.relpath(module_path, p), False # external
+                return normalize(os.path.relpath(module_path, p)), False # external
 
         if module_path.startswith(self._abs_base_dir):
-            return os.path.relpath(module_path, self._abs_base_dir), True # internal
+            return normalize(os.path.relpath(module_path, self._abs_base_dir)), True # internal
 
         return None, False
 
@@ -346,7 +347,7 @@ class FileGrapher(object):
 
         module_path, is_internal = self._rel_module_path(d.module_path)
         if module_path is None:
-            raise Exception('could not find name for module path %s' % module_path)
+            raise Exception('could not find name for module path %s' % d.module_path)
 
         dep = None
         if not is_internal:

@@ -6,6 +6,7 @@ import json
 from . import pydepwrap
 from . import django
 from .structures import *
+from .util import normalize
 
 
 def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
@@ -63,11 +64,11 @@ def source_files_for_pip_unit(unit_dir: str) -> List[str]:
 
     files = []
     for module in modules:
-        files.append('{}.py'.format(module))
+        files.append('{}.py'.format(normalize(module)))
     for pkg in packages:
         pkg_files = get_source_files(pkg.replace('.', '/'))
         for pkg_file in pkg_files:
-            files.append(os.path.join(pkg.replace('.', '/'), pkg_file))
+            files.append(normalize(os.path.join(pkg.replace('.', '/'), pkg_file)))
     files.append('setup.py')
     files = list(set(files))
     return files
@@ -86,11 +87,11 @@ def pkgToUnit(pkg: Dict) -> Unit:
         Repo = "",       # empty Repo signals it is from this repository
         CommitID = "",
         Files = sorted(files),
-        Dir = pkgdir,
+        Dir = normalize(pkgdir),
         Dependencies = deps,      # unresolved dependencies
         Data = Data(
             Reqs = pkgreqs,
-            ReqFiles = [os.path.join(pkgdir, "requirements.txt")],
+            ReqFiles = [normalize(os.path.join(pkgdir, "requirements.txt"))],
         )
     )
 

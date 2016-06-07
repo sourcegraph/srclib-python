@@ -22,7 +22,7 @@ def main() -> None:
     if args.subcmd == "scan":
         scan(os.getcwd())
     elif args.subcmd == "depresolve":
-        print('[]')
+        print('[]', end="")
     elif args.subcmd == "graph":
         if args.unit_file is not None:
             with open(args.unit_file) as f:

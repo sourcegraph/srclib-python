@@ -1,4 +1,5 @@
 from .structures import *
+from .util import normalize
 
 from . import pydepwrap
 
@@ -22,7 +23,7 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
     for unit in units:
         unit.Files = sorted(get_source_files(unit.Dir))
         for i in range(len(unit.Files)):
-            f = os.path.join(unit.Dir, unit.Files[i])
+            f = normalize(os.path.join(unit.Dir, unit.Files[i]))
             if f.startswith('./'):
                 f = f[2:]
             unit.Files[i] = f
@@ -31,11 +32,11 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
         reqfiles = [] # type: List[str]
         if global_requirements is not None:
             reqs.extend(global_requirements)
-            reqfiles.append(os.path.join(diry, "requirements.txt"))
+            reqfiles.append(normalize(os.path.join(diry, "requirements.txt")))
         try:
             reqs_ = pydepwrap.requirements_from_requirements_txt(unit.Dir)
             reqs.extend(reqs_)
-            reqfiles.append(os.path.join(diry, "requirements.txt"))
+            reqfiles.append(normalize(os.path.join(diry, "requirements.txt")))
         except Exception as e:
             pass
 
@@ -64,7 +65,7 @@ def find_units_(diry: str, max_depth: int = 5) -> List[Unit]:
         return [Unit(
             Name = os.path.basename(os.path.abspath(diry)),
             Type = UNIT_DJANGO,
-            Dir = diry,
+            Dir = normalize(diry),
             Files = None,
             Dependencies = None,
             Repo = None,
