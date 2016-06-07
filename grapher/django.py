@@ -36,7 +36,7 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
         try:
             reqs_ = pydepwrap.requirements_from_requirements_txt(unit.Dir)
             reqs.extend(reqs_)
-            reqfiles.append(normalize(os.path.join(diry, "requirements.txt"))
+            reqfiles.append(normalize(os.path.join(diry, "requirements.txt")))
         except Exception as e:
             pass
 

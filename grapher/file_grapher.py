@@ -52,13 +52,13 @@ class FileGrapher(object):
 
     def graph(self):
         # Add module/package defs.
-        basic_module_path = os.path.relpath(self._file, self._base_dir)
+        basic_module_path = normalize(os.path.relpath(self._file, self._base_dir))
         if basic_module_path.startswith('./'):
             basic_module_path = basic_module_path[2:]
         if os.path.basename(self._file) == '__init__.py':
             dot_path = normalize(os.path.dirname(basic_module_path)).replace('/', '.')
         else:
-            dot_path = normalize(os.path.splitext(basic_module_path))[0].replace('/', '.')
+            dot_path = normalize(os.path.splitext(basic_module_path)[0]).replace('/', '.')
         module_path = '{}/{}.{}'.format(basic_module_path, dot_path, dot_path.split('.')[-1])
         self._add_def(Def(
             Repo="",
