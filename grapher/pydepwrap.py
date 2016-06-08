@@ -40,6 +40,7 @@ def requirements_from_requirements_txt(diry: str) -> List[Dict[str, Any]]:
 
 def requirements(pkgdir: str, resolve: bool) -> List[Dict[str, Any]]:
     pkgreqs, err = pydep.req.requirements(pkgdir, resolve)
+    # import pdb; pdb.set_trace();
     if err is not None:
         raise Exception(err)
     return sorted(pkgreqs, key=itemgetter('key'))
