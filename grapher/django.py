@@ -59,6 +59,9 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
 
 # find_units_ is a recursive helper that generates the list of proto-units.
 def find_units_(diry: str, max_depth: int = 5) -> List[Unit]:
+    if os.path.basename(diry) == "testdata":
+        return []               # don't descend into testdata/ directory
+
     if max_depth < 0: return []
 
     if os.path.isfile(os.path.join(diry, "manage.py")):
