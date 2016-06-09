@@ -307,14 +307,14 @@ class FileGrapher(object):
     # _rel_module_path returns (relative_module_path, is_internal)
     # TODO(beyang): replace startswith with os.path.commonpath (Python 3 function)
     def _rel_module_path(self, module_path):
+        if module_path.startswith(self._abs_base_dir):
+            return normalize(os.path.relpath(module_path, self._abs_base_dir)), True # internal
+
         for p in self._syspath:
             if p == '':
                 continue
             if module_path.startswith(p):
                 return normalize(os.path.relpath(module_path, p)), False # external
-
-        if module_path.startswith(self._abs_base_dir):
-            return normalize(os.path.relpath(module_path, self._abs_base_dir)), True # internal
 
         return None, False
 
