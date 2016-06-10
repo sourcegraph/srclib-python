@@ -5,6 +5,7 @@ import re
 import sys
 
 from .structures import *
+from .util import normalize
 
 module_def_pattern = re.compile(r'static struct PyModuleDef ([A-Za-z0-9_]+)module\s')
 
@@ -19,7 +20,7 @@ class Builtin:
         self.path = path
         self.start = start
         self.end = end
-        self.filename = filename
+        self.filename = normalize(filename)
 
     def __repr__(self) -> str:
         return 'Builtin{}'.format(self.__dict__)
