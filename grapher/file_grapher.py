@@ -38,6 +38,7 @@ class FileGrapher(object):
         self._unit_type = unit_type
         self._modulePathPrefixToDep = modulePathPrefixToDep
         self._syspath = list(reversed(sorted(syspath)))
+        self._virtual_env = os.getenv('VIRTUAL_ENV')
         self._log = log
         self._source = None
         self._defs = {}
@@ -315,6 +316,10 @@ class FileGrapher(object):
                 continue
             if module_path.startswith(p):
                 return normalize(os.path.relpath(module_path, p)), False # external
+
+        if self._virtual_env is not None and module_path.startswith(self._virtual_env):
+            module_path = normalize(os.path.relpath(module_path, self._virtual_env))
+            return module_path.split('/site-packages/', 1)[1], False
 
         return None, False
 
