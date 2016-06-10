@@ -1,4 +1,4 @@
-git+https://github.com/sourcegraph/pydep.git@3230f0b3b71b4b779888c9e6c4aa6a54c5749d55
+git+https://github.com/sourcegraph/pydep.git@39d9d014adb51c9e622e217f168dfd177fe236db
 virtualenv==13.1.0
 pip==7.1.2
 jedi==0.9.0

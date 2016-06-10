@@ -1,0 +1,137 @@
+{
+  "Defs": [
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "Path": "mod123.py/mod123.mod123",
+      "Name": "mod123.py",
+      "Kind": "module",
+      "File": "mod123.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "mod123.py",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
+      "Kind": "module",
+      "File": "setup.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "module",
+        "Name": "setup.py",
+        "Separator": "",
+        "Type": ""
+      }
+    }
+  ],
+  "Refs": [
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-unresolved-reqstxt",
+      "DefPath": "mod123.py/mod123.mod123",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "Def": true,
+      "File": "mod123.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-unresolved-reqstxt",
+      "DefPath": "setup.py/setup.name",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "File": "setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-unresolved-reqstxt",
+      "DefPath": "setup.py/setup.py_modules",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "File": "setup.py",
+      "Start": 157,
+      "End": 167
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-unresolved-reqstxt",
+      "DefPath": "setup.py/setup.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "Def": true,
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-unresolved-reqstxt",
+      "DefPath": "setup.py/setup.url",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "File": "setup.py",
+      "Start": 95,
+      "End": 98
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-unresolved-reqstxt",
+      "DefPath": "setup.py/setup.version",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "File": "setup.py",
+      "Start": 79,
+      "End": 86
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "File": "setup.py",
+      "Start": 23,
+      "End": 28
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "File": "setup.py",
+      "Start": 30,
+      "End": 35
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setuptools",
+      "UnitType": "PipPackage",
+      "Unit": "python-unresolved-reqstxt",
+      "File": "setup.py",
+      "Start": 5,
+      "End": 15
+    }
+  ]
+}

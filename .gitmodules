@@ -28,3 +28,6 @@
 [submodule "testdata/case/python-reqstxt-setuppy"]
 	path = testdata/case/python-reqstxt-setuppy
 	url = https://github.com/sgtest/python-reqstxt-setuppy
+[submodule "testdata/case/python-unresolved-reqstxt"]
+	path = testdata/case/python-unresolved-reqstxt
+	url = https://github.com/sgtest/python-unresolved-reqstxt.git

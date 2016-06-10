@@ -1,0 +1,1 @@
+{"Name":"python-unresolved-reqstxt","Type":"PipPackage","Files":["mod123.py","setup.py"],"Dir":".","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}

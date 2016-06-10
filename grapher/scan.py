@@ -90,7 +90,9 @@ def pkgToUnit(pkg: Dict) -> Unit:
     pkgreqs = pydepwrap.requirements(pkgdir, True)
     deps = []
     for pkgreq in pkgreqs:
-        deps.append(pkgToUnitKey(pkgreq))
+        dep = pkgToUnitKey(pkgreq)
+        if dep is not None:
+            deps.append(dep)
     return Unit(
         Name = pkg['project_name'],
         Type = UNIT_PIP,
@@ -100,7 +102,7 @@ def pkgToUnit(pkg: Dict) -> Unit:
         Dir = normalize(pkgdir),
         Dependencies = deps,      # unresolved dependencies
         Data = Data(
-            Reqs = pkgreqs,
+            Reqs = [req for req in pkgreqs if checkReq(req)],
             ReqFiles = [normalize(os.path.join(pkgdir, "requirements.txt"))],
         )
     )

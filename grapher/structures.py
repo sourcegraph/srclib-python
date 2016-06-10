@@ -216,6 +216,8 @@ def get_source_files(diry: str) -> List[str]:
     return files
 
 def pkgToUnitKey(pkg: Dict) -> UnitKey:
+    if not checkReq(pkg):
+        return None
     return UnitKey(
         Name = pkg['project_name'],
         Type = UNIT_PIP,
@@ -293,3 +295,6 @@ def toJSONable(c: Any) -> Union[Dict, List, str, int]:
 
 def ismethod(m: Any) -> bool:
     return hasattr(m, '__call__') and hasattr(m, '__self__')
+
+def checkReq(req: Dict) -> bool:
+    return req['project_name'] is not None
