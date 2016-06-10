@@ -1,0 +1,66 @@
+{
+  "Defs": [
+    {
+      "Repo": "github.com/python/cpython",
+      "UnitType": "PipPackage",
+      "Unit": "__builtin__",
+      "Path": "itertools",
+      "Name": "itertools",
+      "File": "Modules/itertoolsmodule.c",
+      "DefStart": 98,
+      "DefEnd": 107,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "",
+        "Name": "itertools",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "Repo": "github.com/python/cpython",
+      "UnitType": "PipPackage",
+      "Unit": "__builtin__",
+      "Path": "itertools.groupby",
+      "Name": "itertools.groupby",
+      "File": "Modules/itertoolsmodule.c",
+      "DefStart": 308,
+      "DefEnd": 325,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "",
+        "Name": "itertools.groupby",
+        "Separator": "",
+        "Type": ""
+      }
+    }
+  ],
+  "Refs": [
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "__builtin__",
+      "DefPath": "itertools.groupby",
+      "UnitType": "PipPackage",
+      "Unit": "__builtin__",
+      "Def": true,
+      "File": "Modules/itertoolsmodule.c",
+      "Start": 308,
+      "End": 325
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "__builtin__",
+      "DefPath": "itertools",
+      "UnitType": "PipPackage",
+      "Unit": "__builtin__",
+      "Def": true,
+      "File": "Modules/itertoolsmodule.c",
+      "Start": 98,
+      "End": 107
+    }
+  ]
+}
