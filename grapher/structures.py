@@ -30,6 +30,9 @@ class UnitKey:
         self.CommitID = CommitID
         self.Version = Version
 
+    def __eq__(self, other) -> bool:
+        return self.__dict__ == other.__dict__
+
 class Unit:
     def __init__(
             self,
@@ -53,6 +56,15 @@ class Unit:
         self.Dependencies = Dependencies if Dependencies is not None else []
         self.Data = Data
 
+    def key(self) -> UnitKey:
+        return UnitKey(
+            Name=self.Name,
+            Type=self.Type,
+            Repo=self.Repo,
+            CommitID=self.CommitID,
+            Version=self.Version,
+        )
+
 class DefFormatData:
     def __init__(
             self,
@@ -75,33 +87,76 @@ DefKey = NamedTuple('DefKey', [
     ('Path', str),
 ])
 
-Def = NamedTuple('Def', [
-    ('Repo', str),
-    ('Unit', str),
-    ('UnitType', str),
-    ('Path', str),
-    ('Kind', str),
-    ('Name', str),
-    ('File', str),
-    ('DefStart', int),
-    ('DefEnd', int),
-    ('Exported', str),
-    ('Data', DefFormatData),
-])
+class Ref:
+    def __init__(
+            self,
+            DefRepo: str,
+            DefUnit: str,
+            DefUnitType: str,
+            DefPath: str,
+            Def: bool,
+            Unit: str,
+            UnitType: str,
+            File: str,
+            Start: int,
+            End: int,
+            ToBuiltin: bool,
+    ) -> None:
+        self.DefRepo = DefRepo
+        self.DefUnit = DefUnit
+        self.DefUnitType = DefUnitType
+        self.DefPath = DefPath
+        self.Def = Def
+        self.Unit = Unit
+        self.UnitType = UnitType
+        self.File = File
+        self.Start = Start
+        self.End = End
+        self.ToBuiltin = ToBuiltin
 
-Ref = NamedTuple('Ref', [
-    ('DefRepo', str),
-    ('DefUnit', str),
-    ('DefUnitType', str),
-    ('DefPath', str),
-    ('Def', str),
-    ('Unit', str),
-    ('UnitType', str),
-    ('File', str),
-    ('Start', int),
-    ('End', int),
-    ('ToBuiltin', bool),
-])
+class Def:
+    def __init__(
+            self,
+            Repo: str,
+            Unit: str,
+            UnitType: str,
+            Path: str,
+            Kind: str,
+            Name: str,
+            File: str,
+            DefStart: int,
+            DefEnd: int,
+            Exported: bool,
+            Data: DefFormatData,
+            Builtin: bool = False,
+    ) -> None:
+        self.Repo = Repo
+        self.Unit = Unit
+        self.UnitType = UnitType
+        self.Path = Path
+        self.Kind = Kind
+        self.Name = Name
+        self.File = File
+        self.DefStart = DefStart
+        self.DefEnd = DefEnd
+        self.Exported = Exported
+        self.Data = Data
+        self.Builtin = Builtin
+
+    def defref(self) -> Ref:
+        return Ref(
+            DefRepo=self.Repo,
+            DefUnit=self.Unit,
+            DefUnitType=self.UnitType,
+            DefPath=self.Path,
+            Def=True,
+            Unit=self.Unit,
+            UnitType=self.UnitType,
+            File=self.File,
+            Start=self.DefStart,
+            End=self.DefEnd,
+            ToBuiltin=self.Builtin,
+        )
 
 Doc = NamedTuple('Doc', [
     ('Unit', str),
@@ -121,6 +176,13 @@ STDLIB_UNIT_KEY = UnitKey(
     Repo = 'github.com/python/cpython',
     CommitID = '',
     Version='',
+)
+BUILTIN_UNIT_KEY = UnitKey(
+    Name = '__builtin__',
+    Type = UNIT_PIP,
+    Repo = 'github.com/python/cpython',
+    CommitID = '',
+    Version = '',
 )
 
 # SETUPTOOLS_UNIT_KEY is the unit key for the setuptools source unit. This
