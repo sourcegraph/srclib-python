@@ -51,9 +51,11 @@ def find_units(diry: str, max_depth: int = 5) -> List[Unit]:
 
         deps = [] # type: List[UnitKey]
         for r in reqs:
-            deps.append(pkgToUnitKey(r))
+            dep = pkgToUnitKey(r)
+            if dep is not None:
+                deps.append(dep)
         unit.Dependencies = deps
-        unit.Data = Data(Reqs=reqs, ReqFiles=reqfiles)
+        unit.Data = Data(Reqs=[req for req in reqs if checkReq(req)], ReqFiles=reqfiles)
 
     return units
 
