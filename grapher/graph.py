@@ -8,7 +8,7 @@ from subprocess import call
 
 from .structures import *
 from .file_grapher import FileGrapher, FileGrapherException
-
+from . import builtin
 
 def getModulePathPrefixToDep(u: Unit) -> Dict[str, UnitKey]:
     if not u.Data:
@@ -50,6 +50,15 @@ def graph(args, fp) -> None:
     graphunit(logger, args, u)
 
 def graphunit(logger, args, u: Unit) -> None:
+    if u.key() == BUILTIN_UNIT_KEY:
+        builtindefs = [b.to_def() for b in builtin.find_modules(u.Dir)]
+        json.dump(toJSONable({
+            'Defs': builtindefs,
+            'Refs': [d.defref() for d in builtindefs],
+            'Docs': [],
+        }), sys.stdout, sort_keys=True)
+        return
+
     if u.Dir is None or u.Dir == '':
         raise Exception('target directory must not be empty')
 
@@ -68,6 +77,7 @@ def graphunit(logger, args, u: Unit) -> None:
     defs = {} # type: Dict[str, Def]
     refs = {} # type: Dict[str, Ref]
     docs = {} # type: Dict[str, Doc]
+
     total = len(u.Files)
     for i, f in enumerate(u.Files, start=1):
         logger.info('processing file: {} ({}/{})'.format(f, i, total))

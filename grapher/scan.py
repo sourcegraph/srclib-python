@@ -5,11 +5,12 @@ import json
 
 from . import pydepwrap
 from . import django
+from . import builtin
 from .structures import *
 from .util import normalize
 
 
-def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
+def stdlibUnits(diry: str) -> Tuple[List[Unit], bool]:
     if not os.path.lexists(os.path.join(diry, "Lib")):
         return None, False
     if not os.path.lexists(os.path.join(diry, "Include")):
@@ -22,7 +23,7 @@ def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
         (f.startswith('Lib/')) and ('/test/' not in f) and ('_test' not in f) and ('test_' not in f)
     )]
 
-    return Unit(
+    return [Unit(
         Name = STDLIB_UNIT_KEY.Name,
         Type = STDLIB_UNIT_KEY.Type,
         Repo = STDLIB_UNIT_KEY.Repo,
@@ -31,7 +32,16 @@ def stdlibUnit(diry: str) -> Tuple[Unit, bool]:
         Files = sorted(files),
         Dir = 'Lib',
         Dependencies = [],
-    ), True
+    ), Unit(
+        Name = BUILTIN_UNIT_KEY.Name,
+        Type = BUILTIN_UNIT_KEY.Type,
+        Repo = BUILTIN_UNIT_KEY.Repo,
+        CommitID = BUILTIN_UNIT_KEY.CommitID,
+        Version = BUILTIN_UNIT_KEY.Version,
+        Files = builtin.get_c_source_files('Modules'),
+        Dir = 'Modules',
+        Dependencies = [],
+    )], True
 
 def find_pip_pkgs(rootdir: str) -> List:
     setup_dirs = pydepwrap.setup_dirs(rootdir)
@@ -97,9 +107,9 @@ def pkgToUnit(pkg: Dict) -> Unit:
 
 def scan(diry: str) -> None:
     # special case for standard library
-    stdunit, isStdlib = stdlibUnit(diry)
+    stdunits, isStdlib = stdlibUnits(diry)
     if isStdlib:
-        json.dump([toJSONable(stdunit)], sys.stdout, sort_keys=True)
+        json.dump(toJSONable(stdunits), sys.stdout, sort_keys=True)
         return
 
     units = [] # type: List[Unit]
