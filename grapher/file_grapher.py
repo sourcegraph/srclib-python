@@ -74,7 +74,7 @@ class FileGrapher(object):
             Exported=True,
             Data=DefFormatData(
                 Name=os.path.basename(basic_module_path),
-                Keyword='',
+                Keyword='module',
                 Type='',
                 Kind='module',
                 Separator='',
