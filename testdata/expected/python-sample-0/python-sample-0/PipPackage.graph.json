@@ -49,7 +49,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "meth0",
+        "Name": "(Class0).meth0",
         "Separator": "",
         "Type": "(self)"
       }
@@ -103,7 +103,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "__init__",
+        "Name": "(Class0_0).__init__",
         "Separator": "",
         "Type": "(self, arg0, arg1, args, kwargs)"
       }
@@ -211,7 +211,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "__init__",
+        "Name": "(Class1).__init__",
         "Separator": "",
         "Type": "(self)"
       }
@@ -265,7 +265,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "meth0",
+        "Name": "(Class1).meth0",
         "Separator": "",
         "Type": "(self)"
       }
@@ -463,7 +463,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "__init__",
+        "Name": "(Class0_0).__init__",
         "Separator": "",
         "Type": "(self)"
       }
