@@ -209,11 +209,15 @@ class FileGrapher(object):
         if df.type == 'function':
             typ_str = '('+', '.join([self._jedi_def_to_name_and_type(p)[0] for p in df.params])+')'
             if df.parent().type == 'class':
-                return '('+df.parent().name+').' + df.name, typ_str
+                return df.parent().name+'.'+df.name, typ_str
             else:
                 return df.name, typ_str
-        elif df.type == 'class':
-            return df.name, ''
+        elif df.type == 'class': # class ${classname}(${superclass}[, ${superclass}]...)
+            # best-effort extract name of superclass(es)
+            try:
+                return "{}({})".format(df.name, df._definition.base.get_super_arglist().get_code()), ''
+            except Exception:
+                return df.name, ''
         elif df.type == 'statement':
             def_types = set([])
             for df_ in df.goto_assignments():
