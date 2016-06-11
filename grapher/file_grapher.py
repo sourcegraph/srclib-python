@@ -54,10 +54,12 @@ class FileGrapher(object):
     def graph(self):
         # Add module/package defs.
         basic_module_path = normalize(os.path.relpath(self._file, self._base_dir))
+        module_keyword = 'module'
         if basic_module_path.startswith('./'):
             basic_module_path = basic_module_path[2:]
         if os.path.basename(self._file) == '__init__.py':
             dot_path = normalize(os.path.dirname(basic_module_path)).replace('/', '.')
+            module_keyword= 'package'
         else:
             dot_path = normalize(os.path.splitext(basic_module_path)[0]).replace('/', '.')
         module_path = '{}/{}.{}'.format(basic_module_path, dot_path, dot_path.split('.')[-1])
@@ -73,10 +75,10 @@ class FileGrapher(object):
             DefEnd=0,
             Exported=True,
             Data=DefFormatData(
-                Name=os.path.basename(basic_module_path),
-                Keyword='module',
+                Name=dot_path,
+                Keyword=module_keyword,
                 Type='',
-                Kind='module',
+                Kind=module_keyword,
                 Separator='',
             ),
         ))
