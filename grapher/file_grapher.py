@@ -207,7 +207,11 @@ class FileGrapher(object):
     # inferred possible values as the type.
     def _jedi_def_to_name_and_type(self, df) -> Tuple[str, str]:
         if df.type == 'function':
-            return df.name, '('+', '.join([self._jedi_def_to_name_and_type(p)[0] for p in df.params])+')'
+            typ_str = '('+', '.join([self._jedi_def_to_name_and_type(p)[0] for p in df.params])+')'
+            if df.parent().type == 'class':
+                return '('+df.parent().name+').' + df.name, typ_str
+            else:
+                return df.name, typ_str
         elif df.type == 'class':
             return df.name, ''
         elif df.type == 'statement':
