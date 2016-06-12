@@ -145,6 +145,7 @@ class FileGrapher(object):
 
             ref_start = self._to_offset(jedi_ref.line, jedi_ref.column)
             ref_end = ref_start + len(jedi_ref.name)
+
             self._add_ref(Ref(
                 DefRepo=sg_def.Repo,
                 DefUnit=sg_def.Unit,
@@ -204,6 +205,17 @@ class FileGrapher(object):
         for line in source_lines:
             self._cumulative_off.append(self._cumulative_off[-1] + len(line))
 
+    def _jedi_def_is_ivar(self, df) -> bool:
+        try:
+            return (df.parent().type == 'function' and
+                    df.parent().parent().type in ['class', 'instance'] and
+                    df.description.startswith('self.'))
+        except:
+            return False
+
+    def _jedi_def_ivar_classname(self, df) -> str:
+        return '.'.join(df.full_name.split('.')[:-1])
+
     # _jedi_def_to_name_and_type returns the display name and type of
     # a Jedi definition. For statements, it displays the set of
     # inferred possible values as the type.
@@ -224,7 +236,7 @@ class FileGrapher(object):
             parent = ''
             if df.parent().type == 'class':
                 parent = df.parent().name+'.'
-            elif df.parent().name == '__init__' and df.parent().type == 'function' and df.parent().parent().type == 'class':
+            elif self._jedi_def_is_ivar(df):
                 parent = "("+df.parent().parent().name+') self.'
 
             def_types = set([])
@@ -365,13 +377,19 @@ class FileGrapher(object):
         if module_path is None:
             raise Exception('could not find name for module path %s' % d.module_path)
 
+        if self._jedi_def_is_ivar(d):
+            classname = self._jedi_def_ivar_classname(d)
+            path = '{}/{}.{}'.format(module_path, classname, d.name)
+        else:
+            path = '{}/{}.{}'.format(module_path, d.full_name, d.name)
+
         dep = None
         if not is_internal:
             dep, err = self._module_to_dep(module_path)
             if err is not None:
                 raise Exception(err)
 
-        return '{}/{}.{}'.format(module_path, d.full_name, d.name), dep
+        return path, dep
 
     @staticmethod
     def _get_module_parent_from_module_path(module_path):
