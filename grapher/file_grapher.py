@@ -272,20 +272,14 @@ class FileGrapher(object):
         )
 
     def _jedi_def_to_def(self, d):
-        # TODO(MaikuMori): Add back this if needed:
-        # If def is a name, then the location of the definition is the last name part
+        dk = self._jedi_def_to_def_key(d)
         start = self._to_offset(d.line, d.column)
         end = start + len(d.name)
-        path, dep = self._full_name_and_dep(d)
-        if dep is not None:
-            repo, unit, unit_type = dep.Repo, dep.Name, dep.Type
-        else:
-            repo, unit, unit_type = "", self._unit, self._unit_type
         def_ = Def(
-            Repo=repo,
-            Unit=unit,
-            UnitType=unit_type,
-            Path=path,
+            Repo=dk.Repo,
+            Unit=dk.Unit,
+            UnitType=dk.UnitType,
+            Path=dk.Path,
             Kind=d.type,
             Name=d.name,
             File=normalize(self._file),
