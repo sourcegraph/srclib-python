@@ -221,6 +221,12 @@ class FileGrapher(object):
             except Exception:
                 return df.name, ''
         elif df.type == 'statement':
+            parent = ''
+            if df.parent().type == 'class':
+                parent = df.parent().name+'.'
+            elif df.parent().name == '__init__' and df.parent().type == 'function' and df.parent().parent().type == 'class':
+                parent = "("+df.parent().parent().name+') self.'
+
             def_types = set([])
             for df_ in df.goto_assignments():
                 idx = df_.description.index('=')
@@ -228,12 +234,13 @@ class FileGrapher(object):
                     def_types.add(df_.description[idx+1:].strip())
                 else:
                     def_types.add('?')
+
             if len(def_types) == 0:
-                return df.name, ''
+                return parent + df.name, ''
             elif len(def_types) == 1:
-                return df.name, '= '+list(def_types)[0]
+                return parent + df.name, '= '+list(def_types)[0]
             else:
-                return df.name, '= {'+', '.join(sorted(def_types))+'}'
+                return parent + df.name, '= {'+', '.join(sorted(def_types))+'}'
         elif df.type == 'param':
             return df.name, ''
         else:
@@ -249,7 +256,7 @@ class FileGrapher(object):
             keyword = 'class'
             sep = ' '
         elif df.type == 'statement':
-            keyword = 'var'
+            keyword = ''
             sep = ' '
         elif df.type == 'param':
             pass
