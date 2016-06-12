@@ -4,16 +4,16 @@
       "UnitType": "PipPackage",
       "Unit": "python-sample-2",
       "Path": "app/__init__.py/app.app",
-      "Name": "__init__.py",
+      "Name": "app",
       "Kind": "module",
       "File": "app/__init__.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "__init__.py",
+        "Keyword": "package",
+        "Kind": "package",
+        "Name": "app",
         "Separator": "",
         "Type": ""
       }
@@ -29,9 +29,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "app.py",
+        "Name": "app.app",
         "Separator": "",
         "Type": ""
       }
@@ -47,9 +47,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "setup.py",
+        "Name": "setup",
         "Separator": "",
         "Type": ""
       }

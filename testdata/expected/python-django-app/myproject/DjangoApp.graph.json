@@ -11,9 +11,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "manage.py",
+        "Name": "manage",
         "Separator": "",
         "Type": ""
       }
@@ -22,16 +22,16 @@
       "UnitType": "DjangoApp",
       "Unit": "myproject",
       "Path": "myapp/__init__.py/myapp.myapp",
-      "Name": "__init__.py",
+      "Name": "myapp",
       "Kind": "module",
       "File": "myproject/myapp/__init__.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "__init__.py",
+        "Keyword": "package",
+        "Kind": "package",
+        "Name": "myapp",
         "Separator": "",
         "Type": ""
       }
@@ -47,9 +47,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "admin.py",
+        "Name": "myapp.admin",
         "Separator": "",
         "Type": ""
       }
@@ -67,7 +67,7 @@
       "Data": {
         "Keyword": "class",
         "Kind": "class",
-        "Name": "MyappConfig",
+        "Name": "MyappConfig(AppConfig)",
         "Separator": " ",
         "Type": ""
       }
@@ -83,9 +83,9 @@
       "DefEnd": 115,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
-        "Name": "name",
+        "Name": "MyappConfig.name",
         "Separator": " ",
         "Type": "= 'myapp'"
       }
@@ -101,9 +101,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "apps.py",
+        "Name": "myapp.apps",
         "Separator": "",
         "Type": ""
       }
@@ -112,16 +112,16 @@
       "UnitType": "DjangoApp",
       "Unit": "myproject",
       "Path": "myapp/migrations/__init__.py/myapp.migrations.migrations",
-      "Name": "__init__.py",
+      "Name": "migrations",
       "Kind": "module",
       "File": "myproject/myapp/migrations/__init__.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "__init__.py",
+        "Keyword": "package",
+        "Kind": "package",
+        "Name": "myapp.migrations",
         "Separator": "",
         "Type": ""
       }
@@ -137,9 +137,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "models.py",
+        "Name": "myapp.models",
         "Separator": "",
         "Type": ""
       }
@@ -155,9 +155,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "tests.py",
+        "Name": "myapp.tests",
         "Separator": "",
         "Type": ""
       }
@@ -173,9 +173,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "urls.py",
+        "Name": "myapp.urls",
         "Separator": "",
         "Type": ""
       }
@@ -191,7 +191,7 @@
       "DefEnd": 66,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "urlpatterns",
         "Separator": " ",
@@ -209,9 +209,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "views.py",
+        "Name": "myapp.views",
         "Separator": "",
         "Type": ""
       }
@@ -256,16 +256,16 @@
       "UnitType": "DjangoApp",
       "Unit": "myproject",
       "Path": "myproject/__init__.py/myproject.myproject",
-      "Name": "__init__.py",
+      "Name": "myproject",
       "Kind": "module",
       "File": "myproject/myproject/__init__.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "__init__.py",
+        "Keyword": "package",
+        "Kind": "package",
+        "Name": "myproject",
         "Separator": "",
         "Type": ""
       }
@@ -281,9 +281,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "settings.py",
+        "Name": "myproject.settings",
         "Separator": "",
         "Type": ""
       }
@@ -299,7 +299,7 @@
       "DefEnd": 829,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "ALLOWED_HOSTS",
         "Separator": " ",
@@ -317,7 +317,7 @@
       "DefEnd": 2476,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "AUTH_PASSWORD_VALIDATORS",
         "Separator": " ",
@@ -335,7 +335,7 @@
       "DefEnd": 401,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "BASE_DIR",
         "Separator": " ",
@@ -353,7 +353,7 @@
       "DefEnd": 2216,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "DATABASES",
         "Separator": " ",
@@ -371,7 +371,7 @@
       "DefEnd": 807,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "DEBUG",
         "Separator": " ",
@@ -389,7 +389,7 @@
       "DefEnd": 877,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "INSTALLED_APPS",
         "Separator": " ",
@@ -407,7 +407,7 @@
       "DefEnd": 2968,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "LANGUAGE_CODE",
         "Separator": " ",
@@ -425,7 +425,7 @@
       "DefEnd": 1089,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "MIDDLEWARE_CLASSES",
         "Separator": " ",
@@ -443,7 +443,7 @@
       "DefEnd": 1575,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "ROOT_URLCONF",
         "Separator": " ",
@@ -461,7 +461,7 @@
       "DefEnd": 679,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "SECRET_KEY",
         "Separator": " ",
@@ -479,7 +479,7 @@
       "DefEnd": 3161,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "STATIC_URL",
         "Separator": " ",
@@ -497,7 +497,7 @@
       "DefEnd": 1605,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "TEMPLATES",
         "Separator": " ",
@@ -515,7 +515,7 @@
       "DefEnd": 2989,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "TIME_ZONE",
         "Separator": " ",
@@ -533,7 +533,7 @@
       "DefEnd": 3007,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "USE_I18N",
         "Separator": " ",
@@ -551,7 +551,7 @@
       "DefEnd": 3024,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "USE_L10N",
         "Separator": " ",
@@ -569,7 +569,7 @@
       "DefEnd": 3039,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "USE_TZ",
         "Separator": " ",
@@ -587,7 +587,7 @@
       "DefEnd": 2097,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "WSGI_APPLICATION",
         "Separator": " ",
@@ -605,9 +605,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "urls.py",
+        "Name": "myproject.urls",
         "Separator": "",
         "Type": ""
       }
@@ -623,7 +623,7 @@
       "DefEnd": 729,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "urlpatterns",
         "Separator": " ",
@@ -641,9 +641,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "wsgi.py",
+        "Name": "myproject.wsgi",
         "Separator": "",
         "Type": ""
       }
@@ -659,7 +659,7 @@
       "DefEnd": 369,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "application",
         "Separator": " ",

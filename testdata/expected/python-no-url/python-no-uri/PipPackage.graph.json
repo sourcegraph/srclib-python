@@ -29,9 +29,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "mod0.py",
+        "Name": "mod0",
         "Separator": "",
         "Type": ""
       }
@@ -47,9 +47,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "setup.py",
+        "Name": "setup",
         "Separator": "",
         "Type": ""
       }

@@ -11,9 +11,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "app.py",
+        "Name": "app",
         "Separator": "",
         "Type": ""
       }
@@ -29,9 +29,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "setup.py",
+        "Name": "setup",
         "Separator": "",
         "Type": ""
       }

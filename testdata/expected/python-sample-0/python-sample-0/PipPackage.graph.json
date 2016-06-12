@@ -4,16 +4,16 @@
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Path": "pkg0/__init__.py/pkg0.pkg0",
-      "Name": "__init__.py",
+      "Name": "pkg0",
       "Kind": "module",
       "File": "pkg0/__init__.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "__init__.py",
+        "Keyword": "package",
+        "Kind": "package",
+        "Name": "pkg0",
         "Separator": "",
         "Type": ""
       }
@@ -31,7 +31,7 @@
       "Data": {
         "Keyword": "class",
         "Kind": "class",
-        "Name": "Class0",
+        "Name": "Class0(object)",
         "Separator": " ",
         "Type": ""
       }
@@ -49,7 +49,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "(Class0).meth0",
+        "Name": "Class0.meth0",
         "Separator": "",
         "Type": "(self)"
       }
@@ -65,9 +65,9 @@
       "DefEnd": 111,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
-        "Name": "var0",
+        "Name": "Class0.var0",
         "Separator": " ",
         "Type": "= 0"
       }
@@ -85,7 +85,7 @@
       "Data": {
         "Keyword": "class",
         "Kind": "class",
-        "Name": "Class0_0",
+        "Name": "Class0_0(Class0)",
         "Separator": " ",
         "Type": ""
       }
@@ -103,7 +103,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "(Class0_0).__init__",
+        "Name": "Class0_0.__init__",
         "Separator": "",
         "Type": "(self, arg0, arg1, args, kwargs)"
       }
@@ -193,7 +193,7 @@
       "Data": {
         "Keyword": "class",
         "Kind": "class",
-        "Name": "Class1",
+        "Name": "Class1(object)",
         "Separator": " ",
         "Type": ""
       }
@@ -211,45 +211,9 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "(Class1).__init__",
+        "Name": "Class1.__init__",
         "Separator": "",
         "Type": "(self)"
-      }
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0.py/m0.Class1.__init__.var0",
-      "Name": "var0",
-      "Kind": "statement",
-      "File": "pkg0/m0.py",
-      "DefStart": 202,
-      "DefEnd": 206,
-      "Exported": true,
-      "Data": {
-        "Keyword": "var",
-        "Kind": "statement",
-        "Name": "var0",
-        "Separator": " ",
-        "Type": "= {0, []}"
-      }
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0.py/m0.Class1.__init__.var1",
-      "Name": "var1",
-      "Kind": "statement",
-      "File": "pkg0/m0.py",
-      "DefStart": 247,
-      "DefEnd": 251,
-      "Exported": true,
-      "Data": {
-        "Keyword": "var",
-        "Kind": "statement",
-        "Name": "var1",
-        "Separator": " ",
-        "Type": "= {None, var0}"
       }
     },
     {
@@ -265,7 +229,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "(Class1).meth0",
+        "Name": "Class1.meth0",
         "Separator": "",
         "Type": "(self)"
       }
@@ -281,29 +245,11 @@
       "DefEnd": 293,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "var0",
         "Separator": " ",
         "Type": "= Class0()"
-      }
-    },
-    {
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Path": "pkg0/m0.py/m0.Class1.meth0.var1",
-      "Name": "var1",
-      "Kind": "statement",
-      "File": "pkg0/m0.py",
-      "DefStart": 339,
-      "DefEnd": 343,
-      "Exported": true,
-      "Data": {
-        "Keyword": "var",
-        "Kind": "statement",
-        "Name": "var1",
-        "Separator": " ",
-        "Type": "= {None, var0}"
       }
     },
     {
@@ -317,11 +263,47 @@
       "DefEnd": 360,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "x",
         "Separator": " ",
         "Type": "= self.var1"
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.Class1.var0",
+      "Name": "var0",
+      "Kind": "statement",
+      "File": "pkg0/m0.py",
+      "DefStart": 202,
+      "DefEnd": 206,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "statement",
+        "Name": "(Class1) self.var0",
+        "Separator": " ",
+        "Type": "= {0, []}"
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Path": "pkg0/m0.py/m0.Class1.var1",
+      "Name": "var1",
+      "Kind": "statement",
+      "File": "pkg0/m0.py",
+      "DefStart": 247,
+      "DefEnd": 251,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "statement",
+        "Name": "(Class1) self.var1",
+        "Separator": " ",
+        "Type": "= {None, var0}"
       }
     },
     {
@@ -353,7 +335,7 @@
       "DefEnd": 508,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "var0",
         "Separator": " ",
@@ -371,7 +353,7 @@
       "DefEnd": 528,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "var1",
         "Separator": " ",
@@ -389,7 +371,7 @@
       "DefEnd": 548,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "var2",
         "Separator": " ",
@@ -407,7 +389,7 @@
       "DefEnd": 631,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "x",
         "Separator": " ",
@@ -425,9 +407,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "m0.py",
+        "Name": "pkg0.m0",
         "Separator": "",
         "Type": ""
       }
@@ -445,7 +427,7 @@
       "Data": {
         "Keyword": "class",
         "Kind": "class",
-        "Name": "Class0_0",
+        "Name": "Class0_0(Class0)",
         "Separator": " ",
         "Type": ""
       }
@@ -463,7 +445,7 @@
       "Data": {
         "Keyword": "def",
         "Kind": "function",
-        "Name": "(Class0_0).__init__",
+        "Name": "Class0_0.__init__",
         "Separator": "",
         "Type": "(self)"
       }
@@ -497,7 +479,7 @@
       "DefEnd": 196,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "var0",
         "Separator": " ",
@@ -515,7 +497,7 @@
       "DefEnd": 216,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "var1",
         "Separator": " ",
@@ -533,7 +515,7 @@
       "DefEnd": 238,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "var2",
         "Separator": " ",
@@ -551,9 +533,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "m1.py",
+        "Name": "pkg0.m1",
         "Separator": "",
         "Type": ""
       }
@@ -569,9 +551,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "setup.py",
+        "Name": "setup",
         "Separator": "",
         "Type": ""
       }
@@ -1021,39 +1003,6 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0.py/m0.Class1.__init__.var0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 202,
-      "End": 206
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0.py/m0.Class1.__init__.var0",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 224,
-      "End": 228
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0.py/m0.Class1.__init__.var1",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 247,
-      "End": 251
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
       "DefPath": "pkg0/m0.py/m0.Class1.meth0.meth0",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
@@ -1096,7 +1045,51 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0.py/m0.Class1.meth0.var1",
+      "DefPath": "pkg0/m0.py/m0.Class1.meth0.x",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 359,
+      "End": 360
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 202,
+      "End": 206
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.var0",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 224,
+      "End": 228
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.var1",
+      "UnitType": "PipPackage",
+      "Unit": "python-sample-0",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 247,
+      "End": 251
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-sample-0",
+      "DefPath": "pkg0/m0.py/m0.Class1.var1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "Def": true,
@@ -1107,23 +1100,12 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0.py/m0.Class1.meth0.var1",
+      "DefPath": "pkg0/m0.py/m0.Class1.var1",
       "UnitType": "PipPackage",
       "Unit": "python-sample-0",
       "File": "pkg0/m0.py",
       "Start": 368,
       "End": 372
-    },
-    {
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-sample-0",
-      "DefPath": "pkg0/m0.py/m0.Class1.meth0.x",
-      "UnitType": "PipPackage",
-      "Unit": "python-sample-0",
-      "Def": true,
-      "File": "pkg0/m0.py",
-      "Start": 359,
-      "End": 360
     },
     {
       "DefUnitType": "PipPackage",

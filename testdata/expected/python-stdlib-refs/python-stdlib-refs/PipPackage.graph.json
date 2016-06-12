@@ -29,7 +29,7 @@
       "DefEnd": 3298,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "args",
         "Separator": " ",
@@ -47,7 +47,7 @@
       "DefEnd": 2840,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "parser",
         "Separator": " ",
@@ -83,7 +83,7 @@
       "DefEnd": 3427,
       "Exported": true,
       "Data": {
-        "Keyword": "var",
+        "Keyword": "",
         "Kind": "statement",
         "Name": "year",
         "Separator": " ",
@@ -112,16 +112,16 @@
       "UnitType": "PipPackage",
       "Unit": "python-stdlib-refs",
       "Path": "pkg/__init__.py/pkg.pkg",
-      "Name": "__init__.py",
+      "Name": "pkg",
       "Kind": "module",
       "File": "pkg/__init__.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
-        "Kind": "module",
-        "Name": "__init__.py",
+        "Keyword": "package",
+        "Kind": "package",
+        "Name": "pkg",
         "Separator": "",
         "Type": ""
       }
@@ -137,9 +137,9 @@
       "DefEnd": 0,
       "Exported": true,
       "Data": {
-        "Keyword": "",
+        "Keyword": "module",
         "Kind": "module",
-        "Name": "setup.py",
+        "Name": "setup",
         "Separator": "",
         "Type": ""
       }
