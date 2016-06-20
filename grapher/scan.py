@@ -62,13 +62,28 @@ def source_files_for_pip_unit(unit_dir: str) -> List[str]:
     if 'py_modules' in metadata and metadata['py_modules'] is not None:
         modules.extend(metadata['py_modules'])
 
+    included_tests = False
+    tests_candidates = ["test", "tests"]
     files = []
     for module in modules:
         files.append('{}.py'.format(normalize(module)))
     for pkg in packages:
-        pkg_files = get_source_files(pkg.replace('.', '/'))
+        pkg_path = pkg.replace('.', '/')
+
+        if not included_tests:
+            included_tests = pkg_path.split('/')[0] in tests_candidates
+
+        pkg_files = get_source_files(pkg_path)
         for pkg_file in pkg_files:
-            files.append(normalize(os.path.join(pkg.replace('.', '/'), pkg_file)))
+            files.append(normalize(os.path.join(pkg_path, pkg_file)))
+
+    # Make good guess for test files when they are not linked.
+    if not included_tests:
+        for cand in tests_candidates:
+            pkg_files = get_source_files(cand)
+            for pkg_file in pkg_files:
+                files.append(normalize(os.path.join(cand, pkg_file)))
+
     files.append('setup.py')
     files = list(set(files))
     return files
