@@ -52,7 +52,10 @@ def find_pip_pkgs(rootdir: str) -> List:
             setup_dict_to_json_serializable_dict(setup_dict, rootdir=os.path.relpath(setup_dir, rootdir)))
     return setup_infos
 
-def source_files_for_pip_unit(unit_dir: str) -> List[str]:
+# Directory name for test files in common practice.
+TEST_DIR = "tests"
+
+def source_files_for_pip_unit(unit_dir: str) -> Tuple[List[str], List[str]]:
     metadata = pydepwrap.setup_info_dir(unit_dir)
     packages, modules = [], [] # type: List[str], List[str]
     if 'packages' in metadata and metadata['packages'] is not None:
@@ -63,7 +66,6 @@ def source_files_for_pip_unit(unit_dir: str) -> List[str]:
         modules.extend(metadata['py_modules'])
 
     included_tests = False
-    tests_candidates = ["test", "tests"]
     files = []
     for module in modules:
         files.append('{}.py'.format(normalize(module)))
@@ -71,34 +73,37 @@ def source_files_for_pip_unit(unit_dir: str) -> List[str]:
         pkg_path = pkg.replace('.', '/')
 
         if not included_tests:
-            included_tests = pkg_path.split('/')[0] in tests_candidates
+            included_tests = pkg_path.split('/')[0] == TEST_DIR
 
         pkg_files = get_source_files(pkg_path)
         for pkg_file in pkg_files:
             files.append(normalize(os.path.join(pkg_path, pkg_file)))
 
     # Make good guess for test files when they are not linked.
+    test_files = []
     if not included_tests:
-        for cand in tests_candidates:
-            pkg_files = get_source_files(cand)
-            for pkg_file in pkg_files:
-                files.append(normalize(os.path.join(cand, pkg_file)))
+        pkg_files = get_source_files(TEST_DIR)
+        for pkg_file in pkg_files:
+            test_files.append(normalize(os.path.join(TEST_DIR, pkg_file)))
 
     files.append('setup.py')
     files = list(set(files))
-    return files
+    test_files = list(set(test_files))
+    return files, test_files
 
-# pkgToUnit transforms a Pip package struct into a source unit.
-def pkgToUnit(pkg: Dict) -> Unit:
+# pkgToUnit transforms a Pip package struct into a list of source units,
+# including main unit and possible test unit.
+def pkgToUnit(pkg: Dict) -> List[Unit]:
     pkgdir = pkg['rootdir']
-    files = source_files_for_pip_unit(pkgdir)
+    files, test_files = source_files_for_pip_unit(pkgdir)
     pkgreqs = pydepwrap.requirements(pkgdir, True)
     deps = []
     for pkgreq in pkgreqs:
         dep = pkgToUnitKey(pkgreq)
         if dep is not None:
             deps.append(dep)
-    return Unit(
+
+    unit = Unit(
         Name = pkg['project_name'],
         Type = UNIT_PIP,
         Repo = "",       # empty Repo signals it is from this repository
@@ -111,6 +116,23 @@ def pkgToUnit(pkg: Dict) -> Unit:
             ReqFiles = [normalize(os.path.join(pkgdir, "requirements.txt"))],
         )
     )
+    if len(test_files) == 0:
+        return [unit]
+    return [unit, Unit(
+        Name = pkg['project_name'],
+        Type = TEST_UNIT_KEY.Type,
+        Repo = "",
+        CommitID = "",
+        Files = sorted(test_files),
+        Dir = TEST_DIR,
+        Dependencies = [UnitKey(
+            Name = unit.Name,
+            Type = unit.Type,
+            Repo = unit.Repo,
+            CommitID = unit.CommitID,
+            Version = unit.Version,
+        )],
+    )]
 
 def scan(diry: str) -> None:
     # special case for standard library
@@ -121,7 +143,7 @@ def scan(diry: str) -> None:
 
     units = [] # type: List[Unit]
     for pkg in find_pip_pkgs(diry):
-        units.append(pkgToUnit(pkg))
+        units.extend(pkgToUnit(pkg))
     for proj in django.find_units("."):
         units.append(proj)
 
