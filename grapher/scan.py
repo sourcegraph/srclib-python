@@ -47,16 +47,6 @@ def find_pip_pkgs(rootdir: str) -> List:
     setup_dirs = pydepwrap.setup_dirs(rootdir)
     setup_infos = []
     for setup_dir in setup_dirs:
-        # HACK: filter out unwanted setup.py's. Should do this inside pydep.
-        rel_setup_dir = os.path.relpath(rootdir, setup_dir)
-        ignore = False
-        for comp in rel_setup_dir.split(os.sep):
-            if (comp != "." and comp.startswith(".")) or comp == "testdata":
-                ignore = True
-                break
-        if ignore:
-            continue
-
         setup_dict = pydepwrap.setup_info_dir(setup_dir)
         setup_infos.append(
             setup_dict_to_json_serializable_dict(setup_dict, rootdir=os.path.relpath(setup_dir, rootdir)))
