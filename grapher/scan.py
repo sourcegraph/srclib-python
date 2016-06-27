@@ -65,9 +65,13 @@ def source_files_for_pip_unit(unit_dir: str) -> Tuple[List[str], List[str]]:
     if 'py_modules' in metadata and metadata['py_modules'] is not None:
         modules.extend(metadata['py_modules'])
 
+    # Indicate whether this unit is in root direcotry of repository.
+    is_root_dir = unit_dir == "."
     included_tests = False
     files = []
     for module in modules:
+        if not is_root_dir:
+            module = os.path.join(unit_dir, module)
         files.append('{}.py'.format(normalize(module)))
     for pkg in packages:
         pkg_path = pkg.replace('.', '/')
@@ -76,17 +80,26 @@ def source_files_for_pip_unit(unit_dir: str) -> Tuple[List[str], List[str]]:
             included_tests = pkg_path.split('/')[0] == TEST_DIR
 
         pkg_files = get_source_files(pkg_path)
+        if not is_root_dir:
+            pkg_path = os.path.join(unit_dir, pkg_path)
         for pkg_file in pkg_files:
             files.append(normalize(os.path.join(pkg_path, pkg_file)))
 
     # Make good guess for test files when they are not linked.
     test_files = []
     if not included_tests:
-        pkg_files = get_source_files(TEST_DIR)
-        for pkg_file in pkg_files:
-            test_files.append(normalize(os.path.join(TEST_DIR, pkg_file)))
+        test_dir = TEST_DIR
+        if not is_root_dir:
+            test_dir = os.path.join(unit_dir, TEST_DIR)
 
-    files.append('setup.py')
+        pkg_files = get_source_files(test_dir)
+        for pkg_file in pkg_files:
+            test_files.append(normalize(os.path.join(test_dir, pkg_file)))
+
+    if is_root_dir:
+        files.append('setup.py')
+    else:
+        files.append(os.path.join(unit_dir, 'setup.py'))
     files = list(set(files))
     test_files = list(set(test_files))
     return files, test_files
@@ -118,13 +131,17 @@ def pkgToUnit(pkg: Dict) -> List[Unit]:
     )
     if len(test_files) == 0:
         return [unit]
+
+    test_dir = TEST_DIR
+    if pkgdir != ".":
+        test_dir = os.path.join(pkgdir, TEST_DIR)
     return [unit, Unit(
         Name = pkg['project_name'],
         Type = TEST_UNIT_KEY.Type,
         Repo = "",
         CommitID = "",
         Files = sorted(test_files),
-        Dir = TEST_DIR,
+        Dir = test_dir,
         Dependencies = [UnitKey(
             Name = unit.Name,
             Type = unit.Type,

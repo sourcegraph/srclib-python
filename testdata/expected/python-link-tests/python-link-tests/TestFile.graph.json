@@ -1,0 +1,190 @@
+{
+  "Defs": [
+    {
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "Path": "test_m0.py/test_m0.TESTS_ROOT",
+      "Name": "TESTS_ROOT",
+      "Kind": "statement",
+      "File": "pkg0/tests/test_m0.py",
+      "DefStart": 23,
+      "DefEnd": 33,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "statement",
+        "Name": "TESTS_ROOT",
+        "Separator": " ",
+        "Type": "= os.path.abspath(os.path.dirname(__file__))"
+      }
+    },
+    {
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "Path": "test_m0.py/test_m0.bar.bar",
+      "Name": "bar",
+      "Kind": "function",
+      "File": "pkg0/tests/test_m0.py",
+      "DefStart": 84,
+      "DefEnd": 87,
+      "Exported": true,
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "bar",
+        "Separator": "",
+        "Type": "()"
+      }
+    },
+    {
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "Path": "test_m0.py/test_m0.test_m0",
+      "Name": "test_m0.py",
+      "Kind": "module",
+      "File": "pkg0/tests/test_m0.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "module",
+        "Kind": "module",
+        "Name": "test_m0",
+        "Separator": "",
+        "Type": ""
+      }
+    }
+  ],
+  "Refs": [
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "ntpath.py/os.path.abspath.abspath",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 44,
+      "End": 51
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "ntpath.py/os.path.dirname.dirname",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 60,
+      "End": 67
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "ntpath.py/os.path.ntpath",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 39,
+      "End": 43
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "ntpath.py/os.path.ntpath",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 55,
+      "End": 59
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "os.py/os.os",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 36,
+      "End": 38
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "os.py/os.os",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 52,
+      "End": 54
+    },
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "Python",
+      "DefPath": "os.py/os.os",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 7,
+      "End": 9
+    },
+    {
+      "DefUnitType": "TestFile",
+      "DefUnit": "python-link-tests",
+      "DefPath": "test_m0.py/test_m0.TESTS_ROOT",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "Def": true,
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 23,
+      "End": 33
+    },
+    {
+      "DefUnitType": "TestFile",
+      "DefUnit": "python-link-tests",
+      "DefPath": "test_m0.py/test_m0.__file__",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 68,
+      "End": 76
+    },
+    {
+      "DefUnitType": "TestFile",
+      "DefUnit": "python-link-tests",
+      "DefPath": "test_m0.py/test_m0.bar.bar",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "Def": true,
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 84,
+      "End": 87
+    },
+    {
+      "DefUnitType": "TestFile",
+      "DefUnit": "python-link-tests",
+      "DefPath": "test_m0.py/test_m0.bar.foo",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 97,
+      "End": 100
+    },
+    {
+      "DefUnitType": "TestFile",
+      "DefUnit": "python-link-tests",
+      "DefPath": "test_m0.py/test_m0.test_m0",
+      "UnitType": "TestFile",
+      "Unit": "python-link-tests",
+      "Def": true,
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 0,
+      "End": 0
+    }
+  ]
+}
