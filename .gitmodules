@@ -31,3 +31,6 @@
 [submodule "testdata/case/python-unresolved-reqstxt"]
 	path = testdata/case/python-unresolved-reqstxt
 	url = https://github.com/sgtest/python-unresolved-reqstxt.git
+[submodule "testdata/case/python-link-tests"]
+	path = testdata/case/python-link-tests
+	url = https://github.com/sgtest/python-link-tests.git

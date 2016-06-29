@@ -5,7 +5,8 @@
       "Op": "scan",
       "SourceUnitTypes": [
         "PipPackage",
-        "DjangoApp"
+        "DjangoApp",
+        "PythonTestPackage"
       ]
     },
     {
@@ -13,7 +14,8 @@
       "Op": "graph",
       "SourceUnitTypes": [
         "PipPackage",
-        "DjangoApp"
+        "DjangoApp",
+        "PythonTestPackage"
       ]
     },
     {
@@ -21,7 +23,8 @@
       "Op": "depresolve",
       "SourceUnitTypes": [
         "PipPackage",
-        "DjangoApp"
+        "DjangoApp",
+        "PythonTestPackage"
       ]
     }
   ]

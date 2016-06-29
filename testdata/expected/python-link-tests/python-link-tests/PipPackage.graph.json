@@ -1,0 +1,176 @@
+{
+  "Defs": [
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Path": "m0.py/m0.foo.foo",
+      "Name": "foo",
+      "Kind": "function",
+      "File": "pkg0/m0.py",
+      "DefStart": 4,
+      "DefEnd": 7,
+      "Exported": true,
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "foo",
+        "Separator": "",
+        "Type": "()"
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Path": "m0.py/m0.m0",
+      "Name": "m0.py",
+      "Kind": "module",
+      "File": "pkg0/m0.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "module",
+        "Kind": "module",
+        "Name": "m0",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
+      "Kind": "module",
+      "File": "pkg0/setup.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "module",
+        "Kind": "module",
+        "Name": "setup",
+        "Separator": "",
+        "Type": ""
+      }
+    }
+  ],
+  "Refs": [
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "m0.py/m0.foo.foo",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 4,
+      "End": 7
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "m0.py/m0.m0",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Def": true,
+      "File": "pkg0/m0.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "setup.py/setup.install_requires",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 169,
+      "End": 185
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "setup.py/setup.name",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 41,
+      "End": 45
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "setup.py/setup.py_modules",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 146,
+      "End": 156
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "setup.py/setup.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Def": true,
+      "File": "pkg0/setup.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "setup.py/setup.url",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 92,
+      "End": 95
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "setup.py/setup.version",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 71,
+      "End": 78
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 23,
+      "End": 28
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 30,
+      "End": 35
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setuptools",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/setup.py",
+      "Start": 5,
+      "End": 15
+    }
+  ]
+}
