@@ -169,7 +169,7 @@ Doc = NamedTuple('Doc', [
 
 UNIT_PIP = "PipPackage"
 UNIT_DJANGO = "DjangoApp"
-UNIT_TEST = "TestFile"
+UNIT_TEST = "PythonTestPackage"
 REPO_UNRESOLVED = "?"
 STDLIB_UNIT_KEY = UnitKey(
     Name = 'Python',

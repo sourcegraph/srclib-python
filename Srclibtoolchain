@@ -6,7 +6,7 @@
       "SourceUnitTypes": [
         "PipPackage",
         "DjangoApp",
-        "TestFile"
+        "PythonTestPackage"
       ]
     },
     {
@@ -15,7 +15,7 @@
       "SourceUnitTypes": [
         "PipPackage",
         "DjangoApp",
-        "TestFile"
+        "PythonTestPackage"
       ]
     },
     {
@@ -24,7 +24,7 @@
       "SourceUnitTypes": [
         "PipPackage",
         "DjangoApp",
-        "TestFile"
+        "PythonTestPackage"
       ]
     }
   ]
