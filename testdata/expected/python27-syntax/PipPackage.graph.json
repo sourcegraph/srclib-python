@@ -1,0 +1,226 @@
+{
+  "Defs": [
+    {
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Path": "py27lib.py/py27lib.hello.hello",
+      "Name": "hello",
+      "Kind": "function",
+      "File": "py27lib.py",
+      "DefStart": 4,
+      "DefEnd": 9,
+      "Exported": true,
+      "Data": {
+        "Keyword": "def",
+        "Kind": "function",
+        "Name": "hello",
+        "Separator": "",
+        "Type": "()"
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Path": "py27lib.py/py27lib.hello.s",
+      "Name": "s",
+      "Kind": "statement",
+      "File": "py27lib.py",
+      "DefStart": 17,
+      "DefEnd": 18,
+      "Exported": true,
+      "Data": {
+        "Keyword": "",
+        "Kind": "statement",
+        "Name": "s",
+        "Separator": " ",
+        "Type": "= \"hello world\""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Path": "py27lib.py/py27lib.py27lib",
+      "Name": "py27lib.py",
+      "Kind": "module",
+      "File": "py27lib.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "module",
+        "Kind": "module",
+        "Name": "py27lib",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Path": "setup.py/setup.setup",
+      "Name": "setup.py",
+      "Kind": "module",
+      "File": "setup.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "module",
+        "Kind": "module",
+        "Name": "setup",
+        "Separator": "",
+        "Type": ""
+      }
+    }
+  ],
+  "Refs": [
+    {
+      "DefRepo": "github.com/python/cpython",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "__builtin__",
+      "DefPath": "print",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "py27lib.py",
+      "Start": 51,
+      "End": 56
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "py27lib.py/py27lib.hello.hello",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Def": true,
+      "File": "py27lib.py",
+      "Start": 4,
+      "End": 9
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "py27lib.py/py27lib.hello.s",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Def": true,
+      "File": "py27lib.py",
+      "Start": 17,
+      "End": 18
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "py27lib.py/py27lib.hello.s",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "py27lib.py",
+      "Start": 57,
+      "End": 58
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "py27lib.py/py27lib.py27lib",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Def": true,
+      "File": "py27lib.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "setup.py/setup.install_requires",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 222,
+      "End": 238
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "setup.py/setup.name",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 93,
+      "End": 97
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "setup.py/setup.py_modules",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 194,
+      "End": 204
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "setup.py/setup.setup",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "Def": true,
+      "File": "setup.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "setup.py/setup.url",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 142,
+      "End": 145
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": ".",
+      "DefPath": "setup.py/setup.version",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 121,
+      "End": 128
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 23,
+      "End": 28
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setup",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 82,
+      "End": 87
+    },
+    {
+      "DefRepo": "github.com/pypa/setuptools",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "setuptools",
+      "DefPath": "setuptools/__init__.py/setuptools.setuptools",
+      "UnitType": "PipPackage",
+      "Unit": ".",
+      "File": "setup.py",
+      "Start": 5,
+      "End": 15
+    }
+  ]
+}
