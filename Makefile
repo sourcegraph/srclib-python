@@ -2,10 +2,12 @@ ifeq ($(OS),Windows_NT)
 # You can't change pip.exe being in use on Windows, so we'll copy original one and use it
        PIPCMD = cmd /C .env\\Scripts\\pip-vendored.exe --isolated --disable-pip-version-check
        MYPY = .env/Scripts/mypy
+       ENV2 = virtualenv
        ENV = virtualenv
 else
        PIPCMD = .env/bin/pip
        MYPY = .env/bin/mypy
+       ENV2 = virtualenv -p python2.7
        ENV = virtualenv -p python3.5
 endif
 
@@ -14,6 +16,7 @@ endif
 default: .env install test
 
 .env:
+	$(ENV2) .env
 	$(ENV) .env
 ifeq ($(OS),Windows_NT)
 	cp .env/Scripts/pip.exe .env/Scripts/pip-vendored.exe
