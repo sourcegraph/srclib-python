@@ -130,11 +130,22 @@ def pkgToUnit(pkg: Dict) -> List[Unit]:
     if len(test_files) == 0:
         return [unit]
 
+    # Collect files as candidates of modules.
+    modules = []
+    for file in files:
+        # Convert file path to Python module name format .
+        file = os.path.splitext(file)[0].replace('/', '.')
+        # Remove directory prefix if setup.py is not in root directory.
+        if pkgdir != ".":
+            file = file[len(pkgdir)+1:]
+        modules.append(file)
+    modules = sorted(modules)
+
     test_dir = TEST_DIR
     if pkgdir != ".":
         test_dir = os.path.join(pkgdir, TEST_DIR)
     return [unit, Unit(
-        Name = pkg['project_name'],
+        Name = unit.Name,
         Type = TEST_UNIT_KEY.Type,
         Repo = "",
         CommitID = "",
@@ -147,6 +158,14 @@ def pkgToUnit(pkg: Dict) -> List[Unit]:
             CommitID = unit.CommitID,
             Version = unit.Version,
         )],
+        Data = Data(
+            Reqs = [{
+                "project_name": unit.Name,
+                "repo_url": "",
+                "packages": pkg['packages'] if pkg['packages'] is not None else None,
+                "modules": modules,
+            }]
+        )
     )]
 
 def scan(diry: str) -> None:

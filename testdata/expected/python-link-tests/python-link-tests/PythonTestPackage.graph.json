@@ -57,6 +57,39 @@
   ],
   "Refs": [
     {
+      "DefRepo": "?",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "m0.py/m0.foo.foo",
+      "UnitType": "PythonTestPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 93,
+      "End": 96
+    },
+    {
+      "DefRepo": "?",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "m0.py/m0.m0",
+      "UnitType": "PythonTestPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 17,
+      "End": 19
+    },
+    {
+      "DefRepo": "?",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "m0.py/m0.m0",
+      "UnitType": "PythonTestPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 90,
+      "End": 92
+    },
+    {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
       "DefUnit": "Python",
