@@ -102,9 +102,9 @@ def source_files_for_pip_unit(metadata: Dict) -> Tuple[List[str], List[str]]:
     test_files = list(set(test_files))
     return files, test_files
 
-# pkgToUnit transforms a Pip package struct into a list of source units,
+# pkgToUnits transforms a Pip package struct into a list of source units,
 # including main unit and possible test unit.
-def pkgToUnit(pkg: Dict) -> List[Unit]:
+def pkgToUnits(pkg: Dict) -> List[Unit]:
     pkgdir = pkg['rootdir']
     files, test_files = source_files_for_pip_unit(pkg)
     pkgreqs = pydepwrap.requirements(pkgdir, True)
@@ -177,7 +177,7 @@ def scan(diry: str) -> None:
 
     units = [] # type: List[Unit]
     for pkg in find_pip_pkgs(diry):
-        units.extend(pkgToUnit(pkg))
+        units.extend(pkgToUnits(pkg))
     for proj in django.find_units("."):
         units.append(proj)
 
