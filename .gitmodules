@@ -34,3 +34,6 @@
 [submodule "testdata/case/python-link-tests"]
 	path = testdata/case/python-link-tests
 	url = https://github.com/sgtest/python-link-tests.git
+[submodule "python27-syntax"]
+	path = testdata/case/python27-syntax
+	url = https://github.com/sgtest/python27-syntax.git

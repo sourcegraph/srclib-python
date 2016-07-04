@@ -37,7 +37,10 @@ def setup_info_dir(setup_dir: str) -> Any:
             raise Exception(err)
         return info
     except SyntaxError as e:
-        return pydep_in_python2("info", setup_dir)
+        info = pydep_in_python2("info", setup_dir)
+        if "modules" in info:
+            info["py_modules"] = info["modules"]
+        return info
     else:
         raise
 

@@ -18,6 +18,7 @@ install:
   - export PATH=$PATH:$GOPATH/bin
 # installing toolchain
   - ln -s $TRAVIS_BUILD_DIR $HOME/.srclib/sourcegraph.com/sourcegraph/srclib-python
+  - make install-py2
   - make install
 
 # TODO(sqs): add `go test`
