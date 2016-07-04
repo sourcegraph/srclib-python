@@ -8,6 +8,8 @@ import subprocess
 rootdir = os.path.dirname(os.path.dirname(__file__))
 python = os.path.join(rootdir, ".env", "bin", "python3.5")
 
+os.environ["SRCLIBPY_ROOTDIR"] = rootdir
+
 args = [python, "-m", "srclib-python"]
 args.extend(sys.argv[1:])
 subprocess.run(args, check=True)
