@@ -22,6 +22,12 @@ ifeq ($(OS),Windows_NT)
 	cp .env/Scripts/pip.exe .env/Scripts/pip-vendored.exe
 endif
 
+.env2:
+	$(ENV2) .env
+ifeq ($(OS),Windows_NT)
+	cp .env/Scripts/pip.exe .env/Scripts/pip-vendored.exe
+endif
+
 $(MYPY):
 	$(PIPCMD) install mypy-lang
 
@@ -30,6 +36,10 @@ install-force: .env
 	$(PIPCMD) install -r requirements.txt --upgrade
 
 install: .env
+	$(PIPCMD) install .
+	$(PIPCMD) install -r requirements.txt
+
+install-py2: .env2
 	$(PIPCMD) install .
 	$(PIPCMD) install -r requirements.txt
 

@@ -1,0 +1,1 @@
+{"Name":".","Type":"PipPackage","Files":["py27lib.py","setup.py"],"Dir":".","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["./requirements.txt"],"Reqs":[]}}

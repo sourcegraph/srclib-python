@@ -55,8 +55,7 @@ def find_pip_pkgs(rootdir: str) -> List:
 # Directory name for test files in common practice.
 TEST_DIR = "tests"
 
-def source_files_for_pip_unit(unit_dir: str) -> Tuple[List[str], List[str]]:
-    metadata = pydepwrap.setup_info_dir(unit_dir)
+def source_files_for_pip_unit(metadata: Dict) -> Tuple[List[str], List[str]]:
     packages, modules = [], [] # type: List[str], List[str]
     if 'packages' in metadata and metadata['packages'] is not None:
         packages.extend(metadata['packages'])
@@ -66,6 +65,7 @@ def source_files_for_pip_unit(unit_dir: str) -> Tuple[List[str], List[str]]:
         modules.extend(metadata['py_modules'])
 
     # Indicate whether this unit is in root direcotry of repository.
+    unit_dir = metadata['rootdir']
     is_root_dir = unit_dir == "."
     included_tests = False
     files = []
@@ -80,8 +80,6 @@ def source_files_for_pip_unit(unit_dir: str) -> Tuple[List[str], List[str]]:
             included_tests = pkg_path.split('/')[0] == TEST_DIR
 
         pkg_files = get_source_files(pkg_path)
-        if not is_root_dir:
-            pkg_path = os.path.join(unit_dir, pkg_path)
         for pkg_file in pkg_files:
             files.append(normalize(os.path.join(pkg_path, pkg_file)))
 
@@ -108,7 +106,7 @@ def source_files_for_pip_unit(unit_dir: str) -> Tuple[List[str], List[str]]:
 # including main unit and possible test unit.
 def pkgToUnit(pkg: Dict) -> List[Unit]:
     pkgdir = pkg['rootdir']
-    files, test_files = source_files_for_pip_unit(pkgdir)
+    files, test_files = source_files_for_pip_unit(pkg)
     pkgreqs = pydepwrap.requirements(pkgdir, True)
     deps = []
     for pkgreq in pkgreqs:
@@ -117,7 +115,7 @@ def pkgToUnit(pkg: Dict) -> List[Unit]:
             deps.append(dep)
 
     unit = Unit(
-        Name = pkg['project_name'],
+        Name = pkg['project_name'] if pkg['project_name'] is not None else pkgdir,
         Type = UNIT_PIP,
         Repo = "",       # empty Repo signals it is from this repository
         CommitID = "",
