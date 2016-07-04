@@ -7,8 +7,8 @@
       "Name": "TESTS_ROOT",
       "Kind": "statement",
       "File": "pkg0/tests/test_m0.py",
-      "DefStart": 21,
-      "DefEnd": 31,
+      "DefStart": 31,
+      "DefEnd": 41,
       "Exported": true,
       "Data": {
         "Keyword": "",
@@ -25,8 +25,8 @@
       "Name": "bar",
       "Kind": "function",
       "File": "pkg0/tests/test_m0.py",
-      "DefStart": 82,
-      "DefEnd": 85,
+      "DefStart": 92,
+      "DefEnd": 95,
       "Exported": true,
       "Data": {
         "Keyword": "def",
@@ -64,8 +64,19 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 93,
-      "End": 96
+      "Start": 103,
+      "End": 106
+    },
+    {
+      "DefRepo": "?",
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "m0.py/m0.m0",
+      "UnitType": "PythonTestPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 100,
+      "End": 102
     },
     {
       "DefRepo": "?",
@@ -79,17 +90,6 @@
       "End": 19
     },
     {
-      "DefRepo": "?",
-      "DefUnitType": "PipPackage",
-      "DefUnit": "python-link-tests",
-      "DefPath": "m0.py/m0.m0",
-      "UnitType": "PythonTestPackage",
-      "Unit": "python-link-tests",
-      "File": "pkg0/tests/test_m0.py",
-      "Start": 90,
-      "End": 92
-    },
-    {
       "DefRepo": "github.com/python/cpython",
       "DefUnitType": "PipPackage",
       "DefUnit": "Python",
@@ -97,8 +97,8 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 42,
-      "End": 49
+      "Start": 52,
+      "End": 59
     },
     {
       "DefRepo": "github.com/python/cpython",
@@ -108,8 +108,8 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 58,
-      "End": 65
+      "Start": 68,
+      "End": 75
     },
     {
       "DefRepo": "github.com/python/cpython",
@@ -119,8 +119,8 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 37,
-      "End": 41
+      "Start": 47,
+      "End": 51
     },
     {
       "DefRepo": "github.com/python/cpython",
@@ -130,8 +130,8 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 53,
-      "End": 57
+      "Start": 63,
+      "End": 67
     },
     {
       "DefRepo": "github.com/python/cpython",
@@ -141,8 +141,8 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 34,
-      "End": 36
+      "Start": 44,
+      "End": 46
     },
     {
       "DefRepo": "github.com/python/cpython",
@@ -152,8 +152,8 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 50,
-      "End": 52
+      "Start": 60,
+      "End": 62
     },
     {
       "DefRepo": "github.com/python/cpython",
@@ -174,8 +174,8 @@
       "Unit": "python-link-tests",
       "Def": true,
       "File": "pkg0/tests/test_m0.py",
-      "Start": 21,
-      "End": 31
+      "Start": 31,
+      "End": 41
     },
     {
       "DefUnitType": "PythonTestPackage",
@@ -184,8 +184,8 @@
       "UnitType": "PythonTestPackage",
       "Unit": "python-link-tests",
       "File": "pkg0/tests/test_m0.py",
-      "Start": 66,
-      "End": 74
+      "Start": 76,
+      "End": 84
     },
     {
       "DefUnitType": "PythonTestPackage",
@@ -195,8 +195,18 @@
       "Unit": "python-link-tests",
       "Def": true,
       "File": "pkg0/tests/test_m0.py",
-      "Start": 82,
-      "End": 85
+      "Start": 92,
+      "End": 95
+    },
+    {
+      "DefUnitType": "PythonTestPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "test_m0.py/test_m0.bar.hello",
+      "UnitType": "PythonTestPackage",
+      "Unit": "python-link-tests",
+      "File": "pkg0/tests/test_m0.py",
+      "Start": 113,
+      "End": 118
     },
     {
       "DefUnitType": "PythonTestPackage",

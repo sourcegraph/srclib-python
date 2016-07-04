@@ -102,6 +102,21 @@ def source_files_for_pip_unit(metadata: Dict) -> Tuple[List[str], List[str]]:
     test_files = list(set(test_files))
     return files, test_files
 
+# filesToModules transforms from source files to list of modules.
+# Because setup.py file only defines modules and packages the library wants to expose, 
+# but test files are using ones that are not defined in the setup.py as well.
+def filesToModules(rootdir: str, files: List[str]) -> List[str]:
+    modules = []
+    for file in files:
+        # Convert file path to Python module name format .
+        file = os.path.splitext(file)[0].replace('/', '.')
+        # Remove directory prefix if setup.py is not in root directory.
+        if rootdir != ".":
+            file = file[len(rootdir)+1:]
+        modules.append(file)
+    modules = sorted(modules)
+    return modules
+
 # pkgToUnits transforms a Pip package struct into a list of source units,
 # including main unit and possible test unit.
 def pkgToUnits(pkg: Dict) -> List[Unit]:
@@ -130,17 +145,6 @@ def pkgToUnits(pkg: Dict) -> List[Unit]:
     if len(test_files) == 0:
         return [unit]
 
-    # Collect files as candidates of modules.
-    modules = []
-    for file in files:
-        # Convert file path to Python module name format .
-        file = os.path.splitext(file)[0].replace('/', '.')
-        # Remove directory prefix if setup.py is not in root directory.
-        if pkgdir != ".":
-            file = file[len(pkgdir)+1:]
-        modules.append(file)
-    modules = sorted(modules)
-
     test_dir = TEST_DIR
     if pkgdir != ".":
         test_dir = os.path.join(pkgdir, TEST_DIR)
@@ -163,7 +167,7 @@ def pkgToUnits(pkg: Dict) -> List[Unit]:
                 "project_name": unit.Name,
                 "repo_url": "",
                 "packages": pkg['packages'] if pkg['packages'] is not None else None,
-                "modules": modules,
+                "modules": filesToModules(pkgdir, files),
             }]
         )
     )]
