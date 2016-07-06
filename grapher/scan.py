@@ -79,6 +79,8 @@ def source_files_for_pip_unit(metadata: Dict) -> Tuple[List[str], List[str]]:
         if not included_tests:
             included_tests = pkg_path.split('/')[0] == TEST_DIR
 
+        if not is_root_dir:
+            pkg_path = os.path.join(unit_dir, pkg_path)
         pkg_files = get_source_files(pkg_path)
         for pkg_file in pkg_files:
             files.append(normalize(os.path.join(pkg_path, pkg_file)))
@@ -102,9 +104,24 @@ def source_files_for_pip_unit(metadata: Dict) -> Tuple[List[str], List[str]]:
     test_files = list(set(test_files))
     return files, test_files
 
-# pkgToUnit transforms a Pip package struct into a list of source units,
+# filesToModules transforms from source files to list of modules.
+# Because setup.py file only defines modules and packages the library wants to expose, 
+# but test files are using ones that are not defined in the setup.py as well.
+def filesToModules(rootdir: str, files: List[str]) -> List[str]:
+    modules = []
+    for file in files:
+        # Convert file path to Python module name format .
+        file = os.path.splitext(file)[0].replace('/', '.')
+        # Remove directory prefix if setup.py is not in root directory.
+        if rootdir != ".":
+            file = file[len(rootdir)+1:]
+        modules.append(file)
+    modules = sorted(modules)
+    return modules
+
+# pkgToUnits transforms a Pip package struct into a list of source units,
 # including main unit and possible test unit.
-def pkgToUnit(pkg: Dict) -> List[Unit]:
+def pkgToUnits(pkg: Dict) -> List[Unit]:
     pkgdir = pkg['rootdir']
     files, test_files = source_files_for_pip_unit(pkg)
     pkgreqs = pydepwrap.requirements(pkgdir, True)
@@ -134,7 +151,7 @@ def pkgToUnit(pkg: Dict) -> List[Unit]:
     if pkgdir != ".":
         test_dir = os.path.join(pkgdir, TEST_DIR)
     return [unit, Unit(
-        Name = pkg['project_name'],
+        Name = unit.Name,
         Type = TEST_UNIT_KEY.Type,
         Repo = "",
         CommitID = "",
@@ -147,6 +164,14 @@ def pkgToUnit(pkg: Dict) -> List[Unit]:
             CommitID = unit.CommitID,
             Version = unit.Version,
         )],
+        Data = Data(
+            Reqs = [{
+                "project_name": unit.Name,
+                "repo_url": "",
+                "packages": pkg['packages'] if pkg['packages'] is not None else None,
+                "modules": filesToModules(pkgdir, files),
+            }]
+        )
     )]
 
 def scan(diry: str) -> None:
@@ -158,7 +183,7 @@ def scan(diry: str) -> None:
 
     units = [] # type: List[Unit]
     for pkg in find_pip_pkgs(diry):
-        units.extend(pkgToUnit(pkg))
+        units.extend(pkgToUnits(pkg))
     for proj in django.find_units("."):
         units.append(proj)
 
@@ -176,9 +201,9 @@ def scan(diry: str) -> None:
 # setup_dict_to_json_serializable_dict is copy-pasted from pydep-run.py
 def setup_dict_to_json_serializable_dict(d, **kw):
     modules = []
-    if 'py_modules' in d:
+    if 'py_modules' in d and d['py_modules'] is not None:
         modules.extend(d['py_modules'])
-    if 'modules' in d:
+    if 'modules' in d and d['modules'] is not None:
         modules.extend(d['modules'])
     if len(modules) == 0:
         modules = None
