@@ -3,10 +3,28 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "Path": "m0.py/m0.foo.foo",
+      "Path": "pkg0/__init__.py/pkg0.pkg0",
+      "Name": "pkg0",
+      "Kind": "module",
+      "File": "app/pkg0/__init__.py",
+      "DefStart": 0,
+      "DefEnd": 0,
+      "Exported": true,
+      "Data": {
+        "Keyword": "package",
+        "Kind": "package",
+        "Name": "pkg0",
+        "Separator": "",
+        "Type": ""
+      }
+    },
+    {
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Path": "pkg0/m0.py/m0.foo.foo",
       "Name": "foo",
       "Kind": "function",
-      "File": "pkg0/m0.py",
+      "File": "app/pkg0/m0.py",
       "DefStart": 4,
       "DefEnd": 7,
       "Exported": true,
@@ -21,17 +39,17 @@
     {
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "Path": "m0.py/m0.m0",
+      "Path": "pkg0/m0.py/pkg0.m0.m0",
       "Name": "m0.py",
       "Kind": "module",
-      "File": "pkg0/m0.py",
+      "File": "app/pkg0/m0.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
       "Data": {
         "Keyword": "module",
         "Kind": "module",
-        "Name": "m0",
+        "Name": "pkg0.m0",
         "Separator": "",
         "Type": ""
       }
@@ -42,7 +60,7 @@
       "Path": "setup.py/setup.setup",
       "Name": "setup.py",
       "Kind": "module",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "DefStart": 0,
       "DefEnd": 0,
       "Exported": true,
@@ -59,22 +77,33 @@
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-link-tests",
-      "DefPath": "m0.py/m0.foo.foo",
+      "DefPath": "pkg0/__init__.py/pkg0.pkg0",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
       "Def": true,
-      "File": "pkg0/m0.py",
+      "File": "app/pkg0/__init__.py",
+      "Start": 0,
+      "End": 0
+    },
+    {
+      "DefUnitType": "PipPackage",
+      "DefUnit": "python-link-tests",
+      "DefPath": "pkg0/m0.py/m0.foo.foo",
+      "UnitType": "PipPackage",
+      "Unit": "python-link-tests",
+      "Def": true,
+      "File": "app/pkg0/m0.py",
       "Start": 4,
       "End": 7
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-link-tests",
-      "DefPath": "m0.py/m0.m0",
+      "DefPath": "pkg0/m0.py/pkg0.m0.m0",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
       "Def": true,
-      "File": "pkg0/m0.py",
+      "File": "app/pkg0/m0.py",
       "Start": 0,
       "End": 0
     },
@@ -84,7 +113,7 @@
       "DefPath": "setup.py/setup.install_requires",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 169,
       "End": 185
     },
@@ -94,19 +123,19 @@
       "DefPath": "setup.py/setup.name",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 41,
       "End": 45
     },
     {
       "DefUnitType": "PipPackage",
       "DefUnit": "python-link-tests",
-      "DefPath": "setup.py/setup.py_modules",
+      "DefPath": "setup.py/setup.packages",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 146,
-      "End": 156
+      "End": 154
     },
     {
       "DefUnitType": "PipPackage",
@@ -115,7 +144,7 @@
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
       "Def": true,
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 0,
       "End": 0
     },
@@ -125,7 +154,7 @@
       "DefPath": "setup.py/setup.url",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 92,
       "End": 95
     },
@@ -135,7 +164,7 @@
       "DefPath": "setup.py/setup.version",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 71,
       "End": 78
     },
@@ -146,7 +175,7 @@
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 23,
       "End": 28
     },
@@ -157,7 +186,7 @@
       "DefPath": "setuptools/__init__.py/setuptools.setup",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 30,
       "End": 35
     },
@@ -168,7 +197,7 @@
       "DefPath": "setuptools/__init__.py/setuptools.setuptools",
       "UnitType": "PipPackage",
       "Unit": "python-link-tests",
-      "File": "pkg0/setup.py",
+      "File": "app/setup.py",
       "Start": 5,
       "End": 15
     }

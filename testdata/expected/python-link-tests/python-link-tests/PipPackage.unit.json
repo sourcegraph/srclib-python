@@ -1,1 +1,1 @@
-{"Name":"python-link-tests","Type":"PipPackage","Files":["pkg0/m0.py","pkg0/setup.py"],"Dir":"pkg0","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["pkg0/requirements.txt"],"Reqs":[]}}
+{"Name":"python-link-tests","Type":"PipPackage","Files":["app/pkg0/__init__.py","app/pkg0/m0.py","app/setup.py"],"Dir":"app","Dependencies":[{"Repo":"github.com/pypa/setuptools","Type":"PipPackage","Name":"setuptools"}],"Data":{"ReqFiles":["app/requirements.txt"],"Reqs":[]}}

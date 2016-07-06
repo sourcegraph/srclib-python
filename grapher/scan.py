@@ -79,6 +79,8 @@ def source_files_for_pip_unit(metadata: Dict) -> Tuple[List[str], List[str]]:
         if not included_tests:
             included_tests = pkg_path.split('/')[0] == TEST_DIR
 
+        if not is_root_dir:
+            pkg_path = os.path.join(unit_dir, pkg_path)
         pkg_files = get_source_files(pkg_path)
         for pkg_file in pkg_files:
             files.append(normalize(os.path.join(pkg_path, pkg_file)))
@@ -199,9 +201,9 @@ def scan(diry: str) -> None:
 # setup_dict_to_json_serializable_dict is copy-pasted from pydep-run.py
 def setup_dict_to_json_serializable_dict(d, **kw):
     modules = []
-    if 'py_modules' in d:
+    if 'py_modules' in d and d['py_modules'] is not None:
         modules.extend(d['py_modules'])
-    if 'modules' in d:
+    if 'modules' in d and d['modules'] is not None:
         modules.extend(d['modules'])
     if len(modules) == 0:
         modules = None
